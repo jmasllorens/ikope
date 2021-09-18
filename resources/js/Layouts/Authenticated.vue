@@ -7,9 +7,9 @@
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
-                            <div class="flex-shrink-0 flex items-center">
+                           <div class="flex items-center" style="width:10rem">
                                 <Link :href="route('dashboard')">
-                                    <BreezeApplicationLogo class="block h-9 w-auto" />
+                                        <img src="@/Assets/ik.png" style="width:30%; margin-top:0.5rem; margin-bottom:0.5rem; border-radius:10rem"/>
                                 </Link>
                             </div>
 
@@ -18,6 +18,18 @@
                                 <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </BreezeNavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                 <BreezeNavLink :href="route('seminars')" :active="route().current('seminars')"> Seminars  </BreezeNavLink>
+                            </div>
+                              <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                 <BreezeNavLink :href="route('publications')" :active="route().current('publications')"> Publications  </BreezeNavLink>
+                            </div>
+                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                 <BreezeNavLink :href="route('patients')" :active="route().current('patients')"> Patients  </BreezeNavLink>
+                            </div>
+                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                 <BreezeNavLink :href="route('contact')" :active="route().current('contact')"> Contact </BreezeNavLink>
                             </div>
                         </div>
 
@@ -38,6 +50,9 @@
                                     </template>
 
                                     <template #content>
+                                        <BreezeDropdownLink :href="route('profile')" as="button">
+                                            Profile Settings
+                                        </BreezeDropdownLink>
                                         <BreezeDropdownLink :href="route('logout')" method="post" as="button">
                                             Log Out
                                         </BreezeDropdownLink>
@@ -65,6 +80,27 @@
                             Dashboard
                         </BreezeResponsiveNavLink>
                     </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <BreezeResponsiveNavLink :href="route('seminars')" :active="route().current('seminars')">
+                            Seminars
+                        </BreezeResponsiveNavLink>
+                    </div>
+                   
+                    <div class="pt-2 pb-3 space-y-1">
+                        <BreezeResponsiveNavLink :href="route('publications')" :active="route().current('publications')">
+                            Publications
+                        </BreezeResponsiveNavLink>
+                    </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <BreezeResponsiveNavLink :href="route('patients')" :active="route().current('patients')">
+                            Patients
+                        </BreezeResponsiveNavLink>
+                    </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <BreezeResponsiveNavLink :href="route('contact')" :active="route().current('contact')">
+                            Contact
+                        </BreezeResponsiveNavLink>
+                    </div>
 
                     <!-- Responsive Settings Options -->
                     <div class="pt-4 pb-1 border-t border-gray-200">
@@ -74,6 +110,9 @@
                         </div>
 
                         <div class="mt-3 space-y-1">
+                            <BreezeResponsiveNavLink :href="route('profile')" as="button">
+                                Profile Settings
+                            </BreezeResponsiveNavLink>
                             <BreezeResponsiveNavLink :href="route('logout')" method="post" as="button">
                                 Log Out
                             </BreezeResponsiveNavLink>

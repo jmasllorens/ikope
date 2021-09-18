@@ -24,8 +24,32 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::group(['middleware' => ['auth', 'verified']], function () {
+
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+    
+    Route::get('/seminars', function () {
+        return Inertia::render('Seminars');
+    })->name('seminars');
+
+    Route::get('/publications', function () {
+        return Inertia::render('Publications');
+    })->name('publications');
+
+    Route::get('/patients', function () {
+        return Inertia::render('Patients');
+    })->name('patients');
+    
+    Route::get('/contact', function () {
+        return Inertia::render('Contact');
+    })->name('contact');
+
+    Route::get('/profile', function() {
+        return Inertia::render('Profile');
+    })->name('profile');
+
+});
 
 require __DIR__.'/auth.php';
