@@ -17,6 +17,7 @@ class CreateSeminarsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title');
+            $table->string('subject');
             $table->string('author');
             $table->string('approach');
             $table->integer('availability');

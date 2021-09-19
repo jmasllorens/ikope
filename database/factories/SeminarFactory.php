@@ -24,6 +24,7 @@ class SeminarFactory extends Factory
         return [
             'title' => $this->faker->text(200),
             'author' => $this->faker->name(),
+            'subject' => $this->faker->text(10),
             'approach' => $this->faker->text(20),
             'availability' => $this -> faker -> numberBetween(5, 30),
             'date' => $this -> faker -> dateTimeBetween('now', '+200 days'),
