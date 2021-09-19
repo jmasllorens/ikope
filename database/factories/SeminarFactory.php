@@ -22,7 +22,12 @@ class SeminarFactory extends Factory
     public function definition()
     {
         return [
-            //
-        ];
+            'title' => $this->faker->text(200),
+            'author' => $this->faker->name(),
+            'approach' => $this->faker->text(20),
+            'availability' => $this -> faker -> numberBetween(5, 30),
+            'date' => $this -> faker -> dateTimeBetween('now', '+200 days'),
+            'image' => $this->faker->imageurl(640,480, null, false),  
+            ];
     }
 }
