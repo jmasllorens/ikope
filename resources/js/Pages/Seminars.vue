@@ -35,100 +35,25 @@
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <tr>
+            <tr v-for="seminar in seminars.data" v-bind:key="seminar">
               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Regional Paradigm Technician</div>
-                <div class="text-sm text-gray-500">Optimization</div>
+                <div class="text-sm text-gray-900" > {{ seminar.title }}</div>
+                <div class="text-sm text-gray-500">{{ seminar.subject }} </div>
               </td>
                <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Jacques Lacan</div>
+                <div class="text-sm text-gray-900">{{ seminar.author }}</div>
              
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Lacanian Psychoanalysis</div>
+                <div class="text-sm text-gray-900">{{ seminar.approach }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  14/23
+                  {{ seminar.availability }}/30
                 </span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                14/02/2018
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">Join</a>
-              </td>
-            </tr>
-
-             <tr>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Regional Paradigm Technician</div>
-                <div class="text-sm text-gray-500">Optimization</div>
-              </td>
-               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Jacques Lacan</div>
-             
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Lacanian Psychoanalysis</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  14/23
-                </span>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                14/02/2018
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">Join</a>
-              </td>
-            </tr>
-
-             <tr>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Regional Paradigm Technician</div>
-                <div class="text-sm text-gray-500">Optimization</div>
-              </td>
-               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Jacques Lacan</div>
-             
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Lacanian Psychoanalysis</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  14/23
-                </span>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                14/02/2018
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">Join</a>
-              </td>
-            </tr>
-
-             <tr>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Regional Paradigm Technician</div>
-                <div class="text-sm text-gray-500">Optimization</div>
-              </td>
-               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Jacques Lacan</div>
-             
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">Lacanian Psychoanalysis</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  14/23
-                </span>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                14/02/2018
+                {{ seminar.date }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <a href="#" class="text-indigo-600 hover:text-indigo-900">Join</a>
@@ -154,10 +79,15 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import { Head } from '@inertiajs/inertia-vue3';
 
 
+
 export default {
+
+    props: ['seminars'],
+  
     components: {
         BreezeAuthenticatedLayout,
         Head,
     },
+
 }
 </script>

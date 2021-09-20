@@ -17,8 +17,8 @@ class SeminarController extends Controller
 
         if($user->isAdmin)
         {
-            return Inertia::render('seminars.admin', ['seminars' => $seminars]);
+            return Inertia::render('Admin/Seminars', ['seminars' => $seminars]);
         }
-            return Inertia::render('seminars', ['seminars' => $seminars, 'user' => $user]);
+            return Inertia::render('Seminars', ['seminars' => $seminars]);
     }
 }
