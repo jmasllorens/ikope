@@ -10,20 +10,14 @@ use Illuminate\Support\Facades\Mail;
 
 class SeminarController extends Controller
 {
-    /* public function countSubscribers()
-    {
-        $seminars = Seminar::all();
-
-        foreach($seminars as $seminar) 
-        {
-            $totalSubscribers = count($seminar->users);
-            return $totalSubscribers;
-        }
-    } */
     public function index()
     {
         $user = Auth::user();
         $seminars = Seminar::orderBy('date', 'asc')->paginate(10);
+        foreach($seminars as $seminar) 
+        {
+            $seminar->users;
+        }
 
         if($user->isAdmin)
         {   
@@ -37,12 +31,13 @@ class SeminarController extends Controller
         $user = Auth::user();
         $seminar = Seminar::find($id);
         $seminar->users;
-
+        $isSubscribed = $seminar->isSubscribed($user->id);
+       
         if($user->isAdmin)
         {
             return Inertia::render('Admin/Seminar', ['seminar' => $seminar]);
         }
-            return Inertia::render('Seminar', ['seminar' => $seminar]);
+            return Inertia::render('Seminar', ['seminar' => $seminar, 'isSubscribed' => $isSubscribed]);
     }
 
     public function subscribe($id)
@@ -54,7 +49,7 @@ class SeminarController extends Controller
         $this->sendEmail($id);
 
         session()->flash('message', 'Your application has been successfully submitted!');
-
+ 
         return redirect()->route('seminars');
     }
 
@@ -85,12 +80,4 @@ class SeminarController extends Controller
         });
     }
     
-    public function isSubscribed($id)
-    {
-        if($this->users->find($id))
-        {
-        return true;
-        }
-        return false;
-    }
 }
