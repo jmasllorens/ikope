@@ -8,6 +8,7 @@
             </div>
   </div>
 </div>
+
 <div class="flex justify-between m-6">
   <div class="flex flex-col h-full w-4/5 mx-auto bg-blueish rounded-lg">
          <!--  <img
@@ -59,8 +60,8 @@
             </div>
                 </div>
               </div>
-                <BreezeButton  v-if="$props.seminar.users.length < $props.seminar.availability"><a :href="`/subscribe/${seminar.id}`" method="get">Subscribe</a></BreezeButton>
-                <BreezeButton><a :href="`/unsubscribe/${seminar.id}`" method="get">Unsubscribe</a></BreezeButton>
+                <BreezeButton  v-if="$props.seminar.users.length < $props.seminar.availability && !isSubscribed"><a :href="`/subscribe/${seminar.id}`" method="get">Subscribe</a></BreezeButton>
+                <BreezeButton v-if="isSubscribed"><a :href="`/unsubscribe/${seminar.id}`" method="get">Unsubscribe</a></BreezeButton>
     
           </div>
           <div></div>
@@ -83,8 +84,8 @@ import BreezeButton from '@/Components/Button.vue';
 
 
 export default {
-    props: ['seminar', 'auth', 'users'],
-
+    props: ['seminar', 'auth', 'users', 'isSubscribed'],
+    
     components: {
         BreezeAuthenticatedLayout,
         Head,
