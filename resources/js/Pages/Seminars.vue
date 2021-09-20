@@ -8,12 +8,7 @@
                  <div class="p-3 bg-blueish border-b border-gray-200">
                         <strong>Seminars</strong>
                     </div>
-   <!--  <div class="flex justify-center pt-8" v-if="message">
-        <div class="alert alert-success">
-            {{ session('message') }}
-        </div>
-    </div> -->
-    <!-- TABLE -->
+   
     <div class="flex flex-col">
   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -32,6 +27,9 @@
               </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Date
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Available Places
               </th>
                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               </th>
@@ -57,17 +55,19 @@
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {{ seminar.date }}
               </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <span v-if="seminar.users.length >= seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-gray-700">
+                  Full
+                </span>
+                <span v-if="seminar.users.length < seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-gray-700">
+                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}
+                </span>
+
+              </td>
               <td>
-                 <BreezeButton class="bg-blue-200 text-gray-800 hover:bg-blue-300 active:bg-blue-400"><a :href="`/seminars/${seminar.id}`" method="get">Info</a></BreezeButton>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <BreezeButton class="bg-blue-200 text-gray-800 hover:bg-blue-300 active:bg-blue-400"><a :href="`/subscribe/${seminar.id}`" method="get">Subscribe</a></BreezeButton>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <BreezeButton class="bg-blue-200 text-gray-800 hover:bg-blue-300 active:bg-blue-400"  ><a :href="`/unsubscribe/${seminar.id}`" method="get">Unsubscribe</a></BreezeButton>
+                 <BreezeButton class="bg-blue-200 text-gray-800 hover:bg-blue-300 active:bg-blue-400"><a :href="`/seminars/${seminar.id}`" method="get">+ Info</a></BreezeButton>
               </td>
             </tr>
-            <!-- More people... -->
           </tbody>
         </table>
       </div>
@@ -91,7 +91,7 @@ import BreezeButton from '@/Components/Button.vue';
 
 
 export default {
-    props: ['seminars'],
+    props: ['seminars', 'auth', 'users'],
 
     components: {
         BreezeAuthenticatedLayout,
