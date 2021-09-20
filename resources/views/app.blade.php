@@ -20,6 +20,8 @@
     <body class="font-sans antialiased">
         @inertia
 
+        <div id="app" data-page="{{ json_encode($page) }}"></div>
+
         @env ('local')
             <script src="http://localhost:8080/js/bundle.js"></script>
         @endenv
