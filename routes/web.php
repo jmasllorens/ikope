@@ -33,6 +33,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     
     Route::get('/seminars', [SeminarController::class, 'index'])->name('seminars');
 
+    Route::get('/seminars/{id}', [SeminarController::class, 'show'])->name('show');
+
+    Route::get('/subscribe/{id}', [SeminarController::class, 'subscribe'])->name('subscribe');
+
+    Route::get('/unsubscribe/{id}', [SeminarController::class, 'unsubscribe'])->name('unsubscribe');
+
     Route::get('/publications', function () {
         return Inertia::render('Publications');
     })->name('publications');

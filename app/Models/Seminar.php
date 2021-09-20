@@ -14,6 +14,7 @@ class Seminar extends Model
         'subject',
         'author',
         'approach',
+        'description',
         'availability',
         'date',
         'image'
