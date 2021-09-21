@@ -23,7 +23,7 @@ class SeminarTest extends TestCase
         $this->assertCount(2, $seminar->users);
     }
 
-    public function test_if_can_get_list_of_all_seminars() 
+    public function test_can_get_list_of_all_seminars() 
     {
         Seminar::factory(6)->create([]);
 
@@ -74,6 +74,34 @@ class SeminarTest extends TestCase
 
         $this->assertTrue($isSubscribed);
         $this->assertCount(1, $seminar->users);
+
+    }
+
+    public function test_a_new_seminar_can_be_created_by_admin()
+    {
+        $user = User::factory()->create(['isAdmin' => true]);
+
+        $seminar = new Seminar([
+            'title' => 'Psychoanalysis for dummies',
+            'subject' => 'Psychoanalysis',
+            'author' => 'Jacques Lacan',
+            'approach' => 'Lacanian',
+            'description' => 'Jokes and bullies',
+            'availability' => 28,
+            'date' => '2021-10-21 19:54:02'
+        ]);
+
+        $response = $this->actingAs($user)->post('/seminars/store', [
+            'title' => $seminar->title,
+            'subject' => $seminar->subject,
+            'author' => $seminar->author,
+            'approach' => $seminar->approach,
+            'description' => $seminar->description,
+            'availability' => $seminar->availability,
+            'date' => $seminar->date
+        ]);
+
+        $this->assertEquals(Seminar::all()->count(), 1);
 
     }
 }

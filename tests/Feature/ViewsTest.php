@@ -4,6 +4,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\Seminar;
 
 class ViewsTest extends TestCase
 {
@@ -67,7 +68,25 @@ class ViewsTest extends TestCase
     }
 
 /*     admin views */
+
+    public function test_seminars_create_screen_can_be_rendered_if_logged_user_is_admin()
+    {
+        $user = User::factory()->create(['isAdmin' => true]);
+
+        $response = $this->actingAs($user)->get('/seminars/create');
+
+        $response->assertStatus(200);
+    }
     
+    public function test_seminars_edit_screen_can_be_rendered_if_logged_user_is_admin()
+    {
+        $user = User::factory()->create(['isAdmin' => true]);
+        $seminar = Seminar::factory()->create(['id' => 1]);
+
+        $response = $this->actingAs($user)->get('/seminars/1/edit');
+
+        $response->assertStatus(200);
+    }
 
     
 }

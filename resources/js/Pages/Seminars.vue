@@ -68,7 +68,6 @@
                 <span v-if="seminar.users.length < seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700">
                 {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}
                 </span>
-
               </td>
               <td>
                  <BreezeButton class="bg-blue-200 text-gray-800 hover:bg-blue-300 active:bg-blue-400"><a :href="`/seminars/${seminar.id}`" method="get">+ Info</a></BreezeButton>

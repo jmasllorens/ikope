@@ -35,6 +35,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('/seminars/create', [SeminarController::class, 'create'])->name('seminars_create');
 
+    Route::post('/seminars/store', [SeminarController::class, 'store'])->name('seminars_store');
+
     Route::get('/seminars/{id}/edit', [SeminarController::class, 'edit'])->name('seminars_edit');
 
     Route::get('/seminars/{id}', [SeminarController::class, 'show'])->name('show');
