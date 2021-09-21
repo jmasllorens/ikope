@@ -33,6 +33,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     
     Route::get('/seminars', [SeminarController::class, 'index'])->name('seminars');
 
+    Route::get('/seminars/create', [SeminarController::class, 'create'])->name('seminarsAdmin');
+
     Route::get('/seminars/{id}', [SeminarController::class, 'show'])->name('show');
 
     Route::get('/subscribe/{id}', [SeminarController::class, 'subscribe'])->name('subscribe');

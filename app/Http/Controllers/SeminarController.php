@@ -12,31 +12,20 @@ class SeminarController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
         $seminars = Seminar::orderBy('date', 'asc')->paginate(10);
         foreach($seminars as $seminar) 
         {
             $seminar->users;
-        }
-
-        if($user->isAdmin)
-        {   
-            return Inertia::render('Admin/Seminars', ['seminars' => $seminars]);
         }
             return Inertia::render('Seminars', ['seminars' => $seminars]);
     }
 
     public function show($id) 
     {
-        $user = Auth::user();
         $seminar = Seminar::find($id);
         $seminar->users;
         $isSubscribed = $seminar->isSubscribed($user->id);
        
-        if($user->isAdmin)
-        {
-            return Inertia::render('Admin/Seminar', ['seminar' => $seminar]);
-        }
             return Inertia::render('Seminar', ['seminar' => $seminar, 'isSubscribed' => $isSubscribed]);
     }
 
@@ -55,8 +44,6 @@ class SeminarController extends Controller
             return redirect()->route('seminars');
         }
             return redirect()->route('seminars');
-        
-        
     }
 
     public function unsubscribe($id)
@@ -74,7 +61,6 @@ class SeminarController extends Controller
             return redirect()->route('seminars');
         }
             return redirect()->route('seminars');
-       
     }
 
     public function sendEmail($id)

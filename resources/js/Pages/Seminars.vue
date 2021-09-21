@@ -56,10 +56,10 @@
                 {{ seminar.date }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <span v-if="seminar.users.length >= seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-gray-700">
+                <span v-if="seminar.users.length >= seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">
                   Full
                 </span>
-                <span v-if="seminar.users.length < seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-gray-700">
+                <span v-if="seminar.users.length < seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700">
                 {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}
                 </span>
 
