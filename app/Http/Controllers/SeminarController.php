@@ -7,12 +7,13 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Seminar;
 use Illuminate\Support\Facades\Mail;
+use Http\Controllers\Storage;
 
 class SeminarController extends Controller
 {
     public function index()
     {
-        $seminars = Seminar::orderBy('date', 'asc')->paginate(10);;
+        $seminars = Seminar::orderBy('date', 'asc')->paginate(20);
         foreach($seminars as $seminar) 
         {
             $seminar->users;
@@ -68,13 +69,13 @@ class SeminarController extends Controller
     {   
         $seminarId = Seminar::find($id);
 
-        Mail::raw('You have been successfully unsubscribed from our seminar "'.$seminarId->title.'".', function ($m) {
+        Mail::raw('Your application in regard with our seminar "'.$seminarId->title.'" has been successfully submitted.', function ($m) {
 
         $user = Auth::user();
             
         $m->from('ikope@ikope.com', 'I-KOPE');
 
-        $m->to($user->email, $user->name)->subject('You have a new notification');
+        $m->to($user->email, $user->name)->subject('You have a new notification from I-KOPE');
         });
     }
 
@@ -83,13 +84,52 @@ class SeminarController extends Controller
         return Inertia::render('Admin/Seminars/Create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        $newSeminar = request()->except('_token');
+
+        if($request->hasFile('image'))
+    {
+        $newEvent['image']=$request->file('image')->store('images', 'public');
+    }
+        Seminar::create($newSeminar);
+
+        $seminars = Seminar::paginate(20);
+    
+        return redirect()->route('seminars');
 
     }
 
     public function edit($id)
-    {
+    {   
+        $seminar = Seminar::findOrFail($id);
+
         return Inertia::render('Admin/Seminars/Edit');
     }
+
+    public function update(Request $request, $id)
+    {
+        $changesSeminar = request()->except(['_token', '_method']);
+    
+           /*  if($request->hasFile('image'))
+            {
+            $seminar=Seminar::findOrFail($id);
+            Storage::delete('public/'.$seminar->image);
+            $changesSeminar['image']=$request->file('image')->store('images', 'public');
+            }
+     */
+            Seminar::where('id', '=', $id)->update($changesSeminar);
+           
+            $seminar = Seminar::findOrFail($id);
+
+            return redirect()->route('seminars', compact('seminar'));
+            //return view('dashboard', compact('event'));
+        }
+    
+    public function delete($id)
+    {
+        Seminar::destroy($id);
+        return redirect()->route('seminars');
+    }
+
 }
