@@ -32,11 +32,13 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     })->name('dashboard');
     
     Route::get('/seminars', [SeminarController::class, 'index'])->name('seminars');
-
+    Route::get('/seminars/create', [SeminarController::class, 'create'])->name('seminars_create');
+    Route::post('/seminars/store', [SeminarController::class, 'store'])->name('seminars_store');
+    Route::get('/seminars/{id}/edit', [SeminarController::class, 'edit'])->name('seminars_edit');
+    Route::put('/seminars/{id}/update', [SeminarController::class, 'update'])->name('seminars_update');
+    Route::delete('/seminars/{id}', [SeminarController::class, 'delete'])->name('seminars_delete');
     Route::get('/seminars/{id}', [SeminarController::class, 'show'])->name('show');
-
     Route::get('/subscribe/{id}', [SeminarController::class, 'subscribe'])->name('subscribe');
-
     Route::get('/unsubscribe/{id}', [SeminarController::class, 'unsubscribe'])->name('unsubscribe');
 
     Route::get('/publications', function () {

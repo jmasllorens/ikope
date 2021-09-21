@@ -27,3 +27,8 @@ export default {
     },
 }
 </script>
+<style scoped>
+.bg-blueish {
+    background-color: rgb(112, 202, 200);
+}
+</style>
