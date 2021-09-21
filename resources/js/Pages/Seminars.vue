@@ -115,12 +115,10 @@ export default {
     },
 
     methods: {
-
     deleteSeminar(id) {
-      this.$inertia.delete(`/seminars/${id}/delete`, id)
+      this.$inertia.delete(`/seminars/${id}`, id)
       }
     }
-
 }
 </script>
 

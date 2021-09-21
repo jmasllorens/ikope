@@ -20019,7 +20019,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     deleteSeminar: function deleteSeminar(id) {
-      this.$inertia["delete"]("/seminars/".concat(id, "/delete"), id);
+      this.$inertia["delete"]("/seminars/".concat(id), id);
     }
   }
 });
