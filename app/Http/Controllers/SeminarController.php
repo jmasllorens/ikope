@@ -12,7 +12,7 @@ class SeminarController extends Controller
 {
     public function index()
     {
-        $seminars = Seminar::orderBy('date', 'asc')->paginate(10);
+        $seminars = Seminar::orderBy('date', 'asc')->paginate(10);;
         foreach($seminars as $seminar) 
         {
             $seminar->users;
@@ -22,11 +22,12 @@ class SeminarController extends Controller
 
     public function show($id) 
     {
+        $user = Auth::user();
         $seminar = Seminar::find($id);
         $seminar->users;
         $isSubscribed = $seminar->isSubscribed($user->id);
-       
-            return Inertia::render('Seminar', ['seminar' => $seminar, 'isSubscribed' => $isSubscribed]);
+
+        return Inertia::render('Seminar', ['seminar' => $seminar, 'isSubscribed' => $isSubscribed]);
     }
 
     public function subscribe($id)
@@ -76,5 +77,19 @@ class SeminarController extends Controller
         $m->to($user->email, $user->name)->subject('You have a new notification');
         });
     }
-    
+
+    public function create() 
+    {
+        return Inertia::render('Admin/Seminars/Create');
+    }
+
+    public function store()
+    {
+
+    }
+
+    public function edit($id)
+    {
+        return Inertia::render('Admin/Seminars/Edit');
+    }
 }
