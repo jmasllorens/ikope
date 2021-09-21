@@ -12,16 +12,10 @@ class SeminarController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $seminars = Seminar::orderBy('date', 'asc')->paginate(10);
+        $seminars = Seminar::orderBy('date', 'asc')->paginate(10);;
         foreach($seminars as $seminar) 
         {
             $seminar->users;
-        }
-
-        if($user->isAdmin)
-        {   
-            return Inertia::render('Admin/Seminars', ['seminars' => $seminars]);
         }
             return Inertia::render('Seminars', ['seminars' => $seminars]);
     }
@@ -32,38 +26,42 @@ class SeminarController extends Controller
         $seminar = Seminar::find($id);
         $seminar->users;
         $isSubscribed = $seminar->isSubscribed($user->id);
-       
-        if($user->isAdmin)
-        {
-            return Inertia::render('Admin/Seminar', ['seminar' => $seminar]);
-        }
-            return Inertia::render('Seminar', ['seminar' => $seminar, 'isSubscribed' => $isSubscribed]);
+
+        return Inertia::render('Seminar', ['seminar' => $seminar, 'isSubscribed' => $isSubscribed]);
     }
 
     public function subscribe($id)
     {
         $user = Auth::user();
-        $seminarId = Seminar::find($id);
-        
-        $user->seminars()->attach($seminarId);
-        $this->sendEmail($id);
+        $seminar = Seminar::find($id);
 
-        session()->flash('message', 'Your application has been successfully submitted!');
- 
-        return redirect()->route('seminars');
+        if($seminar->isSubscribed($user->id) == false)
+        {
+            $user->seminars()->attach($seminar);
+            $this->sendEmail($id);
+    
+            session()->flash('message', 'Your application has been successfully submitted!');
+     
+            return redirect()->route('seminars');
+        }
+            return redirect()->route('seminars');
     }
 
     public function unsubscribe($id)
     {
         $user = Auth::user();
-        $seminarId = Seminar::find($id);
+        $seminar = Seminar::find($id);
 
-        $user->seminars()->detach($seminarId);
-        $this->sendEmail($id);
-
-        session()->flash('message', 'Your application has been successfully cancelled!');
-        
-        return redirect()->route('seminars');
+        if($seminar->isSubscribed($user->id) == true)
+        {
+            $user->seminars()->detach($seminar);
+            $this->sendEmail($id);
+    
+            session()->flash('message', 'Your application has been successfully cancelled!');
+            
+            return redirect()->route('seminars');
+        }
+            return redirect()->route('seminars');
     }
 
     public function sendEmail($id)
@@ -79,5 +77,19 @@ class SeminarController extends Controller
         $m->to($user->email, $user->name)->subject('You have a new notification');
         });
     }
-    
+
+    public function create() 
+    {
+        return Inertia::render('Admin/Seminars/Create');
+    }
+
+    public function store()
+    {
+
+    }
+
+    public function edit($id)
+    {
+        return Inertia::render('Admin/Seminars/Edit');
+    }
 }

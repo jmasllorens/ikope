@@ -9,6 +9,18 @@ class ViewsTest extends TestCase
 {
     use RefreshDatabase;
 
+    /* unlogged user view */
+
+    public function test_welcome_screen_can_be_rendered()
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+    }
+    
+    
+    /* logged user views */
+
     public function test_dashboard_screen_can_be_rendered_if_user_is_logged_in()
     {
         $user = User::factory()->create();
@@ -47,13 +59,14 @@ class ViewsTest extends TestCase
 
     public function test_contact_screen_can_be_rendered_if_user_is_logged_in()
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create([]);
 
         $response = $this->actingAs($user)->get('/contact');
 
         $response->assertStatus(200);
     }
 
+/*     admin views */
     
 
     
