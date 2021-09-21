@@ -50,7 +50,7 @@
                   <br>
             <div class="flex border-t border-gray-700 w-full py-4">
                  <div class="text-m font-semibold">
-                  <h2>Description</h2>
+                  <h2>Abstract</h2>
                   <br>
                   <p class="text-m font-light tracking-wider text-gray-600">
                     {{$props.seminar.description}}
@@ -60,11 +60,18 @@
             </div>
                 </div>
               </div>
-                <BreezeButton  v-if="$props.seminar.users.length < $props.seminar.availability && !isSubscribed"><a :href="`/subscribe/${seminar.id}`" method="get">Subscribe</a></BreezeButton>
-                <BreezeButton v-if="isSubscribed"><a :href="`/unsubscribe/${seminar.id}`" method="get">Unsubscribe</a></BreezeButton>
-    
+              <div>
+                <BreezeButton  v-if="$props.seminar.users.length < $props.seminar.availability && !isSubscribed && !$props.auth.user.isAdmin"><a :href="`/subscribe/${seminar.id}`" method="get">Subscribe</a></BreezeButton>
+
+                <BreezeButton v-if="isSubscribed && !$props.auth.user.isAdmin"><a :href="`/unsubscribe/${seminar.id}`" method="get">Unsubscribe</a></BreezeButton>
+
+                <div v-if="$props.auth.user.isAdmin" class="inline-flex">
+                <BreezeButton class="bg-green-700 hover:bg-green-800 mr-3"><a :href="`/seminars/${seminar.id}/edit`" method="get">Edit</a></BreezeButton>
+
+                <BreezeButton class="bg-red-700 hover:bg-red-800 mr-3" @click.prevent="deleteSeminar(`${seminar.id}`)">Delete</BreezeButton>
+                </div>
+              </div>
           </div>
-          <div></div>
         <br>
         </div>
 </div>
@@ -91,6 +98,15 @@ export default {
         Head,
         BreezeButton,   
     },
+
+    methods: {
+    deleteSeminar(id) {
+      if(confirm('Are you sure you want to delete this item?')) {
+      this.$inertia.delete(`/seminars/${id}`, id)
+      }
+      return;
+      }
+    }
 
 }
 </script>
