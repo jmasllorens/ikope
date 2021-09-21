@@ -111,13 +111,13 @@ class SeminarController extends Controller
     {
         $changesSeminar = request()->except(['_token', '_method']);
     
-           /*  if($request->hasFile('image'))
+            if($request->hasFile('image'))
             {
             $seminar=Seminar::findOrFail($id);
             Storage::delete('public/'.$seminar->image);
             $changesSeminar['image']=$request->file('image')->store('images', 'public');
             }
-     */
+  
             Seminar::where('id', '=', $id)->update($changesSeminar);
            
             $seminar = Seminar::findOrFail($id);
@@ -129,6 +129,7 @@ class SeminarController extends Controller
     public function delete($id)
     {
         Seminar::destroy($id);
+
         return redirect()->route('seminars');
     }
 
