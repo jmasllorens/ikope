@@ -96,7 +96,7 @@ class SeminarController extends Controller
 
         $seminars = Seminar::paginate(20);
     
-        return redirect()->route('seminars');
+       return redirect()->route('seminars');
 
     }
 
