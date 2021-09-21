@@ -124,6 +124,6 @@ class SeminarTest extends TestCase
         $response = $this->actingAs($user)->put('seminars/4/update', [
             'title' => 'Queer Theory in Psychoanalysis']);
   
-        $this->assertEquals(Seminar::first()->title,'Queer Theory in Psychoanalysis');
+        $this->assertEquals(Seminar::find(4)->title,'Queer Theory in Psychoanalysis');
     } 
 }
