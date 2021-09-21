@@ -110,7 +110,7 @@ class SeminarTest extends TestCase
         $user = User::factory()->create(['isAdmin' => true]);
         $seminar = Seminar::factory()->create(['id' => 2]);
     
-        $response = $this->actingAs($user)->delete('/seminars/2', [$seminar]);
+        $response = $this->actingAs($user)->delete('/seminars/2/delete', [$seminar]);
 
         $this->assertEquals(Seminar::all()->count(), 0);
 

@@ -76,7 +76,7 @@
                <BreezeButton class="bg-green-400 hover:bg-green-500"><a :href="`/seminars/${seminar.id}/edit`" method="get">Edit</a></BreezeButton>
               </td>
               <td v-if="$props.auth.user.isAdmin">
-               <a :href="`/seminars/${seminar.id}/delete`" method="delete">Delete</a>
+                <BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteSeminar(`${seminar.id}`)">Delete</BreezeButton>
               </td>
             
             </tr>
@@ -111,8 +111,16 @@ export default {
     components: {
         BreezeAuthenticatedLayout,
         Head,
-        BreezeButton,  
+        BreezeButton  
     },
+
+    methods: {
+
+    deleteSeminar(id) {
+      this.$inertia.delete(`/seminars/${id}/delete`, id)
+      }
+    }
+
 }
 </script>
 
