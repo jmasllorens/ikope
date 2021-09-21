@@ -4,7 +4,7 @@
     <br>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-3 bg-white border-b border-gray-200">
+                <div class="p-3 bg-blueish border-b border-gray-200">
                     <h2> Profile Settings </h2>
                 </div>
             </div>
@@ -97,5 +97,9 @@ export default {
         }
     }
 }
-
 </script>
+<style scoped>
+.bg-blueish {
+    background-color: rgb(112, 202, 200);
+}
+</style>
