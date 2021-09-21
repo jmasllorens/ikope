@@ -43,27 +43,38 @@ class SeminarController extends Controller
     public function subscribe($id)
     {
         $user = Auth::user();
-        $seminarId = Seminar::find($id);
-        
-        $user->seminars()->attach($seminarId);
-        $this->sendEmail($id);
+        $seminar = Seminar::find($id);
 
-        session()->flash('message', 'Your application has been successfully submitted!');
- 
-        return redirect()->route('seminars');
+        if($seminar->isSubscribed($user->id) == false)
+        {
+            $user->seminars()->attach($seminar);
+            $this->sendEmail($id);
+    
+            session()->flash('message', 'Your application has been successfully submitted!');
+     
+            return redirect()->route('seminars');
+        }
+            return redirect()->route('seminars');
+        
+        
     }
 
     public function unsubscribe($id)
     {
         $user = Auth::user();
-        $seminarId = Seminar::find($id);
+        $seminar = Seminar::find($id);
 
-        $user->seminars()->detach($seminarId);
-        $this->sendEmail($id);
-
-        session()->flash('message', 'Your application has been successfully cancelled!');
-        
-        return redirect()->route('seminars');
+        if($seminar->isSubscribed($user->id) == true)
+        {
+            $user->seminars()->detach($seminar);
+            $this->sendEmail($id);
+    
+            session()->flash('message', 'Your application has been successfully cancelled!');
+            
+            return redirect()->route('seminars');
+        }
+            return redirect()->route('seminars');
+       
     }
 
     public function sendEmail($id)
