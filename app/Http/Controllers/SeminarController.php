@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Seminar;
 use Illuminate\Support\Facades\Mail;
+use Http\Controllers\Storage;
 
 class SeminarController extends Controller
 {
@@ -110,16 +111,15 @@ class SeminarController extends Controller
     {
         $changesSeminar = request()->except(['_token', '_method']);
     
-            if($request->hasFile('image'))
+           /*  if($request->hasFile('image'))
             {
             $seminar=Seminar::findOrFail($id);
             Storage::delete('public/'.$seminar->image);
             $changesSeminar['image']=$request->file('image')->store('images', 'public');
             }
-    
+     */
             Seminar::where('id', '=', $id)->update($changesSeminar);
            
-    
             $seminar = Seminar::findOrFail($id);
 
             return redirect()->route('seminars', compact('seminar'));

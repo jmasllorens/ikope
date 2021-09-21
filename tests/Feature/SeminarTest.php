@@ -104,4 +104,26 @@ class SeminarTest extends TestCase
         $this->assertEquals(Seminar::all()->count(), 1);
 
     }
+
+    public function test_a_seminar_can_be_deleted_by_admin()
+    {
+        $user = User::factory()->create(['isAdmin' => true]);
+        $seminar = Seminar::factory()->create(['id' => 2]);
+    
+        $response = $this->actingAs($user)->delete('/seminars/2', [$seminar]);
+
+        $this->assertEquals(Seminar::all()->count(), 0);
+
+    }
+
+    public function test_a_seminar_can_be_updated_by_admin()
+    {
+        $user = User::factory()->create(['isAdmin' => true]);
+        $seminar = Seminar::factory()->create(['id' => 4, 'title' => 'Gender perspective in Psychoanalysis']);
+   
+        $response = $this->actingAs($user)->put('seminars/4/update', [
+            'title' => 'Queer Theory in Psychoanalysis']);
+  
+        $this->assertEquals(Seminar::first()->title,'Queer Theory in Psychoanalysis');
+    } 
 }
