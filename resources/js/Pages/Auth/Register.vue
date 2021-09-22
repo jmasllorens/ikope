@@ -29,6 +29,13 @@
             <BreezeInput id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
         </div>
 
+         <div class="mt-6 mb-2">
+            <label class="flex items-center" for="isActive">
+                <BreezeCheckbox name="isActive" v-model:checked="form.isActive" />
+                <span class="ml-2 text-sm text-gray-600">I practise as a psychotherapist</span>
+            </label>
+        </div>
+
         <div class="flex items-center justify-end mt-4">
             <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
                 Already registered?
@@ -47,7 +54,8 @@ import BreezeGuestLayout from '@/Layouts/Guest.vue'
 import BreezeInput from '@/Components/Input.vue'
 import BreezeLabel from '@/Components/Label.vue'
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
-import { Head, Link } from '@inertiajs/inertia-vue3';
+import { Head, Link } from '@inertiajs/inertia-vue3'
+import BreezeCheckbox from '@/Components/Checkbox.vue';
 
 export default {
     layout: BreezeGuestLayout,
@@ -59,6 +67,7 @@ export default {
         BreezeValidationErrors,
         Head,
         Link,
+        BreezeCheckbox
     },
 
     data() {
@@ -68,6 +77,7 @@ export default {
                 email: '',
                 password: '',
                 pronoun: '',
+                isActive: false,
                 password_confirmation: '',
                 terms: false,
             })
