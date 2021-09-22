@@ -9,35 +9,56 @@
                 </div>
             </div>
     </div>
-    <BreezeValidationErrors class="mb-4" />
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 border-b border-gray-200">
-                <form @submit.prevent="submit">
+                <form @submit.prevent="editSeminar()">
                 <div class="grid grid-cols-2 gap-6">
                 <div class="grid grid-rows-2 gap-6">
                               
                 <div>
-                <BreezeLabel for="email" value="Email" />
-                <BreezeInput id="email" type="email" class="mt-1 block w-full" required autofocus autocomplete="username" />
+                <BreezeLabel for="title" value="Title"/>
+                <BreezeInput v-model="form.title" id="title" type="text" class="mt-1 block w-full"  required autofocus />
                 </div>
 
-                <div class="mt-4">
-                <BreezeLabel for="password" value="New Password" />
-                <BreezeInput id="password" type="password" class="mt-1 block w-full" required autocomplete="new-password" />
+                <div>
+                <BreezeLabel for="subject" value="Subject" />
+                <BreezeInput v-model="form.subject" id="subject" type="text" class="mt-1 block w-full"  required autofocus />
+                </div>
+                <p> {{ seminar.subject }}</p>
+                <div>
+                <BreezeLabel for="author" value="Author/s" />
+                <BreezeInput v-model="form.author" id="author" type="text" class="mt-1 block w-full" required autofocus />
                 </div>
 
-                <div class="mt-4">
-                <BreezeLabel for="password_confirmation" value="Confirm New Password" />
-                <BreezeInput id="password_confirmation" type="password" class="mt-1 block w-full" required autocomplete="new-password" />
+                <div>
+                <BreezeLabel for="approach" value="Approach" />
+                <BreezeInput v-model="form.approach" id="approach" type="text" class="mt-1 block w-full" required autofocus />
                 </div>
 
-                <div class="flex items-center justify-end mt-4">
-                <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Reset Password
-                </BreezeButton>
+                   <div>
+                <BreezeLabel for="description" value="Abstract" />
+                <textarea class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" max="1000" v-model="form.description" ref="input" id="description" type="textarea" required autofocus />
                 </div>
+
+                <div>
+                <BreezeLabel for="date" value="Date" />
+                <BreezeInput v-model="form.date" id="date" type="datetime-local" class="mt-1 block w-full" required autofocus />
+                </div>
+
+                <div>
+                <BreezeLabel for="availability" value="Available Places" />
+                <BreezeInput v-model="form.availability" id="availability" type="number" max="50" min="10" class="mt-1 block w-full" />
+                </div>
+
+                <div class="flex items-center justify-end mt-4 space-x-3">
+                <button class="bg-green-400 text-white hover:bg-green-500" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                Save
+                </button>
+                <BreezeButton class="bg-red-400 text-white hover:bg-red-500 "><a :href="route('seminars')" method="get">Cancel</a></BreezeButton>
+                </div>
+          
        
             </div>
             </div>
@@ -59,30 +80,49 @@ import BreezeButton from '@/Components/Button.vue'
 import BreezeLabel from '@/Components/Label.vue'
 import BreezeInput from '@/Components/Input.vue';
 
-
-
-
 export default {
-    
+    props: {
+        seminar: Object
+    },
     components: {
         BreezeAuthenticatedLayout,
         Head,
         BreezeButton,
         BreezeLabel,
-        BreezeInput   
+        BreezeInput,
     },
 
-     data() {
+    data() {
         return {
-            form: this.$inertia.form({
-                token: this.token,
-                email: this.email,
-                password: '',
-                password_confirmation: '',
-            })
+            form: {
+                title: this.seminar.title,
+                subject: this.seminar.subject,
+                author: this.seminar.author,
+                approach: this.seminar.approach,
+                description: this.seminar.description,
+                date: this.seminar.date,
+                availability: this.seminar.availability,
+            }
         }
     },
 
+    methods: {
+        editSeminar() {
+           let data = new FormData
+
+            data.append('title', this.form.title)
+            data.append('subject', this.form.subject)
+            data.append('author', this.form.author)
+            data.append('approach', this.form.approach)
+            data.append('description', this.form.description)
+            data.append('date', this.form.date)
+            data.append('availability', this.form.availability)
+            
+            this.$inertia.put(`/seminars/${this.$props.seminar.id}/update`, {id: `${this.$props.seminar.id}`}, data)
+        },
+    
+      
+    }
 }
 </script>
 
