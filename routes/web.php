@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\SeminarController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +43,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/subscribe/{id}', [SeminarController::class, 'subscribe'])->name('subscribe');
     Route::get('/unsubscribe/{id}', [SeminarController::class, 'unsubscribe'])->name('unsubscribe');
 
+    Route::patch('/profile/{id}/update', [UserController::class, 'update'])->name('profile_update');
+
     Route::get('/publications', function () {
         return Inertia::render('Publications');
     })->name('publications');
@@ -53,9 +57,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         return Inertia::render('Contact');
     })->name('contact');
 
-    Route::get('/profile', function() {
-        return Inertia::render('Profile');
-    })->name('profile');
+    Route::get('/profile', [UserController::class, function() {
+        $user = Auth::user();
+        return Inertia::render('Profile', ['user' => $user]);
+    }])->name('profile');
 
 });
 
