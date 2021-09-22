@@ -45,13 +45,30 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::patch('/profile/{id}/update', [UserController::class, 'update'])->name('profile_update');
 
+
     Route::get('/publications', function () {
         return Inertia::render('Publications');
     })->name('publications');
 
     Route::get('/patients', function () {
-        return Inertia::render('Patients');
+        $user = Auth::user();
+        if ($user->isActive)
+        {
+            return Inertia::render('Patients');
+        }
+            return redirect()->route('dashboard');
+
     })->name('patients');
+
+    Route::get('/users', function () {
+        $user = Auth::user();
+        if ($user->isAdmin)
+        {
+            return Inertia::render('Users');
+        }
+            return redirect()->route('dashboard');
+
+    })->name('users');
     
     Route::get('/contact', function () {
         return Inertia::render('Contact');

@@ -49,9 +49,9 @@ class ViewsTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_patients_screen_can_be_rendered_if_user_is_logged_in()
+    public function test_patients_screen_can_be_rendered_if_isActive_user_is_logged_in()
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create(['isActive' => true]);
 
         $response = $this->actingAs($user)->get('/patients');
 
@@ -88,5 +88,13 @@ class ViewsTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_users_screen_can_be_rendered_if_isAdmin_user_is_logged_in()
+    {
+        $user = User::factory()->create(['isAdmin' => true]);
+
+        $response = $this->actingAs($user)->get('/users');
+
+        $response->assertStatus(200);
+    }
     
 }
