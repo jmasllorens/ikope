@@ -25,4 +25,9 @@ class Session extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function note()
+    {
+        return $this->hasOne(Note::class);
+    }
 }

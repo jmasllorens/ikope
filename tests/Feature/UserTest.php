@@ -7,6 +7,7 @@ use Tests\TestCase;
 use App\Models\Seminar;
 use App\Models\Patient;
 use App\Models\Session;
+use App\Models\Note;
 
 class UserTest extends TestCase
 {
@@ -53,5 +54,17 @@ class UserTest extends TestCase
         $session = Session::factory(6)->create(['user_id' => 1, 'patient_id' => 2]);
 
         $this->assertCount(6, $user->sessions);
+    }
+
+    public function test_a_user_can_have_many_notes()
+    {
+        $user = User::factory()->create(['id' => 1, 'isActive' => true]);
+
+        $patient = Patient::factory()->create(['id' => 2, 'user_id' => 1]);
+        $session = Session::factory(6)->create(['user_id' => 1, 'patient_id' => 2]);
+        $note1 = Note::factory()->create(['user_id' => 1, 'patient_id' => 2, 'session_id' => 5]);
+        $note2 = Note::factory()->create(['user_id' => 1, 'patient_id' => 2, 'session_id' => 6]);
+
+        $this->assertCount(2, $user->notes);
     } 
 }

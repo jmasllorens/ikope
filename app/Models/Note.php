@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Patient extends Model
+class Note extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'age',
-        'pronoun',
-        'motive',
-        'email',
-        'isConsulting'
+        'title',
+        'text',
+        'isImportant'
     ];
 
     public function user()
@@ -23,13 +20,14 @@ class Patient extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function sessions()
+    public function patient()
     {
-        return $this->hasMany(Session::class);
+        return $this->belongsTo(Patient::class);
     }
 
-    public function notes()
+    public function session()
     {
-        return $this->hasMany(Note::class);
+        return $this->belongsTo(Session::class);
     }
+
 }
