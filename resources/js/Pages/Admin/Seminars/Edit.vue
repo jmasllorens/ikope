@@ -111,7 +111,6 @@ export default {
         editSeminar() {
 
             let data = {
-                id: `${this.seminar.id}`,
                 title: this.form.title,
                 author: this.form.author,
                 approach: this.form.approach,
