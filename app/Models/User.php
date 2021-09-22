@@ -48,4 +48,19 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Seminar::class, 'seminar_user');
     }
+
+    public function patients()
+    {
+        return $this->hasMany(Patient::class);
+    }
+
+    public function sessions()
+    {
+        return $this->hasMany(Session::class);
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
 }
