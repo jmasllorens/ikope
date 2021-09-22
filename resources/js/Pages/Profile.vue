@@ -27,6 +27,11 @@
                 <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus />
                 </div>
 
+                 <div>
+                <BreezeLabel for="pronoun" value="Pronoun" />
+                <BreezeInput id="pronoun" type="text" class="mt-1 block w-full" v-model="form.pronoun" required autofocus />
+                </div>
+
                 <div class="flex items-center justify-end mt-4">
                 <BreezeButton class="bg-green-500 text-white hover:bg-green-600" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Save
@@ -76,6 +81,7 @@ export default {
             form: {
                 name: this.user.name,
                 email: this.user.email,
+                pronoun: this.user.pronoun
         }
     }
     },
@@ -86,6 +92,7 @@ export default {
               {
                 name: this.form.name,
                 email: this.form.email,
+                pronoun: this.form.pronoun
                 }
                 this.$inertia.patch(`/profile/${this.user.id}/update`, data);
         }

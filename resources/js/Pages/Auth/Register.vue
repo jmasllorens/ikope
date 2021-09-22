@@ -15,6 +15,11 @@
         </div>
 
         <div class="mt-4">
+            <BreezeLabel for="pronoun" value="Pronoun" />
+            <BreezeInput id="pronoun" type="text" class="mt-1 block w-full" v-model="form.pronoun" required autofocus placeholder="ex: they/them"/>
+        </div>
+
+        <div class="mt-4">
             <BreezeLabel for="password" value="Password" />
             <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
         </div>
@@ -62,6 +67,7 @@ export default {
                 name: '',
                 email: '',
                 password: '',
+                pronoun: '',
                 password_confirmation: '',
                 terms: false,
             })
