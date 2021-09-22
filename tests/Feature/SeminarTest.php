@@ -121,7 +121,7 @@ class SeminarTest extends TestCase
         $user = User::factory()->create(['isAdmin' => true]);
         $seminar = Seminar::factory()->create(['id' => 4, 'title' => 'Gender perspective in Psychoanalysis']);
    
-        $response = $this->actingAs($user)->put('seminars/4/update', [
+        $response = $this->actingAs($user)->patch('seminars/4/update', [
             'title' => 'Queer Theory in Psychoanalysis']);
   
         $this->assertEquals(Seminar::find(4)->title,'Queer Theory in Psychoanalysis');
