@@ -25,11 +25,14 @@
                               <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                  <BreezeNavLink :href="route('publications')" :active="route().current('publications')"> Publications  </BreezeNavLink>
                             </div>
-                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                             <div v-if="$page.props.auth.user.isActive" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                  <BreezeNavLink :href="route('patients')" :active="route().current('patients')"> Patients  </BreezeNavLink>
                             </div>
-                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                             <div v-if="!$page.props.auth.user.isAdmin" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                  <BreezeNavLink :href="route('contact')" :active="route().current('contact')"> Contact </BreezeNavLink>
+                            </div>
+                            <div v-if="$page.props.auth.user.isAdmin" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                 <BreezeNavLink :href="route('users')" :active="route().current('users')"> Users </BreezeNavLink>
                             </div>
                         </div>
 
@@ -91,14 +94,19 @@
                             Publications
                         </BreezeResponsiveNavLink>
                     </div>
-                    <div class="pt-2 pb-3 space-y-1">
+                    <div v-if="$page.props.auth.user.isActive" class="pt-2 pb-3 space-y-1">
                         <BreezeResponsiveNavLink :href="route('patients')" :active="route().current('patients')">
                             Patients
                         </BreezeResponsiveNavLink>
                     </div>
-                    <div class="pt-2 pb-3 space-y-1">
+                    <div v-if="!$page.props.auth.user.isAdmin" class="pt-2 pb-3 space-y-1">
                         <BreezeResponsiveNavLink :href="route('contact')" :active="route().current('contact')">
                             Contact
+                        </BreezeResponsiveNavLink>
+                    </div>
+                     <div v-if="$page.props.auth.user.isAdmin" class="pt-2 pb-3 space-y-1">
+                        <BreezeResponsiveNavLink :href="route('users')" :active="route().current('users')">
+                            Users
                         </BreezeResponsiveNavLink>
                     </div>
 
