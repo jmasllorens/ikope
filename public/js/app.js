@@ -19934,6 +19934,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Pages_Auth_ResetPassword_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Pages/Auth/ResetPassword.vue */ "./resources/js/Pages/Auth/ResetPassword.vue");
 /* harmony import */ var _Components_Button_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/Button.vue */ "./resources/js/Components/Button.vue");
 /* harmony import */ var _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Layouts/Authenticated.vue */ "./resources/js/Layouts/Authenticated.vue");
+/* harmony import */ var _Components_Checkbox_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/Checkbox.vue */ "./resources/js/Components/Checkbox.vue");
+
 
 
 
@@ -19948,14 +19950,16 @@ __webpack_require__.r(__webpack_exports__);
     BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     BreezeInput: _Components_Input_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     BreezeLabel: _Components_Label_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    BreezeButton: _Components_Button_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    BreezeButton: _Components_Button_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    BreezeCheckbox: _Components_Checkbox_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   data: function data() {
     return {
       form: {
         name: this.user.name,
         email: this.user.email,
-        pronoun: this.user.pronoun
+        pronoun: this.user.pronoun,
+        isActive: this.user.isActive
       }
     };
   },
@@ -19964,7 +19968,8 @@ __webpack_require__.r(__webpack_exports__);
       var data = {
         name: this.form.name,
         email: this.form.email,
-        pronoun: this.form.pronoun
+        pronoun: this.form.pronoun,
+        isActive: this.form.isActive
       };
       this.$inertia.patch("/profile/".concat(this.user.id, "/update"), data);
     }
@@ -22286,12 +22291,42 @@ var _hoisted_8 = {
   "class": "grid grid-rows-2 gap-6"
 };
 var _hoisted_9 = {
+  key: 0,
+  "class": "mt-6 mb-2"
+};
+var _hoisted_10 = {
+  "class": "flex items-center",
+  "for": "isActive"
+};
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "ml-2 text-sm text-gray-600"
+}, "I practise as a psychotherapist", -1
+/* HOISTED */
+);
+
+var _hoisted_12 = {
+  key: 1,
+  "class": "mt-6 mb-2"
+};
+var _hoisted_13 = {
+  "class": "flex items-center",
+  "for": "isActive"
+};
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "ml-2 text-sm text-gray-600"
+}, "I don't want the 'Patients' section anymore", -1
+/* HOISTED */
+);
+
+var _hoisted_15 = {
   "class": "flex items-center justify-end mt-4"
 };
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Save ");
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Save ");
 
-var _hoisted_11 = ["href"];
+var _hoisted_17 = ["href"];
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -22302,6 +22337,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_BreezeInput = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeInput");
 
+  var _component_BreezeCheckbox = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeCheckbox");
+
   var _component_BreezeButton = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeButton");
 
   var _component_BreezeAuthenticatedLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeAuthenticatedLayout");
@@ -22311,7 +22348,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeAuthenticatedLayout, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-        onSubmit: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+        onSubmit: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return $options.updateProfile();
         }, ["prevent"]))
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
@@ -22359,14 +22396,32 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         autofocus: ""
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
+      , ["modelValue"])]), !$props.user.isActive ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeCheckbox, {
+        name: "isActive",
+        checked: $data.form.isActive,
+        "onUpdate:checked": _cache[3] || (_cache[3] = function ($event) {
+          return $data.form.isActive = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["checked"]), _hoisted_11])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.user.isActive ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeCheckbox, {
+        name: "isActive",
+        checked: $data.form.isActive,
+        "onUpdate:checked": _cache[4] || (_cache[4] = function ($event) {
+          return $data.form.isActive = $event;
+        }),
+        "true-value": "0",
+        "false-value": "1"
+      }, null, 8
+      /* PROPS */
+      , ["checked"]), _hoisted_14])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["bg-green-500 text-white hover:bg-green-600", {
           'opacity-25': $data.form.processing
         }]),
         disabled: $data.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_10];
+          return [_hoisted_16];
         }),
         _: 1
         /* STABLE */
@@ -22382,7 +22437,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             method: "get"
           }, "Cancel", 8
           /* PROPS */
-          , _hoisted_11)];
+          , _hoisted_17)];
         }),
         _: 1
         /* STABLE */

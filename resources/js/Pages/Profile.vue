@@ -32,6 +32,20 @@
                 <BreezeInput id="pronoun" type="text" class="mt-1 block w-full" v-model="form.pronoun" required autofocus />
                 </div>
 
+                <div v-if="!user.isActive" class="mt-6 mb-2">
+                <label class="flex items-center" for="isActive">
+                <BreezeCheckbox name="isActive" v-model:checked="form.isActive" />
+                <span class="ml-2 text-sm text-gray-600">I practise as a psychotherapist</span>
+                </label>
+                </div>
+
+                <div v-if="user.isActive" class="mt-6 mb-2">
+                <label class="flex items-center" for="isActive">
+                <BreezeCheckbox name="isActive" v-model:checked="form.isActive" true-value="0" false-value="1" />
+                <span class="ml-2 text-sm text-gray-600">I don't want the 'Patients' section anymore</span>
+                </label>
+                </div>
+
                 <div class="flex items-center justify-end mt-4">
                 <BreezeButton class="bg-green-500 text-white hover:bg-green-600" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Save
@@ -58,7 +72,8 @@ import BreezeInput from '@/Components/Input.vue'
 import BreezeLabel from '@/Components/Label.vue'
 import ResetPassword from '../Pages/Auth/ResetPassword.vue'
 import BreezeButton from '@/Components/Button.vue'
-import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
+import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
+import BreezeCheckbox from '@/Components/Checkbox.vue';
 
 
 export default {
@@ -72,7 +87,8 @@ export default {
         BreezeAuthenticatedLayout,
         BreezeInput,
         BreezeLabel,
-        BreezeButton
+        BreezeButton,
+        BreezeCheckbox
     },
 
 
@@ -81,7 +97,8 @@ export default {
             form: {
                 name: this.user.name,
                 email: this.user.email,
-                pronoun: this.user.pronoun
+                pronoun: this.user.pronoun,
+                isActive: this.user.isActive
         }
     }
     },
@@ -92,7 +109,8 @@ export default {
               {
                 name: this.form.name,
                 email: this.form.email,
-                pronoun: this.form.pronoun
+                pronoun: this.form.pronoun,
+                isActive: this.form.isActive
                 }
                 this.$inertia.patch(`/profile/${this.user.id}/update`, data);
         }
