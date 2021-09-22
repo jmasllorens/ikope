@@ -17,8 +17,8 @@ class SeminarTest extends TestCase
         $seminar = Seminar::factory()->create(['id' => 1
         ]);
 
-        $user1->seminars()->attach(1);
-        $user2->seminars()->attach(1);
+        $user1->seminars()->attach($seminar);
+        $user2->seminars()->attach($seminar);
 
         $this->assertCount(2, $seminar->users);
     }
@@ -124,6 +124,6 @@ class SeminarTest extends TestCase
         $response = $this->actingAs($user)->patch('seminars/4/update', [
             'title' => 'Queer Theory in Psychoanalysis']);
   
-        $this->assertEquals(Seminar::find(4)->title,'Queer Theory in Psychoanalysis');
+        $this->assertEquals(Seminar::find(4)->title, 'Queer Theory in Psychoanalysis');
     } 
 }

@@ -74,6 +74,10 @@
               <td v-if=!$props.auth.user.isAdmin>
                  <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/seminars/${seminar.id}`" method="get">+ Info</a></BreezeButton>
               </td>
+               <td v-if=!$props.auth.user.isAdmin>
+              </td>
+               <td v-if=!$props.auth.user.isAdmin>
+              </td>
               <td v-if=$props.auth.user.isAdmin>
                  <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/seminars/${seminar.id}`" method="get">View</a></BreezeButton>
               </td>
@@ -83,6 +87,7 @@
               <td v-if="$props.auth.user.isAdmin">
                 <BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteSeminar(`${seminar.id}`)">Delete</BreezeButton>
               </td>
+            
             
             </tr>
           
