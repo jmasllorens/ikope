@@ -32,14 +32,14 @@
                 <BreezeInput id="pronoun" type="text" class="mt-1 block w-full" v-model="form.pronoun" required autofocus />
                 </div>
 
-                <div v-if="!user.isActive" class="mt-6 mb-2">
+                <div v-if="!user.isActive && !user.isAdmin" class="mt-6 mb-2">
                 <label class="flex items-center" for="isActive">
                 <BreezeCheckbox name="isActive" v-model:checked="form.isActive" />
                 <span class="ml-2 text-sm text-gray-600">I practise as a psychotherapist</span>
                 </label>
                 </div>
 
-                <div v-if="user.isActive" class="mt-6 mb-2">
+                <div v-if="user.isActive && !user.isAdmin" class="mt-6 mb-2">
                 <label class="flex items-center" for="isActive">
                 <BreezeCheckbox name="isActive" v-model:checked="form.isActive" true-value="0" false-value="1" />
                 <span class="ml-2 text-sm text-gray-600">I don't want the 'Patients' section anymore</span>

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create(['name' => 'Admin', 'email' => 'admin@admin.com', 'isAdmin' => true]);
         User::factory()->create(['name' => 'User', 'email' => 'user@user.com']);
         User::factory()->create(['name' => 'Therapist', 'email' => 'therapist@user.com', 'isActive' => true]);
+        User::factory()->create(['name' => 'Therapist', 'email' => 'nulltherapist@user.com']);
         Seminar::factory(15)->create([]);
 
 
