@@ -121,7 +121,6 @@ class SeminarController extends Controller
             Seminar::where('id', '=', $id)->update($changesSeminar);
            
             $seminar = Seminar::findOrFail($id);
-
             return redirect()->route('seminars');
             //return view('dashboard', compact('event'));
         }

@@ -1,6 +1,7 @@
 <template>
     <Head title="Edit" />
     <BreezeAuthenticatedLayout>
+        </BreezeAuthenticatedLayout>
     <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -26,7 +27,7 @@
                 <BreezeLabel for="subject" value="Subject" />
                 <BreezeInput v-model="form.subject" id="subject" type="text" class="mt-1 block w-full"  required autofocus />
                 </div>
-                <p> {{ seminar.subject }}</p>
+                <p> {{ seminar.id }}</p>
                 <div>
                 <BreezeLabel for="author" value="Author/s" />
                 <BreezeInput v-model="form.author" id="author" type="text" class="mt-1 block w-full" required autofocus />
@@ -53,9 +54,9 @@
                 </div>
 
                 <div class="flex items-center justify-end mt-4 space-x-3">
-                <button class="bg-green-400 text-white hover:bg-green-500" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <BreezeButton class="bg-green-400 text-white hover:bg-green-500" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Save
-                </button>
+                </BreezeButton>
                 <BreezeButton class="bg-red-400 text-white hover:bg-red-500 "><a :href="route('seminars')" method="get">Cancel</a></BreezeButton>
                 </div>
           
@@ -68,7 +69,7 @@
 </div>
 </div>
 </div>
-    </BreezeAuthenticatedLayout>
+
 
  
 </template>
@@ -108,17 +109,17 @@ export default {
 
     methods: {
         editSeminar() {
-           let data = new FormData
 
-            data.append('title', this.form.title)
-            data.append('subject', this.form.subject)
-            data.append('author', this.form.author)
-            data.append('approach', this.form.approach)
-            data.append('description', this.form.description)
-            data.append('date', this.form.date)
-            data.append('availability', this.form.availability)
-            
-            this.$inertia.put(`/seminars/${this.$props.seminar.id}/update`, {id: `${this.$props.seminar.id}`}, data)
+            let data = {
+                id: `${this.seminar.id}`,
+                title: this.form.title,
+                author: this.form.author,
+                approach: this.form.approach,
+                description: this.form.description,
+                date: this.form.date,
+                availability: this.form.availability}
+      
+                this.$inertia.patch(`/seminars/${this.seminar.id}/update`, data)
         },
     
       

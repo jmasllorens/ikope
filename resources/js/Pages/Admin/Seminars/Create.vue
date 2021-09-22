@@ -115,7 +115,7 @@ export default {
             data.append('date', this.form.date)
             data.append('availability', this.form.availability)
             
-            this.$inertia.post('store', data)
+            this.$inertia.post('/seminars/store', data)
         }
     }
 }
