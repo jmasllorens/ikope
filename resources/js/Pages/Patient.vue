@@ -1,114 +1,138 @@
-<!-- This is an example component -->
 <template>
-<div class="h-screen bg-blue-400  flex justify-center items-center">
-      <div class="bg-white rounded-lg w-1/2 max-w-md flex flex-col justify-center sm:justify-start items-center sm:items-start sm:flex-row space-x-2 p-8  ">
-        <div class="">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-20 w-20"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className="w-10"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-        </div>
-        <div class="">
-          <div class="top-section flex flex-col sm:flex-row  space-x-5 text-center sm:text-left">
-            <h1 class="font-bold text-md ">Tom Hanks </h1>
-            <h3 class="text-gray-400">
-              @tom1123hanks <span>4h</span>
-            </h3>
-          </div>
+    <Head title="Seminars" />
 
-          <div class="text-sm text-gray-600 font-semibold text-justify sm:text-left">
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam
-              nobis magnam quis consectetur dolore totam nam? Recusandae quae,
-              sunt at animi magni magnam mollitia deleniti odio quod
-              repudiandae, nobis sequi.
-            </p>
+    <BreezeAuthenticatedLayout>
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            </div>
+  </div>
+</div>
+
+<div class="flex justify-between m-6">
+  <div class="flex flex-col h-full w-4/5 mx-auto bg-blueish rounded-lg">
+      
+          <div class="flex justify-between -mt-4 px-4">
+            <span v-if="$page.props.patient.isConsulting == 1"
+              class="inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white px-3 pt-0.5"
+              >Active</span>
+
+             <span v-if="$page.props.patient.isConsulting == 0"
+              class="inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white px-3 pt-0.5"
+              >Filed</span>
+            <span
+              class="flex h-min space-x-1 items-center rounded-full bg-gray-700 py-1 px-2 text-m font-medium">
+              <p class="text-white font-semibold text-sm">
+                {{$page.props.patient.sessions.length }} sessions | {{ $page.props.patient.notes.length }} notes
+              </p>
+            </span>
           </div>
-          <div class="social-media mb-5">
-            <ul class="flex justify-between mr-5 mt-2 ">
-              <li class="hover:text-gray-700">
-                <a href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                    />
-                  </svg>
-                </a>
-              </li>
-              <li class="hover:text-gray-700">
-                <a href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-                  </svg>
-                </a>
-              </li>
-              <li class="hover:text-gray-700">
-                <a href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                    />
-                  </svg>
-                </a>
-              </li>
-              <li class="hover:text-gray-700">
-                <a href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
-                    />
-                  </svg>
-                </a>
-              </li>
-            </ul>
+          <div class="py-2 px-4">
+            <br>
+            <h1
+              class="text-xl font-medium leading-6 tracking-wide text-black">
+            {{$page.props.patient.name}} ({{$page.props.patient.pronoun}})
+            </h1>
           </div>
-          <a href="https://github.com/chriskappa" class="bg-yellow-200 rounded p-2 text-md font-bold " > GIT HUB </a>
+          <div class="flex flex-row items-end h-full w-full px-4 mt-4">
+            <div class="flex border-t border-gray-700 w-full py-4">
+                <div class="">
+                    <p class="text-m font-semibold">Mail:</p>
+                  <p class="text-m font-light tracking-wider text-gray-700">
+                  {{$page.props.patient.email}}
+                  </p> 
+                   <p class="text-m font-semibold">Age:</p>
+                  <p class="text-m font-light tracking-wider text-gray-700">
+                      {{$page.props.patient.age}}
+                  </p>
+                  <br>
+                   <p class="text-m font-semibold">Motive of consultation:</p>
+                   <p class="text-m font-light tracking-wide text-gray-700">
+                   {{ $page.props.patient.motive }}
+                  </p> 
+                  <br>
+           
+                 <div class="text-m font-semibold">
+                  <h2>Sessions</h2>
+                  <br>
+                
+         
+          <span v-for="session in $page.props.patient.sessions" v-bind:key="session" class="text-m font-light tracking-wider text-gray-600">
+              <p> Session number: {{ session.id}} </p>
+                      <p> Session date: {{ session.date }} </p>
+                       <p> Session keyword: {{ session.keywords }} </p>
+                         <p> Session cost: {{ session.cost }} (is payed: {{ session.isPayed }}) </p>
+                        <br>
+                    </span>
+            </div>
+             <div class="text-m font-semibold">
+                  <h2>Notes</h2>
+                  <br>
+                
+         
+          <span v-for="note in $page.props.patient.notes" v-bind:key="note" class="text-m font-light tracking-wider text-gray-600">
+              <p> Note number: {{ note.id}} </p>
+                      <p> Note title: {{ note.title }} </p>
+                       <p> Note importance: {{ note.isImportant }} </p>
+                         <p> Note body: {{ note.text }}  </p>
+                        <br>
+                    </span>
+            </div>
+                </div>
+              </div>
+              <div>
+                
+               <!--  <BreezeButton  v-if="$props.seminar.users.length < $props.seminar.availability && !isSubscribed && !$props.auth.user.isAdmin"><a :href="`/subscribe/${seminar.id}`" method="get">Subscribe</a></BreezeButton>
+
+                <BreezeButton v-if="isSubscribed && !$props.auth.user.isAdmin"><a :href="`/unsubscribe/${seminar.id}`" method="get">Unsubscribe</a></BreezeButton>
+
+                <div v-if="$props.auth.user.isAdmin" class="inline-flex">
+                <BreezeButton class="bg-green-700 hover:bg-green-800 mr-3"><a :href="`/seminars/${seminar.id}/edit`" method="get">Edit</a></BreezeButton>
+
+                <BreezeButton class="bg-red-700 hover:bg-red-800 mr-3" @click.prevent="deleteSeminar(`${seminar.id}`)">Delete</BreezeButton> 
+                </div> -->
+              </div>
+          </div>
+        <br>
         </div>
-            
-      </div>
-  
-    </div>
+</div>
+<br>
+<br>
+
+</BreezeAuthenticatedLayout>
+    
 </template>
+
+<script>
+import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
+import { Head } from '@inertiajs/inertia-vue3'
+import BreezeButton from '@/Components/Button.vue';
+
+
+
+
+export default {
+    
+    components: {
+        BreezeAuthenticatedLayout,
+        Head,
+        BreezeButton,   
+    },
+
+    methods: {
+    deletePatient(id) {
+      if(confirm('Are you sure you want to delete this patient?')) {
+      this.$inertia.delete(`/patients/${id}`, id)
+      }
+      return;
+      }
+    }
+
+}
+</script>
+
+<style scoped>
+.bg-blueish {
+    background-color: rgb(112, 202, 200);
+}
+</style>

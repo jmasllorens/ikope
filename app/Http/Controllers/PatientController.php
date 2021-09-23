@@ -20,12 +20,37 @@ class PatientController extends Controller
 
         if ($user->isActive)
 
-        {   $patients = $user->patients;
-            return Inertia::render('Patients', ['patients' => $patients]);
+        {   
+            $patients = $user->patients;
+            $userSessions = $user->sessions;
+            $userNotes = $user->notes;
+            foreach($patients as $patient)
+            {
+                $patientSessions = $patient->sessions;
+                $patientNotes = $patient->notes;
+                foreach($patientSessions as $patientSession);
+                {$sessionNote = $patientSession->note;}
+                
+            }
+            return Inertia::render('Patients', ['patients' => $patients, 'userSessions' => $userSessions, 'userNotes' => $userNotes, 'sessions' => $patientSessions, 'notes' => $patientNotes, 'note' => $sessionNote]);
         }
             return redirect()->route('dashboard');
 
     }
+
+    public function show($id) 
+    {   
+
+        $user = Auth::user();
+        $patient = Patient::find($id);
+        $sessions = $patient->sessions;
+        $notes = $patient->notes;
+  
+
+
+        return Inertia::render('Patient', ['patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -48,16 +73,7 @@ class PatientController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Patient  $patient
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Patient $patient)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
