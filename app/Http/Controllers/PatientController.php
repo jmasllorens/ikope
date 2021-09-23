@@ -30,7 +30,7 @@ class PatientController extends Controller
         
             
                 
-                return Inertia::render('Patients', ['patients' => $patients, 'userSessions' => $userSessions, 'userNotes' => $userNotes, 'sessions' => $sessions, 'notes' => $notes]);
+                return Inertia::render('Patients', ['patients' => $patients, 'userSessions' => $userSessions, 'userNotes' => $userNotes]);
             }
         }
          else {return redirect()->route('dashboard');}
