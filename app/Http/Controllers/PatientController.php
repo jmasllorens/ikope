@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class PatientController extends Controller
 {
@@ -14,7 +16,15 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+
+        if ($user->isActive)
+
+        {   $patients = $user->patients;
+            return Inertia::render('Patients', ['patients' => $patients]);
+        }
+            return redirect()->route('dashboard');
+
     }
 
     /**

@@ -24,9 +24,13 @@ class SeminarTest extends TestCase
     }
 
     public function test_can_get_list_of_all_seminars() 
-    {
-        Seminar::factory(6)->create([]);
+    {   
+        $user =  User::factory()->create([]);;
+        $seminars = Seminar::factory(6)->create([]);
+       
+        $response = $this->actingAs($user)->get('/seminars');
 
+        $response->assertStatus(200);
         $this->assertCount(6, Seminar::all());
     }
 

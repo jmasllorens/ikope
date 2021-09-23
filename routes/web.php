@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\PatientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,20 +46,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::patch('/profile/{id}/update', [UserController::class, 'update'])->name('profile_update');
 
+    Route::get('/patients', [PatientController::class, 'index'])->name('patients');
+
 
     Route::get('/publications', function () {
         return Inertia::render('Publications');
     })->name('publications');
-
-    Route::get('/patients', function () {
-        $user = Auth::user();
-        if ($user->isActive)
-        {
-            return Inertia::render('Patients');
-        }
-            return redirect()->route('dashboard');
-
-    })->name('patients');
 
     Route::get('/users', function () {
         $user = Auth::user();
