@@ -23,10 +23,29 @@ class DatabaseSeeder extends Seeder
         User::factory()->create(['name' => 'Admin', 'email' => 'admin@admin.com', 'isAdmin' => true]);
         User::factory()->create(['name' => 'User', 'email' => 'user@user.com']);
         User::factory()->create(['name' => 'Therapist', 'email' => 'therapist@user.com', 'isActive' => true]);
+
         Seminar::factory(15)->create([]);
+
         Patient::factory(10)->create(['user_id' => 3]);
-        Session::factory()->create(['id' => 6, 'user_id' => 3, 'patient_id' => 2]);
-        Note::factory()->create(['user_id' => 3, 'patient_id' => 2, 'session_id' => 6]);
+
+        Session::factory()->create(['id' => 6, 'user_id' => 3, 'patient_id' => 1]);
+        Session::factory()->create(['id' => 1, 'user_id' => 3, 'patient_id' => 2]);
+        Session::factory()->create(['id' => 2, 'user_id' => 3, 'patient_id' => 1]);
+        Session::factory()->create(['id' => 3, 'user_id' => 3, 'patient_id' => 1]);
+        Session::factory()->create(['id' => 7, 'user_id' => 3, 'patient_id' => 1]);
+        Session::factory()->create(['id' => 8, 'user_id' => 3, 'patient_id' => 2]);
+        Session::factory()->create(['id' => 10, 'user_id' => 3, 'patient_id' => 3]);
+        Session::factory()->create(['id' => 50, 'user_id' => 3, 'patient_id' => 1]);
+        Session::factory()->create(['id' => 80, 'user_id' => 3, 'patient_id' => 1]);
+        
+        Note::factory()->create(['user_id' => 3, 'patient_id' => 1, 'session_id' => 6]);
+        Note::factory()->create(['user_id' => 3, 'patient_id' => 2, 'session_id' => 1]);
+        Note::factory()->create(['user_id' => 3, 'patient_id' => 1, 'session_id' => 2]);
+        Note::factory()->create(['user_id' => 3, 'patient_id' => 1, 'session_id' => 3]);
+        Note::factory()->create(['user_id' => 3, 'patient_id' => 1, 'session_id' => 7]);
+        Note::factory()->create(['user_id' => 3, 'patient_id' => 2, 'session_id' => 8]);
+        Note::factory()->create(['user_id' => 3, 'patient_id' => 3, 'session_id' => 10]);
+
         
 
 

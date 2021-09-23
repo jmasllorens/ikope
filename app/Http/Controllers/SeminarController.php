@@ -81,7 +81,12 @@ class SeminarController extends Controller
 
     public function create() 
     {
+        $user = Auth::user();
+        if ($user->isAdmin == true)
+        {
         return Inertia::render('Admin/Seminars/Create');
+        }
+        return redirect()->route('dashboard');
     }
 
     public function store(Request $request)
@@ -102,9 +107,13 @@ class SeminarController extends Controller
 
     public function edit($id)
     {   
+        $user = Auth::user();
+        if ($user->isAdmin == true)
+        {
         $seminar = Seminar::findOrFail($id);
-
         return Inertia::render('Admin/Seminars/Edit', ['seminar' => $seminar]);
+        }
+        return redirect()->route('dashboard');
     }
 
     public function update(Request $request, $id)
