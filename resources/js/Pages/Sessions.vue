@@ -1,12 +1,12 @@
 <template>
-    <Head title="Patients" />
+    <Head title="Sessions" />
 
     <BreezeAuthenticatedLayout>
     <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-3 bg-blueish border-b border-gray-200">
-                        Patients
+                        Sessions
                     </div>
                 </div>
                 <br>
@@ -15,7 +15,7 @@
 
 	<div class="grid grid-rows-2 gap-5 text-white">
             <div class="flex items-center justify-end">
-    <BreezeButton class="mr-9 mt-3">New Patient</BreezeButton>
+    <BreezeButton class="mr-9 mt-3">Session</BreezeButton>
     </div>
 		<div class="row-span-1">
 		<!-- 	<ul v-for="patient in $page.props.auth.user.patients"  v-bind:key="patient">
@@ -28,7 +28,7 @@
 		</div>
        
 		<div class="row-span-2">
-              <span v-for="patient in $page.props.auth.user.patients"  v-bind:key="patient">
+              <span v-for="session in $page.props.auth.user.sessions"  v-bind:key="session">
 			<div class="grid grid-cols-3 px-10 gap-2">
 				<div class="flex justify-center items-center">
                    
@@ -36,10 +36,8 @@
 						<div class="hover:scale-105 transform transition-all duration-500">
 
                         <div class="text-gray-900 text-semibold">
-                            <h2> {{ patient.name }}</h2>
-                         <!--   <div>
-                            <li> {{ patient.sessions}}</li>
-                            <li> {{ patient.notes }} </li>  -->
+                            <h2> {{ session.date }}</h2>
+                    
                         </div>
 
 						</div>

@@ -13,10 +13,10 @@
                 <div>
                     <span class="flex items-center justify-start mt-3 ml-5">
                         <span class="flex items-center mr-10">
-                <a href="/patients/sessions" method="get" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-m font-medium leading-5 text-gray-700 hover:text-gray-900 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out" style="margin-right: 5rem">All sessions</a>
+                <a href="/sessions" method="get" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-m font-medium leading-5 text-gray-700 hover:text-gray-900 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out" style="margin-right: 5rem">All sessions</a>
                     </span>
                      <span class="flex items-center mr-10">
-                 <a href="/patients/notes" method="get" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-m font-medium leading-5 text-gray-700 hover:text-gray-900 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">All notes</a>
+                 <a href="/notes" method="get" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-m font-medium leading-5 text-gray-700 hover:text-gray-900 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">All notes</a>
                     </span>
                     
                 </span>

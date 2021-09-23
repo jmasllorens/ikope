@@ -38,13 +38,15 @@ class PatientTest extends TestCase
     public function test_user_can_retrieve_list_of_all_of_their_patients()
     {
         $user = User::factory()->create(['id' => 3, 'isActive' => true]);
-        Patient::factory(3)->create(['user_id' => 3]);
+        $patients = Patient::factory(3)->create(['user_id' => 3]);
 
         $response = $this->actingAs($user)->get('/patients');
 
         $response->assertStatus(200);
-        $this->assertCount(3, Patient::all());
+        $this->assertCount(3, $patients);
 
        
     }
+
+
 }
