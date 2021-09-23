@@ -5,8 +5,9 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Seminar;
+use App\Models\Patient;
 
-class ViewsTest extends TestCase
+class ViewTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -51,7 +52,9 @@ class ViewsTest extends TestCase
 
     public function test_patients_screen_can_be_rendered_if_isActive_user_is_logged_in()
     {
-        $user = User::factory()->create(['isActive' => true]);
+        $user = User::factory()->create(['id' => 3, 'isActive' => true]);
+        $patients = Patient::factory()->create(['user_id' => 3]);
+        
 
         $response = $this->actingAs($user)->get('/patients');
 
