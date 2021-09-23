@@ -23,7 +23,7 @@
             
     </div>
                 <br>
-<div class="bg-gray-100 dark:bg-light_secondary rounded-lg py-5 px-5">
+<div v-if="$page.props.auth.user.patients.length != 0" class="bg-gray-100 dark:bg-light_secondary rounded-lg py-5 px-5">
 
      <span class="flex items-center justify-end">
                  <BreezeButton class="p-3 mr-10 mt-5 mb-5">New Patient</BreezeButton>
@@ -35,15 +35,13 @@
            
        
 		<div class="row-span-1">
-              <span v-for="patient in $page.props.auth.user.patients"  v-bind:key="patient">
+<span v-for="patient in $page.props.auth.user.patients"  v-bind:key="patient">
 			<div class="grid grid-cols-3 px-10 gap-2">
 				<div class="flex justify-center items-center">
                    
 					<a class="cursor-pointer" href="#">
 						<div class="hover:scale-105 transform transition-all duration-500">
 
-                       
--------
    <div class="bg-blueish pt-1 px-2 rounded-xl shadow-lg w-52">
             <div class="flex justify-center">
                 <div class="flex justify-center p-4 bg-blueish ring-2 ring-indigo-200 rounded-lg shadow-xl w-32" >
@@ -78,7 +76,7 @@
 				</div>
 
 
-				<div class="flex justify-center items-center">
+				<div v-if ="patient.sessions.length != 0" class="flex justify-center items-center">
 					<a class="cursor-pointer" href="#">
 						<div class="hover:scale-105 transform transition-all duration-500">
 
@@ -110,7 +108,7 @@
                         </div>
 					</a>
 				</div>
-				<div class="flex justify-center items-center">
+				<div v-if ="patient.sessions.length != 0" class="flex justify-center items-center">
 					<a class="cursor-pointer" href="#">
 						<div class="hover:scale-105 transform transition-all duration-500">
 							
@@ -144,13 +142,14 @@
             
 
                     </div>
-                    <br>
-                 
                      </div>
-           
-                     <hr style="margin-bottom: 2rem; background-color: !important red;">
-            
+                        
+              
+                     <br>
+                 <hr style="margin-bottom: 2rem; margin-top:2 rem">
                      </span>
+                
+
                        </div>
     
                   

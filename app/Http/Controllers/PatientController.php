@@ -17,36 +17,34 @@ class PatientController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $patients = $user->patients;
         if ($user->isActive == true)
         {
    
-            $patients = $user->patients;
-            $userSessions = $user->sessions;
-            $userNotes = $user->notes;
             foreach($patients as $patient)
             {
                 $sessions = $patient->sessions;
                 $notes = $patient->notes;
         
-            
-                
-                return Inertia::render('Patients', ['patients' => $patients, 'userSessions' => $userSessions, 'userNotes' => $userNotes]);
-            }
+            }  
+                return Inertia::render('Patients', ['patients' => $patients, 'sessions' => $sessions, 'notes' => $notes]); 
         }
-         else {return redirect()->route('dashboard');}
+
+        return;
     }
 
     public function show($id) 
     {   
 
         $user = Auth::user();
+        if($user->isActive == true)
+        {
         $patient = Patient::find($id);
         $sessions = $patient->sessions;
         $notes = $patient->notes;
   
-
-
-        return Inertia::render('Patient', ['patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);
+        return Inertia::render('Patient', ['patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);}
+        return;
     }
 
 
