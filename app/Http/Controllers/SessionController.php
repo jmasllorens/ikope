@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Session;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class SessionController extends Controller
 {
@@ -12,9 +14,26 @@ class SessionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public $sessions;
+
     public function index()
     {
-        //
+        $user = Auth::user();
+        if($user->isActive)
+        {
+        $sessions = $user->sessions;
+ 
+        foreach($sessions as $session) 
+        {   $patient = $session->patient;
+            $notes = $session->notes;
+
+        
+            return Inertia::render('Sessions', ['sessions' => $sessions, 'patient' => $patient, 'notes', $notes]);
+    }}
+       
+        return;
+
     }
 
     /**

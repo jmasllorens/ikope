@@ -18,7 +18,7 @@ class CreateNotesTable extends Migration
             $table->timestamps();
             $table->foreignId('user_id')->constrained()->nullable()->onDelete('cascade');
             $table->foreignId('patient_id')->constrained()->nullable()->onDelete('cascade');
-            $table->foreignId('session_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('session_id')->constrained()->nullable()->onDelete('cascade');
             $table->string('title');
             $table->string('text');
             $table->boolean('isImportant')->default(false);

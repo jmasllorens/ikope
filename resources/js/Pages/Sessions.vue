@@ -10,17 +10,14 @@
                     </div>
                 </div>
                 <br>
-                <br>
-<div class="bg-yellow-200 dark:bg-light_secondary rounded-lg py-5 px-5">
+                <br>   
+<!-- <div v-if="$page.props.auth.user.name > 0" class="bg-yellow-200 dark:bg-light_secondary rounded-lg py-5 px-5"> -->
 
 	<div class="grid grid-rows-2 gap-5 text-white">
             <div class="flex items-center justify-end">
     <BreezeButton class="mr-9 mt-3">Session</BreezeButton>
     </div>
 		<div class="row-span-1">
-		<!-- 	<ul v-for="patient in $page.props.auth.user.patients"  v-bind:key="patient">
-                            <li> {{ patient.name }} </li>
-                        </ul> -->
 			<div class="grid grid-cols-3 gap-2 px-10">
 				<div class="flex justify-between items-center">
 				</div>
@@ -28,7 +25,7 @@
 		</div>
        
 		<div class="row-span-2">
-              <span v-for="session in $page.props.auth.user.sessions"  v-bind:key="session">
+            <!--   <span v-for="session in $page.props.auth.user.sessions"  v-bind:key="session"> -->
 			<div class="grid grid-cols-3 px-10 gap-2">
 				<div class="flex justify-center items-center">
                    
@@ -36,7 +33,7 @@
 						<div class="hover:scale-105 transform transition-all duration-500">
 
                         <div class="text-gray-900 text-semibold">
-                            <h2> {{ session.date }}</h2>
+                           <!--  <h2> {{ session.date }}</h2> -->
                     
                         </div>
 
@@ -60,8 +57,8 @@
 					</a>
                     </div>
                      </div>
-                     </span>
-                       </div>
+                    <!--  </span>
+                       </div> -->
                  
                       
                    
@@ -75,7 +72,7 @@
 
 
 
-    </BreezeAuthenticatedLayout>
+ </BreezeAuthenticatedLayout>
 </template>
 
 <script>
@@ -89,7 +86,7 @@ export default {
     components: {
         BreezeAuthenticatedLayout,
         Head,
-        BreezeButton
+        BreezeButton,
     },
 }
 </script>
