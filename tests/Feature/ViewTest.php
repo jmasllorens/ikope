@@ -61,9 +61,18 @@ class ViewTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_sessions_screen_can_be_rendered_if_isActive_user_is_logged_in()
+    {
+        $user = User::factory()->create(['isActive' => true]);
+       
+        $response = $this->actingAs($user)->get('/sessions');
+
+        $response->assertStatus(200);
+    }
+
     public function test_contact_screen_can_be_rendered_if_user_is_logged_in()
     {
-        $user = User::factory()->create([]);
+        $user = User::factory()->create(['isAdmin' => false]);
 
         $response = $this->actingAs($user)->get('/contact');
 

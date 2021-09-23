@@ -20,7 +20,7 @@ class SessionController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if($user->isActive)
+        if($user->isActive == true)
         {
         $sessions = $user->sessions;
  
@@ -32,7 +32,7 @@ class SessionController extends Controller
             return Inertia::render('Sessions', ['sessions' => $sessions, 'patient' => $patient, 'notes', $notes]);
     }}
        
-        return;
+       else { return redirect()->route('dashboard');}
 
     }
 
