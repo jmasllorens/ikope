@@ -21,7 +21,7 @@ class SessionTest extends TestCase
         $sessions1 = Session::factory(2)->create(['user_id' => 3, 'patient_id' => 2]);
         $sessions2 = Session::factory(3)->create(['user_id' => 3, 'patient_id' => 1]);
 
-        $response = $this->actingAs($user)->get('/sessions');
+        $response = $this->actingAs($user)->get('/sessions&notes');
 
         $response->assertStatus(200);
         $this->assertCount(5, $user->sessions);
@@ -40,5 +40,19 @@ class SessionTest extends TestCase
       
 
     }
+
+   /*  public function test_user_can_retrieve_info_session_by_id()
+    {
+        $user = User::factory()->create(['id' => 3, 'isActive' => true]);
+        $patient = Patient::factory()->create(['id' => 8, 'user_id' => 3, 'name' => 'Van Gogh']);
+        $patientname = $patient->name; 
+
+        $response = $this->actingAs($user)->get('/patients/8');
+
+        $response->assertStatus(200);
+        $this->assertEquals('Van Gogh', $patientname);
+
+       
+    } */
 
 }

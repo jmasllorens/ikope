@@ -30,6 +30,7 @@ class SessionController extends Controller
         { 
             return redirect()->route('sessions_create');
         }
+        
     
             return Inertia::render('Sessions', ['sessions' => $sessions]);
     }

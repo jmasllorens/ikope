@@ -72,15 +72,13 @@
                       class="
                         flex
                         justify-center
-                        p-4
-                        bg-white
-                        ring-2 ring-white
+                        
                         rounded-lg
-                        shadow-xl
+                    
                         w-32
                       "
                     >
-                      <img src="@/Assets/ikFile.jpeg" alt="file" />
+                      <img src="@/Assets/divan.jpeg" alt="file" style="border-radius:10rem;" />
                     </div>
                    
                      

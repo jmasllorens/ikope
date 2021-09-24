@@ -23923,7 +23923,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _Assets_ikFile_jpeg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Assets/ikFile.jpeg */ "./resources/js/Assets/ikFile.jpeg");
+/* harmony import */ var _Assets_divan_jpeg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Assets/divan.jpeg */ "./resources/js/Assets/divan.jpeg");
 
 
 
@@ -23988,10 +23988,13 @@ var _hoisted_13 = ["href"];
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "hover:scale-105 transform transition-all duration-500"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Start Card "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex justify-center p-4 bg-white ring-2 ring-white rounded-lg shadow-xl w-32"
+  "class": "flex justify-center rounded-lg w-32"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: _Assets_ikFile_jpeg__WEBPACK_IMPORTED_MODULE_1__["default"],
-  alt: "file"
+  src: _Assets_divan_jpeg__WEBPACK_IMPORTED_MODULE_1__["default"],
+  alt: "file",
+  style: {
+    "border-radius": "10rem"
+  }
 })])], -1
 /* HOISTED */
 );
@@ -24980,6 +24983,21 @@ var deepmerge_1 = deepmerge;
 
 module.exports = deepmerge_1;
 
+
+/***/ }),
+
+/***/ "./resources/js/Assets/divan.jpeg":
+/*!****************************************!*\
+  !*** ./resources/js/Assets/divan.jpeg ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/divan.jpeg?47bceaa9c6e141233cda8f73559aa079");
 
 /***/ }),
 
