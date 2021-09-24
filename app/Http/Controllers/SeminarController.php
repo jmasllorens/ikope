@@ -9,22 +9,31 @@ use App\Models\Seminar;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
+
 class SeminarController extends Controller
 {
     public function index()
-    {
-        $seminars = Seminar::orderBy('date', 'asc')->paginate(20);
+    {   $user = Auth::user();
+        $seminars = Seminar::orderBy('date', 'asc')->get();
+     
         foreach($seminars as $seminar) 
         {
-            $seminar->users;
+            $users = $seminar->users;
         }
-            return Inertia::render('Seminars', ['seminars' => $seminars]);
+       
+            return Inertia::render('Seminars', ['seminars' => $seminars, 'users' => $users]);
     }
 
     public function show($id) 
     {
         $user = Auth::user();
         $seminar = Seminar::find($id);
+
+        if($seminar == null)
+        {
+            return redirect()->route('seminars');
+        }
+
         $seminar->users;
         $isSubscribed = $seminar->isSubscribed($user->id);
 

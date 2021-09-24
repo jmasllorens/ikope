@@ -15,6 +15,7 @@ class Patient extends Model
         'age',
         'pronoun',
         'motive',
+        'history',
         'email',
         'isConsulting'
     ];

@@ -48,5 +48,19 @@ class PatientTest extends TestCase
        
     }
 
+    public function test_user_can_retrieve_info_patient_by_id()
+    {
+        $user = User::factory()->create(['id' => 3, 'isActive' => true]);
+        $patient = Patient::factory()->create(['id' => 8, 'user_id' => 3, 'name' => 'Van Gogh']);
+        $patientname = $patient->name; 
+
+        $response = $this->actingAs($user)->get('/patients/8');
+
+        $response->assertStatus(200);
+        $this->assertEquals('Van Gogh', $patientname);
+
+       
+    }
+
 
 }

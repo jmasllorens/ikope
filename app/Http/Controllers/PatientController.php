@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class PatientController extends Controller
@@ -17,20 +18,22 @@ class PatientController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $patients = $user->patients;
-        if ($user->isActive == true)
-        {
-   
-            foreach($patients as $patient)
-            {
-                $sessions = $patient->sessions;
-                $notes = $patient->notes;
         
-            }  
-                return Inertia::render('Patients', ['patients' => $patients, 'sessions' => $sessions, 'notes' => $notes]); 
+        if ($user->isActive == true)
+        {   
+            $patients = DB::table('patients')->orderBy('name', 'asc')->where('user_id', $user->id)->get();
+
+            if ($patients->count() == 0)
+            { 
+                return redirect()->route('patients_create');
+            }
+   
+    
+        return Inertia::render('Patients', ['patients' => $patients]); 
+        
         }
 
-        return;
+        return redirect()->route('dashboard');
     }
 
     public function show($id) 
@@ -40,11 +43,18 @@ class PatientController extends Controller
         if($user->isActive == true)
         {
         $patient = Patient::find($id);
+        if ( $patient == null)
+        {
+            return redirect()->route('patients');
+        }
+       
         $sessions = $patient->sessions;
+       
+     
         $notes = $patient->notes;
   
         return Inertia::render('Patient', ['patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);}
-        return;
+        else {return redirect()->route('dashboard');}
     }
 
 

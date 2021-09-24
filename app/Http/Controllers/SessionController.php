@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Session;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SessionController extends Controller
 {
@@ -12,9 +15,28 @@ class SessionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public $sessions;
+
     public function index()
     {
-        //
+        $user = Auth::user();
+        if($user->isActive == true)
+        {
+
+        $sessions = Session::orderBy('date', 'desc')->where('user_id', $user->id)->get();
+            
+        if ($sessions->count() == 0)
+        { 
+            return redirect()->route('sessions_create');
+        }
+        
+    
+            return Inertia::render('Sessions', ['sessions' => $sessions]);
+    }
+       
+        return redirect()->route('dashboard');
+
     }
 
     /**
