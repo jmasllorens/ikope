@@ -72,7 +72,8 @@
                       class="
                         flex
                         justify-center
-                        
+                        bg-white
+                        ring-2 ring-white
                         rounded-lg
                     
                         w-32

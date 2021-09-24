@@ -23988,7 +23988,7 @@ var _hoisted_13 = ["href"];
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "hover:scale-105 transform transition-all duration-500"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Start Card "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex justify-center rounded-lg w-32"
+  "class": "flex justify-center bg-white ring-2 ring-white rounded-lg w-32"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: _Assets_divan_jpeg__WEBPACK_IMPORTED_MODULE_1__["default"],
   alt: "file",
