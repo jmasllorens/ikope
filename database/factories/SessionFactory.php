@@ -22,8 +22,8 @@ class SessionFactory extends Factory
     public function definition()
     {
         return [
-            'date' => $this ->faker->dateTimeBetween('now', '+200 days'),
-            'keywords' => $this->faker->text(5),
+            'date' => $this ->faker->dateTimeBetween('-100 days', 'now'),
+            'keywords' => $this->faker->text(19),
             'cost' => $this->faker->numberBetween(20, 100),
             'isPayed' => false
             

@@ -1,97 +1,154 @@
 <template>
-    <Head title="Sessions" />
+  <Head title="Sessions&Notes" />
 
-    <BreezeAuthenticatedLayout>
+  <BreezeAuthenticatedLayout>
     <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-3 bg-blueish border-b border-gray-200">
-                        Sessions
-                    </div>
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+          <div class="p-3 bg-blueish border-b border-gray-200"><strong>{{ $page.props.auth.user.name }}</strong>'s Sessions & Notes</div>
+        </div>
+        <br />
+        <div class="grid grid-cols-2">
+          <span class="justify-self-start ml-2">
+            <a
+              href="/patients"
+              method="get"
+              class="
+                inline-flex
+                items-center
+                px-1
+                pt-1
+                border-b-2 border-transparent
+                text-sm
+                font-medium
+                leading-5
+                text-gray-500
+                hover:text-gray-700
+                hover:border-gray-400
+                focus:outline-none
+                focus:text-gray-700
+                focus:border-gray-400
+                transition
+                duration-150
+                ease-in-out
+              "
+              >Back to Patients</a
+            >
+          </span>
+          <span class="justify-self-end">
+                <div>
+                <button class="inline-flex px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">New Session</button>
                 </div>
-                <br>
-                <br>   
-<!-- <div v-if="$page.props.auth.user.name > 0" class="bg-yellow-200 dark:bg-light_secondary rounded-lg py-5 px-5"> -->
+          </span>
+          
+        </div>
 
-	<div class="grid grid-rows-2 gap-5 text-white">
-            <div class="flex items-center justify-end">
-    <BreezeButton class="mr-9 mt-3">Session</BreezeButton>
-    </div>
-		<div class="row-span-1">
-			<div class="grid grid-cols-3 gap-2 px-10">
-				<div class="flex justify-between items-center">
-				</div>
-			</div>
-		</div>
-       
-		<div class="row-span-2">
-            <!--   <span v-for="session in $page.props.auth.user.sessions"  v-bind:key="session"> -->
-			<div class="grid grid-cols-3 px-10 gap-2">
-				<div class="flex justify-center items-center">
-                   
-					<a class="cursor-pointer" href="#">
-						<div class="hover:scale-105 transform transition-all duration-500">
+        <br />
 
-                        <div class="text-gray-900 text-semibold">
-                           <!--  <h2> {{ session.date }}</h2> -->
-                    
-                        </div>
+        <div
+          v-if="$page.props.sessions.length != 0"
+          class="bg-gray-300 dark:bg-light_secondary rounded-lg py-5 px-5"
+        >
+         
+          <br>
+          <div class="grid grid-cols-3 px-10 gap-2">
+            <span
+              v-for="session in $page.props.sessions"
+              v-bind:key="session"
+            >
+              <span class="flex justify-center items-center">
+                <a class="cursor-pointer" :href="`/patients/${session.patient_id}/sessions/${session.id}`">
+                  <div
+                    class="
+                      hover:scale-105
+                      transform
+                      transition-all
+                      duration-500
+                    "
+                  >
+                    <!-- Start Card -->
 
-						</div>
-					</a>
-				</div>
-				<div class="flex justify-center items-center">
-					<a class="cursor-pointer" href="#">
-						<div class="hover:scale-105 transform transition-all duration-500">
-							<img class="h-30 rounded-lg"
-								src="https://cdn.pixabay.com/photo/2020/07/21/16/24/landscape-5426755_960_720.jpg" alt="image" />
-						</div>
-					</a>
-				</div>
-				<div class="flex justify-center items-center">
-					<a class="cursor-pointer" href="#">
-						<div class="hover:scale-105 transform transition-all duration-500">
-							<img class="h-30 rounded-lg"
-								src="https://cdn.pixabay.com/photo/2020/07/21/16/24/landscape-5426755_960_720.jpg" alt="image" />
-						</div>
-					</a>
+                    <div
+                      class="
+                        flex
+                        justify-center
+                        p-4
+                        bg-white
+                        ring-2 ring-white
+                        rounded-lg
+                        shadow-xl
+                        w-32
+                      "
+                    >
+                      <img src="@/Assets/ikFile.jpeg" alt="file" />
                     </div>
-                     </div>
-                    <!--  </span>
-                       </div> -->
-                 
-                      
                    
+                     
                   
-                       
-                    </div>
-                    </div>   
                   </div>
-                  </div>
-	
+                   
+
+                </a>
+             
+              </span>
+
+              <br>
+                
+              <div class="grid justify-items-center mb-2 text-sm">
+                  <p>Session number: {{session.id}} </p>
+                  <p>Patient: {{session.patient_name}} </p>
+                  <p>Date: {{session.date}} </p>
+                  <p>Keywords: "{{ session.keywords }}" </p>
+                </div>
+                <div class="grid justify-items-start ml-10"> 
+               <div class="grid grid-cols-2">
+                <div v-if="session.isPayed == 1" class="justify-self-start bg-gradient-to-br from-green-300 to-green-600 shadow-md hover:shadow-lg h-5 w-5 rounded-full"></div>
+                <p v-if="session.isPayed == 1" class="justify-self-end">{{session.cost}} € payed </p>
+                </div>
+         
+               <div class="grid grid-cols-2">
+                <div v-if="session.isPayed == 0" class="justify-self-end bg-gradient-to-br from-red-300 to-red-600 shadow-md hover:shadow-lg h-5 w-5 rounded-full"></div>
+                <p v-if="session.isPayed == 0" class="justify-self-start ml-2">{{session.cost}} € pending </p>
+                </div>
+                </div>
+          
+             
+            
+          
+                  
 
 
-
- </BreezeAuthenticatedLayout>
+               <!-- <a class="cursor-pointer" :href="`/patients/${session.patient_id}/sessions`">   <h2 class="font-semibold text-sm text-gray-800 uppercase">View Patient</h2></a>  -->
+              
+    
+            <br>
+            </span>
+       
+          </div>
+        </div>
+      </div>
+    </div>
+  </BreezeAuthenticatedLayout>
 </template>
 
 <script>
-import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
-import { Head } from '@inertiajs/inertia-vue3'
-import BreezeButton from '@/Components/Button.vue';
-
+import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
+import { Head } from "@inertiajs/inertia-vue3";
+import BreezeButton from "@/Components/Button.vue";
+import BreezeNavLink from "@/Components/NavLink.vue";
 
 export default {
-
-    components: {
-        BreezeAuthenticatedLayout,
-        Head,
-        BreezeButton,
-    },
-}
+  components: {
+    BreezeAuthenticatedLayout,
+    Head,
+    BreezeButton,
+    BreezeNavLink,
+  },
+};
 </script>
 <style scoped>
 .bg-blueish {
-    background-color: rgb(112, 202, 200);
+  background-color: rgb(112, 202, 200);
 }
+
 </style>

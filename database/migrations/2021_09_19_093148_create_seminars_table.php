@@ -20,7 +20,7 @@ class CreateSeminarsTable extends Migration
             $table->string('subject');
             $table->string('author');
             $table->string('approach');
-            $table->string('description', 1000);
+            $table->longText('description');
             $table->integer('availability');
             $table->dateTime('date');
             $table->string('image')->nullable();

@@ -6,6 +6,7 @@ use App\Models\Session;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SessionController extends Controller
 {
@@ -22,17 +23,18 @@ class SessionController extends Controller
         $user = Auth::user();
         if($user->isActive == true)
         {
-        $sessions = $user->sessions;
- 
-        foreach($sessions as $session) 
-        {   $patient = $session->patient;
-            $notes = $session->notes;
 
-        
-            return Inertia::render('Sessions', ['sessions' => $sessions, 'patient' => $patient, 'notes', $notes]);
-    }}
+        $sessions = Session::orderBy('date', 'desc')->where('user_id', $user->id)->get();
+            
+        if ($sessions->count() == 0)
+        { 
+            return redirect()->route('sessions_create');
+        }
+    
+            return Inertia::render('Sessions', ['sessions' => $sessions]);
+    }
        
-       else { return redirect()->route('dashboard');}
+        return redirect()->route('dashboard');
 
     }
 

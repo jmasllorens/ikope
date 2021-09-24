@@ -22,7 +22,7 @@ class CreatePatientsTable extends Migration
             $table->integer('age');
             $table->string('pronoun');
             $table->string('motive');
-            $table->string('history');
+            $table->longText('history');
             $table->string('email')->unique();
             $table->boolean('isConsulting')->default(true);
 

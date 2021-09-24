@@ -11,7 +11,7 @@
         <div class="grid grid-cols-2">
           <span class="justify-self-start ml-2">
             <a
-              href="/sessions"
+              href="/sessions&notes"
               method="get"
               class="
                 inline-flex
@@ -32,35 +32,9 @@
                 duration-150
                 ease-in-out
               "
-              ><strong> {{ $page.props.auth.user.name }} </strong>'s sessions & notes</a
+              ><strong> {{ $page.props.auth.user.name }} </strong>'s Sessions & Notes</a
             >
           </span>
-      <!--     <span class="justify-self-start">
-            <a
-              href="/notes"
-              method="get"
-              class="
-                inline-flex
-                items-center
-                px-1
-                pt-1
-                border-b-2 border-transparent
-                text-sm
-                font-medium
-                leading-5
-                text-gray-500
-                hover:text-gray-700
-                hover:border-gray-400
-                focus:outline-none
-                focus:text-gray-700
-                focus:border-gray-400
-                transition
-                duration-150
-                ease-in-out
-              "
-              >{{ $page.props.auth.user.name }}'s notes</a
-            >
-          </span> -->
           <span class="justify-self-end">
                 <div>
                 <button class="inline-flex px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">New Patient</button>
@@ -121,7 +95,7 @@
               <br>
                 
               <div class="grid justify-items-center mb-2">
-               <a class="cursor-pointer" :href="`/patients/${patient.id}`">   <h2 class="font-semibold text-ms text-gray-800 uppercase">{{patient.name}}</h2></a> 
+               <a class="cursor-pointer" :href="`/patients/${patient.id}`">   <h2 class="font-semibold text-sm text-gray-800 uppercase">{{patient.name}}</h2></a> 
               
             </div>
             <br>

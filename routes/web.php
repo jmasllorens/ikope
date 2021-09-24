@@ -56,7 +56,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/patients/{id}/notes', [PatientController::class, 'indexNotes'])->name('patients_notes');
 */
 
-  Route::get('/sessions', [SessionController::class, 'index'])->name('sessions');
+  Route::get('/sessions&notes', [SessionController::class, 'index'])->name('sessions');
 
    /* Route::get('/patients/notes', [NoteController::class, 'index'])->name('notes');
 

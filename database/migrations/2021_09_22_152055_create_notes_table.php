@@ -20,7 +20,7 @@ class CreateNotesTable extends Migration
             $table->foreignId('patient_id')->constrained()->nullable()->onDelete('cascade');
             $table->foreignId('session_id')->constrained()->nullable()->onDelete('cascade');
             $table->string('title');
-            $table->string('text');
+            $table->longText('text');
             $table->boolean('isImportant')->default(false);
 
         });

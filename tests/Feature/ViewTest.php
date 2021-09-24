@@ -35,6 +35,7 @@ class ViewTest extends TestCase
     public function test_seminars_screen_can_be_rendered_if_user_is_logged_in()
     {
         $user = User::factory()->create();
+        $seminar = Seminar::factory()->create();
 
         $response = $this->actingAs($user)->get('/seminars');
 
