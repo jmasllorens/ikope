@@ -8,8 +8,8 @@
           <div class="p-3 bg-blueish border-b border-gray-200">Patients</div>
         </div>
         <br />
-        <div class="grid grid-cols-3">
-          <span class="justify-self-start">
+        <div class="grid grid-cols-2">
+          <span class="justify-self-start ml-2">
             <a
               href="/sessions"
               method="get"
@@ -32,10 +32,10 @@
                 duration-150
                 ease-in-out
               "
-              >{{ $page.props.auth.user.name }}'s sessions</a
+              ><strong> {{ $page.props.auth.user.name }} </strong>'s sessions & notes</a
             >
           </span>
-          <span class="justify-self-start">
+      <!--     <span class="justify-self-start">
             <a
               href="/notes"
               method="get"
@@ -60,10 +60,10 @@
               "
               >{{ $page.props.auth.user.name }}'s notes</a
             >
-          </span>
+          </span> -->
           <span class="justify-self-end">
                 <div>
-                <button :type="type" class="inline-flex px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">New Patient</button>
+                <button class="inline-flex px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">New Patient</button>
                 </div>
           </span>
           
@@ -72,14 +72,14 @@
         <br />
 
         <div
-          v-if="$page.props.auth.user.patients.length != 0"
+          v-if="$page.props.patients.length != 0"
           class="bg-gray-300 dark:bg-light_secondary rounded-lg py-5 px-5"
         >
          
           <br />
           <div class="grid grid-cols-3 px-10 gap-2">
             <span
-              v-for="patient in $page.props.auth.user.patients"
+              v-for="patient in $page.props.patients"
               v-bind:key="patient"
             >
               <span class="flex justify-center items-center">
@@ -108,12 +108,25 @@
                     >
                       <img src="@/Assets/ikFile.jpeg" alt="file" />
                     </div>
+                   
+                     
+                  
                   </div>
+                   
+
                 </a>
+             
               </span>
 
-              <br />
+              <br>
+                
+              <div class="grid justify-items-center mb-2">
+               <a class="cursor-pointer" :href="`/patients/${patient.id}`">   <h2 class="font-semibold text-ms text-gray-800 uppercase">{{patient.name}}</h2></a> 
+              
+            </div>
+            <br>
             </span>
+       
           </div>
         </div>
       </div>

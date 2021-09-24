@@ -8,17 +8,21 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Seminar;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class SeminarController extends Controller
 {
     public function index()
-    {
-        $seminars = Seminar::orderBy('date', 'asc')->paginate(20);
+    {   
+        $seminars = Seminar::orderBy('date', 'asc')->get();
+     
         foreach($seminars as $seminar) 
         {
-            $seminar->users;
+            $users = $seminar->users;
         }
-            return Inertia::render('Seminars', ['seminars' => $seminars]);
+       
+      
+            return Inertia::render('Seminars', ['seminars' => $seminars, 'users' => $users]);
     }
 
     public function show($id) 

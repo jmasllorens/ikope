@@ -26,6 +26,7 @@ class SessionFactory extends Factory
             'keywords' => $this->faker->text(5),
             'cost' => $this->faker->numberBetween(20, 100),
             'isPayed' => false
+            
             ];
     }
 }

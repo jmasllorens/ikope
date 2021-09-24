@@ -27,6 +27,7 @@ class PatientFactory extends Factory
             'age' => $this->faker->numberBetween(10, 96),
             'pronoun' => 'they',
             'motive' => $this->faker->name(3),
+            'history' => $this->faker->text(150),
             'email' => $this->faker->unique()->safeEmail(),
             'isConsulting' => true
            
