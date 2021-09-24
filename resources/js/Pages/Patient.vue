@@ -14,25 +14,26 @@
       
           <div class="flex justify-between -mt-4 px-4">
             <span v-if="$page.props.patient.isConsulting == 1"
-              class="inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white px-3 pt-0.5"
+              class="inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white py-1.5 px-3 pt-1.5"
               >Active</span>
 
              <span v-if="$page.props.patient.isConsulting == 0"
-              class="inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white px-3 pt-0.5"
+              class="inline-block ring-2 bg-yellow-300 ring-yellow-300 rounded-sm text-m tracking-wide font-bold text-gray-800 py-1.5 px-3 pt-1.5"
               >Filed</span>
             <span
-              class="flex h-min space-x-1 items-center rounded-full bg-gray-700 py-1 px-2 text-m font-medium">
-              <p class="text-white font-semibold text-sm">
+              class="flex h-min space-x-1 items-center rounded-full bg-gray-700 py-2 px-3 text-m font-medium">
+                <a class="cursor-pointer" :href="`/patients/${$page.props.patient.id}/sessions&notes`">  <p class="text-white font-semibold text-sm">
                 {{$page.props.patient.sessions.length }} sessions | {{ $page.props.patient.notes.length }} notes
-              </p>
+              </p></a>
             </span>
           </div>
           <div class="py-2 px-4">
             <br>
             <h1
               class="text-xl font-medium leading-6 tracking-wide text-black">
-            {{$page.props.patient.name}} ({{$page.props.patient.pronoun}})
+            {{$page.props.patient.name}} 
             </h1>
+            <p class="text-gray-700"> ({{$page.props.patient.pronoun}}) </p>
           </div>
           <div class="flex flex-row items-end h-full w-full px-4 mt-4">
             <div class="flex border-t border-gray-700 w-full py-4">
@@ -50,6 +51,10 @@
                    <p class="text-m font-light tracking-wide text-gray-700">
                    {{ $page.props.patient.motive }}
                   </p> 
+                     <p class="text-m font-semibold">{{$page.props.patient.name}}'s History:</p>
+                   <p class="text-m font-light tracking-wide text-gray-700">
+                   {{ $page.props.patient.history }}
+                  </p> 
                   <br>
            
                  <div class="text-m font-semibold">
@@ -62,6 +67,7 @@
                       <p> Session date: {{ session.date }} </p>
                        <p> Session keyword: {{ session.keywords }} </p>
                          <p> Session cost: {{ session.cost }} (is payed: {{ session.isPayed }}) </p>
+                      
                         <br>
                     </span>
             </div>

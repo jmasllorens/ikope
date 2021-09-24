@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Seminar;
 use App\Models\Patient;
+use App\Models\Session;
 
 class ViewTest extends TestCase
 {
@@ -35,6 +36,7 @@ class ViewTest extends TestCase
     public function test_seminars_screen_can_be_rendered_if_user_is_logged_in()
     {
         $user = User::factory()->create();
+        $seminar = Seminar::factory()->create();
 
         $response = $this->actingAs($user)->get('/seminars');
 
@@ -61,9 +63,20 @@ class ViewTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_sessions_screen_can_be_rendered_if_isActive_user_is_logged_in()
+    {
+        $user = User::factory()->create(['id' => 1, 'isActive' => true]);
+        $patient = Patient::factory()->create(['id' => 2, 'user_id' => 1]);
+        $session = Session::factory()->create(['user_id' => 1, 'patient_id' => 2]);
+       
+        $response = $this->actingAs($user)->get('/sessions&notes');
+
+        $response->assertStatus(200);
+    }
+
     public function test_contact_screen_can_be_rendered_if_user_is_logged_in()
     {
-        $user = User::factory()->create([]);
+        $user = User::factory()->create(['isAdmin' => false]);
 
         $response = $this->actingAs($user)->get('/contact');
 

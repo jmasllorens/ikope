@@ -45,6 +45,8 @@ class DatabaseSeeder extends Seeder
         Note::factory()->create(['user_id' => 3, 'patient_id' => 1, 'session_id' => 7]);
         Note::factory()->create(['user_id' => 3, 'patient_id' => 2, 'session_id' => 8]);
         Note::factory()->create(['user_id' => 3, 'patient_id' => 3, 'session_id' => 10]);
+        Note::factory()->create(['user_id' => 3, 'patient_id' => 3, 'session_id' => 50]);
+        Note::factory()->create(['user_id' => 3, 'patient_id' => 3, 'session_id' => 80]);
 
         
 

@@ -23,10 +23,11 @@ class PatientFactory extends Factory
     {
         return [
             'name' => $this->faker->name(2),
-            'surname' => $this->faker->company(2),
+            'surname' => $this->faker->name(2),
             'age' => $this->faker->numberBetween(10, 96),
             'pronoun' => 'they',
-            'motive' => $this->faker->name(3),
+            'motive' => $this->faker->word(8),
+            'history' => $this->faker->text(5000),
             'email' => $this->faker->unique()->safeEmail(),
             'isConsulting' => true
            
