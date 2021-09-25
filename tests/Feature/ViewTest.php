@@ -83,6 +83,52 @@ class ViewTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_create_session_can_be_rendered_if_activeUser_has_patients()
+    {    
+        $user = User::factory()->create(['isAdmin' => false, 'isActive' => true, 'id' => 1]);
+        $patient = Patient::factory()->create(['user_id' => 1]);
+
+        $response = $this->actingAs($user)->get('/sessionscreate');
+
+        $response->assertStatus(200);
+
+    }
+
+    public function test_edit_session_can_be_rendered_if_activeUser_has_patients_and_session()
+    {    
+        $user = User::factory()->create(['isAdmin' => false, 'isActive' => true, 'id' => 1]);
+        $patient = Patient::factory()->create(['id' => 2, 'user_id' => 1]);
+        $session = Session::factory()->create(['id' => 1, 'user_id' => 1, 'patient_id' => 2]);
+
+        $response = $this->actingAs($user)->get('/patients/2/sessions&notes/1/edit');
+
+        $response->assertStatus(200);
+
+    }
+
+    public function test_create_patient_can_be_rendered()
+    {    
+        $user = User::factory()->create(['isAdmin' => false, 'isActive' => true]);
+      
+      
+        $response = $this->actingAs($user)->get('/patientscreate');
+
+        $response->assertStatus(200);
+
+    }
+
+    public function test_edit_patient_can_be_rendered_when_patient_exists()
+    {    
+        $user = User::factory()->create(['id' => 1, 'isAdmin' => false, 'isActive' => true]);
+        $patient = Patient::factory()->create(['id' => 6, 'user_id' => 1]);
+      
+      
+        $response = $this->actingAs($user)->get('/patients/6/edit');
+
+        $response->assertStatus(200);
+
+    }
+
 /*     admin views */
 
     public function test_seminars_create_screen_can_be_rendered_if_logged_user_is_admin()

@@ -34,15 +34,15 @@
 
                 <div v-if="!user.isActive && !user.isAdmin" class="mt-6 mb-2">
                 <label class="flex items-center" for="isActive">
-                <BreezeCheckbox name="isActive" v-model:checked="form.isActive" />
-                <span class="ml-2 text-sm text-gray-600">I practise as a psychotherapist</span>
+                <BreezeCheckbox name="isActive" v-model="form.isActive" value=1 />
+                <span class="ml-2 text-sm text-gray-600">I practise as a psychotherapist and want to the 'Patients' section</span>
                 </label>
                 </div>
 
                 <div v-if="user.isActive && !user.isAdmin" class="mt-6 mb-2">
                 <label class="flex items-center" for="isActive">
-                <BreezeCheckbox name="isActive" v-model:checked="form.isActive" true-value="0" false-value="1" />
-                <span class="ml-2 text-sm text-gray-600">I don't want the 'Patients' section anymore</span>
+                <BreezeCheckbox name="isActive" v-model="form.isActive" true-value=0 false-value=1 />
+                <span class="ml-2 text-sm text-gray-600">I don't want access to the 'Patients' section anymore</span>
                 </label>
                 </div>
 

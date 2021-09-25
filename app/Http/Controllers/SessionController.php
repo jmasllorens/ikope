@@ -6,7 +6,7 @@ use App\Models\Session;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use App\Models\Patient;
 
 class SessionController extends Controller
 {
@@ -23,10 +23,18 @@ class SessionController extends Controller
         if($user->isActive == true)
         {
 
+      
+        $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->id)->get();
+
+        if ($patients->count() == 0)
+        {
+            return redirect()->route('patients_create');
+        }
+
         $sessions = Session::orderBy('date', 'desc')->where('user_id', $user->id)->get();
-            
+
         if ($sessions->count() == 0)
-        { 
+        {  
             return redirect()->route('sessions_create');
         }
 
@@ -37,10 +45,41 @@ class SessionController extends Controller
         }
         
     
-            return Inertia::render('Sessions', ['sessions' => $sessions, 'patient', $patient]);
+            return Inertia::render('User/Sessions&Notes/Index', ['sessions' => $sessions, 'patient', $patient, 'note', $note]);
     }
        
         return redirect()->route('dashboard');
+
+    }
+
+    public function show($id, $sId)
+    {
+        $user = Auth::user();
+        if($user->isActive == true)
+        {
+        $patient = Patient::find($id);
+        if ( $patient == null)
+        {
+            return redirect()->route('patients');
+        }
+
+        $session = Session::find($sId);
+        if ( $session == null)
+        {
+            return redirect()->route('patients_sessions');
+        }
+       
+        $note = $session->note;
+        if ( $note == null)
+        {
+            return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session]);
+        }
+ 
+       
+  
+        return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session, 'note', $note]);}
+        
+        else {return redirect()->route('dashboard');}
 
     }
 
@@ -50,8 +89,19 @@ class SessionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   $user = Auth::user();
+
+        if ($user->isAdmin)
+        return redirect()->route('dashboard');
+
+    
+        if ($user->isActive && $user->patients->count() == 0)
+        {return Inertia::render('User/Patients/Create');}
+  
+       
+        return Inertia::render('User/Sessions&Notes/Create');
+        
+
     }
 
     /**
@@ -71,10 +121,7 @@ class SessionController extends Controller
      * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
-    public function show(Session $session)
-    {
-        //
-    }
+  
 
     /**
      * Show the form for editing the specified resource.
@@ -82,9 +129,19 @@ class SessionController extends Controller
      * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
-    public function edit(Session $session)
+    public function edit($id, $sId)
     {
-        //
+         
+        $user = Auth::user();
+        if ($user->isActive == true && $user->isAdmin == false)
+        {
+        $patient = Patient::findOrFail($id);
+        $session = Session::findOrFail($sId);
+        return Inertia::render('User/Sessions&Notes/Edit', ['patient' => $patient, 'session' => $session]);
+        }
+        return redirect()->route('dashboard');
+
+   
     }
 
     /**

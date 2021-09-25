@@ -20,14 +20,14 @@ class PatientController extends Controller
     {
         $user = Auth::user();
         
-        if ($user->isActive == true)
+        if ($user->isActive == 1)
         {   
             $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->id)->get();
            
-            if ($patients->count() == 0)
+           if ($patients->count() == 0 || $patients == null)
             { 
-                return redirect()->route('patients_create');
-            }
+                return Inertia::render('User/Patients/Create');
+            } 
 
             foreach ($patients as $patient)
             {
@@ -37,7 +37,7 @@ class PatientController extends Controller
             }
    
     
-        return Inertia::render('Patients', ['patients' => $patients, 'sessions' => $sessions], 'notes', $notes); 
+        return Inertia::render('User/Patients/Index', ['patients' => $patients, 'sessions' => $sessions], 'notes', $notes); 
         
         }
 
@@ -48,7 +48,7 @@ class PatientController extends Controller
     {   
 
         $user = Auth::user();
-        if($user->isActive == true)
+        if($user->isActive == 1)
         {
         $patient = Patient::find($id);
         if ( $patient == null)
@@ -61,8 +61,8 @@ class PatientController extends Controller
      
         $notes = $patient->notes;
   
-        return Inertia::render('Patient', ['patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);}
-        
+        return Inertia::render('User/Patients/Show', ['patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);}
+
         else {return redirect()->route('dashboard');}
     }
 
@@ -77,14 +77,15 @@ class PatientController extends Controller
             return redirect()->route('patients');
         }
         $sessions = $patient->sessions;
+
         $notes = $patient->notes;
+   
         if ($sessions->count() == 0)
         {
             return redirect()->route('sessions_create');
         }
       
-  
-        return Inertia::render('PatientSessions', ['patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);}
+        return Inertia::render('User/Patients/Sessions', ['patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);}
         else {return redirect()->route('dashboard');}
 
     }
@@ -96,8 +97,16 @@ class PatientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+
+    {   $user = Auth::user();
+
+        if ($user->isActive)
+        {
+        return Inertia::render('User/Patients/Create');}
+
+        return redirect()->route('dashboard');
+    
+
     }
 
     /**
@@ -119,9 +128,17 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function edit(Patient $patient)
+    public function edit($id)
     {
-        //
+          
+            $user = Auth::user();
+            if ($user->isActive == true && $user->isAdmin == false)
+            {
+            $patient = Patient::findOrFail($id);
+            return Inertia::render('User/Patients/Edit', ['patient' => $patient]);
+            }
+            return redirect()->route('dashboard');
+    
     }
 
     /**
