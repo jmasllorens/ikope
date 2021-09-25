@@ -30,6 +30,12 @@ class SessionController extends Controller
         { 
             return redirect()->route('sessions_create');
         }
+
+        foreach ($sessions as $session)
+        {
+            $patient = $session->patient;
+            $note = $session->note;
+        }
         
     
             return Inertia::render('Sessions', ['sessions' => $sessions]);

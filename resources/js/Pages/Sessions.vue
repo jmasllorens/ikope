@@ -79,7 +79,7 @@
                         w-32
                       "
                     >
-                      <img src="@/Assets/divan.jpeg" alt="file" style="border-radius:10rem;" />
+                      <img src="@/Assets/ikDivan.jpeg" alt="file" style="border-radius:10rem;" />
                     </div>
                    
                      

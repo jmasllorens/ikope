@@ -32,7 +32,7 @@
                 duration-150
                 ease-in-out
               "
-              ><strong> {{ $page.props.auth.user.name }} </strong>'s Sessions & Notes</a
+              >All <strong> &nbsp{{ $page.props.auth.user.name }} </strong>'s Sessions & Notes</a
             >
           </span>
           <span class="justify-self-end">
@@ -95,7 +95,9 @@
               <br>
                 
               <div class="grid justify-items-center mb-2">
-               <a class="cursor-pointer" :href="`/patients/${patient.id}`">   <h2 class="font-semibold text-sm text-gray-800 uppercase">{{patient.name}}</h2></a> 
+               <a class="cursor-pointer" :href="`/patients/${patient.id}`">   <h2 class="font-semibold text-sm text-gray-800 uppercase">{{patient.name}}</h2></a>
+               <p>{{patient.sessions.length}}</p>
+                <p>{{patient.notes.length}}</p> 
               
             </div>
             <br>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+use App\Models\Session;
 
 class PatientController extends Controller
 {
@@ -21,15 +22,22 @@ class PatientController extends Controller
         
         if ($user->isActive == true)
         {   
-            $patients = DB::table('patients')->orderBy('name', 'asc')->where('user_id', $user->id)->get();
-
+            $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->id)->get();
+           
             if ($patients->count() == 0)
             { 
                 return redirect()->route('patients_create');
             }
+
+            foreach ($patients as $patient)
+            {
+                $sessions = $patient->sessions;
+                $notes = $patient->notes;
+                
+            }
    
     
-        return Inertia::render('Patients', ['patients' => $patients]); 
+        return Inertia::render('Patients', ['patients' => $patients, 'sessions' => $sessions], 'notes', $notes); 
         
         }
 
