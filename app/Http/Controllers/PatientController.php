@@ -128,9 +128,17 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function edit(Patient $patient)
+    public function edit($id)
     {
-        //
+          
+            $user = Auth::user();
+            if ($user->isActive == true && $user->isAdmin == false)
+            {
+            $patient = Patient::findOrFail($id);
+            return Inertia::render('User/Patients/Edit', ['patient' => $patient]);
+            }
+            return redirect()->route('dashboard');
+    
     }
 
     /**

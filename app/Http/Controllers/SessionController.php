@@ -23,14 +23,16 @@ class SessionController extends Controller
         if($user->isActive == true)
         {
 
-        $sessions = Session::orderBy('date', 'desc')->where('user_id', $user->id)->get();
-        $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->get)->get();
+      
+        $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->id)->get();
 
         if ($patients->count() == 0)
         {
             return redirect()->route('patients_create');
         }
-            
+
+        $sessions = Session::orderBy('date', 'desc')->where('user_id', $user->id)->get();
+
         if ($sessions->count() == 0)
         {  
             return redirect()->route('sessions_create');
@@ -127,9 +129,19 @@ class SessionController extends Controller
      * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
-    public function edit(Session $session)
+    public function edit($id, $sId)
     {
-        //
+         
+        $user = Auth::user();
+        if ($user->isActive == true && $user->isAdmin == false)
+        {
+        $patient = Patient::findOrFail($id);
+        $session = Session::findOrFail($sId);
+        return Inertia::render('User/Sessions&Notes/Edit', ['patient' => $patient, 'session' => $session]);
+        }
+        return redirect()->route('dashboard');
+
+   
     }
 
     /**

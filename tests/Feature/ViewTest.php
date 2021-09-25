@@ -83,6 +83,28 @@ class ViewTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_create_session_can_be_rendered_if_activeUser_has_patients()
+    {    
+        $user = User::factory()->create(['isAdmin' => false, 'isActive' => true, 'id' => 1]);
+        $patient = Patient::factory()->create(['user_id' => 1]);
+
+        $response = $this->actingAs($user)->get('/sessionscreate');
+
+        $response->assertStatus(200);
+
+    }
+
+    public function test_create_patient_can_be_rendered()
+    {    
+        $user = User::factory()->create(['isAdmin' => false, 'isActive' => true]);
+      
+      
+        $response = $this->actingAs($user)->get('/patientscreate');
+
+        $response->assertStatus(200);
+
+    }
+
 /*     admin views */
 
     public function test_seminars_create_screen_can_be_rendered_if_logged_user_is_admin()
