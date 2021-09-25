@@ -41,6 +41,21 @@ class SessionTest extends TestCase
 
     }
 
+    public function test_userActive_can_retrieve_list_of_all_sessions_by_patientId()
+    {
+        $user = User::factory()->create(['id' => 3, 'isActive' => true]);
+        $patient = Patient::factory()->create(['id' => '2', 'user_id' => 3]);
+        $sessions = Session::factory(2)->create(['user_id' => 3, 'patient_id' => 2]);
+       
+
+        $response = $this->actingAs($user)->get('/patients/2/sessions&notes');
+
+        $response->assertStatus(200);
+        $this->assertCount(2, $patient->sessions);
+ 
+    }
+
+
    /*  public function test_user_can_retrieve_info_session_by_id()
     {
         $user = User::factory()->create(['id' => 3, 'isActive' => true]);

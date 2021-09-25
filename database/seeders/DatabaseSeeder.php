@@ -35,8 +35,8 @@ class DatabaseSeeder extends Seeder
         Session::factory()->create(['id' => 7, 'user_id' => 3, 'patient_id' => 1]);
         Session::factory()->create(['id' => 8, 'user_id' => 3, 'patient_id' => 2]);
         Session::factory()->create(['id' => 10, 'user_id' => 3, 'patient_id' => 3]);
-        Session::factory()->create(['id' => 50, 'user_id' => 3, 'patient_id' => 1]);
-        Session::factory()->create(['id' => 80, 'user_id' => 3, 'patient_id' => 1]);
+        Session::factory()->create(['id' => 50, 'user_id' => 3, 'patient_id' => 3]);
+        Session::factory()->create(['id' => 80, 'user_id' => 3, 'patient_id' => 3]);
         
         Note::factory()->create(['user_id' => 3, 'patient_id' => 1, 'session_id' => 6]);
         Note::factory()->create(['user_id' => 3, 'patient_id' => 2, 'session_id' => 1]);

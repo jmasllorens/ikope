@@ -62,7 +62,7 @@ class PatientController extends Controller
         $notes = $patient->notes;
   
         return Inertia::render('Patient', ['patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);}
-        
+
         else {return redirect()->route('dashboard');}
     }
 
@@ -77,13 +77,14 @@ class PatientController extends Controller
             return redirect()->route('patients');
         }
         $sessions = $patient->sessions;
+
         $notes = $patient->notes;
+   
         if ($sessions->count() == 0)
         {
             return redirect()->route('sessions_create');
         }
       
-  
         return Inertia::render('PatientSessions', ['patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);}
         else {return redirect()->route('dashboard');}
 

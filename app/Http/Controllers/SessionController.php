@@ -6,7 +6,7 @@ use App\Models\Session;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use App\Models\Patient;
 
 class SessionController extends Controller
 {
@@ -37,10 +37,37 @@ class SessionController extends Controller
         }
         
     
-            return Inertia::render('Sessions', ['sessions' => $sessions, 'patient', $patient]);
+            return Inertia::render('Sessions', ['sessions' => $sessions, 'patient', $patient, 'note', $note]);
     }
        
         return redirect()->route('dashboard');
+
+    }
+
+    public function show($id, $sId)
+    {
+        $user = Auth::user();
+        if($user->isActive == true)
+        {
+        $patient = Patient::find($id);
+        if ( $patient == null)
+        {
+            return redirect()->route('patients');
+        }
+
+        $session = Session::find($sId);
+        if ( $session == null)
+        {
+            return redirect()->route('patients_sessions');
+        }
+       
+        $note = $session->note;
+ 
+       
+  
+        return Inertia::render('Session', ['patient' => $patient, 'session' => $session, 'note', $note]);}
+        
+        else {return redirect()->route('dashboard');}
 
     }
 
@@ -71,10 +98,7 @@ class SessionController extends Controller
      * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
-    public function show(Session $session)
-    {
-        //
-    }
+  
 
     /**
      * Show the form for editing the specified resource.

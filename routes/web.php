@@ -58,9 +58,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
   Route::get('/sessions&notes', [SessionController::class, 'index'])->name('sessions');
 
- /*  Route::get('/patients/notes', [NoteController::class, 'index'])->name('notes');
+ /*  Route::get('/patients/notes', [NoteController::class, 'index'])->name('notes');*/
 
-    Route::get('/patients/{id}/sessions/{sId}', [SessionController::class, 'show'])->name('sessions_show');  */
+    Route::get('/patients/{id}/sessions&notes/{sId}', [SessionController::class, 'show'])->name('sessions_show'); 
 
 
     Route::get('/publications', function () {
