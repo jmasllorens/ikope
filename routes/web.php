@@ -50,17 +50,20 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('/patients', [PatientController::class, 'index'])->name('patients');
     Route::get('/patients/{id}', [PatientController::class, 'show'])->name('patients_show');
-   
-
     Route::get('/patients/{id}/sessions&notes', [PatientController::class, 'getSessions'])->name('patients_sessions');
+    Route::get('/patientscreate', [PatientController::class, 'create'])->name('patients_create');
+    Route::get('/patients/{id}/edit', [PatientController::class, 'edit'])->name('patients_edit');
   
 
 
   Route::get('/sessions&notes', [SessionController::class, 'index'])->name('sessions');
+  Route::get('/sessionscreate', [SessionController::class, 'create'])->name('sessions_create');
+  
 
- /*  Route::get('/patients/notes', [NoteController::class, 'index'])->name('notes');
+ 
 
-    Route::get('/patients/{id}/sessions/{sId}', [SessionController::class, 'show'])->name('sessions_show');  */
+Route::get('/patients/{id}/sessions&notes/{sId}', [SessionController::class, 'show'])->name('sessions_show');
+Route::get('/patients/{id}/sessions&notes/{sId}/edit', [SessionController::class, 'edit'])->name('sessions_edit');
 
 
     Route::get('/publications', function () {
@@ -71,7 +74,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         $user = Auth::user();
         if ($user->isAdmin)
         {
-            return Inertia::render('Users');
+            return Inertia::render('Admin/Users');
         }
             return redirect()->route('dashboard');
 
@@ -81,7 +84,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         $user = Auth::user();
         if (!$user->isAdmin)
         {
-            return Inertia::render('Contact');
+            return Inertia::render('User/Contact');
         }
             return redirect()->route('dashboard');
 

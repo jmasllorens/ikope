@@ -1,5 +1,5 @@
 <template>
-    <Head title="Seminars" />
+    <Head title="Patient" />
 
     <BreezeAuthenticatedLayout>
         <div class="py-12">

@@ -9,7 +9,7 @@
         </div>
         <br />
         <div class="grid grid-cols-2">
-          <span class="justify-self-start ml-2">
+          <span v-if="$page.props.patients != null" class="justify-self-start ml-2">
             <a
               href="/sessions&notes"
               method="get"
@@ -32,12 +32,13 @@
                 duration-150
                 ease-in-out
               "
-              >All <strong> &nbsp{{ $page.props.auth.user.name }} </strong>'s Sessions & Notes</a
+              >All <strong> &nbsp;{{ $page.props.auth.user.name }} </strong>'s Sessions & Notes</a
             >
           </span>
           <span class="justify-self-end">
                 <div>
-                <button class="inline-flex px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">New Patient</button>
+                <BreezeButton>
+                        <a :href="route('patients_create')" method="get">New Patient</a></BreezeButton>
                 </div>
           </span>
           
