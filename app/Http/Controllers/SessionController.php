@@ -24,9 +24,15 @@ class SessionController extends Controller
         {
 
         $sessions = Session::orderBy('date', 'desc')->where('user_id', $user->id)->get();
+        $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->get)->get();
+
+        if ($patients->count() == 0)
+        {
+            return redirect()->route('patients_create');
+        }
             
         if ($sessions->count() == 0)
-        { 
+        {  
             return redirect()->route('sessions_create');
         }
 
@@ -37,7 +43,7 @@ class SessionController extends Controller
         }
         
     
-            return Inertia::render('Sessions', ['sessions' => $sessions, 'patient', $patient, 'note', $note]);
+            return Inertia::render('User/Sessions&Notes/Index', ['sessions' => $sessions, 'patient', $patient, 'note', $note]);
     }
        
         return redirect()->route('dashboard');
@@ -62,10 +68,14 @@ class SessionController extends Controller
         }
        
         $note = $session->note;
+        if ( $note == null)
+        {
+            return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session]);
+        }
  
        
   
-        return Inertia::render('Session', ['patient' => $patient, 'session' => $session, 'note', $note]);}
+        return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session, 'note', $note]);}
         
         else {return redirect()->route('dashboard');}
 
@@ -77,8 +87,19 @@ class SessionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   $user = Auth::user();
+
+        if ($user->isAdmin)
+        return redirect()->route('dashboard');
+
+    
+        if ($user->isActive && $user->patients->count() == 0)
+        {return Inertia::render('User/Patients/Create');}
+  
+       
+        return Inertia::render('User/Sessions&Notes/Create');
+        
+
     }
 
     /**

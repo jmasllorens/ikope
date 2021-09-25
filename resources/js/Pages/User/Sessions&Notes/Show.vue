@@ -17,7 +17,7 @@
               class="inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white py-1.5 px-3 pt-1.5"
               >{{$page.props.session.cost}} € payed</span>
 
-             <span v-if="$page.props.session.isPayed == 0"
+             <span v-if="$page.props.session.isPayed == 2"
               class="inline-block ring-2 bg-yellow-300 ring-yellow-300 rounded-sm text-m tracking-wide font-bold text-gray-800 py-1.5 px-3 pt-1.5"
               >{{$page.props.session.cost}} € pending</span>
          <!--    <span
@@ -57,9 +57,6 @@
                   </p> 
                   <br> -->
            
-                 <div class="text-m font-semibold">
-                  <h2>Sessions</h2>
-                  <br>
                 
          
         <!--   <span v-for="session in $page.props.patient.sessions" v-bind:key="session" class="text-m font-light tracking-wider text-gray-600">
@@ -70,10 +67,9 @@
                       
                         <br>
                     </span> -->
-            </div>
-             <div class="text-m font-semibold">
-                  <h2>Notes</h2>
-                  <br>
+           
+             <div v-if="$page.props.session.note != null" class="text-m font-semibold">
+                
                 
          
          

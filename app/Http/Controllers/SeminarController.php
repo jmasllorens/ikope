@@ -21,7 +21,7 @@ class SeminarController extends Controller
             $users = $seminar->users;
         }
        
-            return Inertia::render('Seminars', ['seminars' => $seminars, 'users' => $users]);
+            return Inertia::render('Seminars/Index', ['seminars' => $seminars, 'users' => $users]);
     }
 
     public function show($id) 
@@ -37,7 +37,7 @@ class SeminarController extends Controller
         $seminar->users;
         $isSubscribed = $seminar->isSubscribed($user->id);
 
-        return Inertia::render('Seminar', ['seminar' => $seminar, 'isSubscribed' => $isSubscribed]);
+        return Inertia::render('Seminars/Show', ['seminar' => $seminar, 'isSubscribed' => $isSubscribed]);
     }
 
     public function subscribe($id)
@@ -84,7 +84,7 @@ class SeminarController extends Controller
             
         $m->from('ikope@ikope.com', 'I-KOPE');
 
-        $m->to($user->email, $user->name)->subject('You have a new notification from I-KOPE');
+        $m->to($user->email, $user->name)->subject('You have a new notification');
         });
     }
 
@@ -140,7 +140,7 @@ class SeminarController extends Controller
            
             $seminar = Seminar::findOrFail($id);
             return redirect()->route('seminars');
-            //return view('dashboard', compact('event'));
+          
         }
     
     public function delete($id)

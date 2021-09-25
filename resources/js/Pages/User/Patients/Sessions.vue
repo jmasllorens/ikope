@@ -1,4 +1,6 @@
 <template>
+<BreezeAuthenticatedLayout>
+<div>
      <h1>Sessions</h1>
    <span v-for="session in $page.props.patient.sessions" v-bind:key="session" class="text-m font-light tracking-wider text-gray-600">
     <p> {{session.id}} | {{session.date}} | {{session.cost}} | {{session.isPayed}}
@@ -13,6 +15,8 @@
          
         <p> {{note.id}}  {{note.title}} | {{note.isImportant}} </p>
     </span>
+    </div>
+    </BreezeAuthenticatedLayout>
 </template>
 <script>
 
