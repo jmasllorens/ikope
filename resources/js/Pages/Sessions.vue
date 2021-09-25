@@ -95,7 +95,7 @@
                 
               <div class="grid justify-items-center mb-2 text-sm">
                   <p>Session number: {{session.id}} </p>
-                  <p>Patient: {{session.patient_name}} </p>
+                  <p>Patient: {{session.patient.name}} </p>
                   <p>Date: {{session.date}} </p>
                   <p>Keywords: "{{ session.keywords }}" </p>
                 </div>

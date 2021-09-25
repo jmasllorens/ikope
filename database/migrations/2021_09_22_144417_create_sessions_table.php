@@ -18,7 +18,6 @@ class CreateSessionsTable extends Migration
             $table->timestamps();
             $table->foreignId('user_id')->constrained()->nullable()->onDelete('cascade');
             $table->foreignId('patient_id')->constrained()->nullable()->onDelete('cascade');
-            $table->foreignId('patient_name')->nullable();
             $table->dateTime('date');
             $table->string('keywords')->nullable();
             $table->integer('cost')->nullable();

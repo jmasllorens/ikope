@@ -62,7 +62,31 @@ class PatientController extends Controller
         $notes = $patient->notes;
   
         return Inertia::render('Patient', ['patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);}
+        
         else {return redirect()->route('dashboard');}
+    }
+
+    public function getSessions($id)
+    {
+        $user = Auth::user();
+        if($user->isActive == true)
+        {
+        $patient = Patient::find($id);
+        if ( $patient == null)
+        {
+            return redirect()->route('patients');
+        }
+        $sessions = $patient->sessions;
+        $notes = $patient->notes;
+        if ($sessions->count() == 0)
+        {
+            return redirect()->route('sessions_create');
+        }
+      
+  
+        return Inertia::render('PatientSessions', ['patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);}
+        else {return redirect()->route('dashboard');}
+
     }
 
 
