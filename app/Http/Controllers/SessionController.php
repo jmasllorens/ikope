@@ -16,7 +16,6 @@ class SessionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public $sessions;
 
     public function index()
     {
@@ -30,9 +29,15 @@ class SessionController extends Controller
         { 
             return redirect()->route('sessions_create');
         }
+
+        foreach ($sessions as $session)
+        {
+            $patient = $session->patient;
+            $note = $session->note;
+        }
         
     
-            return Inertia::render('Sessions', ['sessions' => $sessions]);
+            return Inertia::render('Sessions', ['sessions' => $sessions, 'patient', $patient]);
     }
        
         return redirect()->route('dashboard');

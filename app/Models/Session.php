@@ -10,7 +10,6 @@ class Session extends Model
     use HasFactory;
 
     protected $fillable = [
-        'patient_name',
         'date',
         'keywords',
         'cost',
