@@ -11,7 +11,7 @@
 
 
 <div class="flex justify-center m-6">
-     <div>
+     <div >
         <span v-if="$page.props.patient.sessions.length > 0" class="mb-3">
             <a
               :href="`/patients/${$page.props.patient.id}/sessions&notes`" 
@@ -40,7 +40,7 @@
 
           </span>
           <br>
-            <span>
+            <!-- <span>
             <a
               :href="`/patients/${$page.props.patient.id}/sessions&notes/create`" 
               method="get"
@@ -94,7 +94,7 @@
               >Edit Patient</a
             >
 
-          </span>
+          </span> -->
          
               <!--  <div>  <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/patients/${$page.props.patient.id}/sessions&notes`" method="get">View S&N</a></BreezeButton></div>
   <br>
@@ -102,11 +102,15 @@
           <br>
           
                <div><BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500"><a :href="`/patients/${$page.props.patient.id}/edit`" method="get">Edit Patient</a></BreezeButton></div>
-         -->
+         --><br>
+         <div class="mt-15"><BreezeButton class="bg-green-400 hover:bg-green-500"> <a :href="`/patients/${$page.props.patient.id}/sessions&notes/create`" method="get">New Session</a></BreezeButton></div>
+           <br>
+         
+         <div><BreezeButton class="bg-yellow-400 hover:bg-yellow-500"> <a :href="`/patients/${$page.props.patient.id}/edit`" method="get"> Edit Patient</a></BreezeButton></div>
            <br>
          <!--    <div><BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500"> <a :href="`/patients/${$page.props.patient.id}/edit`" method="get"> File Patient</a></BreezeButton></div>
             <br> -->
-                <div class="mt-12"><BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deletePatient(`${$page.props.patient.id}`)">Delete Patient</BreezeButton></div></div>
+                <div><BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deletePatient(`${$page.props.patient.id}`)">Delete Patient</BreezeButton></div></div>
   <div class="flex flex-col h-full w-4/5 mx-auto bg-blueish rounded-lg">
       
           <div class="flex justify-between -mt-4 px-4">

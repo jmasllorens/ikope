@@ -147,9 +147,39 @@ class PatientController extends Controller
                 return Inertia::render('User/Patients/Create');}
       
             $patient = Patient::find($id);
+            $sessions = $patient->sessions;
+            if ($sessions == null)
+            {
+                return Inertia::render('User/Sessions&Notes/Create', ['patient' => $patient]);
+            }
           
-            return Inertia::render('User/Sessions&Notes/Create', ['patient' => $patient]);
+            return Inertia::render('User/Sessions&Notes/Create', ['patient' => $patient, 'sessions', $sessions]);
     }
+
+    public function storeSession(Request $request, $id)
+    {
+        $user = Auth::user();
+        $patient = Patient::find($id);
+
+        
+        $newSession = request()->except('_token');
+
+        if($request->hasFile('image'))
+    {
+        $newSession['image']=$request->file('image')->store('images', 'public');
+    }
+        $newSession['user_id'] = $user->id;
+        $newSession['patient_id'] = $patient->id;
+      
+
+        Session::create($newSession);
+
+
+        $sessions = Session::orderBy('date', 'desc')->where('user_id', $user->id && 'patient_id', $patient->id)->get();
+    
+        return redirect()->route('patients_sessions', $patient->id);
+    }
+
 
     
 
