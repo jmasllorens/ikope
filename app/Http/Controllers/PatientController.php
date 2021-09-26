@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use App\Models\Session;
+use App\Models\Note;
 
 class PatientController extends Controller
 {
@@ -77,15 +78,19 @@ class PatientController extends Controller
             return redirect()->route('patients');
         }
         $sessions = $patient->sessions;
-
-        $notes = $patient->notes;
-   
-        if ($sessions->count() == 0)
+      
+    
+        if ($sessions->count() == 0 )
         {
             return redirect()->route('sessions_create', ['id' => $patient->id]);
         }
+        $notes = $patient->notes;
+
+        if ($notes->count() == 0)
+        { return Inertia::render('User/Patients/Sessions', ['id' => $patient->id, 'patient', $patient, 'sessions' => $sessions]);}
       
-        return Inertia::render('User/Patients/Sessions', ['patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);}
+        return Inertia::render('User/Patients/Sessions', ['id' => $patient->id, 'patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);}
+        
         else {return redirect()->route('dashboard');}
 
     }
@@ -134,6 +139,10 @@ class PatientController extends Controller
         return redirect()->route('patients');
     }
 
+     
+
+    
+
     public function showSession($id, $sId)
     {
         $user = Auth::user();
@@ -142,13 +151,13 @@ class PatientController extends Controller
         $patient = Patient::find($id);
         if ( $patient == null)
         {
-            return redirect()->route('patients');
+            return redirect()->route('patients', ['user' => $user->id]);
         }
 
         $session = Session::find($sId);
         if ( $session == null)
         {
-            return redirect()->route('patients_sessions');
+            return redirect()->route('patients_sessions', $id);
         }
        
         $note = $session->note;
@@ -253,6 +262,30 @@ class PatientController extends Controller
             }
           
             return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session]);
+    }
+
+    public function storeNote(Request $request, $id, $sId)
+    {
+        $user = Auth::user();
+        $patient = Patient::find($id);
+        $session = Session::find($sId);
+
+        
+        $newNote = request()->except('_token');
+
+        if($request->hasFile('image'))
+    {
+        $newNote['image']=$request->file('image')->store('images', 'public');
+    }
+        $newNote['user_id'] = $user->id;
+        $newNote['patient_id'] = $patient->id;
+        $newNote['session_id'] = $session->id;
+      
+        Note::create($newNote);
+   
+        $note = Note::all()->where('user_id', $user->id, 'patient_id', $patient->id, 'session_id', $session->id);
+    
+        return redirect()->route('sessions_show', [$patient->id, $session->id]);
     }
 
 

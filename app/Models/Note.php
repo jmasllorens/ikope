@@ -12,7 +12,10 @@ class Note extends Model
     protected $fillable = [
         'title',
         'text',
-        'isImportant'
+        'isImportant',
+        'user_id',
+        'patient_id',
+        'session_id'
     ];
 
     public function user()

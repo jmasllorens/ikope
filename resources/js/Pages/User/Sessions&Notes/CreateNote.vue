@@ -18,20 +18,15 @@
                 <div class="grid grid-cols-2 gap-6">
                 <div class="grid grid-rows-2 gap-6">
                               
-               
-                <div>
-                <BreezeLabel for="date" value="Date and Time" />
-                <BreezeInput v-model="form.date" id="date" type="datetime-local" class="mt-1 block w-full" required autofocus />
-                </div>
-
+            
                   <div>
-                <BreezeLabel for="keywords" value="Keywords" />
-                <BreezeInput v-model="form.keywords" id="keywords" type="text" class="mt-1 block w-full"  max="100" placeholder="ex: anxiety, fear, vertigo" required autofocus />
+                <BreezeLabel for="title" value="Title" />
+                <BreezeInput v-model="form.title" id="title" type="text" class="mt-1 block w-full"  max="100" placeholder="ex: Emotionally unstable, unable to accept their own failure" required autofocus />
                 </div>
 
-                <div>
-                <BreezeLabel for="cost" value="Rate" />
-                <BreezeInput v-model="form.cost" id="cost" type="number" max="100" min="20" class="mt-1 block w-full" placeholder="Select a rate" />
+                 <div>
+                <BreezeLabel for="text" value="Note" />
+                <textarea class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" max="10000" v-model="form.text" ref="input" id="text" type="textarea" required autofocus />
                 </div>
 
                 <div class="flex items-center justify-end mt-4 space-x-3">
@@ -71,23 +66,22 @@ export default {
      data() {
         return {
             form: this.$inertia.form({
-                date: '',
-                cost: '',
-                keywords: ''
+                title: '',
+                text: ''
+               
             
             })
         }
     },
 
     methods: {
-        createSession() {
+        createNote() {
             let data = new FormData
 
-            data.append('date', this.form.date)
-            data.append('keywords', this.form.keywords)
-            data.append('cost', this.form.cost)
+            data.append('title', this.form.title)
+            data.append('text', this.form.text)
             
-            this.$inertia.post(`/patients/${this.$page.props.patient.id}/sessions&notes/store`, data, `${this.$page.props.patient.id}`)
+            this.$inertia.post(`/patients/${this.$page.props.patient.id}/sessions&notes/${this.$page.props.session.id}/store`, data, `${this.$page.props.patient.id}`, `${this.$page.props.session.id}`)
         }
     }
 }
