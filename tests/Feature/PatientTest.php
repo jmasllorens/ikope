@@ -62,5 +62,32 @@ class PatientTest extends TestCase
        
     }
 
+    public function test_a_new_patient_can_be_created_by_activeUser()
+    {
+        $user = User::factory()->create(['isAdmin' => false, 'isActive' => true]);
+       
+        $newPatient = new Patient([
+            'name' => 'Sigmund Freud',
+            'email' => 'sigmund@freud.com',
+            'age' => 40,
+            'pronoun' => 'he/him',
+            'motive' => 'Mammaaaaa...!',
+            'history' => 'Too complicated'
+            
+        ]);
+
+        $response = $this->actingAs($user)->post('/patients/store', [
+            'name' => $newPatient->name,
+            'age' => $newPatient->age,
+            'email' => $newPatient->email,
+            'pronoun' => $newPatient->pronoun,
+            'motive' => $newPatient->motive,
+            'history' => $newPatient->history,
+        ]);
+
+        $this->assertEquals($newPatient->pronoun , 'he/him');
+
+    }
+
 
 }
