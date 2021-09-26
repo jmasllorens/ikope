@@ -13,12 +13,17 @@ class CreateNotesTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
+        
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('user_id')->constrained()->nullable()->onDelete('cascade');
-            $table->foreignId('patient_id')->constrained()->nullable()->onDelete('cascade');
-            $table->foreignId('session_id')->constrained()->nullable()->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('patient_id')->references('id')->on('patients')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('patient_id');
+            $table->foreign('session_id')->references('id')->on('sessions')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('session_id');
             $table->string('title');
             $table->longText('text');
             $table->boolean('isImportant')->default(false);

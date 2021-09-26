@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Auth;
 
 class CreatePatientsTable extends Migration
 {
@@ -12,24 +13,22 @@ class CreatePatientsTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {  
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->nullable()->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->string('name');
-            $table->string('surname');
+            $table->string('email')->unique();
             $table->integer('age');
+            $table->string('surname')->nullable();
             $table->string('pronoun');
             $table->string('motive');
             $table->longText('history');
-            $table->string('email')->unique();
             $table->boolean('isConsulting')->default(true);
-
-
-
-        });
-    }
+    });
+}
 
     /**
      * Reverse the migrations.
