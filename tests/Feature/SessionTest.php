@@ -85,6 +85,29 @@ class SessionTest extends TestCase
         $this->assertEquals('Abandonment feeling', $noteTitle);
     }
 
+    public function test_a_new_session_can_be_created_by_activeUser()
+    {
+        $user = User::factory()->create(['id' => 1, 'isAdmin' => false, 'isActive' => true]);
+        $patient = Patient::factory()->create(['id' => 5, 'user_id' => 1]);
+       
+        $newSession = new Session([
+            'date' => '2021-10-21 19:54:02',
+            'keywords' => 'panic attack, The Sopranos, fresh meat',
+            'cost' => 85,
+            
+        ]);
+
+        $response = $this->actingAs($user)->post('/patients/5/sessions&notes/store', [
+            'date' => $newSession->date,
+            'keywords' => $newSession->keywords,
+            'cost' => $newSession->cost,
+        ]);
+
+        $this->assertEquals($newSession->cost , 85);
+
+    }
+
+
   
 
 }

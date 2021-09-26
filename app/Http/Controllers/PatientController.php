@@ -180,6 +180,7 @@ class PatientController extends Controller
         return redirect()->route('patients_sessions', $patient->id);
     }
 
+    
 
     
 
