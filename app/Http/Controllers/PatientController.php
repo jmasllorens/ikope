@@ -85,11 +85,12 @@ class PatientController extends Controller
             return redirect()->route('sessions_create', ['id' => $patient->id]);
         }
         $notes = $patient->notes;
+    
 
         if ($notes->count() == 0)
-        { return Inertia::render('User/Patients/Sessions', ['id' => $patient->id, 'patient', $patient, 'sessions' => $sessions]);}
+        { return Inertia::render('User/Patients/Sessions', ['id' => $patient->id, 'patient', $patient, 'sessions' => $patient->sessions]);}
       
-        return Inertia::render('User/Patients/Sessions', ['id' => $patient->id, 'patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);}
+        return Inertia::render('User/Patients/Sessions', ['id' => $patient->id, 'patient' => $patient, 'sessions' => $patient->sessions, 'notes' => $notes]);}
         
         else {return redirect()->route('dashboard');}
 
@@ -130,6 +131,7 @@ class PatientController extends Controller
         $newPatient['image']=$request->file('image')->store('images', 'public');
     }
         $newPatient['user_id'] = $user->id;
+
 
         Patient::create($newPatient);
 
@@ -225,6 +227,7 @@ class PatientController extends Controller
     }
         $newSession['user_id'] = $user->id;
         $newSession['patient_id'] = $patient->id;
+        $newSession['patient_name'] = $patient->name;
       
 
         Session::create($newSession);

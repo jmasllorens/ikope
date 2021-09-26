@@ -45,7 +45,7 @@ class SessionController extends Controller
         }
         
     
-            return Inertia::render('User/Sessions&Notes/Index', ['sessions' => $sessions, 'patient', $patient, 'note', $note]);
+            return Inertia::render('User/Sessions&Notes/Index', ['sessions' => $sessions]);
     }
        
         return redirect()->route('dashboard');

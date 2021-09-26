@@ -83,7 +83,7 @@
           
               </td>
                <td class="px-6 py-4 whitespace-nowrap text-sm">
-                <div class="text-sm text-gray-900"><a class="cursor-pointer text-gray-500" :href="`/patients/${session.patient.id}/`">{{ session.patient.name }}</a></div>
+                <div class="text-sm text-gray-900"><a class="cursor-pointer text-gray-500" :href="`/patients/${session.patient_id}/`">{{ session.patient_name }}</a></div>
              
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
@@ -101,7 +101,7 @@
                 </span>
               </td>
              <td>
-                 <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/patients/${session.patient.id}/sessions&notes/${session.id}`" method="get">View</a></BreezeButton>
+                 <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/patients/${session.patient_id}/sessions&notes/${session.id}`" method="get">View</a></BreezeButton>
               </td>
               <td>
                 <BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteSession(`${session.id}`)">Delete</BreezeButton>
@@ -119,90 +119,7 @@
 
         <br />
   
-        <div
-          v-if="$page.props.sessions.length != 0"
-          class="bg-gray-300 dark:bg-light_secondary rounded-lg py-5 px-5"
-        >
-        
-         
-          <br>
-          <div class="grid grid-cols-3 px-10 gap-2">
-            <span
-              v-for="session in $page.props.sessions"
-              v-bind:key="session"
-            >
-
-            
-              <span class="flex justify-center items-center">
-                <a class="cursor-pointer" :href="`/patients/${session.patient_id}/sessions&notes/${session.id}`">
-                  <div
-                    class="
-                      hover:scale-105
-                      transform
-                      transition-all
-                      duration-500
-                    "
-                  >
-                    <!-- Start Card -->
-
-                    <div
-                      class="
-                        flex
-                        justify-center
-                        bg-white
-                        ring-1 ring-gray-200
-                        rounded-lg
-                    
-                        w-32
-                      "
-                    >
-                      <img src="@/Assets/divan.jpeg" alt="file" style="border-radius:10rem;" />
-                    </div>
-                   
-                     
-                  
-                  </div>
-                   
-
-                </a>
-             
-              </span>
-
-              <br>
-                
-              <div class="grid justify-items-center mb-2 text-sm">
-                  <p>Session number: {{session.id}} </p>
-                  <p>Patient: {{session.patient.name}} </p>
-                  <p>Date: {{session.date}} </p>
-                  <p>Keywords: "{{ session.keywords }}" </p>
-                </div>
-                <div class="grid justify-items-start ml-10"> 
-               <div class="grid grid-cols-2">
-                <div v-if="session.isPayed == 1" class="justify-self-start bg-gradient-to-br from-green-300 to-green-600 shadow-md hover:shadow-lg h-5 w-5 rounded-full"></div>
-                <p v-if="session.isPayed == 1" class="justify-self-end">{{session.cost}} € payed </p>
-                </div>
-         
-               <div class="grid grid-cols-2">
-                <div v-if="session.isPayed == 0" class="justify-self-end bg-gradient-to-br from-red-300 to-red-600 shadow-md hover:shadow-lg h-5 w-5 rounded-full"></div>
-                <p v-if="session.isPayed == 0" class="justify-self-start ml-2">{{session.cost}} € pending </p>
-                </div>
-                </div>
-          
-             
-            
-          
-                  
-
-
-               <!-- <a class="cursor-pointer" :href="`/patients/${session.patient_id}/sessions`">   <h2 class="font-semibold text-sm text-gray-800 uppercase">View Patient</h2></a>  -->
-              
-    
-            <br>
-            </span>
-            
-       
-          </div>
-        </div>
+  
 
         
       </div>
