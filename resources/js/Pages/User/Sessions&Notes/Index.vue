@@ -74,13 +74,13 @@
                         flex
                         justify-center
                         bg-white
-                        ring-2 ring-white
+                        ring-1 ring-gray-200
                         rounded-lg
                     
                         w-32
                       "
                     >
-                      <img src="@/Assets/ikDivan.jpeg" alt="file" style="border-radius:10rem;" />
+                      <img src="@/Assets/divan.jpeg" alt="file" style="border-radius:10rem;" />
                     </div>
                    
                      

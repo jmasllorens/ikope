@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/patients/{id}', [PatientController::class, 'show'])->name('patients_show');
     Route::get('/patients/{id}/sessions&notes', [PatientController::class, 'getSessions'])->name('patients_sessions');
     Route::get('/patientscreate', [PatientController::class, 'create'])->name('patients_create');
+    Route::post('/patients/store', [PatientController::class, 'store'])->name('patients_store');
     Route::get('/patients/{id}/edit', [PatientController::class, 'edit'])->name('patients_edit');
   
 

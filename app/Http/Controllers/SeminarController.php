@@ -108,7 +108,7 @@ class SeminarController extends Controller
     }
         Seminar::create($newSeminar);
 
-        $seminars = Seminar::paginate(20);
+        $seminars = Seminar::orderBy('date', 'asc')->get();
     
        return redirect()->route('seminars');
 

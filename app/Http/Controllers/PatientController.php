@@ -117,7 +117,22 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        $newPatient = request()->except('_token');
+
+        if($request->hasFile('image'))
+    {
+        $newPatient['image']=$request->file('image')->store('images', 'public');
+    }
+        $newPatient['user_id'] = $user->id;
+
+        Patient::create($newPatient);
+
+       
+
+        $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->id)->get();
+    
+        return redirect()->route('patients');
     }
 
     
