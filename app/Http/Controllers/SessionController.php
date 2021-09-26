@@ -35,7 +35,7 @@ class SessionController extends Controller
 
         if ($sessions->count() == 0)
         {  
-            return redirect()->route('sessions_create');
+            return redirect()->route('patients');
         }
 
         foreach ($sessions as $session)
@@ -60,18 +60,7 @@ class SessionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {  /*  $user = Auth::user();
-
-        if ($user->isAdmin)
-        return redirect()->route('dashboard');
-
-    
-        if ($user->isActive && $user->patients->count() == 0)
-        {   
-            return Inertia::render('User/Patients/Create');}
-  
-        
-        return Inertia::render('User/Patients/Index'); */
+    {  
         
 
     }

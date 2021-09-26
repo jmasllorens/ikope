@@ -37,8 +37,8 @@ class PatientController extends Controller
                 
             }
    
-    
-        return Inertia::render('User/Patients/Index', ['patients' => $patients, 'sessions' => $sessions], 'notes', $notes); 
+            $sessionsU = $user->sessions;
+        return Inertia::render('User/Patients/Index', ['patients' => $patients, 'sessions' => $sessions, 'sessionsU' => $sessionsU, 'notes', $notes]); 
         
         }
 
@@ -75,7 +75,7 @@ class PatientController extends Controller
         $patient = Patient::find($id);
         if ( $patient == null)
         {
-            return redirect()->route('patients');
+            return redirect()->route('patients', [$patient->id]);
         }
         $sessions = $patient->sessions;
       
