@@ -15,7 +15,8 @@ class Session extends Model
         'cost',
         'isPayed',
         'user_id',
-        'patient_id'
+        'patient_id',
+        'patient_name'
     ];
 
     public function patient()

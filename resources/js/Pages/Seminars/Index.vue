@@ -60,7 +60,7 @@
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-900">{{ seminar.approach }}</div>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td class="px-6 py-4 whitespace-nowrap text-sm">
                 {{ seminar.date }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">

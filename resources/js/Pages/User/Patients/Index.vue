@@ -8,8 +8,9 @@
           <div class="p-3 bg-blueish border-b border-gray-200">Patients</div>
         </div>
         <br />
+     
         <div class="grid grid-cols-2">
-          <span v-if="$page.props.patients != null" class="justify-self-start ml-2">
+          <div v-if="$page.props.patients != null && $page.props.sessionsU.length != 0" class="justify-self-start ml-2">
             <a
               href="/sessions&notes"
               method="get"
@@ -34,13 +35,18 @@
               "
               >All <strong> &nbsp;{{ $page.props.auth.user.name }} </strong>'s Sessions & Notes</a
             >
-          </span>
-          <span class="justify-self-end">
-                <div>
+          </div>
+          <div v-if="$page.props.sessionsU.length == 0" class="justify-self-start">
+           </div>
+   
+         
+         
+          <div class="justify-self-end">
+          
                 <BreezeButton>
                         <a :href="route('patients_create')" method="get">New Patient</a></BreezeButton>
-                </div>
-          </span>
+         
+          </div>
           
         </div>
 
