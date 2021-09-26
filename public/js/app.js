@@ -23878,7 +23878,7 @@ __webpack_require__.r(__webpack_exports__);
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-3cb16b83");
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "py-12"
+  "class": "py-9"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "max-w-7xl mx-auto sm:px-6 lg:px-8"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -23888,134 +23888,129 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_2 = {
-  "class": "flex justify-between m-6"
+  "class": "flex justify-center m-6"
 };
 var _hoisted_3 = {
-  "class": "flex flex-col h-full w-4/5 mx-auto bg-blueish rounded-lg"
-};
-var _hoisted_4 = {
-  "class": "flex justify-between -mt-4 px-4"
-};
-var _hoisted_5 = {
   key: 0,
-  "class": "inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white py-1.5 px-3 pt-1.5"
+  "class": "mb-3"
 };
-var _hoisted_6 = {
-  key: 1,
-  "class": "inline-block ring-2 bg-yellow-300 ring-yellow-300 rounded-sm text-m tracking-wide font-bold text-gray-800 py-1.5 px-3 pt-1.5"
-};
-var _hoisted_7 = {
-  "class": "flex h-min space-x-1 items-center rounded-full bg-gray-700 py-2 px-3 text-m font-medium"
-};
-var _hoisted_8 = ["href"];
-var _hoisted_9 = {
-  "class": "text-white font-semibold text-sm"
-};
-var _hoisted_10 = {
-  "class": "py-2 px-4"
-};
+var _hoisted_4 = ["href"];
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
+var _hoisted_6 = ["href"];
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_8 = ["href"];
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_10 = {
+  "class": "mt-12"
+};
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Delete Patient");
+
 var _hoisted_12 = {
-  "class": "text-xl font-medium leading-6 tracking-wide text-black"
+  "class": "flex flex-col h-full w-4/5 mx-auto bg-blueish rounded-lg"
 };
 var _hoisted_13 = {
-  "class": "text-gray-700"
+  "class": "flex justify-between -mt-4 px-4"
 };
 var _hoisted_14 = {
-  "class": "flex flex-row items-end h-full w-full px-4 mt-4"
+  key: 0,
+  "class": "inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white py-1.5 px-3 pt-1.5"
 };
 var _hoisted_15 = {
-  "class": "flex border-t border-gray-700 w-full py-4"
+  key: 1,
+  "class": "inline-block ring-2 bg-yellow-300 ring-yellow-300 rounded-sm text-m tracking-wide font-bold text-gray-800 py-1.5 px-3 pt-1.5"
 };
 var _hoisted_16 = {
+  "class": "flex h-min space-x-1 items-center rounded-full bg-gray-700 py-2 px-3 text-m font-medium"
+};
+var _hoisted_17 = {
+  "class": "text-white font-semibold text-sm"
+};
+var _hoisted_18 = {
+  "class": "py-2 px-4"
+};
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_20 = {
+  "class": "text-xl font-medium leading-6 tracking-wide text-black"
+};
+var _hoisted_21 = {
+  "class": "text-gray-700"
+};
+var _hoisted_22 = {
+  "class": "flex flex-row items-end h-full w-full px-4 mt-4"
+};
+var _hoisted_23 = {
+  "class": "flex border-t border-gray-700 w-full py-4"
+};
+var _hoisted_24 = {
   "class": ""
 };
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-m font-semibold"
 }, "Mail:", -1
 /* HOISTED */
 );
 
-var _hoisted_18 = {
+var _hoisted_26 = {
   "class": "text-m font-light tracking-wider text-gray-700"
 };
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-m font-semibold"
 }, "Age:", -1
 /* HOISTED */
 );
 
-var _hoisted_20 = {
+var _hoisted_28 = {
   "class": "text-m font-light tracking-wider text-gray-700"
 };
-
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
-/* HOISTED */
-);
-
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "text-m font-semibold"
-}, "Motive of consultation:", -1
-/* HOISTED */
-);
-
-var _hoisted_23 = {
-  "class": "text-m font-light tracking-wide text-gray-700"
-};
-var _hoisted_24 = {
-  "class": "text-m font-semibold"
-};
-var _hoisted_25 = {
-  "class": "text-m font-light tracking-wide text-gray-700"
-};
-
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
-/* HOISTED */
-);
-
-var _hoisted_27 = {
-  "class": "text-m font-semibold"
-};
-
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Sessions", -1
-/* HOISTED */
-);
 
 var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "text-m font-semibold"
+}, "Motive of consultation:", -1
 /* HOISTED */
 );
 
 var _hoisted_31 = {
+  "class": "text-m font-light tracking-wide text-gray-700"
+};
+var _hoisted_32 = {
   "class": "text-m font-semibold"
 };
-
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Notes", -1
-/* HOISTED */
-);
-
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
-/* HOISTED */
-);
+var _hoisted_33 = {
+  "class": "text-m font-light tracking-wide text-gray-700"
+};
 
 var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  <BreezeButton  v-if=\"$props.seminar.users.length < $props.seminar.availability && !isSubscribed && !$props.auth.user.isAdmin\"><a :href=\"`/subscribe/${seminar.id}`\" method=\"get\">Subscribe</a></BreezeButton>\r\n\r\n                <BreezeButton v-if=\"isSubscribed && !$props.auth.user.isAdmin\"><a :href=\"`/unsubscribe/${seminar.id}`\" method=\"get\">Unsubscribe</a></BreezeButton>\r\n\r\n                <div v-if=\"$props.auth.user.isAdmin\" class=\"inline-flex\">\r\n                <BreezeButton class=\"bg-green-700 hover:bg-green-800 mr-3\"><a :href=\"`/seminars/${seminar.id}/edit`\" method=\"get\">Edit</a></BreezeButton>\r\n\r\n                <BreezeButton class=\"bg-red-700 hover:bg-red-800 mr-3\" @click.prevent=\"deleteSeminar(`${seminar.id}`)\">Delete</BreezeButton> \r\n                </div> ")], -1
-/* HOISTED */
-);
+var _hoisted_35 = {
+  "class": "text-m font-semibold"
+};
 
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Sessions", -1
 /* HOISTED */
 );
 
@@ -24027,10 +24022,40 @@ var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
+var _hoisted_39 = {
+  "class": "text-m font-semibold"
+};
+
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Notes", -1
+/* HOISTED */
+);
+
+var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  <BreezeButton  v-if=\"$props.seminar.users.length < $props.seminar.availability && !isSubscribed && !$props.auth.user.isAdmin\"><a :href=\"`/subscribe/${seminar.id}`\" method=\"get\">Subscribe</a></BreezeButton>\r\n\r\n                <BreezeButton v-if=\"isSubscribed && !$props.auth.user.isAdmin\"><a :href=\"`/unsubscribe/${seminar.id}`\" method=\"get\">Unsubscribe</a></BreezeButton>\r\n\r\n                <div v-if=\"$props.auth.user.isAdmin\" class=\"inline-flex\">\r\n                <BreezeButton class=\"bg-green-700 hover:bg-green-800 mr-3\"><a :href=\"`/seminars/${seminar.id}/edit`\" method=\"get\">Edit</a></BreezeButton>\r\n\r\n                <BreezeButton class=\"bg-red-700 hover:bg-red-800 mr-3\" @click.prevent=\"deleteSeminar(`${seminar.id}`)\">Delete</BreezeButton> \r\n                </div> ")], -1
+/* HOISTED */
+);
+
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
+
+  var _component_BreezeButton = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeButton");
 
   var _component_BreezeAuthenticatedLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeAuthenticatedLayout");
 
@@ -24038,28 +24063,53 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: "Patient"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeAuthenticatedLayout, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_ctx.$page.props.patient.isConsulting == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_5, "Active")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$page.props.patient.isConsulting == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_6, "Filed")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-        "class": "cursor-pointer",
-        href: "/patients/".concat(_ctx.$page.props.patient.id, "/sessions&notes")
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.sessions.length) + " sessions | " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.notes.length) + " notes ", 1
-      /* TEXT */
-      )], 8
+      return [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_ctx.$page.props.patient.sessions.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        href: "/patients/".concat(_ctx.$page.props.patient.id, "/sessions&notes"),
+        method: "get",
+        "class": "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-400 focus:outline-none focus:text-gray-700 focus:border-gray-400 transition duration-150 ease-in-out"
+      }, "Sessions & Notes", 8
       /* PROPS */
-      , _hoisted_8)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.name), 1
+      , _hoisted_4)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        href: "/patients/".concat(_ctx.$page.props.patient.id, "/sessions&notes/create"),
+        method: "get",
+        "class": "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-400 focus:outline-none focus:text-gray-700 focus:border-gray-400 transition duration-150 ease-in-out"
+      }, "New Session", 8
+      /* PROPS */
+      , _hoisted_6)]), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        href: "/patients/".concat(_ctx.$page.props.patient.id, "/edit"),
+        method: "get",
+        "class": "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-400 focus:outline-none focus:text-gray-700 focus:border-gray-400 transition duration-150 ease-in-out"
+      }, "Edit Patient", 8
+      /* PROPS */
+      , _hoisted_8)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  <div>  <BreezeButton class=\"bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400\"><a :href=\"`/patients/${$page.props.patient.id}/sessions&notes`\" method=\"get\">View S&N</a></BreezeButton></div>\r\n  <br>\r\n                 <div>  <BreezeButton class=\"bg-green-400 hover:bg-green-500\"><a :href=\"`/patients/${$page.props.patient.id}/sessions&notes/create`\" method=\"get\">New Session</a></BreezeButton></div>\r\n          <br>\r\n          \r\n               <div><BreezeButton class=\"bg-yellow-400 text-white hover:bg-yellow-500\"><a :href=\"`/patients/${$page.props.patient.id}/edit`\" method=\"get\">Edit Patient</a></BreezeButton></div>\r\n         "), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("    <div><BreezeButton class=\"bg-yellow-400 text-white hover:bg-yellow-500\"> <a :href=\"`/patients/${$page.props.patient.id}/edit`\" method=\"get\"> File Patient</a></BreezeButton></div>\r\n            <br> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
+        "class": "bg-red-400 hover:bg-red-500",
+        onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+          return $options.deletePatient("".concat(_ctx.$page.props.patient.id));
+        }, ["prevent"]))
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_11];
+        }),
+        _: 1
+        /* STABLE */
+
+      })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_ctx.$page.props.patient.isConsulting == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_14, "Active")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$page.props.patient.isConsulting == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_15, "Filed")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.sessions.length) + " sessions | " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.notes.length) + " notes ", 1
       /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_13, " (" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.pronoun) + ") ", 1
+      )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.name), 1
       /* TEXT */
-      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.email), 1
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_21, " (" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.pronoun) + ") ", 1
       /* TEXT */
-      ), _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.age), 1
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.email), 1
       /* TEXT */
-      ), _hoisted_21, _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.motive), 1
+      ), _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.age), 1
       /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.name) + "'s History:", 1
+      ), _hoisted_29, _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.motive), 1
       /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.history), 1
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.name) + "'s History:", 1
       /* TEXT */
-      ), _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, _hoisted_29, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.$page.props.patient.sessions, function (session) {
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.patient.history), 1
+      /* TEXT */
+      ), _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [_hoisted_36, _hoisted_37, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.$page.props.patient.sessions, function (session) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
           key: session,
           "class": "text-m font-light tracking-wider text-gray-600"
@@ -24071,10 +24121,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Session cost: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(session.cost) + " (is payed: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(session.isPayed) + ") ", 1
         /* TEXT */
-        ), _hoisted_30]);
+        ), _hoisted_38]);
       }), 128
       /* KEYED_FRAGMENT */
-      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [_hoisted_32, _hoisted_33, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.$page.props.patient.notes, function (note) {
+      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, _hoisted_41, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.$page.props.patient.notes, function (note) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
           key: note,
           "class": "text-m font-light tracking-wider text-gray-600"
@@ -24086,10 +24136,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Note body: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(note.text), 1
         /* TEXT */
-        ), _hoisted_34]);
+        ), _hoisted_42]);
       }), 128
       /* KEYED_FRAGMENT */
-      ))])])]), _hoisted_35]), _hoisted_36])]), _hoisted_37, _hoisted_38];
+      ))])])]), _hoisted_43])])]), _hoisted_44, _hoisted_45];
     }),
     _: 1
     /* STABLE */
@@ -24518,7 +24568,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       ), _hoisted_5])]), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, null, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-            href: _ctx.route('sessions_create'),
+            href: _ctx.route('patients'),
             method: "get"
           }, "New Session", 8
           /* PROPS */

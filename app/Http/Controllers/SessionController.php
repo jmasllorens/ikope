@@ -89,17 +89,18 @@ class SessionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   $user = Auth::user();
+    {  /*  $user = Auth::user();
 
         if ($user->isAdmin)
         return redirect()->route('dashboard');
 
     
         if ($user->isActive && $user->patients->count() == 0)
-        {return Inertia::render('User/Patients/Create');}
+        {   
+            return Inertia::render('User/Patients/Create');}
   
-       
-        return Inertia::render('User/Sessions&Notes/Create');
+        
+        return Inertia::render('User/Patients/Index'); */
         
 
     }

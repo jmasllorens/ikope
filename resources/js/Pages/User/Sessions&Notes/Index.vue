@@ -38,7 +38,7 @@
           <span class="justify-self-end">
                 <div>
                 <BreezeButton>
-                        <a :href="route('sessions_create')" method="get">New Session</a></BreezeButton>
+                        <a :href="route('patients')" method="get">New Session</a></BreezeButton>
                 </div>
           </span>
           

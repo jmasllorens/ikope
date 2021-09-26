@@ -128,11 +128,27 @@ class PatientController extends Controller
 
         Patient::create($newPatient);
 
-       
 
         $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->id)->get();
     
         return redirect()->route('patients');
+    }
+
+    public function createSession($id)
+    {
+         $user = Auth::user();
+    
+            if ($user->isAdmin)
+            return redirect()->route('dashboard');
+    
+        
+            if ($user->isActive && $user->patients->count() == 0)
+            {  
+                return Inertia::render('User/Patients/Create');}
+      
+            $patient = Patient::find($id);
+          
+            return Inertia::render('User/Sessions&Notes/Create', ['patient' => $patient]);
     }
 
     
