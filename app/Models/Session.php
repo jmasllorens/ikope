@@ -14,11 +14,13 @@ class Session extends Model
         'keywords',
         'cost',
         'isPayed',
+        'user_id',
+        'patient_id'
     ];
 
     public function patient()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsTo(Patient::class, 'user_id');
     }
 
     public function user()
