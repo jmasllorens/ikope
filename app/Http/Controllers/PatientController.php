@@ -82,7 +82,7 @@ class PatientController extends Controller
    
         if ($sessions->count() == 0)
         {
-            return redirect()->route('sessions_create');
+            return redirect()->route('sessions_create', ['id' => $patient->id]);
         }
       
         return Inertia::render('User/Patients/Sessions', ['patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);}
@@ -134,6 +134,37 @@ class PatientController extends Controller
         return redirect()->route('patients');
     }
 
+    public function showSession($id, $sId)
+    {
+        $user = Auth::user();
+        if($user->isActive == true)
+        {
+        $patient = Patient::find($id);
+        if ( $patient == null)
+        {
+            return redirect()->route('patients');
+        }
+
+        $session = Session::find($sId);
+        if ( $session == null)
+        {
+            return redirect()->route('patients_sessions');
+        }
+       
+        $note = $session->note;
+        if ( $note == null)
+        {
+            return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session]);
+        }
+ 
+       
+  
+        return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session, 'note', $note]);}
+        
+        else {return redirect()->route('dashboard');}
+
+    }
+
     public function createSession($id)
     {
          $user = Auth::user();
@@ -180,7 +211,35 @@ class PatientController extends Controller
         return redirect()->route('patients_sessions', $patient->id);
     }
 
+     public function createNote($id, $sId)
+    {
+         $user = Auth::user();
     
+            if ($user->isAdmin)
+            return redirect()->route('dashboard');
+    
+        
+            if ($user->isActive && $user->patients->count() == 0)
+            {  
+                return Inertia::render('User/Patients/Create');}
+
+        
+            $patient = Patient::find($id);
+            if ($user->isActive && $patient->sessions->count() == 0)
+            {
+                    return Inertia::render('User/Sessions&Notes/Create', ['patient', $patient]);
+            }
+
+            $session = Session::find($sId);
+            $note = $session->note;
+            if ($note == null)
+            {
+                return Inertia::render('User/Sessions&Notes/CreateNote', ['patient' => $patient, 'session' => $session]);
+            }
+          
+            return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session]);
+    }
+
 
     
 
