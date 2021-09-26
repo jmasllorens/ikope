@@ -86,9 +86,9 @@ class ViewTest extends TestCase
     public function test_create_session_can_be_rendered_if_activeUser_has_patients()
     {    
         $user = User::factory()->create(['isAdmin' => false, 'isActive' => true, 'id' => 1]);
-        $patient = Patient::factory()->create(['user_id' => 1]);
+        $patient = Patient::factory()->create(['id' => 1, 'user_id' => 1]);
 
-        $response = $this->actingAs($user)->get('/sessionscreate');
+        $response = $this->actingAs($user)->get('/patients/1/sessions&notes/create');
 
         $response->assertStatus(200);
 

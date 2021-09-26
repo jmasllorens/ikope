@@ -165,6 +165,21 @@ class PatientController extends Controller
 
     }
 
+    public function editSession($id, $sId)
+    {
+         
+        $user = Auth::user();
+        if ($user->isActive == true && $user->isAdmin == false)
+        {
+        $patient = Patient::findOrFail($id);
+        $session = Session::findOrFail($sId);
+        return Inertia::render('User/Sessions&Notes/Edit', ['patient' => $patient, 'session' => $session]);
+        }
+        return redirect()->route('dashboard');
+
+   
+    }
+
     public function createSession($id)
     {
          $user = Auth::user();

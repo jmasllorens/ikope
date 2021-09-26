@@ -52,36 +52,7 @@ class SessionController extends Controller
 
     }
 
-    public function show($id, $sId)
-    {
-        $user = Auth::user();
-        if($user->isActive == true)
-        {
-        $patient = Patient::find($id);
-        if ( $patient == null)
-        {
-            return redirect()->route('patients');
-        }
-
-        $session = Session::find($sId);
-        if ( $session == null)
-        {
-            return redirect()->route('patients_sessions');
-        }
-       
-        $note = $session->note;
-        if ( $note == null)
-        {
-            return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session]);
-        }
- 
-       
-  
-        return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session, 'note', $note]);}
-        
-        else {return redirect()->route('dashboard');}
-
-    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -130,20 +101,7 @@ class SessionController extends Controller
      * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, $sId)
-    {
-         
-        $user = Auth::user();
-        if ($user->isActive == true && $user->isAdmin == false)
-        {
-        $patient = Patient::findOrFail($id);
-        $session = Session::findOrFail($sId);
-        return Inertia::render('User/Sessions&Notes/Edit', ['patient' => $patient, 'session' => $session]);
-        }
-        return redirect()->route('dashboard');
-
-   
-    }
+    
 
     /**
      * Update the specified resource in storage.
