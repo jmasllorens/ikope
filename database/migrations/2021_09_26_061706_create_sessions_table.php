@@ -20,6 +20,7 @@ class CreateSessionsTable extends Migration
                 $table->unsignedBigInteger('user_id');
                 $table->foreign('patient_id')->references('id')->on('patients')->onUpdate('cascade')->onDelete('cascade');
                 $table->unsignedBigInteger('patient_id');
+                $table->string('patient_name')->nullable();
               
         
                 $table->dateTime('date');

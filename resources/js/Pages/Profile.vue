@@ -35,7 +35,7 @@
                 <div v-if="!user.isActive && !user.isAdmin" class="mt-6 mb-2">
                 <label class="flex items-center" for="isActive">
                 <BreezeCheckbox name="isActive" v-model="form.isActive" value=1 />
-                <span class="ml-2 text-sm text-gray-600">I practise as a psychotherapist and want to the 'Patients' section</span>
+                <span class="ml-2 text-sm text-gray-600">I practise as a psychotherapist and want access to the 'Patients' section</span>
                 </label>
                 </div>
 

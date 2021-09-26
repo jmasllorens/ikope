@@ -31,7 +31,7 @@
 
                 <div>
                 <BreezeLabel for="cost" value="Rate" />
-                <BreezeInput v-model="form.cost" id="cost" type="number" max="100" min="20" class="mt-1 block w-full" placeholder="Select a rate" />
+                <BreezeInput v-model="form.cost" id="cost" type="number" max="100" min="20" class="mt-1 block w-full" placeholder="Select a rate for the session" />
                 </div>
 
                 <div class="flex items-center justify-end mt-4 space-x-3">
