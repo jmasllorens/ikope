@@ -12,7 +12,7 @@
         <div class="grid grid-cols-2">
           <div v-if="$page.props.patients != null && $page.props.sessionsU.length != 0" class="justify-self-start ml-2">
             <a
-              href="/sessions&notes"
+              href="/sessions"
               method="get"
               class="
                 inline-flex

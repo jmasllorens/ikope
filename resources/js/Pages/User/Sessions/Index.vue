@@ -1,5 +1,5 @@
 <template>
-  <Head title="Sessions&Notes" />
+  <Head title="Sessions" />
 
   <BreezeAuthenticatedLayout>
     <div class="py-12">
@@ -101,7 +101,7 @@
                 </span>
               </td>
              <td>
-                 <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/patients/${session.patient_id}/sessions&notes/${session.id}`" method="get">View</a></BreezeButton>
+                 <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/patients/${session.patient_id}/sessions/${session.id}`" method="get">View</a></BreezeButton>
               </td>
               <td>
                 <BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteSession(`${session.id}`)">Delete</BreezeButton>

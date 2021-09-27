@@ -14,7 +14,7 @@
      <div >
         <span v-if="$page.props.patient.sessions.length > 0" class="mb-3">
             <a
-              :href="`/patients/${$page.props.patient.id}/sessions&notes`" 
+              :href="`/patients/${$page.props.patient.id}/sessions`" 
               method="get"
               class="
                 inline-flex
@@ -103,7 +103,7 @@
           
                <div><BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500"><a :href="`/patients/${$page.props.patient.id}/edit`" method="get">Edit Patient</a></BreezeButton></div>
          --><br>
-         <div class="mt-15"><BreezeButton class="bg-green-400 hover:bg-green-500"> <a :href="`/patients/${$page.props.patient.id}/sessions&notes/create`" method="get">New Session</a></BreezeButton></div>
+         <div class="mt-15"><BreezeButton class="bg-green-400 hover:bg-green-500"> <a :href="`/patients/${$page.props.patient.id}/sessions/create`" method="get">New Session</a></BreezeButton></div>
            <br>
          
          <div><BreezeButton class="bg-yellow-400 hover:bg-yellow-500"> <a :href="`/patients/${$page.props.patient.id}/edit`" method="get"> Edit Patient</a></BreezeButton></div>

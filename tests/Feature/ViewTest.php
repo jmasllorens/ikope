@@ -69,7 +69,7 @@ class ViewTest extends TestCase
         $patient = Patient::factory()->create(['id' => 2, 'user_id' => 1]);
         $session = Session::factory()->create(['user_id' => 1, 'patient_id' => 2]);
        
-        $response = $this->actingAs($user)->get('/sessions&notes');
+        $response = $this->actingAs($user)->get('/sessions');
 
         $response->assertStatus(200);
     }
@@ -88,7 +88,7 @@ class ViewTest extends TestCase
         $user = User::factory()->create(['isAdmin' => false, 'isActive' => true, 'id' => 1]);
         $patient = Patient::factory()->create(['id' => 1, 'user_id' => 1]);
 
-        $response = $this->actingAs($user)->get('/patients/1/sessions&notes/create');
+        $response = $this->actingAs($user)->get('/patients/1/sessions/create');
 
         $response->assertStatus(200);
 
@@ -100,7 +100,7 @@ class ViewTest extends TestCase
         $patient = Patient::factory()->create(['id' => 2, 'user_id' => 1]);
         $session = Session::factory()->create(['id' => 3,'user_id' => 1, 'patient_id' => 2]);
 
-        $response = $this->actingAs($user)->get('/patients/2/sessions&notes/3/create');
+        $response = $this->actingAs($user)->get('/patients/2/sessions/3/create');
 
         $response->assertStatus(200);
 
@@ -112,7 +112,7 @@ class ViewTest extends TestCase
         $patient = Patient::factory()->create(['id' => 2, 'user_id' => 1]);
         $session = Session::factory()->create(['id' => 1, 'user_id' => 1, 'patient_id' => 2]);
 
-        $response = $this->actingAs($user)->get('/patients/2/sessions&notes/1/edit');
+        $response = $this->actingAs($user)->get('/patients/2/sessions/1/edit');
 
         $response->assertStatus(200);
 
