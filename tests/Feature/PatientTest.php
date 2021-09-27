@@ -89,5 +89,19 @@ class PatientTest extends TestCase
 
     }
 
+    public function test_a_patient_can_be_updated_by_activeUser()
+    {
+        $user = User::factory()->create(['isActive' => true, 'id' => 1]);
+        $patient = Patient::factory()->create(['id' => 4, 'user_id' => 1, 'name' => 'Beatriz Preciado']);
+        $sessions = Session::factory(4)->create(['patient_id' => 4, 'user_id' => 1]);
+
+        
+      
+        $response = $this->actingAs($user)->patch('patients/4/update', [
+            'name' => 'Paul B. Preciado']);
+  
+        $this->assertEquals(Patient::find(4)->name, 'Paul B. Preciado');
+    } 
+
 
 }

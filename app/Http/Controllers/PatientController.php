@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use App\Models\Session;
 use App\Models\Note;
+use Illuminate\Support\Facades\Storage;
 
 class PatientController extends Controller
 {
@@ -67,6 +68,76 @@ class PatientController extends Controller
         else {return redirect()->route('dashboard');}
     }
 
+    public function create()
+
+    {   $user = Auth::user();
+
+        if ($user->isActive)
+        {
+        return Inertia::render('User/Patients/Create');}
+
+        return redirect()->route('dashboard');
+    
+
+    }
+
+    public function store(Request $request)
+    {
+        $user = Auth::user();
+        $newPatient = request()->except('_token');
+
+        if($request->hasFile('image'))
+    {
+        $newPatient['image']=$request->file('image')->store('images', 'public');
+    }
+        $newPatient['user_id'] = $user->id;
+
+
+        Patient::create($newPatient);
+
+
+        $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->id)->get();
+    
+        return redirect()->route('patients');
+    }
+
+    public function edit($id)
+    {
+          
+            $user = Auth::user();
+            if ($user->isActive == true && $user->isAdmin == false)
+            {
+            $patient = Patient::findOrFail($id);
+          
+            return Inertia::render('User/Patients/Edit', ['patient' => $patient]);
+            }
+            return redirect()->route('dashboard');
+    
+    }
+
+    public function update(Request $request, $id)
+    {
+        $changesPatient = request()->except(['_token', '_method']);
+    
+          if($request->hasFile('image'))
+            {
+            $patient = Patient::findOrFail($id);
+         
+            Storage::delete('public/'.$patient->image);
+            $changesPatient['image']=$request->file('image')->store('images', 'public');
+            }
+
+            Session::where('patient_id', $id)->update(array('patient_name' => 'name', 'patient_name' => $changesPatient['name']));
+            
+            Patient::where('id', '=', $id)->update($changesPatient);
+          
+           
+            $patient = Patient::findOrFail($id);
+            return redirect()->route('patients');
+          
+        }
+
+
     public function getSessions($id)
     {
         $user = Auth::user();
@@ -95,25 +166,7 @@ class PatientController extends Controller
         else {return redirect()->route('dashboard');}
 
     }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-
-    {   $user = Auth::user();
-
-        if ($user->isActive)
-        {
-        return Inertia::render('User/Patients/Create');}
-
-        return redirect()->route('dashboard');
-    
-
-    }
+  
 
     /**
      * Store a newly created resource in storage.
@@ -121,26 +174,7 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $user = Auth::user();
-        $newPatient = request()->except('_token');
-
-        if($request->hasFile('image'))
-    {
-        $newPatient['image']=$request->file('image')->store('images', 'public');
-    }
-        $newPatient['user_id'] = $user->id;
-
-
-        Patient::create($newPatient);
-
-
-        $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->id)->get();
     
-        return redirect()->route('patients');
-    }
-
      
 
     
@@ -300,18 +334,7 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-          
-            $user = Auth::user();
-            if ($user->isActive == true && $user->isAdmin == false)
-            {
-            $patient = Patient::findOrFail($id);
-            return Inertia::render('User/Patients/Edit', ['patient' => $patient]);
-            }
-            return redirect()->route('dashboard');
-    
-    }
+   
 
     /**
      * Update the specified resource in storage.
@@ -320,10 +343,7 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patient $patient)
-    {
-        //
-    }
+   
 
     /**
      * Remove the specified resource from storage.

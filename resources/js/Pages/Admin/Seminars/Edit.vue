@@ -27,7 +27,6 @@
                 <BreezeLabel for="subject" value="Subject" />
                 <BreezeInput v-model="form.subject" id="subject" type="text" class="mt-1 block w-full"  required autofocus />
                 </div>
-                <p> {{ seminar.id }}</p>
                 <div>
                 <BreezeLabel for="author" value="Author/s" />
                 <BreezeInput v-model="form.author" id="author" type="text" class="mt-1 block w-full" required autofocus />
