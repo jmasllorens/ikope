@@ -14,23 +14,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 border-b border-gray-200">
-                <form @submit.prevent="editSession()">
+                <form @submit.prevent="editNote()">
                 <div class="grid grid-cols-2 gap-6">
                 <div class="grid grid-rows-2 gap-6">
                               
-                 <div>
-                <BreezeLabel for="date" value="Date and Time" />
-                <BreezeInput v-model="form.date" id="date" type="datetime-local" class="mt-1 block w-full" required autofocus />
-                </div>
 
                   <div>
-                <BreezeLabel for="keywords" value="Keywords" />
-                <BreezeInput v-model="form.keywords" id="keywords" type="text" class="mt-1 block w-full"  max="100" required autofocus />
+                <BreezeLabel for="title" value="Title" />
+                <BreezeInput v-model="form.title" id="title" type="text" class="mt-1 block w-full"  max="100" required autofocus />
                 </div>
 
                 <div>
-                <BreezeLabel for="cost" value="Rate" />
-                <BreezeInput v-model="form.cost" id="cost" type="number" max="100" min="20" class="mt-1 block w-full" />
+                <BreezeLabel for="text" value="Notes" />
+                <textarea class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" max="10000" v-model="form.text" ref="input" id="tet" type="textarea" required autofocus />
                 </div>
                 <div class="flex items-center justify-end mt-4 space-x-3">
                 <BreezeButton class="bg-green-400 text-white hover:bg-green-500" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
@@ -72,30 +68,28 @@ export default {
         return {
             form: {
                 
-                date: this.$page.props.session.date,
-                keywords: this.$page.props.session.keywords,
-                cost: this.$page.props.session.cost
+                title: this.$page.props.note.title,
+                text: this.$page.props.note.text,
+      
          
             }
         }
     },
 
     methods: {
-        editSession() {
+        editNote() {
             let data = {
 
-            date: this.form.date,
-            keywords: this.form.keywords,
-            cost: this.form.cost,
+            title: this.form.title,
+            text: this.form.text
            }
   
            
-            this.$inertia.patch(`/patients/${this.$page.props.patient.id}/sessions/${this.$page.props.session.id}/update`, data)
+            this.$inertia.patch(`/patients/${this.$page.props.patient.id}/sessions/${this.$page.props.session.id}/${this.$page.props.note.id}/update`, data)
         }
     }
 }
 </script>
-
 <style scoped>
 .bg-blueish {
     background-color: rgb(112, 202, 200);

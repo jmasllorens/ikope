@@ -33,4 +33,19 @@ class NoteTest extends TestCase
         $this->assertEquals($newNote->title , 'Oedipus Complex');
 
     }
+
+    public function test_a_note_can_be_updated_by_activeUser()
+    {
+        $user = User::factory()->create(['isActive' => true, 'id' => 1]);
+        $patient = Patient::factory()->create(['id' => 4, 'user_id' => 1]);
+        $session = Session::factory()->create(['id' => 2, 'patient_id' => 4, 'user_id' => 1]);
+        $note = Note::factory()->create(['id' => 5, 'user_id' => 1, 'patient_id' => 4, 'session_id' => 2, 'title' => 'Electra vs Oedipus']);
+
+        
+      
+        $response = $this->actingAs($user)->patch('patients/4/sessions/2/5/update', [
+            'title' => 'Electra wins']);
+  
+        $this->assertEquals(Note::find(5)->title, 'Electra wins');
+    } 
 }

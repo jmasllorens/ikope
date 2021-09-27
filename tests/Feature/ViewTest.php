@@ -7,6 +7,7 @@ use Tests\TestCase;
 use App\Models\Seminar;
 use App\Models\Patient;
 use App\Models\Session;
+use App\Models\Note;
 
 class ViewTest extends TestCase
 {
@@ -88,7 +89,7 @@ class ViewTest extends TestCase
         $user = User::factory()->create(['isAdmin' => false, 'isActive' => true, 'id' => 1]);
         $patient = Patient::factory()->create(['id' => 1, 'user_id' => 1]);
 
-        $response = $this->actingAs($user)->get('/patients/1/sessions/create');
+        $response = $this->actingAs($user)->get('/patients/1/sessionscreate');
 
         $response->assertStatus(200);
 
@@ -136,6 +137,19 @@ class ViewTest extends TestCase
       
       
         $response = $this->actingAs($user)->get('/patients/6/edit');
+
+        $response->assertStatus(200);
+
+    }
+
+    public function test_edit_note_can_be_rendered_if_activeUser_has_patients_and_session_with_note()
+    {    
+        $user = User::factory()->create(['isAdmin' => false, 'isActive' => true, 'id' => 1]);
+        $patient = Patient::factory()->create(['id' => 2, 'user_id' => 1]);
+        $session = Session::factory()->create(['id' => 1, 'user_id' => 1, 'patient_id' => 2]);
+        $note = Note::factory()->create(['id' => 5, 'user_id' => 1, 'patient_id' => 2, 'session_id' => 1]);
+
+        $response = $this->actingAs($user)->get('/patients/2/sessions/1/5/edit');
 
         $response->assertStatus(200);
 
