@@ -53,7 +53,7 @@
                 <BreezeButton class="bg-green-400 text-white hover:bg-green-500" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Save
                 </BreezeButton>
-                <BreezeButton class="bg-red-400 text-white hover:bg-red-500 "><a :href="route('patients')" method="get">Cancel</a></BreezeButton>
+                <BreezeButton class="bg-red-400 text-white hover:bg-red-500 "><a :href="route('patients_show', `${this.$page.props.patient.id}`)" method="get">Cancel</a></BreezeButton>
                 </div>
        
             </div>

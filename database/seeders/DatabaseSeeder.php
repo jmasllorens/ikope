@@ -26,12 +26,16 @@ class DatabaseSeeder extends Seeder
 
         Seminar::factory(15)->create([]);
 
-        Patient::factory(10)->create(['user_id' => 3]);
-      
-
-        Session::factory()->create(['id' => 6, 'user_id' => 3, 'patient_id' => 1]);
-        Session::factory()->create(['id' => 1, 'user_id' => 3, 'patient_id' => 2]);
-        Session::factory()->create(['id' => 2, 'user_id' => 3, 'patient_id' => 1]);
+      /*   Patient::factory(10)->create(['user_id' => 3]); */
+        Patient::factory()->create(['id' => 58, 'user_id' => 3, 'name' => 'Joan Recordà']);
+        Session::factory(5)->create(['user_id' => 3, 'patient_id' => 58, 'patient_name' => 'Joan Recordà' ]);
+        Patient::factory()->create(['id' => 76, 'user_id' => 3, 'name' => 'Jael Masllorens']);
+        Session::factory(5)->create(['user_id' => 3, 'patient_id' => 76, 'patient_name' => 'Jael Masllorens' ]);
+        Patient::factory()->create(['id' => 112, 'user_id' => 3, 'name' => 'Lluís Pons']);
+        Session::factory(5)->create(['user_id' => 3, 'patient_id' => 112, 'patient_name' => 'Lluís Pons' ]);
+        
+    
+       /*  Session::factory()->create(['id' => 2, 'user_id' => 3, 'patient_id' => 1]);
         Session::factory()->create(['id' => 3, 'user_id' => 3, 'patient_id' => 1]);
         Session::factory()->create(['id' => 7, 'user_id' => 3, 'patient_id' => 1]);
         Session::factory()->create(['id' => 8, 'user_id' => 3, 'patient_id' => 2]);
@@ -51,7 +55,7 @@ class DatabaseSeeder extends Seeder
         Note::factory()->create(['user_id' => 3, 'patient_id' => 3, 'session_id' => 10]);
         Note::factory()->create(['user_id' => 3, 'patient_id' => 3, 'session_id' => 50]);
         Note::factory()->create(['user_id' => 3, 'patient_id' => 3, 'session_id' => 80]);
-
+ */
         Patient::factory()->create(['id' => 56, 'user_id' => 3, 'name' => 'Jordi Piella']);
         Session::factory(10)->create(['user_id' => 3, 'patient_id' => 56, 'patient_name' => 'Jordi Piella' ]);
 
