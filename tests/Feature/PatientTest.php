@@ -101,7 +101,26 @@ class PatientTest extends TestCase
             'name' => 'Paul B. Preciado']);
   
         $this->assertEquals(Patient::find(4)->name, 'Paul B. Preciado');
-    } 
+    }
+
+    public function test_a_patient_and_their_children_can_be_deleted_by_their_activeUser()
+    {
+        $user = User::factory()->create(['isActive' => true, 'id' => 1]);
+        $patient = Patient::factory()->create(['id' => 1, 'user_id' => 1]);
+        $session = Session::factory()->create(['id' => 1, 'user_id' => 1, 'patient_id' => 1]);
+        $note = Note::factory()->create(['user_id' => 1, 'patient_id' => 1, 'session_id' => 1]);
+    
+        $response = $this->actingAs($user)->delete('/patients/1', [$patient]);
+
+        $this->assertEquals(Patient::all()->count(), 0);
+        $this->assertEquals(Session::all()->count(), 0);
+        $this->assertEquals(Note::all()->count(), 0);
+
+    }
+
+    
+
+
 
 
 }

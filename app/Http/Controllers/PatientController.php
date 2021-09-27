@@ -370,7 +370,7 @@ class PatientController extends Controller
             $session = $note->session;
             Note::destroy($id);
         
-            return redirect()->route('sessions_show', ['id' => $patient->id, 'sId' => $session->id ]);
+            return redirect()->route('sessions_show', ['id' => $patient->id, 'sId' => $session->id]);
         }
         
 
