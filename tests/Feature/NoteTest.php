@@ -24,7 +24,7 @@ class NoteTest extends TestCase
             
         ]);
 
-        $response = $this->actingAs($user)->post('/patients/5/sessions&notes/10/store', [
+        $response = $this->actingAs($user)->post('/patients/5/sessions/10/store', [
             'title' => $newNote->title,
             'text' => $newNote->text
         

@@ -199,12 +199,12 @@ class PatientController extends Controller
         $note = $session->note;
         if ( $note == null)
         {
-            return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session]);
+            return Inertia::render('User/Sessions/Show', ['patient' => $patient, 'session' => $session]);
         }
  
        
   
-        return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session, 'note', $note]);}
+        return Inertia::render('User/Sessions/Show', ['patient' => $patient, 'session' => $session, 'note', $note]);}
         
         else {return redirect()->route('dashboard');}
 
@@ -218,12 +218,32 @@ class PatientController extends Controller
         {
         $patient = Patient::findOrFail($id);
         $session = Session::findOrFail($sId);
-        return Inertia::render('User/Sessions&Notes/Edit', ['patient' => $patient, 'session' => $session]);
+        return Inertia::render('User/Sessions/Edit', ['patient' => $patient, 'session' => $session]);
         }
         return redirect()->route('dashboard');
 
    
     }
+
+    public function updateSession(Request $request, $id)
+    {
+        $changesSession = request()->except(['_token', '_method']);
+    
+          if($request->hasFile('image'))
+            {
+            $session = Session::findOrFail($id);
+         
+            Storage::delete('public/'.$session->image);
+            $changesSession['image']=$request->file('image')->store('images', 'public');
+            }
+            
+            Session::where('id', '=', $id)->update($changesSession);
+          
+           
+            $session = Patient::findOrFail($id);
+            return redirect()->route('patients_sessions');
+          
+        }
 
     public function createSession($id)
     {
@@ -241,10 +261,10 @@ class PatientController extends Controller
             $sessions = $patient->sessions;
             if ($sessions == null)
             {
-                return Inertia::render('User/Sessions&Notes/Create', ['patient' => $patient]);
+                return Inertia::render('User/Sessions/Create', ['patient' => $patient]);
             }
           
-            return Inertia::render('User/Sessions&Notes/Create', ['patient' => $patient, 'sessions', $sessions]);
+            return Inertia::render('User/Sessions/Create', ['patient' => $patient, 'sessions', $sessions]);
     }
 
     public function storeSession(Request $request, $id)
@@ -288,17 +308,17 @@ class PatientController extends Controller
             $patient = Patient::find($id);
             if ($user->isActive && $patient->sessions->count() == 0)
             {
-                    return Inertia::render('User/Sessions&Notes/Create', ['patient', $patient]);
+                    return Inertia::render('User/Sessions/Create', ['patient', $patient]);
             }
 
             $session = Session::find($sId);
             $note = $session->note;
             if ($note == null)
             {
-                return Inertia::render('User/Sessions&Notes/CreateNote', ['patient' => $patient, 'session' => $session]);
+                return Inertia::render('User/Sessions/CreateNote', ['patient' => $patient, 'session' => $session]);
             }
           
-            return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session]);
+            return Inertia::render('User/Sessions/Show', ['patient' => $patient, 'session' => $session]);
     }
 
     public function storeNote(Request $request, $id, $sId)

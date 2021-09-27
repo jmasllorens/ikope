@@ -55,20 +55,20 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/patients/{id}/edit', [PatientController::class, 'edit'])->name('patients_edit');
     Route::patch('patients/{id}/update', [PatientController::class, 'update'])->name('patients_update');
 
-    Route::get('/patients/{id}/sessions&notes', [PatientController::class, 'getSessions'])->name('patients_sessions');
-    Route::get('patients/{id}/sessions&notes/create', [PatientController::class, 'createSession'])->name('sessions_create');
-    Route::post('patients/{id}/sessions&notes/store', [PatientController::class, 'storeSession' ])->name('sessions_store');
-    Route::get('/patients/{id}/sessions&notes/{sId}/edit', [PatientController::class, 'editSession'])->name('sessions_edit');
-    Route::post('/patients/{id}/sessions&notes/{sId}/update', [PatientController::class, 'updateSession'])->name('sessions_edit');
+    Route::get('/patients/{id}/sessions', [PatientController::class, 'getSessions'])->name('patients_sessions');
+    Route::get('patients/{id}/sessions/create', [PatientController::class, 'createSession'])->name('sessions_create');
+    Route::post('patients/{id}/sessions/store', [PatientController::class, 'storeSession' ])->name('sessions_store');
+    Route::get('/patients/{id}/sessions/{sId}/edit', [PatientController::class, 'editSession'])->name('sessions_edit');
+    Route::post('/patients/{id}/sessions/{sId}/update', [PatientController::class, 'updateSession'])->name('sessions_edit');
   
-    Route::get('patients/{id}/sessions&notes/{sId}/create', [PatientController::class, 'createNote'])->name('notes_create');
-    Route::post('patients/{id}/sessions&notes/{sId}/store', [PatientController::class, 'storeNote'])->name('notes_store');
-    Route::get('/patients/{id}/sessions&notes/{sId}', [PatientController::class, 'showSession'])->name('sessions_show');
+    Route::get('patients/{id}/sessions/{sId}/create', [PatientController::class, 'createNote'])->name('notes_create');
+    Route::post('patients/{id}/sessions/{sId}/store', [PatientController::class, 'storeNote'])->name('notes_store');
+    Route::get('/patients/{id}/sessions/{sId}', [PatientController::class, 'showSession'])->name('sessions_show');
   
 
 
-    Route::get('/sessions&notes', [SessionController::class, 'index'])->name('sessions');
-/*   Route::get('/patients/{id}/sessions&notes/{sId}', [SessionController::class, 'show'])->name('sessions_show'); */
+    Route::get('/sessions', [SessionController::class, 'index'])->name('sessions');
+/*   Route::get('/patients/{id}/sessions/{sId}', [SessionController::class, 'show'])->name('sessions_show'); */
 
 
 
