@@ -52,6 +52,14 @@ class SessionController extends Controller
 
     }
 
+    public function delete($id)
+    {  
+        Session::findOrFail($id);
+        Session::destroy($id);
+    
+        return redirect()->route('sessions');
+    }
+
     
 
     /**

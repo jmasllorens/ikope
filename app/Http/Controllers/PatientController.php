@@ -86,15 +86,7 @@ class PatientController extends Controller
         $user = Auth::user();
         $newPatient = request()->except('_token');
 
-        if($request->hasFile('image'))
-    {
-        $newPatient['image']=$request->file('image')->store('images', 'public');
-    }
-        $newPatient['user_id'] = $user->id;
-
-
         Patient::create($newPatient);
-
 
         $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->id)->get();
     
@@ -119,14 +111,6 @@ class PatientController extends Controller
     {
         $changesPatient = request()->except(['_token', '_method']);
     
-          if($request->hasFile('image'))
-            {
-            $patient = Patient::findOrFail($id);
-         
-            Storage::delete('public/'.$patient->image);
-            $changesPatient['image']=$request->file('image')->store('images', 'public');
-            }
-
             Session::where('patient_id', $id)->update(array('patient_name' => 'name', 'patient_name' => $changesPatient['name']));
             
             Patient::where('id', '=', $id)->update($changesPatient);
@@ -136,6 +120,13 @@ class PatientController extends Controller
             return redirect()->route('patients');
           
         }
+    
+    public function delete($id)
+    {
+        Patient::destroy($id);
+    
+        return redirect()->route('patients');
+    }
 
 
     public function getSessions($id)
@@ -152,9 +143,10 @@ class PatientController extends Controller
       
     
         if ($sessions->count() == 0 )
-        {
+        {   
             return redirect()->route('sessions_create', ['id' => $patient->id]);
         }
+
         $notes = $patient->notes;
     
 
@@ -229,15 +221,6 @@ class PatientController extends Controller
     {
         $changesSession = request()->except(['_token', '_method']);
     
-          if($request->hasFile('image'))
-            {
-            $patient = Patient::findOrFail($id);
-            $session = Session::findOrFail($sId);
-         
-            Storage::delete('public/'.$session->image);
-            $changesSession['image']=$request->file('image')->store('images', 'public');
-            }
-            
             Session::where('id', '=', $sId)->update($changesSession);
           
            
@@ -261,6 +244,7 @@ class PatientController extends Controller
       
             $patient = Patient::find($id);
             $sessions = $patient->sessions;
+           
             if ($sessions == null)
             {
                 return Inertia::render('User/Sessions/Create', ['patient' => $patient]);
@@ -277,10 +261,6 @@ class PatientController extends Controller
         
         $newSession = request()->except('_token');
 
-        if($request->hasFile('image'))
-    {
-        $newSession['image']=$request->file('image')->store('images', 'public');
-    }
         $newSession['user_id'] = $user->id;
         $newSession['patient_id'] = $patient->id;
         $newSession['patient_name'] = $patient->name;
@@ -293,6 +273,9 @@ class PatientController extends Controller
     
         return redirect()->route('patients_sessions', $patient->id);
     }
+
+
+   
 
      public function createNote($id, $sId)
     {
@@ -332,10 +315,6 @@ class PatientController extends Controller
         
         $newNote = request()->except('_token');
 
-        if($request->hasFile('image'))
-    {
-        $newNote['image']=$request->file('image')->store('images', 'public');
-    }
         $newNote['user_id'] = $user->id;
         $newNote['patient_id'] = $patient->id;
         $newNote['session_id'] = $session->id;
@@ -347,6 +326,55 @@ class PatientController extends Controller
         return redirect()->route('sessions_show', [$patient->id, $session->id]);
     }
 
+    public function editNote($id, $sId, $nId)
+    {   
+            $user = Auth::user();
+            if ($user->isActive == true && $user->isAdmin == false)
+            {
+            $patient = Patient::findOrFail($id);
+            $session = Session::findOrFail($sId);
+            $note = Note::findOrFail($nId);
+            return Inertia::render('User/Sessions/EditNote', ['patient' => $patient, 'session' => $session, 'note' => $note]);
+            }
+            return redirect()->route('dashboard');
+    
+    }
+
+    public function updateNote($id, $sId, $nId)
+    {
+        $changesNote = request()->except(['_token', '_method']);
+    
+            Note::where('id', '=', $nId)->update($changesNote);
+          
+            $patient = Patient::findOrFail($id);
+            $session = Session::findOrFail($sId);
+            $note = Note::findOrFail($nId);
+            return redirect()->route('patients_sessions', ['id' => $id, 'session' => $session, 'note' => $note]);
+          
+        }
+
+        public function deleteSessions($id)
+        {  
+            $session = Session::findOrFail($id);
+            $patient = $session->patient;
+            Session::destroy($id);
+        
+            return redirect()->route('patients_sessions', ['id' => $patient->id]);
+        }
+
+        public function deleteNotes($id)
+
+        {  
+            $note = Note::findOrFail($id);
+            $patient = $note->patient;
+            $session = $note->session;
+            Note::destroy($id);
+        
+            return redirect()->route('sessions_show', ['id' => $patient->id, 'sId' => $session->id]);
+        }
+        
+
+       
 
     
 

@@ -10,6 +10,8 @@
 </div>
 
 <div class="flex justify-between m-6">
+  <div><BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteSession()">Delete Session</BreezeButton></div>
+  <div v-if="$page.props.session.note != null"><BreezeButton class="bg-yellow-400 hover:bg-yellow-500" @click.prevent="deleteNote()">Delete Note</BreezeButton></div>
   <div class="flex flex-col h-full w-4/5 mx-auto bg-blueish rounded-lg">
       
           <div class="flex justify-between -mt-4 px-4">
@@ -17,8 +19,8 @@
               class="inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white py-1.5 px-3 pt-1.5"
               >{{$page.props.session.cost}} € payed</span>
 
-             <span v-if="$page.props.session.isPayed == 2"
-              class="inline-block ring-2 bg-yellow-300 ring-yellow-300 rounded-sm text-m tracking-wide font-bold text-gray-800 py-1.5 px-3 pt-1.5"
+             <span v-if="$page.props.session.isPayed == 0"
+              class="inline-block ring-2 bg-red-400 ring-red-400 rounded-sm text-m tracking-wide font-bold text-gray-800 py-1.5 px-3 pt-1.5"
               >{{$page.props.session.cost}} € pending</span>
          <!--    <span
               class="flex h-min space-x-1 items-center rounded-full bg-gray-700 py-2 px-3 text-m font-medium">
@@ -121,11 +123,18 @@ export default {
     },
 
     methods: {
-    deleteSession(id, sId) {
+    deleteSession() {
       if(confirm('Are you sure you want to delete this session?')) {
-      this.$inertia.delete(`/patients/${id}/${sId}`, id, sId)
+      this.$inertia.delete(`/session/${this.$page.props.session.id}`)
       }
       return;
+      },
+
+      deleteNote() {
+        if(confirm('Are you sure you want to delete this note?')) {
+          this.$inertia.delete(`/note/${this.$page.props.session.note.id}`)
+        }
+        return;
       }
     }
 

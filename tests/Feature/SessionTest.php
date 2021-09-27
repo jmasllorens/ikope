@@ -121,6 +121,38 @@ class SessionTest extends TestCase
         $this->assertEquals(Session::find(2)->cost, 50);
     } 
 
+    public function test_a_session_and_its_note_can_be_deleted_by_their_activeUser_from_sessionShow()
+    {
+        $user = User::factory()->create(['isActive' => true, 'id' => 1]);
+        $patient = Patient::factory()->create(['id' => 1, 'user_id' => 1]);
+        $session = Session::factory()->create(['id' => 1, 'user_id' => 1, 'patient_id' => 1]);
+        $note = Note::factory()->create(['user_id' => 1, 'patient_id' => 1, 'session_id' => 1]);
+    
+    
+        $response = $this->actingAs($user)->delete('/session/1', [$session]);
+
+        $this->assertEquals(Session::all()->count(), 0);
+        $this->assertEquals(Patient::all()->count(), 1);
+        $this->assertEquals(Note::all()->count(), 0);
+
+    }
+
+    public function test_a_session_and_its_note_can_be_deleted_by_their_activeUser_from_sessionIndex()
+    {
+        $user = User::factory()->create(['isActive' => true, 'id' => 1]);
+        $patient = Patient::factory()->create(['id' => 1, 'user_id' => 1]);
+        $session = Session::factory()->create(['id' => 1, 'user_id' => 1, 'patient_id' => 1]);
+        $note = Note::factory()->create(['user_id' => 1, 'patient_id' => 1, 'session_id' => 1]);
+    
+    
+        $response = $this->actingAs($user)->delete('/sessions/1', [$session]);
+
+        $this->assertEquals(Session::all()->count(), 0);
+        $this->assertEquals(Patient::all()->count(), 1);
+        $this->assertEquals(Note::all()->count(), 0);
+
+    }
+
 
 
   

@@ -54,21 +54,29 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/patients/store', [PatientController::class, 'store'])->name('patients_store');
     Route::get('/patients/{id}/edit', [PatientController::class, 'edit'])->name('patients_edit');
     Route::patch('patients/{id}/update', [PatientController::class, 'update'])->name('patients_update');
+    Route::delete('/patients/{id}', [PatientController::class, 'delete'])->name('patients_delete');
 
     Route::get('/patients/{id}/sessions', [PatientController::class, 'getSessions'])->name('patients_sessions');
-    Route::get('patients/{id}/sessions/create', [PatientController::class, 'createSession'])->name('sessions_create');
+    Route::get('/patients/{id}/sessions/{sId}', [PatientController::class, 'showSession'])->name('sessions_show');
+    Route::get('patients/{id}/sessionscreate', [PatientController::class, 'createSession'])->name('sessions_create');
     Route::post('patients/{id}/sessions/store', [PatientController::class, 'storeSession' ])->name('sessions_store');
     Route::get('/patients/{id}/sessions/{sId}/edit', [PatientController::class, 'editSession'])->name('sessions_edit');
     Route::patch('/patients/{id}/sessions/{sId}/update', [PatientController::class, 'updateSession'])->name('sessions_update');
+    Route::delete('/session/{id}/', [PatientController::class, 'deleteSessions'])->name('session_delete');
+  
+
   
     Route::get('patients/{id}/sessions/{sId}/create', [PatientController::class, 'createNote'])->name('notes_create');
     Route::post('patients/{id}/sessions/{sId}/store', [PatientController::class, 'storeNote'])->name('notes_store');
-    Route::get('/patients/{id}/sessions/{sId}', [PatientController::class, 'showSession'])->name('sessions_show');
+    Route::get('/patients/{id}/sessions/{sId}/{nId}/edit', [PatientController::class, 'editNote'])->name('notes_edit');
+    Route::patch('/patients/{id}/sessions/{sId}/{nId}/update', [PatientController::class, 'updateNote'])->name('notes_update');
+    Route::delete('/note/{id}/', [PatientController::class, 'deleteNotes'])->name('note_delete');
+   
   
 
-
     Route::get('/sessions', [SessionController::class, 'index'])->name('sessions');
-/*   Route::get('/patients/{id}/sessions/{sId}', [SessionController::class, 'show'])->name('sessions_show'); */
+    Route::delete('/sessions/{id}/', [SessionController::class, 'delete'])->name('sessions_delete');
+
 
 
 

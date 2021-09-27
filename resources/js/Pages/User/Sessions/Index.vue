@@ -142,9 +142,9 @@ export default {
     BreezeNavLink,
   },
    methods: {
-    deleteSssion(id) {
+    deleteSession(id) {
        if(confirm('Are you sure you want to delete this session?')) {
-      this.$inertia.delete(`/seminars/${id}`, id)
+      this.$inertia.delete(`/sessions/${id}`, id)
       }
       return;
       }
