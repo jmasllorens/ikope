@@ -21,7 +21,7 @@ class SessionTest extends TestCase
         $sessions1 = Session::factory(2)->create(['user_id' => 3, 'patient_id' => 2]);
         $sessions2 = Session::factory(3)->create(['user_id' => 3, 'patient_id' => 1]);
 
-        $response = $this->actingAs($user)->get('/sessions&notes');
+        $response = $this->actingAs($user)->get('/sessions');
 
         $response->assertStatus(200);
         $this->assertCount(5, $user->sessions);
@@ -48,7 +48,7 @@ class SessionTest extends TestCase
         $sessions = Session::factory(2)->create(['user_id' => 3, 'patient_id' => 2]);
        
 
-        $response = $this->actingAs($user)->get('/patients/2/sessions&notes');
+        $response = $this->actingAs($user)->get('/patients/2/sessions');
 
         $response->assertStatus(200);
         $this->assertCount(2, $patient->sessions);
@@ -63,7 +63,7 @@ class SessionTest extends TestCase
         $session = Session::factory()->create(['id' => 1, 'user_id' => 3, 'patient_id' => 8, 'keywords' => 'Ear, painting, poverty']);
         $sessionKeywords = $session->keywords;
 
-        $response = $this->actingAs($user)->get('/patients/8/sessions&notes/1');
+        $response = $this->actingAs($user)->get('/patients/8/sessions/1');
 
         $response->assertStatus(200);
         $this->assertEquals('Ear, painting, poverty', $sessionKeywords);
@@ -79,7 +79,7 @@ class SessionTest extends TestCase
         $note = Note::factory()->create(['user_id' => 3, 'patient_id' => 8, 'session_id' => 1, 'title' => 'Abandonment feeling']);
         $noteTitle = $note->title;
 
-        $response = $this->actingAs($user)->get('/patients/8/sessions&notes/1');
+        $response = $this->actingAs($user)->get('/patients/8/sessions/1');
 
         $response->assertStatus(200);
         $this->assertEquals('Abandonment feeling', $noteTitle);
@@ -97,7 +97,7 @@ class SessionTest extends TestCase
             
         ]);
 
-        $response = $this->actingAs($user)->post('/patients/5/sessions&notes/store', [
+        $response = $this->actingAs($user)->post('/patients/5/sessions/store', [
             'date' => $newSession->date,
             'keywords' => $newSession->keywords,
             'cost' => $newSession->cost,
@@ -106,6 +106,21 @@ class SessionTest extends TestCase
         $this->assertEquals($newSession->cost , 85);
 
     }
+
+    public function test_a_session_can_be_updated_by_activeUser()
+    {
+        $user = User::factory()->create(['isActive' => true, 'id' => 1]);
+        $patient = Patient::factory()->create(['id' => 4, 'user_id' => 1, 'name' => 'Beatriz Preciado']);
+        $session = Session::factory()->create(['id' => 2, 'patient_id' => 4, 'user_id' => 1, 'cost' => 25]);
+
+        
+      
+        $response = $this->actingAs($user)->patch('patients/4/sessions/2/update', [
+            'cost' => 50]);
+  
+        $this->assertEquals(Session::find(2)->cost, 50);
+    } 
+
 
 
   

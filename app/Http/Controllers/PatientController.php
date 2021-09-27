@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use App\Models\Session;
 use App\Models\Note;
+use Illuminate\Support\Facades\Storage;
 
 class PatientController extends Controller
 {
@@ -67,6 +68,76 @@ class PatientController extends Controller
         else {return redirect()->route('dashboard');}
     }
 
+    public function create()
+
+    {   $user = Auth::user();
+
+        if ($user->isActive)
+        {
+        return Inertia::render('User/Patients/Create');}
+
+        return redirect()->route('dashboard');
+    
+
+    }
+
+    public function store(Request $request)
+    {
+        $user = Auth::user();
+        $newPatient = request()->except('_token');
+
+        if($request->hasFile('image'))
+    {
+        $newPatient['image']=$request->file('image')->store('images', 'public');
+    }
+        $newPatient['user_id'] = $user->id;
+
+
+        Patient::create($newPatient);
+
+
+        $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->id)->get();
+    
+        return redirect()->route('patients');
+    }
+
+    public function edit($id)
+    {
+          
+            $user = Auth::user();
+            if ($user->isActive == true && $user->isAdmin == false)
+            {
+            $patient = Patient::findOrFail($id);
+          
+            return Inertia::render('User/Patients/Edit', ['patient' => $patient]);
+            }
+            return redirect()->route('dashboard');
+    
+    }
+
+    public function update(Request $request, $id)
+    {
+        $changesPatient = request()->except(['_token', '_method']);
+    
+          if($request->hasFile('image'))
+            {
+            $patient = Patient::findOrFail($id);
+         
+            Storage::delete('public/'.$patient->image);
+            $changesPatient['image']=$request->file('image')->store('images', 'public');
+            }
+
+            Session::where('patient_id', $id)->update(array('patient_name' => 'name', 'patient_name' => $changesPatient['name']));
+            
+            Patient::where('id', '=', $id)->update($changesPatient);
+          
+           
+            $patient = Patient::findOrFail($id);
+            return redirect()->route('patients');
+          
+        }
+
+
     public function getSessions($id)
     {
         $user = Auth::user();
@@ -95,25 +166,7 @@ class PatientController extends Controller
         else {return redirect()->route('dashboard');}
 
     }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-
-    {   $user = Auth::user();
-
-        if ($user->isActive)
-        {
-        return Inertia::render('User/Patients/Create');}
-
-        return redirect()->route('dashboard');
-    
-
-    }
+  
 
     /**
      * Store a newly created resource in storage.
@@ -121,26 +174,7 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $user = Auth::user();
-        $newPatient = request()->except('_token');
-
-        if($request->hasFile('image'))
-    {
-        $newPatient['image']=$request->file('image')->store('images', 'public');
-    }
-        $newPatient['user_id'] = $user->id;
-
-
-        Patient::create($newPatient);
-
-
-        $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->id)->get();
     
-        return redirect()->route('patients');
-    }
-
      
 
     
@@ -165,12 +199,12 @@ class PatientController extends Controller
         $note = $session->note;
         if ( $note == null)
         {
-            return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session]);
+            return Inertia::render('User/Sessions/Show', ['patient' => $patient, 'session' => $session]);
         }
  
        
   
-        return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session, 'note', $note]);}
+        return Inertia::render('User/Sessions/Show', ['patient' => $patient, 'session' => $session, 'note', $note]);}
         
         else {return redirect()->route('dashboard');}
 
@@ -184,12 +218,34 @@ class PatientController extends Controller
         {
         $patient = Patient::findOrFail($id);
         $session = Session::findOrFail($sId);
-        return Inertia::render('User/Sessions&Notes/Edit', ['patient' => $patient, 'session' => $session]);
+        return Inertia::render('User/Sessions/Edit', ['patient' => $patient, 'session' => $session]);
         }
         return redirect()->route('dashboard');
 
    
     }
+
+    public function updateSession(Request $request, $id, $sId)
+    {
+        $changesSession = request()->except(['_token', '_method']);
+    
+          if($request->hasFile('image'))
+            {
+            $patient = Patient::findOrFail($id);
+            $session = Session::findOrFail($sId);
+         
+            Storage::delete('public/'.$session->image);
+            $changesSession['image']=$request->file('image')->store('images', 'public');
+            }
+            
+            Session::where('id', '=', $sId)->update($changesSession);
+          
+           
+            $patient = Patient::findOrFail($id);
+            $session = Session::findOrFail($sId);
+            return redirect()->route('patients_sessions', ['id' => $id, 'session' => $session]);
+          
+        }
 
     public function createSession($id)
     {
@@ -207,10 +263,10 @@ class PatientController extends Controller
             $sessions = $patient->sessions;
             if ($sessions == null)
             {
-                return Inertia::render('User/Sessions&Notes/Create', ['patient' => $patient]);
+                return Inertia::render('User/Sessions/Create', ['patient' => $patient]);
             }
           
-            return Inertia::render('User/Sessions&Notes/Create', ['patient' => $patient, 'sessions', $sessions]);
+            return Inertia::render('User/Sessions/Create', ['patient' => $patient, 'sessions', $sessions]);
     }
 
     public function storeSession(Request $request, $id)
@@ -254,17 +310,17 @@ class PatientController extends Controller
             $patient = Patient::find($id);
             if ($user->isActive && $patient->sessions->count() == 0)
             {
-                    return Inertia::render('User/Sessions&Notes/Create', ['patient', $patient]);
+                    return Inertia::render('User/Sessions/Create', ['patient', $patient]);
             }
 
             $session = Session::find($sId);
             $note = $session->note;
             if ($note == null)
             {
-                return Inertia::render('User/Sessions&Notes/CreateNote', ['patient' => $patient, 'session' => $session]);
+                return Inertia::render('User/Sessions/CreateNote', ['patient' => $patient, 'session' => $session]);
             }
           
-            return Inertia::render('User/Sessions&Notes/Show', ['patient' => $patient, 'session' => $session]);
+            return Inertia::render('User/Sessions/Show', ['patient' => $patient, 'session' => $session]);
     }
 
     public function storeNote(Request $request, $id, $sId)
@@ -300,18 +356,7 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-          
-            $user = Auth::user();
-            if ($user->isActive == true && $user->isAdmin == false)
-            {
-            $patient = Patient::findOrFail($id);
-            return Inertia::render('User/Patients/Edit', ['patient' => $patient]);
-            }
-            return redirect()->route('dashboard');
-    
-    }
+   
 
     /**
      * Update the specified resource in storage.
@@ -320,10 +365,7 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patient $patient)
-    {
-        //
-    }
+   
 
     /**
      * Remove the specified resource from storage.

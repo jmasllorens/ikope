@@ -87,7 +87,7 @@ export default {
             data.append('keywords', this.form.keywords)
             data.append('cost', this.form.cost)
             
-            this.$inertia.post(`/patients/${this.$page.props.patient.id}/sessions&notes/store`, data, `${this.$page.props.patient.id}`)
+            this.$inertia.post(`/patients/${this.$page.props.patient.id}/sessions/store`, data, `${this.$page.props.patient.id}`)
         }
     }
 }
