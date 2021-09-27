@@ -59,7 +59,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('patients/{id}/sessions/create', [PatientController::class, 'createSession'])->name('sessions_create');
     Route::post('patients/{id}/sessions/store', [PatientController::class, 'storeSession' ])->name('sessions_store');
     Route::get('/patients/{id}/sessions/{sId}/edit', [PatientController::class, 'editSession'])->name('sessions_edit');
-    Route::post('/patients/{id}/sessions/{sId}/update', [PatientController::class, 'updateSession'])->name('sessions_edit');
+    Route::patch('/patients/{id}/sessions/{sId}/update', [PatientController::class, 'updateSession'])->name('sessions_update');
   
     Route::get('patients/{id}/sessions/{sId}/create', [PatientController::class, 'createNote'])->name('notes_create');
     Route::post('patients/{id}/sessions/{sId}/store', [PatientController::class, 'storeNote'])->name('notes_store');

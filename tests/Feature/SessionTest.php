@@ -107,6 +107,21 @@ class SessionTest extends TestCase
 
     }
 
+    public function test_a_session_can_be_updated_by_activeUser()
+    {
+        $user = User::factory()->create(['isActive' => true, 'id' => 1]);
+        $patient = Patient::factory()->create(['id' => 4, 'user_id' => 1, 'name' => 'Beatriz Preciado']);
+        $session = Session::factory()->create(['id' => 2, 'patient_id' => 4, 'user_id' => 1, 'cost' => 25]);
+
+        
+      
+        $response = $this->actingAs($user)->patch('patients/4/sessions/2/update', [
+            'cost' => 50]);
+  
+        $this->assertEquals(Session::find(2)->cost, 50);
+    } 
+
+
 
   
 

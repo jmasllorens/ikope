@@ -81,7 +81,7 @@ export default {
             data.append('title', this.form.title)
             data.append('text', this.form.text)
             
-            this.$inertia.post(`/patients/${this.$page.props.patient.id}/sessions&notes/${this.$page.props.session.id}/store`, data, `${this.$page.props.patient.id}`, `${this.$page.props.session.id}`)
+            this.$inertia.post(`/patients/${this.$page.props.patient.id}/sessions/${this.$page.props.session.id}/store`, data, `${this.$page.props.patient.id}`, `${this.$page.props.session.id}`)
         }
     }
 }

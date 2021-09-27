@@ -225,23 +225,25 @@ class PatientController extends Controller
    
     }
 
-    public function updateSession(Request $request, $id)
+    public function updateSession(Request $request, $id, $sId)
     {
         $changesSession = request()->except(['_token', '_method']);
     
           if($request->hasFile('image'))
             {
-            $session = Session::findOrFail($id);
+            $patient = Patient::findOrFail($id);
+            $session = Session::findOrFail($sId);
          
             Storage::delete('public/'.$session->image);
             $changesSession['image']=$request->file('image')->store('images', 'public');
             }
             
-            Session::where('id', '=', $id)->update($changesSession);
+            Session::where('id', '=', $sId)->update($changesSession);
           
            
-            $session = Patient::findOrFail($id);
-            return redirect()->route('patients_sessions');
+            $patient = Patient::findOrFail($id);
+            $session = Session::findOrFail($sId);
+            return redirect()->route('patients_sessions', ['id' => $id, 'session' => $session]);
           
         }
 
