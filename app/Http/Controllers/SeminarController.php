@@ -14,14 +14,16 @@ class SeminarController extends Controller
 {
     public function index()
     {   $user = Auth::user();
+    
         $seminars = Seminar::orderBy('date', 'asc')->get();
      
         foreach($seminars as $seminar) 
         {
             $users = $seminar->users;
+            $userS = $seminar->isSubscribed($user->id); 
         }
-       
-            return Inertia::render('Seminars/Index', ['seminars' => $seminars, 'users' => $users]);
+        
+            return Inertia::render('Seminars/Index', ['seminars' => $seminars, 'users' => $users, 'userS' => $userS]);
     }
 
     public function show($id) 
