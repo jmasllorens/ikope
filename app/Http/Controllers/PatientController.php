@@ -120,6 +120,13 @@ class PatientController extends Controller
             return redirect()->route('patients');
           
         }
+    
+    public function delete($id)
+    {
+        Patient::destroy($id);
+    
+        return redirect()->route('patients');
+    }
 
 
     public function getSessions($id)
@@ -267,6 +274,9 @@ class PatientController extends Controller
         return redirect()->route('patients_sessions', $patient->id);
     }
 
+
+   
+
      public function createNote($id, $sId)
     {
          $user = Auth::user();
@@ -342,6 +352,29 @@ class PatientController extends Controller
             return redirect()->route('patients_sessions', ['id' => $id, 'session' => $session, 'note' => $note]);
           
         }
+
+        public function deleteSessions($id)
+        {  
+            $session = Session::findOrFail($id);
+            $patient = $session->patient;
+            Session::destroy($id);
+        
+            return redirect()->route('patients_sessions', ['id' => $patient->id]);
+        }
+
+        public function deleteNotes($id)
+
+        {  
+            $note = Note::findOrFail($id);
+            $patient = $note->patient;
+            $session = $note->session;
+            Note::destroy($id);
+        
+            return redirect()->route('sessions_show', ['id' => $patient->id, 'sId' => $session->id ]);
+        }
+        
+
+       
 
     
 

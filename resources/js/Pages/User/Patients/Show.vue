@@ -103,7 +103,7 @@
           
                <div><BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500"><a :href="`/patients/${$page.props.patient.id}/edit`" method="get">Edit Patient</a></BreezeButton></div>
          --><br>
-         <div class="mt-15"><BreezeButton class="bg-green-400 hover:bg-green-500"> <a :href="`/patients/${$page.props.patient.id}/sessions/create`" method="get">New Session</a></BreezeButton></div>
+         <div class="mt-15"><BreezeButton class="bg-green-400 hover:bg-green-500"> <a :href="`/patients/${$page.props.patient.id}/sessionscreate`" method="get">New Session</a></BreezeButton></div>
            <br>
          
          <div><BreezeButton class="bg-yellow-400 hover:bg-yellow-500"> <a :href="`/patients/${$page.props.patient.id}/edit`" method="get"> Edit Patient</a></BreezeButton></div>

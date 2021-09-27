@@ -20517,9 +20517,9 @@ __webpack_require__.r(__webpack_exports__);
     BreezeNavLink: _Components_NavLink_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   methods: {
-    deleteSssion: function deleteSssion(id) {
+    deleteSession: function deleteSession(id) {
       if (confirm('Are you sure you want to delete this session?')) {
-        this.$inertia["delete"]("/seminars/".concat(id), id);
+        this.$inertia["delete"]("/sessions/".concat(id), id);
       }
 
       return;
@@ -20553,9 +20553,16 @@ __webpack_require__.r(__webpack_exports__);
     BreezeButton: _Components_Button_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   methods: {
-    deleteSession: function deleteSession(id, sId) {
+    deleteSession: function deleteSession() {
       if (confirm('Are you sure you want to delete this session?')) {
-        this.$inertia["delete"]("/patients/".concat(id, "/").concat(sId), id, sId);
+        this.$inertia["delete"]("/session/".concat(this.$page.props.session.id));
+      }
+
+      return;
+    },
+    deleteNote: function deleteNote() {
+      if (confirm('Are you sure you want to delete this note?')) {
+        this.$inertia["delete"]("/note/".concat(this.$page.props.session.note.id));
       }
 
       return;
@@ -24405,7 +24412,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-            href: "/patients/".concat(_ctx.$page.props.patient.id, "/sessions/create"),
+            href: "/patients/".concat(_ctx.$page.props.patient.id, "/sessionscreate"),
             method: "get"
           }, "New Session", 8
           /* PROPS */
@@ -25346,7 +25353,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
           "class": "bg-red-400 hover:bg-red-500",
           onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-            return _ctx.deleteSession("".concat(session.id));
+            return $options.deleteSession("".concat(session.id));
           }, ["prevent"])
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -25401,65 +25408,74 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_2 = {
   "class": "flex justify-between m-6"
 };
-var _hoisted_3 = {
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Delete Session");
+
+var _hoisted_4 = {
+  key: 0
+};
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Delete Note");
+
+var _hoisted_6 = {
   "class": "flex flex-col h-full w-4/5 mx-auto bg-blueish rounded-lg"
 };
-var _hoisted_4 = {
+var _hoisted_7 = {
   "class": "flex justify-between -mt-4 px-4"
 };
-var _hoisted_5 = {
+var _hoisted_8 = {
   key: 0,
   "class": "inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white py-1.5 px-3 pt-1.5"
 };
-var _hoisted_6 = {
+var _hoisted_9 = {
   key: 1,
-  "class": "inline-block ring-2 bg-yellow-300 ring-yellow-300 rounded-sm text-m tracking-wide font-bold text-gray-800 py-1.5 px-3 pt-1.5"
+  "class": "inline-block ring-2 bg-red-400 ring-red-400 rounded-sm text-m tracking-wide font-bold text-gray-800 py-1.5 px-3 pt-1.5"
 };
-var _hoisted_7 = {
+var _hoisted_10 = {
   "class": "py-2 px-4"
 };
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_9 = {
+var _hoisted_12 = {
   "class": "text-xl font-medium leading-6 tracking-wide text-black"
 };
-var _hoisted_10 = {
+var _hoisted_13 = {
   "class": "text-gray-700"
 };
-var _hoisted_11 = {
+var _hoisted_14 = {
   "class": "flex flex-row items-end h-full w-full px-4 mt-4"
 };
-var _hoisted_12 = {
+var _hoisted_15 = {
   "class": "flex border-t border-gray-700 w-full py-4"
 };
-var _hoisted_13 = {
+var _hoisted_16 = {
   "class": ""
 };
-var _hoisted_14 = {
+var _hoisted_17 = {
   key: 0,
   "class": "text-m font-semibold"
 };
-
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
-/* HOISTED */
-);
-
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  <BreezeButton  v-if=\"$props.seminar.users.length < $props.seminar.availability && !isSubscribed && !$props.auth.user.isAdmin\"><a :href=\"`/subscribe/${seminar.id}`\" method=\"get\">Subscribe</a></BreezeButton>\r\n\r\n                <BreezeButton v-if=\"isSubscribed && !$props.auth.user.isAdmin\"><a :href=\"`/unsubscribe/${seminar.id}`\" method=\"get\">Unsubscribe</a></BreezeButton>\r\n\r\n                <div v-if=\"$props.auth.user.isAdmin\" class=\"inline-flex\">\r\n                <BreezeButton class=\"bg-green-700 hover:bg-green-800 mr-3\"><a :href=\"`/seminars/${seminar.id}/edit`\" method=\"get\">Edit</a></BreezeButton>\r\n\r\n                <BreezeButton class=\"bg-red-700 hover:bg-red-800 mr-3\" @click.prevent=\"deleteSeminar(`${seminar.id}`)\">Delete</BreezeButton> \r\n                </div> ")], -1
-/* HOISTED */
-);
-
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
-/* HOISTED */
-);
 
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  <BreezeButton  v-if=\"$props.seminar.users.length < $props.seminar.availability && !isSubscribed && !$props.auth.user.isAdmin\"><a :href=\"`/subscribe/${seminar.id}`\" method=\"get\">Subscribe</a></BreezeButton>\r\n\r\n                <BreezeButton v-if=\"isSubscribed && !$props.auth.user.isAdmin\"><a :href=\"`/unsubscribe/${seminar.id}`\" method=\"get\">Unsubscribe</a></BreezeButton>\r\n\r\n                <div v-if=\"$props.auth.user.isAdmin\" class=\"inline-flex\">\r\n                <BreezeButton class=\"bg-green-700 hover:bg-green-800 mr-3\"><a :href=\"`/seminars/${seminar.id}/edit`\" method=\"get\">Edit</a></BreezeButton>\r\n\r\n                <BreezeButton class=\"bg-red-700 hover:bg-red-800 mr-3\" @click.prevent=\"deleteSeminar(`${seminar.id}`)\">Delete</BreezeButton> \r\n                </div> ")], -1
+/* HOISTED */
+);
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
@@ -25468,25 +25484,51 @@ var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
+  var _component_BreezeButton = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeButton");
+
   var _component_BreezeAuthenticatedLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeAuthenticatedLayout");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
     title: "Session"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeAuthenticatedLayout, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_ctx.$page.props.session.isPayed == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.session.cost) + " € payed", 1
+      return [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
+        "class": "bg-red-400 hover:bg-red-500",
+        onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+          return $options.deleteSession();
+        }, ["prevent"]))
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_3];
+        }),
+        _: 1
+        /* STABLE */
+
+      })]), _ctx.$page.props.session.note != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
+        "class": "bg-yellow-400 hover:bg-yellow-500",
+        onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+          return $options.deleteNote();
+        }, ["prevent"]))
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_5];
+        }),
+        _: 1
+        /* STABLE */
+
+      })])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_ctx.$page.props.session.isPayed == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.session.cost) + " € payed", 1
       /* TEXT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$page.props.session.isPayed == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.session.cost) + " € pending", 1
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$page.props.session.isPayed == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.session.cost) + " € pending", 1
       /* TEXT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("    <span\r\n              class=\"flex h-min space-x-1 items-center rounded-full bg-gray-700 py-2 px-3 text-m font-medium\">\r\n                <a class=\"cursor-pointer\" :href=\"`/patients/${$page.props.patient.id}/sessions&notes`\">  <p class=\"text-white font-semibold text-sm\">\r\n                {{$page.props.patient.sessions.length }} sessions | {{ $page.props.patient.notes.length }} notes\r\n              </p></a>\r\n            </span> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.session.keywords), 1
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("    <span\r\n              class=\"flex h-min space-x-1 items-center rounded-full bg-gray-700 py-2 px-3 text-m font-medium\">\r\n                <a class=\"cursor-pointer\" :href=\"`/patients/${$page.props.patient.id}/sessions&notes`\">  <p class=\"text-white font-semibold text-sm\">\r\n                {{$page.props.patient.sessions.length }} sessions | {{ $page.props.patient.notes.length }} notes\r\n              </p></a>\r\n            </span> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.session.keywords), 1
       /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, " (" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.session.date) + ") ", 1
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_13, " (" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.session.date) + ") ", 1
       /* TEXT */
-      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  <p class=\"text-m font-semibold\">Mail:</p>\r\n                  <p class=\"text-m font-light tracking-wider text-gray-700\">\r\n                  {{$page.props.patient.email}}\r\n                  </p> \r\n                   <p class=\"text-m font-semibold\">Age:</p>\r\n                  <p class=\"text-m font-light tracking-wider text-gray-700\">\r\n                      {{$page.props.patient.age}}\r\n                  </p>\r\n                  <br>\r\n                   <p class=\"text-m font-semibold\">Motive of consultation:</p>\r\n                   <p class=\"text-m font-light tracking-wide text-gray-700\">\r\n                   {{ $page.props.patient.motive }}\r\n                  </p> \r\n                     <p class=\"text-m font-semibold\">{{$page.props.patient.name}}'s History:</p>\r\n                   <p class=\"text-m font-light tracking-wide text-gray-700\">\r\n                   {{ $page.props.patient.history }}\r\n                  </p> \r\n                  <br> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("   <span v-for=\"session in $page.props.patient.sessions\" v-bind:key=\"session\" class=\"text-m font-light tracking-wider text-gray-600\">\r\n              <p> Session number: {{ session.id}} </p>\r\n                      <p> Session date: {{ session.date }} </p>\r\n                       <p> Session keyword: {{ session.keywords }} </p>\r\n                         <p> Session cost: {{ session.cost }} (is payed: {{ session.isPayed }}) </p>\r\n                      \r\n                        <br>\r\n                    </span> "), _ctx.$page.props.session.note != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Note number: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.session.note.id), 1
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  <p class=\"text-m font-semibold\">Mail:</p>\r\n                  <p class=\"text-m font-light tracking-wider text-gray-700\">\r\n                  {{$page.props.patient.email}}\r\n                  </p> \r\n                   <p class=\"text-m font-semibold\">Age:</p>\r\n                  <p class=\"text-m font-light tracking-wider text-gray-700\">\r\n                      {{$page.props.patient.age}}\r\n                  </p>\r\n                  <br>\r\n                   <p class=\"text-m font-semibold\">Motive of consultation:</p>\r\n                   <p class=\"text-m font-light tracking-wide text-gray-700\">\r\n                   {{ $page.props.patient.motive }}\r\n                  </p> \r\n                     <p class=\"text-m font-semibold\">{{$page.props.patient.name}}'s History:</p>\r\n                   <p class=\"text-m font-light tracking-wide text-gray-700\">\r\n                   {{ $page.props.patient.history }}\r\n                  </p> \r\n                  <br> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("   <span v-for=\"session in $page.props.patient.sessions\" v-bind:key=\"session\" class=\"text-m font-light tracking-wider text-gray-600\">\r\n              <p> Session number: {{ session.id}} </p>\r\n                      <p> Session date: {{ session.date }} </p>\r\n                       <p> Session keyword: {{ session.keywords }} </p>\r\n                         <p> Session cost: {{ session.cost }} (is payed: {{ session.isPayed }}) </p>\r\n                      \r\n                        <br>\r\n                    </span> "), _ctx.$page.props.session.note != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Note number: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.session.note.id), 1
       /* TEXT */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Note title: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.session.note.title), 1
       /* TEXT */
-      ), _hoisted_15])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), _hoisted_16]), _hoisted_17])]), _hoisted_18, _hoisted_19];
+      ), _hoisted_18])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), _hoisted_19]), _hoisted_20])]), _hoisted_21, _hoisted_22];
     }),
     _: 1
     /* STABLE */
