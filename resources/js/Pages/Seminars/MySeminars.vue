@@ -1,7 +1,8 @@
 <template>
-    <Head title="Seminars" />
+    <Head title="MySeminars" />
 
     <BreezeAuthenticatedLayout>
+   
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -10,12 +11,10 @@
                  
             </div>
                   </div>
-                  
                   <br>
-                  <div class="grid grid-cols-2">
-                    <div v-if="$page.props.auth.user.isAdmin == false" class="justify-self-start ml-2">
+                   <div class="justify-self-start ml-2">
                      <a
-              href="/myseminars"
+              href="/seminars"
               method="get"
               class="
                 inline-flex
@@ -36,16 +35,10 @@
                 duration-150
                 ease-in-out
               "
-              ><strong>{{ $page.props.auth.user.name }}</strong>'s Seminars</a
+              >Back to Seminars</a
             >
                   </div>
-              <div v-if="$props.auth.user.isAdmin" class="justify-self-start"></div>
-              
-              <div v-if="$props.auth.user.isAdmin" class="justify-self-end">
-                 <BreezeButton>
-                        <a :href="route('seminars_create')" method="get">Create</a></BreezeButton>
-              </div>
-              </div>
+           
               <br>    
     <div class="flex flex-col">
   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -66,9 +59,6 @@
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Date
               </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Available Places
-              </th>
                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               </th>
                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -77,7 +67,7 @@
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <tr v-for="seminar in $page.props.seminars" v-bind:key="seminar">
+            <tr v-for="seminar in $page.props.mySeminars" v-bind:key="seminar">
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-900" > {{ seminar.title }}</div>
                 <div class="text-sm text-gray-500">{{ seminar.subject }} </div>
@@ -91,34 +81,18 @@
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm">
                 {{ seminar.date }}
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <span v-if="seminar.users.length >= seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">
-                  Full
-                </span>
-                <span v-if="seminar.users.length < seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700">
-                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}
-                </span>
-              </td>
-              <td v-if="!$props.auth.user.isAdmin">
-                 <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/seminars/${seminar.id}`" method="get">+ Info</a></BreezeButton>
-              </td>
-              <td v-if="seminar.userSubscribed == true && !$props.auth.user.isAdmin">
-               <BreezeButton ><a :href="`/subscribe/${seminar.id}`" method="get">Subscribe</a></BreezeButton>
-                </td>
-                <td v-if="!$props.auth.user.isAdmin"></td>
-               <td v-if="seminar.userSubscribed == true && !$props.auth.user.isAdmin">
-                 <BreezeButton><a :href="`/unsubscribe/${seminar.id}`" method="get">Unsubscribe</a></BreezeButton>
-              </td>
-              <td v-if="$props.auth.user.isAdmin">
+              </td>   
+        
+        
+              
+              <td>
                  <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/seminars/${seminar.id}`" method="get">View</a></BreezeButton>
               </td>
-              <td v-if="$props.auth.user.isAdmin">
-               <BreezeButton class="bg-green-400 hover:bg-green-500"><a :href="`/seminars/${seminar.id}/edit`" method="get">Edit</a></BreezeButton>
+               <td>
+                 <BreezeButton><a :href="`/unsubscribe/${seminar.id}`" method="get">Unsubscribe</a></BreezeButton>
               </td>
-              <td v-if="$props.auth.user.isAdmin">
-                <BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteSeminar(`${seminar.id}`)">Delete</BreezeButton>
-              </td>
+            
+
             
             
             </tr>
@@ -136,8 +110,8 @@
 
 
         
-    </BreezeAuthenticatedLayout>
-    
+ 
+</BreezeAuthenticatedLayout> 
 </template>
 
 <script>
@@ -150,22 +124,12 @@ import BreezeButton from '@/Components/Button.vue';
 
 export default {
   
-    props: ['seminars', 'auth', 'users', 'userSubscribed'],
     components: {
         BreezeAuthenticatedLayout,
         Head,
         BreezeButton  
     },
 
-    methods: {
-    deleteSeminar(id) {
-       if(confirm('Are you sure you want to delete this item?')) {
-      this.$inertia.delete(`/seminars/${id}`, id)
-      }
-      return;
-      },
-     
-    }
 }
 </script>
 

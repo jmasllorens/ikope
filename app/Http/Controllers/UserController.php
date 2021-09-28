@@ -9,6 +9,18 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    
+    public function index()
+    {   $user = Auth::user();
+        if ($user->isAdmin)
+        {
+            $users = User::orderByDesc('id')->paginate(1);
+            return Inertia::render('Admin/Users', ['users' => $users]);
+        }
+            return redirect()->route('dashboard');
+    }
+    
+    
     public function update($id) 
     {
         $changesUser = request()->except(['_token', '_method']);
@@ -17,5 +29,8 @@ class UserController extends Controller
        
         return redirect()->route('dashboard');
     }
+
+   
+
 
 }

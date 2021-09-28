@@ -144,7 +144,7 @@ class PatientController extends Controller
     
         if ($sessions->count() == 0 )
         {   
-            return redirect()->route('sessions_create', ['id' => $patient->id]);
+            return redirect()->route('patients_show', ['id' => $patient->id]);
         }
 
         $notes = $patient->notes;
@@ -358,7 +358,7 @@ class PatientController extends Controller
             $session = Session::findOrFail($id);
             $patient = $session->patient;
             Session::destroy($id);
-        
+ 
             return redirect()->route('patients_sessions', ['id' => $patient->id]);
         }
 
