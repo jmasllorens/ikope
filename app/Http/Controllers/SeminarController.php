@@ -6,30 +6,36 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Seminar;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 
 class SeminarController extends Controller
-{
+{   
     public function index()
     {   $user = Auth::user();
     
+    
         $seminars = Seminar::orderBy('date', 'asc')->get();
+        $mySeminars = $user->mySeminars;
      
         foreach($seminars as $seminar) 
         {
             $users = $seminar->users;
-            $userS = $seminar->isSubscribed($user->id); 
+            
         }
+
         
-            return Inertia::render('Seminars/Index', ['seminars' => $seminars, 'users' => $users, 'userS' => $userS]);
+            return Inertia::render('Seminars/Index', ['seminars' => $seminars, 'users' => $users, 'mySeminars', $mySeminars]);
     }
+
 
     public function show($id) 
     {
         $user = Auth::user();
         $seminar = Seminar::find($id);
+  
 
         if($seminar == null)
         {
@@ -38,6 +44,7 @@ class SeminarController extends Controller
 
         $seminar->users;
         $isSubscribed = $seminar->isSubscribed($user->id);
+
 
         return Inertia::render('Seminars/Show', ['seminar' => $seminar, 'isSubscribed' => $isSubscribed]);
     }
@@ -54,9 +61,9 @@ class SeminarController extends Controller
     
             session()->flash('message', 'Your application has been successfully submitted!');
      
-            return redirect()->route('seminars');
+            return redirect()->route('my_seminars');
         }
-            return redirect()->route('seminars');
+            return redirect()->route('my_seminars');
     }
 
     public function unsubscribe($id)
@@ -71,9 +78,9 @@ class SeminarController extends Controller
     
             session()->flash('message', 'Your application has been successfully cancelled!');
             
-            return redirect()->route('seminars');
+            return redirect()->route('my_seminars');
         }
-            return redirect()->route('seminars');
+            return redirect()->route('my_seminars');
     }
 
     public function sendEmail($id)
@@ -88,6 +95,17 @@ class SeminarController extends Controller
 
         $m->to($user->email, $user->name)->subject('You have a new notification');
         });
+    }
+
+    public function mySeminars()
+    {   $user = Auth::user();
+        $mySeminars = $user->seminars;
+        if ($mySeminars->count() == 0)
+        {
+            return redirect()->route('seminars');
+        }
+
+        return Inertia::render('Seminars/MySeminars', ['mySeminars' => $mySeminars, 'user' => $user]);
     }
 
     public function create() 

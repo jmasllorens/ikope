@@ -5,14 +5,9 @@
         <div class="py-9">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                  
             </div>
-  </div>
-</div>
-
-
-<div class="flex justify-center m-6">
-     <div >
-        <span v-if="$page.props.patient.sessions.length > 0" class="mb-3">
+               <span v-if="$page.props.patient.sessions.length > 0" class="-ml-10">
             <a
               :href="`/patients/${$page.props.patient.id}/sessions`" 
               method="get"
@@ -35,81 +30,23 @@
                 duration-150
                 ease-in-out
               "
-              >Sessions & Notes</a
+              ><strong>{{$page.props.patient.name}}</strong>'s Sessions & Notes</a
             >
 
           </span>
-          <br>
-            <!-- <span>
-            <a
-              :href="`/patients/${$page.props.patient.id}/sessions&notes/create`" 
-              method="get"
-              class="
-                inline-flex
-                items-center
-                px-1
-                pt-1
-                border-b-2 border-transparent
-                text-sm
-                font-medium
-                leading-5
-                text-gray-500
-                hover:text-gray-700
-                hover:border-gray-400
-                focus:outline-none
-                focus:text-gray-700
-                focus:border-gray-400
-                transition
-                duration-150
-                ease-in-out
-              "
-              >New Session</a
-            >
+  </div>
+</div>
 
-          </span>
-          <br>
-            <span>
-            <a
-              :href="`/patients/${$page.props.patient.id}/edit`" 
-              method="get"
-              class="
-                inline-flex
-                items-center
-                px-1
-                pt-1
-                border-b-2 border-transparent
-                text-sm
-                font-medium
-                leading-5
-                text-gray-500
-                hover:text-gray-700
-                hover:border-gray-400
-                focus:outline-none
-                focus:text-gray-700
-                focus:border-gray-400
-                transition
-                duration-150
-                ease-in-out
-              "
-              >Edit Patient</a
-            >
 
-          </span> -->
-         
-              <!--  <div>  <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/patients/${$page.props.patient.id}/sessions&notes`" method="get">View S&N</a></BreezeButton></div>
-  <br>
-                 <div>  <BreezeButton class="bg-green-400 hover:bg-green-500"><a :href="`/patients/${$page.props.patient.id}/sessions&notes/create`" method="get">New Session</a></BreezeButton></div>
-          <br>
-          
-               <div><BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500"><a :href="`/patients/${$page.props.patient.id}/edit`" method="get">Edit Patient</a></BreezeButton></div>
-         --><br>
+<div class="flex justify-center m-9">
+     <div >
+     
          <div class="mt-15"><BreezeButton class="bg-green-400 hover:bg-green-500"> <a :href="`/patients/${$page.props.patient.id}/sessionscreate`" method="get">New Session</a></BreezeButton></div>
            <br>
          
          <div><BreezeButton class="bg-yellow-400 hover:bg-yellow-500"> <a :href="`/patients/${$page.props.patient.id}/edit`" method="get"> Edit Patient</a></BreezeButton></div>
            <br>
-         <!--    <div><BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500"> <a :href="`/patients/${$page.props.patient.id}/edit`" method="get"> File Patient</a></BreezeButton></div>
-            <br> -->
+  
                 <div><BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deletePatient(`${$page.props.patient.id}`)">Delete Patient</BreezeButton></div></div>
   <div class="flex flex-col h-full w-4/5 mx-auto bg-blueish rounded-lg">
       
