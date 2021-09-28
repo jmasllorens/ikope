@@ -16,7 +16,6 @@ class SeminarController extends Controller
     public function index()
     {   $user = Auth::user();
     
-    
         $seminars = Seminar::orderBy('date', 'asc')->get();
         $mySeminars = $user->mySeminars;
      
