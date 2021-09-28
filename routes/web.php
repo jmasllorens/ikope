@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/unsubscribe/{id}', [SeminarController::class, 'unsubscribe'])->name('unsubscribe');
 
     Route::patch('/profile/{id}/update', [UserController::class, 'update'])->name('profile_update');
+    Route::get('/users', [UserController::class, 'index'])->name('users');
 
     Route::get('/patients', [PatientController::class, 'index'])->name('patients');
     Route::get('/patients/{id}', [PatientController::class, 'show'])->name('patients_show');
@@ -86,15 +87,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         return Inertia::render('Publications');
     })->name('publications');
 
-    Route::get('/users', function () {
-        $user = Auth::user();
-        if ($user->isAdmin)
-        {
-            return Inertia::render('Admin/Users');
-        }
-            return redirect()->route('dashboard');
-
-    })->name('users');
     
     Route::get('/contact', function () {
         $user = Auth::user();
