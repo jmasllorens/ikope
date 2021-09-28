@@ -67,4 +67,6 @@ class UserTest extends TestCase
 
         $this->assertCount(2, $user->notes);
     } 
+
+    
 }
