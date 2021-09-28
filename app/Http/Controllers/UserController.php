@@ -14,7 +14,7 @@ class UserController extends Controller
     {   $user = Auth::user();
         if ($user->isAdmin)
         {
-            $users = User::orderByDesc('id')->paginate(1);
+            $users = User::orderByDesc('id')->where('isAdmin', false)->paginate(20);
             return Inertia::render('Admin/Users', ['users' => $users]);
         }
             return redirect()->route('dashboard');
