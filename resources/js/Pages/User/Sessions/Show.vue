@@ -9,9 +9,21 @@
   </div>
 </div>
 
-<div class="flex justify-between m-6">
+<div class="flex justify-center m-6">
+<div>
+  <div v-if="$page.props.session.note = null"><BreezeButton class="bg-green-400 hover:bg-green-500"> <a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}/${$page.props.session.note.id}/create`" method="get"> Create Note</a></BreezeButton></div>
+     <br>
+  <br>
+  <div><BreezeButton class="bg-yellow-400 hover:bg-yellow-500"> <a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}/edit`" method="get"> Edit Session</a></BreezeButton></div>
+
+<br>
   <div><BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteSession()">Delete Session</BreezeButton></div>
+<br>
+  <div v-if="$page.props.session.note != null"><BreezeButton class="bg-yellow-400 hover:bg-yellow-500"> <a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}/${$page.props.session.note.id}/edit`" method="get"> Edit Session</a></BreezeButton></div>
+     <br>
+
   <div v-if="$page.props.session.note != null"><BreezeButton class="bg-yellow-400 hover:bg-yellow-500" @click.prevent="deleteNote()">Delete Note</BreezeButton></div>
+  </div>
   <div class="flex flex-col h-full w-4/5 mx-auto bg-blueish rounded-lg">
       
           <div class="flex justify-between -mt-4 px-4">

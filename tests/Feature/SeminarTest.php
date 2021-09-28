@@ -23,7 +23,7 @@ class SeminarTest extends TestCase
         $this->assertCount(2, $seminar->users);
     }
 
-    public function test_can_get_list_of_all_seminars() 
+    public function test_user_can_get_list_of_all_seminars() 
     {   
         $user =  User::factory()->create([]);;
         $seminars = Seminar::factory(6)->create([]);
@@ -32,6 +32,21 @@ class SeminarTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertCount(6, Seminar::all());
+    }
+
+    public function test_user_can_get_list_of_all_their_seminars() 
+    {   
+        $user =  User::factory()->create([]);;
+        $seminar1 = Seminar::factory()->create(['id' => 1]);
+        $seminar2 = Seminar::factory()->create(['id' => 2]);
+        $user->seminars()->attach(1);
+        $user->seminars()->attach(2);
+       
+       
+        $response = $this->actingAs($user)->get('/myseminars');
+
+        $response->assertStatus(200);
+        $this->assertCount(2, $user->seminars);
     }
 
     public function test_a_user_can_subscribe_to_a_seminar()
