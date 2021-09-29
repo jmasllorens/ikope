@@ -85,6 +85,7 @@ class PatientController extends Controller
     {
         $user = Auth::user();
         $newPatient = request()->except('_token');
+        $newPatient['user_id'] = $user->id;
 
         Patient::create($newPatient);
 
