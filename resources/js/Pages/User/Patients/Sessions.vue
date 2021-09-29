@@ -3,14 +3,14 @@
  <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-          <div class="p-3 bg-blueish border-b border-gray-200"><strong>{{$page.props[1].name}}</strong>'s Sessions & Notes
+          <div class="p-3 bg-blueish border-b border-gray-200"><strong>{{$page.props.patient.name}}</strong>'s Sessions & Notes
           </div>
         </div>
         <br>
         <div class="grid grid-cols-2">
         <div class="justify-self-start ml-2">
             <a
-              :href="`/patients/${$page.props[1].id}`"
+              :href="`/patients/${$page.props.patient.id}`"
               method="get"
               class="
                 inline-flex
@@ -31,7 +31,7 @@
                 duration-150
                 ease-in-out
               "
-              >Back to {{$page.props[1].name}} </a
+              >Back to {{$page.props.patient.name}} </a
             >
 
         </div>
@@ -39,7 +39,7 @@
           <span class="justify-self-end">
                 <div>
                 <BreezeButton>
-                        <a :href="route('sessions_create', `${$page.props[1].id}`)" method="get">New Session</a></BreezeButton>
+                        <a :href="route('sessions_create', `${$page.props.patient.id}`)" method="get">New Session</a></BreezeButton>
                 </div>
           </span>
           

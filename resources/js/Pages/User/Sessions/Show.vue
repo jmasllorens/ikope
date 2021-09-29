@@ -82,17 +82,17 @@
                         <br>
                     </span> -->
            
-             <div v-if="$page.props.session.note != null" class="text-m font-semibold">
+            <div v-if="$page.props.notes != null" class="text-m font-semibold">
                 
                 
          
          
-              <p> Note number: {{ $page.props.session.note.id}} </p>
-                      <p> Note title: {{$page.props.session.note.title}} </p>
+              <p> Note number: {{$page.props.notes.id}} </p>
+                      <p> Note title: {{$page.props.notes.title}} </p>
                    
                         <br>
                   
-            </div>
+            </div> 
                 </div>
               </div>
               <div>
