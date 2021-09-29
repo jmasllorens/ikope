@@ -56,6 +56,7 @@ class SessionController extends Controller
     {  
         Session::findOrFail($id);
         Session::destroy($id);
+        session()->flash('message', 'The session has been successfully deleted!');
     
         return redirect()->route('sessions');
     }
