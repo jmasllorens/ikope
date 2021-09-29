@@ -155,9 +155,10 @@ class PatientController extends Controller
     
 
         if ($notes->count() == 0)
-        { return Inertia::render('User/Patients/Sessions', ['id' => $patient->id, 'patient', $patient, 'sessions' => $patient->sessions]);}
+        { return Inertia::render('User/Patients/Sessions', ['id' => $patient->id, 'patient', $patient, 'sessions' => $patient->sessions]);} 
+     
       
-        return Inertia::render('User/Patients/Sessions', ['id' => $patient->id, 'patient' => $patient, 'sessions' => $patient->sessions, 'notes' => $notes]);}
+        return Inertia::render('User/Patients/Sessions', ['id' => $patient->id, 'patient' => $patient, 'sessions' => $patient->sessions, 'notes' => $patient->notes]);}
         
         else {return redirect()->route('dashboard');}
 
@@ -193,14 +194,16 @@ class PatientController extends Controller
         }
        
         $note = $session->note;
+
+     
         if ( $note == null)
         {
             return Inertia::render('User/Sessions/Show', ['patient' => $patient, 'session' => $session]);
         }
- 
+      
        
   
-        return Inertia::render('User/Sessions/Show', ['patient' => $patient, 'session' => $session, 'note', $note]);}
+        return Inertia::render('User/Sessions/Show', ['patient' => $patient, 'session' => $session, 'notes' => $session->note]);}
         
         else {return redirect()->route('dashboard');}
 
