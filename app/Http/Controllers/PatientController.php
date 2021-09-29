@@ -90,6 +90,7 @@ class PatientController extends Controller
         Patient::create($newPatient);
 
         $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->id)->get();
+        session()->flash('message', 'A new patient has been successfully created!');
     
         return redirect()->route('patients');
     }
@@ -118,6 +119,7 @@ class PatientController extends Controller
           
            
             $patient = Patient::findOrFail($id);
+            session()->flash('message', 'The patient has been successfully updated!');
             return redirect()->route('patients');
           
         }
@@ -125,6 +127,7 @@ class PatientController extends Controller
     public function delete($id)
     {
         Patient::destroy($id);
+        session()->flash('message', 'The patient has been successfully deleted!');
     
         return redirect()->route('patients');
     }
@@ -227,6 +230,7 @@ class PatientController extends Controller
            
             $patient = Patient::findOrFail($id);
             $session = Session::findOrFail($sId);
+            session()->flash('message', 'The session has been successfully updated!');
             return redirect()->route('patients_sessions', ['id' => $id, 'session' => $session]);
           
         }
@@ -271,6 +275,7 @@ class PatientController extends Controller
 
 
         $sessions = Session::orderBy('date', 'desc')->where('user_id', $user->id && 'patient_id', $patient->id)->get();
+        session()->flash('message', 'A new session has been successfully created!');
     
         return redirect()->route('patients_sessions', $patient->id);
     }
@@ -323,6 +328,7 @@ class PatientController extends Controller
         Note::create($newNote);
    
         $note = Note::all()->where('user_id', $user->id, 'patient_id', $patient->id, 'session_id', $session->id);
+        session()->flash('message', 'A new note has been successfully created!');
     
         return redirect()->route('sessions_show', [$patient->id, $session->id]);
     }
@@ -350,6 +356,7 @@ class PatientController extends Controller
             $patient = Patient::findOrFail($id);
             $session = Session::findOrFail($sId);
             $note = Note::findOrFail($nId);
+            session()->flash('message', 'The note has been successfully updated!');
             return redirect()->route('patients_sessions', ['id' => $id, 'session' => $session, 'note' => $note]);
           
         }
@@ -359,6 +366,7 @@ class PatientController extends Controller
             $session = Session::findOrFail($id);
             $patientId = $session->patient_id;
             Session::destroy($id);
+            session()->flash('message', 'The session has been successfully deleted!');
  
             return redirect()->route('patients_sessions', ['id' => $patientId]);
         }
@@ -370,6 +378,7 @@ class PatientController extends Controller
             $patient = $note->patient;
             $session = $note->session;
             Note::destroy($id);
+            session()->flash('message', 'The note has been successfully deleted!');
         
             return redirect()->route('sessions_show', ['id' => $patient->id, 'sId' => $session->id]);
         }
