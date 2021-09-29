@@ -123,11 +123,12 @@ class SeminarController extends Controller
 
         if($request->hasFile('image'))
     {
-        $newEvent['image']=$request->file('image')->store('images', 'public');
+        $newSeminar['image']=$request->file('image')->store('images', 'public');
     }
         Seminar::create($newSeminar);
 
         $seminars = Seminar::orderBy('date', 'asc')->get();
+        session()->flash('message', 'A new seminar has been successfully created!');
     
        return redirect()->route('seminars');
 
@@ -158,6 +159,7 @@ class SeminarController extends Controller
             Seminar::where('id', '=', $id)->update($changesSeminar);
            
             $seminar = Seminar::findOrFail($id);
+            session()->flash('message', 'The seminar has been successfully updated!');
             return redirect()->route('seminars');
           
         }
@@ -165,7 +167,7 @@ class SeminarController extends Controller
     public function delete($id)
     {
         Seminar::destroy($id);
-
+        session()->flash('message', 'The seminar has been successfully deleted!');
         return redirect()->route('seminars');
     }
 

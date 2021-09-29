@@ -26,6 +26,7 @@ class UserController extends Controller
         $changesUser = request()->except(['_token', '_method']);
         User::where('id', '=', $id)->update($changesUser);
         $seminar = User::findOrFail($id);
+        session()->flash('message', 'Your profile has been successfully updated!');
        
         return redirect()->route('dashboard');
     }

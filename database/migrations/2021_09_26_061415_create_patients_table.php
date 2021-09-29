@@ -20,7 +20,7 @@ class CreatePatientsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->nullable();
             $table->integer('age');
             $table->string('surname')->nullable();
             $table->string('pronoun');
