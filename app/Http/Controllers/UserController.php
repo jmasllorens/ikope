@@ -10,11 +10,14 @@ use App\Models\User;
 class UserController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {   $user = Auth::user();
         if ($user->isAdmin)
         {
-            $users = User::orderByDesc('id')->where('isAdmin', false)->paginate(20);
+            $users = User::orderByDesc('id')->where('isAdmin', false)->when($request->term, function($query, $term){
+                $query->where('name', 'LIKE', '%'. $term .'%');
+            })->paginate(20);
+
             return Inertia::render('Admin/Users', ['users' => $users]);
         }
             return redirect()->route('dashboard');

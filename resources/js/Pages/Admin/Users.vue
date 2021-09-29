@@ -10,6 +10,11 @@
                     </div>
                 </div>
            ------
+           <div class="p-4">
+               <label for="search" class="mb-3">Search</label>
+               <input id="search" type="text" v-model="term" @keyup="search">
+
+           </div>
 
             <tr v-for="user in users.data" v-bind:key="user">
                 <th>
@@ -41,7 +46,9 @@
 <script>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import { Head } from '@inertiajs/inertia-vue3'
-import Pagination from '@/Components/Pagination.vue';
+import Pagination from '@/Components/Pagination.vue'
+import BreezeLabel from '@/Components/Label.vue'
+import BreezeInput from '@/Components/Input.vue';
 
 
 export default {
@@ -52,7 +59,22 @@ export default {
         BreezeAuthenticatedLayout,
         Head,
         Pagination,
+        BreezeLabel,
+        BreezeInput
+        
     },
+    data() {
+        return {
+            term: '',
+         
+  
+        }
+    },
+    methods: {
+        search() {
+            this.$inertia.get(route('users', {term: this.term}))
+        }
+    }
 }
 </script>
 <style scoped>
