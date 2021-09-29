@@ -356,10 +356,10 @@ class PatientController extends Controller
         public function deleteSessions($id)
         {  
             $session = Session::findOrFail($id);
-            $patient = $session->patient;
+            $patientId = $session->patient_id;
             Session::destroy($id);
  
-            return redirect()->route('patients_sessions', ['id' => $patient->id]);
+            return redirect()->route('patients_sessions', ['id' => $patientId]);
         }
 
         public function deleteNotes($id)

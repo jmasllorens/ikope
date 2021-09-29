@@ -17,7 +17,7 @@
   <div><BreezeButton class="bg-yellow-400 hover:bg-yellow-500"> <a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}/edit`" method="get"> Edit Session</a></BreezeButton></div>
 
 <br>
-  <div><BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteSession()">Delete Session</BreezeButton></div>
+  <div><BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteSession(`${$page.props.patient.id}`)">Delete Session</BreezeButton></div>
 <br>
   <div v-if="$page.props.session.note != null"><BreezeButton class="bg-yellow-400 hover:bg-yellow-500"> <a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}/${$page.props.session.note.id}/edit`" method="get"> Edit Session</a></BreezeButton></div>
      <br>
@@ -135,9 +135,9 @@ export default {
     },
 
     methods: {
-    deleteSession() {
+    deleteSession(id) {
       if(confirm('Are you sure you want to delete this session?')) {
-      this.$inertia.delete(`/session/${this.$page.props.session.id}`)
+      this.$inertia.delete(`/session/${this.$page.props.session.id}`, id)
       }
       return;
       },

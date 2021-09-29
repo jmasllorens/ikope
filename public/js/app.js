@@ -20299,6 +20299,15 @@ __webpack_require__.r(__webpack_exports__);
     Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
     BreezeButton: _Components_Button_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     BreezeNavLink: _Components_NavLink_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  methods: {
+    deleteSession: function deleteSession(id, sId) {
+      if (confirm('Are you sure you want to delete this session?')) {
+        this.$inertia["delete"]("/session/".concat(sId), id);
+      }
+
+      return;
+    }
   }
 });
 
@@ -20605,9 +20614,9 @@ __webpack_require__.r(__webpack_exports__);
     BreezeButton: _Components_Button_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   methods: {
-    deleteSession: function deleteSession() {
+    deleteSession: function deleteSession(id) {
       if (confirm('Are you sure you want to delete this session?')) {
-        this.$inertia["delete"]("/session/".concat(this.$page.props.session.id));
+        this.$inertia["delete"]("/session/".concat(this.$page.props.session.id), id);
       }
 
       return;
@@ -24727,7 +24736,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
           "class": "bg-red-400 hover:bg-red-500",
           onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-            return _ctx.deleteSession("".concat(session.id));
+            return $options.deleteSession("".concat(session.patient_id), "".concat(session.id));
           }, ["prevent"])
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -26128,7 +26137,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       })]), _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
         "class": "bg-red-400 hover:bg-red-500",
         onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-          return $options.deleteSession();
+          return $options.deleteSession("".concat(_ctx.$page.props.patient.id));
         }, ["prevent"]))
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {

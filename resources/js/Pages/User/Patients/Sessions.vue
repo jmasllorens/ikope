@@ -90,9 +90,9 @@
                <td>
                  <BreezeButton class="bg-green-400 text-white hover:bg-green-500 active:bg-blue-400"><a :href="`/patients/${session.patient_id}/sessions/${session.id}/edit`" method="get">Edit</a></BreezeButton>
               </td>
-              <td>
-                <BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteSession(`${session.id}`)">Delete</BreezeButton>
-              </td> 
+            <td>
+                <BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteSession(`${session.patient_id}`, `${session.id}`)">Delete</BreezeButton>
+              </td>
             </tr>
           
           </tbody>
@@ -151,6 +151,14 @@ export default {
     BreezeButton,
     BreezeNavLink,
   },
+   methods: {
+    deleteSession(id, sId) {
+      if(confirm('Are you sure you want to delete this session?')) {
+      this.$inertia.delete(`/session/${sId}`, id)
+      }
+      return;
+      },
+   }
 };
 </script>
 <style scoped>
