@@ -79,15 +79,15 @@
                       class="
                         flex
                         justify-center
-                        p-4
+                        p-2
                         bg-white
-                        ring-2 ring-white
                         rounded-lg
                         shadow-xl
                         w-32
                       "
+                      style="border-radius:20rem;"
                     >
-                      <img src="@/Assets/ikFile.jpeg" alt="file" />
+                      <img src="@/Assets/divan.jpeg" alt="divan" style="border-radius:45rem" />
                     </div>
                    
                      
@@ -102,10 +102,8 @@
               <br>
                 
               <div class="grid justify-items-center mb-2">
-               <a class="cursor-pointer" :href="`/patients/${patient.id}`">   <h2 class="font-semibold text-sm text-gray-800 uppercase">{{patient.name}}</h2></a>
-               <p>{{patient.sessions.length}}</p>
-                <p>{{patient.notes.length}}</p> 
-              
+               <a class="cursor-pointer" :href="`/patients/${patient.id}`">   <h2 class="font-semibold text-m text-gray-800">{{patient.name}}</h2></a>
+               <p class="font-light text-sm">{{patient.sessions.length}} sessions | {{patient.notes.length}} notes </p>    
             </div>
             <br>
             </span>

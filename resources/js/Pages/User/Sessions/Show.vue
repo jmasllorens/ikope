@@ -64,28 +64,25 @@
             <div class="flex border-t border-gray-700 w-full py-4 mr-12">  
                 <div class="">
                   <div class="flex justify-between">
-                      <span v-if="$page.props.session.isPayed == 1"
-              class="inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white py-1.5 px-3 pt-1.5"
-              >{{$page.props.session.cost}} € payed </span>
 
-             <span v-if="$page.props.session.isPayed == 0"
-              class="inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white px-3 mt-2"
-              ><p class="p-1">{{$page.props.session.cost}} € pending</p></span>
+                     <span v-if="$page.props.session.isPayed == 1" class="flex inline-block"><svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg><p class="mt-2">&nbsp;&nbsp;{{$page.props.session.cost}} € payed </p></span>
+
+             <span v-if="$page.props.session.isPayed == 0" class="flex inline-block"><svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg><p class="mt-2">&nbsp;&nbsp;{{$page.props.session.cost}} € pending</p></span>
                   
             <span v-if="$page.props.notes != null && $page.props.notes.isImportant == 1" 
-              class="inline-block h-min space-x-1 items-center rounded-full text-m font-medium text-red-600">
-              <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              class="inline-block h-min space-x-1 items-center rounded-full text-m font-medium">
+              <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </span>
            
             
             </div>
             <br>
             <br>
-            <div class="grid grid-cols-4">
+            <div class="grid grid-cols-3">
                <div class="mr-12">
                     <p class="text-m"><strong>Keywords:</strong>&nbsp; {{$page.props.session.keywords}} </p>
               </div>
-            <div class=""></div>
+         
             <div class="ml-12 gap-8"></div>
                <div class="ml-12 justify-self-end cursor-pointer"> <a :href="`/patients/${$page.props.patient.id}`" method="get">
                  <p class="text-m"><strong>Patient:</strong>&nbsp; {{$page.props.patient.name}} </p> </a>
@@ -98,7 +95,7 @@
                      <p class="text-m font-bold  mr-5 ml-5 ">{{$page.props.notes.title}}</p>
                      <br>
                   
-                   <p class="text-ms font-light text-gray-800 mr-5 ml-5 ">
+                   <p class="text-ms font-light text-gray-800 mr-5 ml-5 leading-loose ">
                    {{ $page.props.notes.text }}
                   </p> 
                   <br>

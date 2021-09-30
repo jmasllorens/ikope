@@ -96,7 +96,7 @@
                      <p class="text-m font-bold  mr-5 ml-5 ">History:</p>
                      <br>
                   
-                   <p class="text-ms font-light text-gray-800 mr-5 ml-5 ">
+                   <p class="text-ms font-light text-gray-800 mr-5 ml-5 leading-loose ">
                    {{ $page.props.patient.history }}
                   </p> 
                   <br>

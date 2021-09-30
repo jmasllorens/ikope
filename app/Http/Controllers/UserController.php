@@ -34,6 +34,13 @@ class UserController extends Controller
         return redirect()->route('dashboard');
     }
 
+    public function delete($id)
+    {
+        User::destroy($id);
+        session()->flash('message', 'The user has been successfully deleted!');
+        return redirect()->route('users');
+    }
+
    
 
 
