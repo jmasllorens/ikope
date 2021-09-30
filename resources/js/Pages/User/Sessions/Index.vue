@@ -39,10 +39,7 @@
 
           
           <span class="justify-self-end">
-                <div>
-                <BreezeButton>
-                        <a :href="route('patients')" method="get">New Session</a></BreezeButton>
-                </div>
+               
           </span>
           
         </div>
@@ -68,6 +65,8 @@
               </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Rate & Payment
+              </th>
+               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               </th>
                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               </th>
@@ -101,7 +100,10 @@
                 </span>
               </td>
              <td>
-                 <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/patients/${session.patient_id}/sessions/${session.id}`" method="get">View</a></BreezeButton>
+                 <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500"><a :href="`/patients/${session.patient_id}/sessions/${session.id}`" method="get">View</a></BreezeButton>
+              </td>
+               <td>
+                 <BreezeButton class="bg-green-400 text-white hover:bg-green-500"><a :href="`/sessions/${session.id}/edit`" method="get">Edit</a></BreezeButton>
               </td>
               <td>
                 <BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteSession(`${session.id}`)">Delete</BreezeButton>
@@ -144,7 +146,7 @@ export default {
    methods: {
     deleteSession(id) {
        if(confirm('Are you sure you want to delete this session?')) {
-      this.$inertia.delete(`/sessions/${id}`, id)
+      this.$inertia.delete(`/sessions/${id}`)
       }
       return;
       }

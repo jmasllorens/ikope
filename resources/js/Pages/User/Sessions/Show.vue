@@ -11,7 +11,7 @@
 
 <div class="flex justify-center m-6">
 <div>
-  <div v-if="$page.props.session.note = null"><BreezeButton class="bg-green-400 hover:bg-green-500"> <a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}/${$page.props.session.note.id}/create`" method="get"> Create Note</a></BreezeButton></div>
+  <div v-if="$page.props.session.note == null"><BreezeButton class="bg-green-400 hover:bg-green-500"> <a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}/create`" method="get"> Add Note</a></BreezeButton></div>
      <br>
   <br>
   <div><BreezeButton class="bg-yellow-400 hover:bg-yellow-500"> <a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}/edit`" method="get"> Edit Session</a></BreezeButton></div>
@@ -52,35 +52,7 @@
           <div class="flex flex-row items-end h-full w-full px-4 mt-4">
             <div class="flex border-t border-gray-700 w-full py-4">
                 <div class="">
-                   <!--  <p class="text-m font-semibold">Mail:</p>
-                  <p class="text-m font-light tracking-wider text-gray-700">
-                  {{$page.props.patient.email}}
-                  </p> 
-                   <p class="text-m font-semibold">Age:</p>
-                  <p class="text-m font-light tracking-wider text-gray-700">
-                      {{$page.props.patient.age}}
-                  </p>
-                  <br>
-                   <p class="text-m font-semibold">Motive of consultation:</p>
-                   <p class="text-m font-light tracking-wide text-gray-700">
-                   {{ $page.props.patient.motive }}
-                  </p> 
-                     <p class="text-m font-semibold">{{$page.props.patient.name}}'s History:</p>
-                   <p class="text-m font-light tracking-wide text-gray-700">
-                   {{ $page.props.patient.history }}
-                  </p> 
-                  <br> -->
-           
                 
-         
-        <!--   <span v-for="session in $page.props.patient.sessions" v-bind:key="session" class="text-m font-light tracking-wider text-gray-600">
-              <p> Session number: {{ session.id}} </p>
-                      <p> Session date: {{ session.date }} </p>
-                       <p> Session keyword: {{ session.keywords }} </p>
-                         <p> Session cost: {{ session.cost }} (is payed: {{ session.isPayed }}) </p>
-                      
-                        <br>
-                    </span> -->
            
             <div v-if="$page.props.notes != null" class="text-m font-semibold">
                 
@@ -97,15 +69,7 @@
               </div>
               <div>
                 
-               <!--  <BreezeButton  v-if="$props.seminar.users.length < $props.seminar.availability && !isSubscribed && !$props.auth.user.isAdmin"><a :href="`/subscribe/${seminar.id}`" method="get">Subscribe</a></BreezeButton>
-
-                <BreezeButton v-if="isSubscribed && !$props.auth.user.isAdmin"><a :href="`/unsubscribe/${seminar.id}`" method="get">Unsubscribe</a></BreezeButton>
-
-                <div v-if="$props.auth.user.isAdmin" class="inline-flex">
-                <BreezeButton class="bg-green-700 hover:bg-green-800 mr-3"><a :href="`/seminars/${seminar.id}/edit`" method="get">Edit</a></BreezeButton>
-
-                <BreezeButton class="bg-red-700 hover:bg-red-800 mr-3" @click.prevent="deleteSeminar(`${seminar.id}`)">Delete</BreezeButton> 
-                </div> -->
+           
               </div>
           </div>
         <br>

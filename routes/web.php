@@ -77,7 +77,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   
 
     Route::get('/sessions', [SessionController::class, 'index'])->name('sessions');
-    Route::delete('/sessions/{id}/', [SessionController::class, 'delete'])->name('sessions_delete');
+    Route::delete('/sessions/{id}/', [SessionController::class, 'delete'])->name('delete');
+    Route::get('/sessions/{id}/edit', [SessionController::class, 'edit'])->name('edit');
+    Route::patch('/sessions/{id}/update', [SessionController::class, 'update'])->name('update');
 
 
 

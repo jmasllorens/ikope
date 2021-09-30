@@ -61,7 +61,14 @@
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Rate & Payment
               </th>
+              <th v-if="$page.props.notes != null" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Notes
+              </th>
                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               </th>
             </tr>
           </thead>
@@ -84,6 +91,14 @@
                 {{ session.cost}} € payed
                 </span>
               </td>
+               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <span v-if="session.note != null && session.note.isImportant == 0">
+                  {{session.note.title}}
+                </span>
+                <span v-if="session.note != null && session.note.isImportant == 1" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700">
+                (!) {{ session.note.title}}
+                </span>
+              </td>
              <td>
                  <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/patients/${session.patient_id}/sessions/${session.id}`" method="get">View</a></BreezeButton>
               </td>
@@ -94,47 +109,17 @@
                 <BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteSession(`${session.patient_id}`, `${session.id}`)">Delete</BreezeButton>
               </td>
             </tr>
-          
           </tbody>
         </table>
         </div>
         </div>
         </div>
           </div>
-
-        <br>
-  
-  
-
-        
+        <br>      
       </div>
       
     </div>
 
-
-
-
-----------------------------------------
-<div>
-     <h1>Sessions</h1>
-   <span v-for="session in $page.props.sessions" v-bind:key="session" class="text-m font-light tracking-wider text-gray-600">
-    <p> {{session.id}} | {{session.date}} | {{session.cost}} | {{session.isPayed}}
-        | {{session.keywords}} ||   </p>
-
-      
-
-
-    </span>
-  <h2>Notes</h2>
-     <span v-for="note in $page.props.notes" v-bind:key="note" class="text-m font-light tracking-wider text-gray-600">
-         
-        <p> {{note.id}}  {{note.title}} | {{note.isImportant}} </p>
-    </span>
-
-
-	
-
-    </div>
     </BreezeAuthenticatedLayout>
 </template>
 <script>

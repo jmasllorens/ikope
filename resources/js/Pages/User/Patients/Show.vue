@@ -34,12 +34,18 @@
             >
 
           </span>
-  </div>
+         
 </div>
+    <div class="flex justify-center">
 
-
+   <h1
+              class="text-xl font-medium leading-6 tracking-wide text-black">
+            {{$page.props.patient.name}} 
+            </h1>
+            <p class="text-gray-700"> &nbsp;&nbsp;({{$page.props.patient.pronoun}}) </p>
+  </div>
 <div class="flex justify-center m-9">
-     <div >
+     <div class="mr-12">
      
          <div class="mt-15"><BreezeButton class="bg-green-400 hover:bg-green-500"> <a :href="`/patients/${$page.props.patient.id}/sessionscreate`" method="get">New Session</a></BreezeButton></div>
            <br>
@@ -48,54 +54,60 @@
            <br>
   
                 <div><BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deletePatient(`${$page.props.patient.id}`)">Delete Patient</BreezeButton></div></div>
-  <div class="flex flex-col h-full w-4/5 mx-auto bg-blueish rounded-lg">
-      
-          <div class="flex justify-between -mt-4 px-4">
-            <span v-if="$page.props.patient.isConsulting == 1"
+    
+          
+        
+           
+    
+         
+
+            <div class="flex border-t border-gray-700 w-full py-4 mr-12">
+               
+                <div class="">
+                  <div class="flex justify-between">
+                   <span v-if="$page.props.patient.isConsulting == 1"
               class="inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white py-1.5 px-3 pt-1.5"
-              >Active</span>
+              >Active </span>
 
              <span v-if="$page.props.patient.isConsulting == 0"
-              class="inline-block ring-2 bg-yellow-300 ring-yellow-300 rounded-sm text-m tracking-wide font-bold text-gray-800 py-1.5 px-3 pt-1.5"
+              class="inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white py-1.5 px-3 pt-1.5"
               >Filed</span>
+              <span>
+              </span>
             <span
-              class="flex h-min space-x-1 items-center rounded-full bg-gray-700 py-2 px-3 text-m font-medium">
+              class="inline-block h-min space-x-1 items-center rounded-full bg-gray-700 py-2 px-3 text-m font-medium">
                <p class="text-white font-semibold text-sm">
                 {{$page.props.patient.sessions.length }} sessions | {{ $page.props.patient.notes.length }} notes
               </p>
             </span>
-          </div>
-          <div class="py-2 px-4">
+            </div>
             <br>
-            <h1
-              class="text-xl font-medium leading-6 tracking-wide text-black">
-            {{$page.props.patient.name}} 
-            </h1>
-            <p class="text-gray-700"> ({{$page.props.patient.pronoun}}) </p>
-          </div>
-          <div class="flex flex-row items-end h-full w-full px-4 mt-4">
-            <div class="flex border-t border-gray-700 w-full py-4">
-                <div class="">
-                    <p class="text-m font-semibold">Mail:</p>
-                  <p class="text-m font-light tracking-wider text-gray-700">
-                  {{$page.props.patient.email}}
-                  </p> 
-                   <p class="text-m font-semibold">Age:</p>
-                  <p class="text-m font-light tracking-wider text-gray-700">
-                      {{$page.props.patient.age}}
-                  </p>
+            <br>
+            <div class="grid grid-cols-3">
+               <div class="">
+                    <p class="text-m"><strong>Reason for consultation:</strong>&nbsp;       {{$page.props.patient.motive}}</p>
+              </div>
+              <div class="">
+                    <p class="text-m"><strong>Mail:</strong>&nbsp;       {{$page.props.patient.email}}</p>
+              </div>
+               <div class="">
+                    <p class="text-m"><strong>Age:</strong>&nbsp;        {{$page.props.patient.age}}</p>
+              </div>
+                  
                   <br>
-                   <p class="text-m font-semibold">Motive of consultation:</p>
-                   <p class="text-m font-light tracking-wide text-gray-700">
-                   {{ $page.props.patient.motive }}
-                  </p> 
-                     <p class="text-m font-semibold">{{$page.props.patient.name}}'s History:</p>
-                   <p class="text-m font-light tracking-wide text-gray-700">
+                  <br>
+                  </div>
+                  <div class="bg-white p-6 overflow-hidden shadow-sm sm:rounded-lg">
+                     <p class="text-m font-bold  mr-5 ml-5 ">History:</p>
+                     <br>
+                  
+                   <p class="text-ms font-light text-gray-800 mr-5 ml-5 ">
                    {{ $page.props.patient.history }}
                   </p> 
                   <br>
+                  </div>
            
-                 <div class="text-m font-semibold">
+                <!--  <div class="text-m font-semibold">
                   <h2>Sessions</h2>
                   <br>
                 
@@ -122,22 +134,9 @@
                          <p> Note body: {{ note.text }}  </p>
                         <br>
                     </span>
-            </div>
+            </div> -->
                 </div>
-              </div>
-              <div>
-                
-               <!--  <BreezeButton  v-if="$props.seminar.users.length < $props.seminar.availability && !isSubscribed && !$props.auth.user.isAdmin"><a :href="`/subscribe/${seminar.id}`" method="get">Subscribe</a></BreezeButton>
-
-                <BreezeButton v-if="isSubscribed && !$props.auth.user.isAdmin"><a :href="`/unsubscribe/${seminar.id}`" method="get">Unsubscribe</a></BreezeButton>
-
-                <div v-if="$props.auth.user.isAdmin" class="inline-flex">
-                <BreezeButton class="bg-green-700 hover:bg-green-800 mr-3"><a :href="`/seminars/${seminar.id}/edit`" method="get">Edit</a></BreezeButton>
-
-                <BreezeButton class="bg-red-700 hover:bg-red-800 mr-3" @click.prevent="deleteSeminar(`${seminar.id}`)">Delete</BreezeButton> 
-                </div> -->
-              </div>
-              
+       
           </div>
   
         </div>
