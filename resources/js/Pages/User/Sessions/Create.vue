@@ -34,6 +34,13 @@
                 <BreezeInput v-model="form.cost" id="cost" type="number" max="100" min="20" class="mt-1 block w-full" placeholder="Select a rate for the session" />
                 </div>
 
+                <div class="mt-6 mb-2">
+                <label class="flex items-center" for="isPayed">
+                <BreezeCheckbox name="isPayed" v-model="form.isPayed" true-value=1 />
+                <span class="ml-2 text-sm text-gray-600">Session payed</span>
+                </label>
+                </div>
+
                 <div class="flex items-center justify-end mt-4 space-x-3">
                 <BreezeButton class="bg-green-400 text-white hover:bg-green-500" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Save
@@ -56,6 +63,7 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import { Head } from '@inertiajs/inertia-vue3'
 import BreezeButton from '@/Components/Button.vue'
 import BreezeLabel from '@/Components/Label.vue'
+import BreezeCheckbox from '@/Components/Checkbox.vue';
 import BreezeInput from '@/Components/Input.vue';
 
 export default {
@@ -65,6 +73,7 @@ export default {
         Head,
         BreezeButton,
         BreezeLabel,
+        BreezeCheckbox,
         BreezeInput   
     },
 
@@ -73,7 +82,8 @@ export default {
             form: this.$inertia.form({
                 date: '',
                 cost: '',
-                keywords: ''
+                keywords: '',
+                isPayed: '0'
             
             })
         }
@@ -86,6 +96,7 @@ export default {
             data.append('date', this.form.date)
             data.append('keywords', this.form.keywords)
             data.append('cost', this.form.cost)
+            data.append('isPayed', this.form.isPayed)
             
             this.$inertia.post(`/patients/${this.$page.props.patient.id}/sessions/store`, data, `${this.$page.props.patient.id}`)
         }

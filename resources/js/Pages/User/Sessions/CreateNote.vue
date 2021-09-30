@@ -29,11 +29,18 @@
                 <textarea class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" max="10000" v-model="form.text" ref="input" id="text" type="textarea" required autofocus />
                 </div>
 
+                <div class="mt-6 mb-2">
+                <label class="flex items-center" for="isImportant">
+                <BreezeCheckbox name="isImportant" v-model="form.isImportant" true-value=1 />
+                <span class="ml-2 text-sm text-gray-600">Important</span>
+                </label>
+                </div>
+
                 <div class="flex items-center justify-end mt-4 space-x-3">
                 <BreezeButton class="bg-green-400 text-white hover:bg-green-500" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Save
                 </BreezeButton>
-                <BreezeButton class="bg-red-400 text-white hover:bg-red-500 "><a :href="`/patients/${$page.props.patient.id}`" method="get">Cancel</a></BreezeButton>
+                <BreezeButton class="bg-red-400 text-white hover:bg-red-500 "><a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}`" method="get">Cancel</a></BreezeButton>
                 </div>
        
             </div>
@@ -51,6 +58,7 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import { Head } from '@inertiajs/inertia-vue3'
 import BreezeButton from '@/Components/Button.vue'
 import BreezeLabel from '@/Components/Label.vue'
+import BreezeCheckbox from '@/Components/Checkbox.vue'
 import BreezeInput from '@/Components/Input.vue';
 
 export default {
@@ -60,6 +68,7 @@ export default {
         Head,
         BreezeButton,
         BreezeLabel,
+        BreezeCheckbox,
         BreezeInput   
     },
 
@@ -67,7 +76,8 @@ export default {
         return {
             form: this.$inertia.form({
                 title: '',
-                text: ''
+                text: '',
+                isImportant: '0'
                
             
             })
@@ -80,6 +90,7 @@ export default {
 
             data.append('title', this.form.title)
             data.append('text', this.form.text)
+            data.append('isImportant', this.form.isImportant)
             
             this.$inertia.post(`/patients/${this.$page.props.patient.id}/sessions/${this.$page.props.session.id}/store`, data, `${this.$page.props.patient.id}`, `${this.$page.props.session.id}`)
         }
