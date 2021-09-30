@@ -65,15 +65,10 @@
                
                 <div class="">
                   <div class="flex justify-between">
-                   <span v-if="$page.props.patient.isConsulting == 1"
-              class="inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white py-1.5 px-3 pt-1.5"
-              >Active </span>
+                  <span v-if="$page.props.patient.isConsulting == 1" class="flex inline-block"><svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z"></path></svg><p class="mt-2">&nbsp;&nbsp;Consulting</p></span>
 
-             <span v-if="$page.props.patient.isConsulting == 0"
-              class="inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white py-1.5 px-3 pt-1.5"
-              >Filed</span>
-              <span>
-              </span>
+             <span v-if="$page.props.patient.isConsulting == 0" class="flex inline-block"><svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg><p class="mt-2">&nbsp;&nbsp;Filed</p></span>
+        
             <span
               class="inline-block h-min space-x-1 items-center rounded-full bg-gray-700 py-2 px-3 text-m font-medium">
                <p class="text-white font-semibold text-sm">

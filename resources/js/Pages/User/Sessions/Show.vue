@@ -39,9 +39,10 @@
     <div class="flex justify-center">
 
    <h1
-              class="text-xl font-medium leading-6 tracking-wide text-black">
-         <strong>Session:</strong>&nbsp;&nbsp;{{$page.props.session.date}}
+             class="text-xl font-medium leading-6 tracking-wide text-black">
+        Session:
             </h1>
+               <p class="text-gray-700"> &nbsp;&nbsp;{{$page.props.session.date}} </p>
            
   </div>
 
@@ -71,7 +72,7 @@
               class="inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white px-3 mt-2"
               ><p class="p-1">{{$page.props.session.cost}} € pending</p></span>
                   
-            <span v-if="$page.props.notes != null && $page.props.notes.isImportant == 0" 
+            <span v-if="$page.props.notes != null && $page.props.notes.isImportant == 1" 
               class="inline-block h-min space-x-1 items-center rounded-full text-m font-medium text-red-600">
               <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </span>
@@ -84,13 +85,13 @@
                <div class="mr-12">
                     <p class="text-m"><strong>Keywords:</strong>&nbsp; {{$page.props.session.keywords}} </p>
               </div>
-            <div class="ml-12  text-gray-100">-----------------------------------</div>
-            <div class="ml-12 text-gray-100">...---......----...........................</div>
+            <div class=""></div>
+            <div class="ml-12 gap-8"></div>
                <div class="ml-12 justify-self-end cursor-pointer"> <a :href="`/patients/${$page.props.patient.id}`" method="get">
                  <p class="text-m"><strong>Patient:</strong>&nbsp; {{$page.props.patient.name}} </p> </a>
                   </div> 
                   
-             
+              <br>
                   <br>
                   </div>
                   <div v-if="$page.props.notes != null" class="bg-white p-6 overflow-hidden shadow-sm sm:rounded-lg">

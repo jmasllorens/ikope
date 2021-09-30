@@ -120,7 +120,7 @@ class PatientController extends Controller
            
             $patient = Patient::findOrFail($id);
             session()->flash('message', 'The patient has been successfully updated!');
-            return redirect()->route('patients');
+            return redirect()->route('patients_show', ['id' => $id]);
           
         }
     

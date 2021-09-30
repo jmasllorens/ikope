@@ -32,6 +32,24 @@
                 <BreezeLabel for="cost" value="Rate" />
                 <BreezeInput v-model="form.cost" id="cost" type="number" max="100" min="20" class="mt-1 block w-full" />
                 </div>
+
+                 <div v-if="!$page.props.session.isPayed" class="mt-6 mb-2">
+                <label class="flex items-center" for="isPayed">
+                <BreezeCheckbox name="isPayed" v-model="form.isPayed" value=1 />
+                <span class="ml-2 text-sm text-gray-600">Session payed</span>
+                </label>
+                </div>
+
+                <div v-if="$page.props.session.isPayed" class="mt-6 mb-2">
+                <label class="flex items-center" for="isPayed">
+                <BreezeCheckbox name="isPayed" v-model="form.isPayed" true-value=0 false-value=1 />
+                <span class="ml-2 text-sm text-gray-600">Payment pending</span>
+                </label>
+                </div>
+
+
+
+
                 <div class="flex items-center justify-end mt-4 space-x-3">
                 <BreezeButton class="bg-green-400 text-white hover:bg-green-500" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Save
@@ -54,6 +72,7 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import { Head } from '@inertiajs/inertia-vue3'
 import BreezeButton from '@/Components/Button.vue'
 import BreezeLabel from '@/Components/Label.vue'
+import BreezeCheckbox from '@/Components/Checkbox.vue';
 import BreezeInput from '@/Components/Input.vue';
 
 export default {
@@ -63,6 +82,7 @@ export default {
         Head,
         BreezeButton,
         BreezeLabel,
+        BreezeCheckbox,
         BreezeInput   
     },
 
@@ -74,7 +94,8 @@ export default {
                 
                 date: this.$page.props.session.date,
                 keywords: this.$page.props.session.keywords,
-                cost: this.$page.props.session.cost
+                cost: this.$page.props.session.cost,
+                isPayed: this.$page.props.session.isPayed
          
             }
         }
@@ -87,6 +108,7 @@ export default {
             date: this.form.date,
             keywords: this.form.keywords,
             cost: this.form.cost,
+            isPayed: this.form.isPayed
            }
   
            
