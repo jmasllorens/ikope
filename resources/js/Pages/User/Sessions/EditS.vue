@@ -31,9 +31,8 @@
                 <div>
                 <BreezeLabel for="cost" value="Rate" />
                 <BreezeInput v-model="form.cost" id="cost" type="number" max="100" min="20" class="mt-1 block w-full" />
-                </div>
 
-                 <div v-if="!$page.props.session.isPayed" class="mt-6 mb-2">
+                <div v-if="!$page.props.session.isPayed" class="mt-6 mb-2">
                 <label class="flex items-center" for="isPayed">
                 <BreezeCheckbox name="isPayed" v-model="form.isPayed" value=1 />
                 <span class="ml-2 text-sm text-gray-600">Session payed</span>
@@ -47,14 +46,12 @@
                 </label>
                 </div>
 
-
-
-
+                </div>
                 <div class="flex items-center justify-end mt-4 space-x-3">
                 <BreezeButton class="bg-green-400 text-white hover:bg-green-500" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Save
                 </BreezeButton>
-                <BreezeButton class="bg-red-400 text-white hover:bg-red-500 "><a :href="`/patients/${this.$page.props.patient.id}/sessions/${this.$page.props.session.id}`" method="get">Cancel</a></BreezeButton>
+                <BreezeButton class="bg-red-400 text-white hover:bg-red-500 "><a :href="`/sessions`" method="get">Cancel</a></BreezeButton>
                 </div>
        
             </div>
@@ -72,7 +69,7 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import { Head } from '@inertiajs/inertia-vue3'
 import BreezeButton from '@/Components/Button.vue'
 import BreezeLabel from '@/Components/Label.vue'
-import BreezeCheckbox from '@/Components/Checkbox.vue';
+import BreezeCheckbox from '@/Components/Checkbox.vue'
 import BreezeInput from '@/Components/Input.vue';
 
 export default {
@@ -112,7 +109,7 @@ export default {
            }
   
            
-            this.$inertia.patch(`/patients/${this.$page.props.patient.id}/sessions/${this.$page.props.session.id}/update`, data)
+            this.$inertia.patch(`/sessions/${this.$page.props.session.id}/update`, data)
         }
     }
 }

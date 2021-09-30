@@ -42,10 +42,11 @@ class SessionController extends Controller
         {
             $patient = $session->patient;
             $note = $session->note;
+           
         }
-        
+            return Inertia::render('User/Sessions/Index', ['sessions' => $sessions, 'note' => $note]);
     
-            return Inertia::render('User/Sessions/Index', ['sessions' => $sessions]);
+            
     }
        
         return redirect()->route('dashboard');
@@ -58,7 +59,35 @@ class SessionController extends Controller
         Session::destroy($id);
         session()->flash('message', 'The session has been successfully deleted!');
     
-        return redirect()->route('sessions');
+        return redirect()->route('sessions', $id);
+    }
+
+    public function edit($id)
+    {
+        $user = Auth::user();
+        if ($user->isActive == true && $user->isAdmin == false)
+        {
+      
+        $session = Session::findOrFail($id);
+        return Inertia::render('User/Sessions/EditS', [ 'session' => $session, 'id' => $id]);
+        }
+        return redirect()->route('dashboard');
+    }
+
+    public function update($id)
+    {
+       
+            $changesSession = request()->except(['_token', '_method']);
+        
+                Session::where('id', '=', $id)->update($changesSession);
+              
+               
+               
+                $session = Session::findOrFail($id);
+                session()->flash('message', 'The session has been successfully updated!');
+                return redirect()->route('sessions', ['id' => $session->id]);
+              
+            
     }
 
     
@@ -108,10 +137,7 @@ class SessionController extends Controller
      * @param  \App\Models\Session  $session
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Session $session)
-    {
-        //
-    }
+  
 
     /**
      * Remove the specified resource from storage.

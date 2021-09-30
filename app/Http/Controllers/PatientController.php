@@ -120,7 +120,7 @@ class PatientController extends Controller
            
             $patient = Patient::findOrFail($id);
             session()->flash('message', 'The patient has been successfully updated!');
-            return redirect()->route('patients');
+            return redirect()->route('patients_show', ['id' => $id]);
           
         }
     
@@ -141,7 +141,7 @@ class PatientController extends Controller
         $patient = Patient::find($id);
         if ( $patient == null)
         {
-            return redirect()->route('patients', [$patient->id]);
+            return redirect()->route('patients');
         }
         $sessions = $patient->sessions;
       
@@ -155,9 +155,12 @@ class PatientController extends Controller
     
 
         if ($notes->count() == 0)
-        { return Inertia::render('User/Patients/Sessions', ['id' => $patient->id, 'patient', $patient, 'sessions' => $patient->sessions]);} 
+        { return Inertia::render('User/Patients/Sessions', ['id' => $patient->id, 'patient' => $patient, 'sessions' => $patient->sessions]);} 
      
-      
+        foreach ($sessions as $session)
+        {
+            $session->note;
+        }
         return Inertia::render('User/Patients/Sessions', ['id' => $patient->id, 'patient' => $patient, 'sessions' => $patient->sessions, 'notes' => $patient->notes]);}
         
         else {return redirect()->route('dashboard');}
@@ -217,7 +220,7 @@ class PatientController extends Controller
         {
         $patient = Patient::findOrFail($id);
         $session = Session::findOrFail($sId);
-        return Inertia::render('User/Sessions/Edit', ['patient' => $patient, 'session' => $session]);
+        return Inertia::render('User/Sessions/Edit', ['patient' => $patient, 'session' => $session, 'id' => $id, 'sId' => $sId]);
         }
         return redirect()->route('dashboard');
 
@@ -234,7 +237,7 @@ class PatientController extends Controller
             $patient = Patient::findOrFail($id);
             $session = Session::findOrFail($sId);
             session()->flash('message', 'The session has been successfully updated!');
-            return redirect()->route('patients_sessions', ['id' => $id, 'session' => $session]);
+            return redirect()->route('patients_sessions', ['patient' => $patient, 'session' => $session, 'id' => $id, 'sId' => $sId]);
           
         }
 
@@ -255,7 +258,7 @@ class PatientController extends Controller
            
             if ($sessions == null)
             {
-                return Inertia::render('User/Sessions/Create', ['patient' => $patient]);
+                return Inertia::render('User/Sessions/Create', ['patient' => $patient, 'id' => $patient->id]);
             }
           
             return Inertia::render('User/Sessions/Create', ['patient' => $patient, 'sessions', $sessions]);
@@ -280,7 +283,7 @@ class PatientController extends Controller
         $sessions = Session::orderBy('date', 'desc')->where('user_id', $user->id && 'patient_id', $patient->id)->get();
         session()->flash('message', 'A new session has been successfully created!');
     
-        return redirect()->route('patients_sessions', $patient->id);
+        return redirect()->route('patients_sessions', ['id' => $id]);
     }
 
 

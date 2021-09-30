@@ -49,6 +49,20 @@
                 <textarea class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" max="8000" v-model="form.history" ref="input" id="history" type="textarea" required autofocus />
                 </div>
 
+                  <div v-if="!$page.props.patient.isConsulting" class="mt-6 mb-2">
+                <label class="flex items-center" for="isConsulting">
+                <BreezeCheckbox name="isConsulting" v-model="form.isConsulting" value=1 />
+                <span class="ml-2 text-sm text-gray-600">Consulting</span>
+                </label>
+                </div>
+
+                <div v-if="$page.props.patient.isConsulting" class="mt-6 mb-2">
+                <label class="flex items-center" for="isConsulting">
+                <BreezeCheckbox name="isConsulting" v-model="form.isConsulting" true-value=0 false-value=1 />
+                <span class="ml-2 text-sm text-gray-600">File Patient</span>
+                </label>
+                </div>
+
                 <div class="flex items-center justify-end mt-4 space-x-3">
                 <BreezeButton class="bg-green-400 text-white hover:bg-green-500" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Save
@@ -71,7 +85,8 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import { Head } from '@inertiajs/inertia-vue3'
 import BreezeButton from '@/Components/Button.vue'
 import BreezeLabel from '@/Components/Label.vue'
-import BreezeInput from '@/Components/Input.vue';
+import BreezeInput from '@/Components/Input.vue'
+import BreezeCheckbox from '@/Components/Checkbox.vue';
 
 export default {
     
@@ -80,7 +95,8 @@ export default {
         Head,
         BreezeButton,
         BreezeLabel,
-        BreezeInput   
+        BreezeInput,
+        BreezeCheckbox   
     },
 
     
@@ -95,6 +111,7 @@ export default {
                 pronoun: this.$page.props.patient.pronoun,
                 motive: this.$page.props.patient.motive,
                 history: this.$page.props.patient.history,
+                isConsulting: this.$page.props.patient.isConsulting
          
             }
         }
@@ -109,7 +126,9 @@ export default {
             age: this.form.age,
             pronoun: this.form.pronoun,
             motive: this.form.motive,
-            history: this.form.history,}
+            history: this.form.history,
+            isConsulting: this.form.isConsulting
+            }
   
            
             this.$inertia.patch(`/patients/${this.$page.props.patient.id}/update`, data)
