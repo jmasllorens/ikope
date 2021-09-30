@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::patch('/profile/{id}/update', [UserController::class, 'update'])->name('profile_update');
     Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::delete('/users/{id}', [UserController::class, 'delete'])->name('users_delete');
 
     Route::get('/patients', [PatientController::class, 'index'])->name('patients');
     Route::get('/patients/{id}', [PatientController::class, 'show'])->name('patients_show');
