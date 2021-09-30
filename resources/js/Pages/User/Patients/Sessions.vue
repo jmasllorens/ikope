@@ -31,7 +31,7 @@
                 duration-150
                 ease-in-out
               "
-              >Back to {{$page.props.patient.name}} </a
+              >Back to &nbsp;<strong>{{$page.props.patient.name}}</strong> </a
             >
 
         </div>
