@@ -52,7 +52,7 @@
                  <div class="text-m font-semibold">
                   <h2>Abstract</h2>
                   <br>
-                  <p class="text-m font-light tracking-wider text-gray-600">
+                  <p class="text-m font-light tracking-wider text-gray-600 leading-loose ">
                     {{$props.seminar.description}}
                   </p>
                   <br>
