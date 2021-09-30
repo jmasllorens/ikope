@@ -40,7 +40,7 @@
                 </div>
 
                 <div>
-                <BreezeLabel for="motive" value="Main issue" />
+                <BreezeLabel for="motive" value="Reason for consultation" />
                 <BreezeInput v-model="form.motive" id="motive" type="text" class="mt-1 block w-full" placeholder="ex: Emotional dependency" required autofocus />
                 </div>
 
