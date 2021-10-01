@@ -97,6 +97,7 @@ class SeminarController extends Controller
         $m->to($user->email, $user->name)->subject($user->name.', you have a new notification');
         });
     }
+    
 
     public function mySeminars()
     {   $user = Auth::user();
