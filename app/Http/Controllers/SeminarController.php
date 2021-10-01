@@ -25,8 +25,10 @@ class SeminarController extends Controller
             
         }
 
-        
-            return Inertia::render('Seminars/Index', ['seminars' => $seminars, 'users' => $users, 'mySeminars', $mySeminars]);
+        if ($seminars->count() > 0)
+        {
+            return Inertia::render('Seminars/Index', ['seminars' => $seminars, 'users' => $users, 'mySeminars', $mySeminars]);}
+            return Inertia::render('Seminars/Index', ['seminars' => $seminars, 'mySeminars', $mySeminars]);
     }
 
 
@@ -92,7 +94,7 @@ class SeminarController extends Controller
             
         $m->from('ikope@ikope.com', 'I-KOPE');
 
-        $m->to($user->email, $user->name)->subject('You have a new notification');
+        $m->to($user->email, $user->name)->subject($user->name.', you have a new notification');
         });
     }
 
@@ -165,8 +167,9 @@ class SeminarController extends Controller
         }
     
     public function delete($id)
-    {
+    {   
         Seminar::destroy($id);
+     
         session()->flash('message', 'The seminar has been successfully deleted!');
         return redirect()->route('seminars');
     }

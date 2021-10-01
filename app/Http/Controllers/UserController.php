@@ -35,9 +35,17 @@ class UserController extends Controller
     }
 
     public function delete($id)
-    {
+    { 
         User::destroy($id);
         session()->flash('message', 'The user has been successfully deleted!');
+        return redirect()->route('users');
+    }
+
+    public function deleteAll()
+    { 
+        $users = User::orderByDesc('id')->where('isAdmin', false)->get();
+        User::destroy($users);
+        session()->flash('message', 'All users have been successfully deleted!');
         return redirect()->route('users');
     }
 

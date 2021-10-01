@@ -12,10 +12,13 @@
            <div class="p-4 flex inline-block mt-3 mb-3 justify-center">
                <svg class="w-6 h-6 mt-2 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                <BreezeLabel for="search" class="mt-3 mr-3">Search</BreezeLabel>
-               <BreezeInput id="search" type="text" v-model="term" @keyup="search"></BreezeInput>
+               <BreezeInput class="mr-12" id="search" type="text" v-model="term" @keyup="search"></BreezeInput>
+                <BreezeButton class="bg-red-400 hover:bg-red-500 ml-12" @click.prevent="deleteAll()">Delete All</BreezeButton>
 
            </div>
+  
  <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+   
       <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-gray-50">
@@ -124,6 +127,13 @@ export default {
          deleteUser(id) {
        if(confirm('Are you sure you want to delete this user?')) {
       this.$inertia.delete(`/users/${id}`)
+      }
+      return;
+      },
+
+      deleteAll() {
+       if(confirm('Are you sure you want to delete all users?')) {
+      this.$inertia.delete(`/users`)
       }
       return;
       },
