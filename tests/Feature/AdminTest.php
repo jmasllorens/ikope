@@ -23,7 +23,7 @@ class AdminTest extends TestCase
         $this->assertCount(2, $users);
     }
 
-    public function test_an_admin_can_deleted_a_user()
+    public function test_an_admin_can_delete_a_user()
     {
         $admin = User::factory()->create(['isAdmin' => true]);
         $user = User::factory()->create(['id' => 3, 'isAdmin' => false]);
@@ -31,6 +31,22 @@ class AdminTest extends TestCase
         
     
         $response = $this->actingAs($admin)->delete('/users/3', [$user]);
+
+        $users = User::orderByDesc('id')->where('isAdmin', false)->get();
+
+        $this->assertCount(0, $users);
+
+    }
+
+    public function test_an_admin_can_delete_all_regular_users()
+    {
+        $admin = User::factory()->create(['isAdmin' => true]);
+        $user1 = User::factory()->create(['id' => 3, 'isAdmin' => false]);
+        $user2 = User::factory()->create(['id' => 4, 'isAdmin' => false]);
+        
+        
+    
+        $response = $this->actingAs($admin)->delete('/users');
 
         $users = User::orderByDesc('id')->where('isAdmin', false)->get();
 
