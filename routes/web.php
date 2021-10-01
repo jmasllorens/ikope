@@ -7,6 +7,7 @@ use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\NoteController;
 
@@ -51,6 +52,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/users', [UserController::class, 'index'])->name('users');
     Route::delete('/users/{id}', [UserController::class, 'delete'])->name('users_delete');
     Route::delete('/users', [UserController::class, 'deleteAll'])->name('users_deleteAll');
+    Route::get('/adminusers', [UserController::class, 'indexAdmins'])->name('users_admin');
+    Route::get('/adminusers/{id}', [UserController::class, 'getAdmin'])->name('admins_show');
+  
 
     Route::get('/patients', [PatientController::class, 'index'])->name('patients');
     Route::get('/patients/{id}', [PatientController::class, 'show'])->name('patients_show');
@@ -83,7 +87,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/sessions/{id}/edit', [SessionController::class, 'edit'])->name('edit');
     Route::patch('/sessions/{id}/update', [SessionController::class, 'update'])->name('update');
 
-
+    Route::get('/publications/index', [PublicationController::class, 'index'])->name('publications_index');
+    Route::get('/publications/{id}', [PublicationController::class, 'get'])->name('publications_get');
+    Route::post('/publications/store', [PublicationController::class, 'store'])->name('publications_store');
+/*     Route::patch('/publications/{id}/update', [PublicationController::class, 'update'])->name('publications_update');
+    Route::delete('/publications/{id}/delete', [PublicationController::class, 'destroy'])->name('publications_delete'); */
 
 
 

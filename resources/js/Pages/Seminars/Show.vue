@@ -26,29 +26,29 @@
               </p>
             </span>
           </div>
-          <div class="py-2 px-4">
+          <div class="py-2 px-4 ml-6">
             <br>
             <h1
-              class="text-xl font-medium leading-6 tracking-wide text-black">
+              class="text-xl font-medium leading-6 tracking-wide text-black ml-6">
              {{$props.seminar.title}}
             </h1>
           </div>
-          <div class="px-4 space-y-2">
-            <p class="text-gray-600 font-normal leading-5 tracking-wide">
+          <div class="px-4 space-y-2 ml-6">
+            <p class="text-gray-600 font-normal leading-5 tracking-wide ml-6">
               {{$props.seminar.subject}}
             </p>
           </div>
           <div class="flex flex-row items-end h-full w-full px-4 mt-4">
-            <div class="flex border-t border-gray-700 w-full py-4">
+            <div class="ml-6">
                 <div class="">
-                  <p class="text-m font-semibold tracking-wide text-black">
+                  <p class="text-m font-semibold tracking-wide text-black ml-6">
                     {{$props.seminar.author }}
                   </p>
-                  <p class="text-sm font-light tracking-wider text-gray-600">
+                  <p class="text-sm font-light tracking-wider text-gray-600 ml-6">
                     {{$props.seminar.date}}
                   </p>
                   <br>
-            <div class="flex border-t border-gray-700 w-full py-4">
+            <div class="flex border-t border-gray-700 w-full py-4 ml-6">
                  <div class="text-m font-semibold">
                   <h2>Abstract</h2>
                   <br>

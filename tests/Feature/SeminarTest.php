@@ -34,6 +34,20 @@ class SeminarTest extends TestCase
         $this->assertCount(6, Seminar::all());
     }
 
+    public function test_user_can_retrieve_info_seminar_by_id()
+    {
+        $user = User::factory()->create();
+        $seminar = Seminar::factory()->create(['id' => 8, 'title' => 'All sorts of things in this world behave like mirrors']);
+        $seminarTitle = $seminar->title; 
+
+        $response = $this->actingAs($user)->get('/seminars/8');
+
+        $response->assertStatus(200);
+        $this->assertEquals('All sorts of things in this world behave like mirrors', $seminarTitle);
+
+       
+    }
+
     public function test_user_can_get_list_of_all_their_seminars() 
     {   
         $user =  User::factory()->create([]);;

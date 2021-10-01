@@ -54,5 +54,20 @@ class AdminTest extends TestCase
 
     }
 
+    public function test_admin_can_get_list_of_all_adminusers() 
+    {   
+        $admin1 =  User::factory()->create(['isAdmin' => true]);
+        $admin2 =  User::factory()->create(['isAdmin' => true]);
+        $user =  User::factory()->create(['isAdmin' => false]);
+       
+        $admins =  User::orderByDesc('id')->where('isAdmin', true)->get();
+ 
+       
+        $response = $this->actingAs($admin1)->get('/adminusers');
+
+        $response->assertStatus(200);
+        $this->assertCount(2, $admins);
+    }
+
     
 }

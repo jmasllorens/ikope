@@ -6,9 +6,41 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Repositories\UserRepository;
 
 class UserController extends Controller
-{
+{   
+    private $userRepository;
+
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
+    public function indexAdmins()
+
+    {   
+        $user = Auth::user();
+
+        if ($user->isAdmin)
+        {
+        $users = $this->userRepository->all();
+        return Inertia::render('Admin/AdminUsers', ['users' => $users]);
+        }
+
+        return redirect()->route('dashboard');
+    }
+
+    public function getAdmin(int $id)
+    {
+        $admin = $this->userRepository->get($id);
+        return response()->json($admin); 
+    }
+
+  
+
+    
     
     public function index(Request $request)
     {   $user = Auth::user();
