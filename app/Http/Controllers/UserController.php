@@ -25,8 +25,14 @@ class UserController extends Controller
 
         if ($user->isAdmin)
         {
-        $users = $this->userRepository->all();
-        return Inertia::render('Admin/AdminUsers', ['users' => $users]);
+            $startTime = microtime(true);
+
+            $admins = $this->userRepository->all();
+    
+            $sendTime = microtime(true);
+    
+           /*  dump($sendTime-$startTime); */
+            return response()->json($admins);
         }
 
         return redirect()->route('dashboard');

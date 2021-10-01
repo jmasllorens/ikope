@@ -10,7 +10,7 @@ class PublicationRepository
 
     public function __construct()
     {
-        $this->model = new Publication;
+        $this->model = new Publication();
     }
 
     public function all()

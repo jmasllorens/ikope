@@ -7,13 +7,14 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Publication;
 use App\Repositories\PublicationRepository;
+use App\Cache\PublicationCache;
 
 class PublicationController extends Controller
 {   
     private $publicationRepository;
 
 
-    public function __construct(PublicationRepository $publicationRepository)
+    public function __construct(PublicationCache $publicationRepository)
     {
         $this->publicationRepository = $publicationRepository;
     }
@@ -21,7 +22,13 @@ class PublicationController extends Controller
     public function index()
 
     {   
+        $startTime = microtime(true);
+
         $publications = $this->publicationRepository->all();
+
+        $sendTime = microtime(true);
+
+        dump($sendTime-$startTime);
         return response()->json($publications);
     }
 
