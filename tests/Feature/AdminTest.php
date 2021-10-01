@@ -38,5 +38,21 @@ class AdminTest extends TestCase
 
     }
 
+    public function test_an_admin_can_delete_all_regular_users()
+    {
+        $admin = User::factory()->create(['isAdmin' => true]);
+        $user1 = User::factory()->create(['id' => 3, 'isAdmin' => false]);
+        $user2 = User::factory()->create(['id' => 4, 'isAdmin' => false]);
+        
+        
+    
+        $response = $this->actingAs($admin)->delete('/users');
+
+        $users = User::orderByDesc('id')->where('isAdmin', false)->get();
+
+        $this->assertCount(0, $users);
+
+    }
+
     
 }
