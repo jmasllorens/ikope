@@ -143,10 +143,7 @@
                
                    
                  
-                   
-            
-                   
-                         <ConfirmModal :confirm="$page.confirm"></ConfirmModal>
+                     
                  
                 <slot />
                  
