@@ -50,6 +50,20 @@ class SeminarController extends Controller
         return Inertia::render('Seminars/Show', ['seminar' => $seminar, 'isSubscribed' => $isSubscribed]);
     }
 
+    public function subscribers($id)
+    {
+        $user = Auth::user();
+
+        if ($user->isAdmin)
+        {
+            $seminar = Seminar::find($id);
+            $users = $seminar->users;
+        
+        return Inertia::render('Admin/Seminars/Subscribers', ['id' => $id, 'seminar' => $seminar, 'users' => $users]);
+        }
+        return redirect()->route('seminars');
+    }
+
     public function subscribe($id)
     {
         $user = Auth::user();
