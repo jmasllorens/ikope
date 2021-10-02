@@ -40,28 +40,25 @@
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
             <tr v-for="user in users.data" v-bind:key="user">
-                <td class="px-6 py-4 whitespace-nowrap">
+                <td v-if="user.id != $page.props.auth.user.id" class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-900">{{ user.id }}</div>
                 </td>
-                 <td class="px-6 py-4 whitespace-nowrap">
+                 <td v-if="user.id != $page.props.auth.user.id" class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-900">{{ user.created_at }}</div>
                 </td>
-              <td class="px-6 py-4 whitespace-nowrap">
+              <td v-if="user.id != $page.props.auth.user.id" class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-900" > {{ user.name }}</div>
                 <div class="text-sm text-gray-500">({{ user.pronoun }}) </div>
               </td>
-               <td class="px-6 py-4 whitespace-nowrap">
+               <td v-if="user.id != $page.props.auth.user.id" class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-900">{{ user.email }}</div>
                 </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <span v-if="!user.isActive && !user.isAdmin" class="px-2 inline-flex text-xs leading-5 font-semibold">
-               <img src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png"/>
-                </span>
+              <td v-if="user.id != $page.props.auth.user.id" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                  <span v-if="user.isAdmin" class="px-2 inline-flex text-xs leading-5 font-semibold">
                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>
                      </span>
               </td>
-               <td>
+               <td v-if="user.id != $page.props.auth.user.id" >
                 <BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteUser(`${user.id}`)">Delete</BreezeButton>
               </td>
             

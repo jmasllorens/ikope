@@ -22038,18 +22038,21 @@ var _hoisted_9 = {
   "class": "bg-white divide-y divide-gray-200"
 };
 var _hoisted_10 = {
+  key: 0,
   "class": "px-6 py-4 whitespace-nowrap"
 };
 var _hoisted_11 = {
   "class": "text-sm text-gray-900"
 };
 var _hoisted_12 = {
+  key: 1,
   "class": "px-6 py-4 whitespace-nowrap"
 };
 var _hoisted_13 = {
   "class": "text-sm text-gray-900"
 };
 var _hoisted_14 = {
+  key: 2,
   "class": "px-6 py-4 whitespace-nowrap"
 };
 var _hoisted_15 = {
@@ -22059,12 +22062,14 @@ var _hoisted_16 = {
   "class": "text-sm text-gray-500"
 };
 var _hoisted_17 = {
+  key: 3,
   "class": "px-6 py-4 whitespace-nowrap"
 };
 var _hoisted_18 = {
   "class": "text-sm text-gray-900"
 };
 var _hoisted_19 = {
+  key: 4,
   "class": "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
 };
 var _hoisted_20 = {
@@ -22072,19 +22077,7 @@ var _hoisted_20 = {
   "class": "px-2 inline-flex text-xs leading-5 font-semibold"
 };
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "https://img.icons8.com/ios-glyphs/30/000000/user--v1.png"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_22 = [_hoisted_21];
-var _hoisted_23 = {
-  key: 1,
-  "class": "px-2 inline-flex text-xs leading-5 font-semibold"
-};
-
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   "class": "w-6 h-6",
   fill: "none",
   stroke: "currentColor",
@@ -22099,9 +22092,12 @@ var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_25 = [_hoisted_24];
+var _hoisted_22 = [_hoisted_21];
+var _hoisted_23 = {
+  key: 5
+};
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Delete");
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Delete");
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -22121,31 +22117,31 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.users.data, function (user) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
           key: user
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.id), 1
+        }, [user.id != _ctx.$page.props.auth.user.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.id), 1
         /* TEXT */
-        )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.created_at), 1
+        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), user.id != _ctx.$page.props.auth.user.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.created_at), 1
         /* TEXT */
-        )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name), 1
+        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), user.id != _ctx.$page.props.auth.user.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name), 1
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, "(" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.pronoun) + ") ", 1
         /* TEXT */
-        )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.email), 1
+        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), user.id != _ctx.$page.props.auth.user.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.email), 1
         /* TEXT */
-        )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, [!user.isActive && !user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_20, _hoisted_22)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_23, _hoisted_25)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
+        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), user.id != _ctx.$page.props.auth.user.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_19, [user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_20, _hoisted_22)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), user.id != _ctx.$page.props.auth.user.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
           "class": "bg-red-400 hover:bg-red-500",
           onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
             return $options.deleteUser("".concat(user.id));
           }, ["prevent"])
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [_hoisted_26];
+            return [_hoisted_24];
           }),
           _: 2
           /* DYNAMIC */
 
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
-        , ["onClick"])])]);
+        , ["onClick"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_pagination, {
@@ -24104,45 +24100,56 @@ var _hoisted_37 = {
   key: 0,
   "class": "px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700"
 };
-var _hoisted_38 = {
+var _hoisted_38 = ["href"];
+var _hoisted_39 = {
+  key: 1
+};
+
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Full ");
+
+var _hoisted_41 = {
   key: 1,
   "class": "px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700"
 };
-var _hoisted_39 = {
-  key: 0
-};
-var _hoisted_40 = ["href"];
-var _hoisted_41 = {
-  key: 1
-};
 var _hoisted_42 = ["href"];
 var _hoisted_43 = {
-  key: 2
+  key: 1
 };
 var _hoisted_44 = {
-  key: 3
+  key: 0
 };
 var _hoisted_45 = ["href"];
 var _hoisted_46 = {
-  key: 4
+  key: 1
 };
 var _hoisted_47 = ["href"];
 var _hoisted_48 = {
+  key: 2
+};
+var _hoisted_49 = {
+  key: 3
+};
+var _hoisted_50 = ["href"];
+var _hoisted_51 = {
+  key: 4
+};
+var _hoisted_52 = ["href"];
+var _hoisted_53 = {
   key: 5
 };
-var _hoisted_49 = ["href"];
-var _hoisted_50 = {
+var _hoisted_54 = ["href"];
+var _hoisted_55 = {
   key: 6
 };
 
-var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Delete");
+var _hoisted_56 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Delete");
 
-var _hoisted_52 = {
+var _hoisted_57 = {
   key: 7,
   "class": "absolute flex max-w-xs w-full top-0 right-0 mt-4 mr-16 bg-white rounded shadow p-4 bg-red-100"
 };
 
-var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_58 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mr-3 ml-2"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   "class": "w-6 h-6 text-red-500",
@@ -24159,16 +24166,16 @@ var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_54 = {
+var _hoisted_59 = {
   "class": "flex-1 text-gray-800 text-sm"
 };
 
-var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Are you sure you want to delete this seminar? ");
+var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Are you sure you want to delete this seminar? ");
 
-var _hoisted_56 = {
+var _hoisted_61 = {
   "class": "grid grid-cols-2 mt-5 ml-10"
 };
-var _hoisted_57 = ["onClick"];
+var _hoisted_62 = ["onClick"];
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -24210,9 +24217,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* TEXT */
         )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(seminar.date), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_36, [seminar.users.length >= seminar.availability ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_37, " Full ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), seminar.users.length < seminar.availability ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(seminar.availability - seminar.users.length) + "/" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(seminar.availability), 1
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_36, [seminar.users.length >= seminar.availability ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_37, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+          key: 0,
+          href: "/seminars/".concat(seminar.id, "/subscribers"),
+          method: "get"
+        }, "Full", 8
+        /* PROPS */
+        , _hoisted_38)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_39, "Full")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_40])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), seminar.users.length < seminar.availability ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_41, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+          key: 0,
+          href: "/seminars/".concat(seminar.id, "/subscribers"),
+          method: "get"
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(seminar.availability - seminar.users.length) + "/" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(seminar.availability), 9
+        /* TEXT, PROPS */
+        , _hoisted_42)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(seminar.availability - seminar.users.length) + "/" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(seminar.availability), 1
         /* TEXT */
-        )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), !_ctx.$props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
+        )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), !_ctx.$props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
           "class": "bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -24221,34 +24240,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               method: "get"
             }, "+ Info", 8
             /* PROPS */
-            , _hoisted_40)];
-          }),
-          _: 2
-          /* DYNAMIC */
-
-        }, 1024
-        /* DYNAMIC_SLOTS */
-        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), seminar.userSubscribed == true && !_ctx.$props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, null, {
-          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-              href: "/subscribe/".concat(seminar.id),
-              method: "get"
-            }, "Subscribe", 8
-            /* PROPS */
-            , _hoisted_42)];
-          }),
-          _: 2
-          /* DYNAMIC */
-
-        }, 1024
-        /* DYNAMIC_SLOTS */
-        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.$props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_43)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), seminar.userSubscribed == true && !_ctx.$props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, null, {
-          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-              href: "/unsubscribe/".concat(seminar.id),
-              method: "get"
-            }, "Unsubscribe", 8
-            /* PROPS */
             , _hoisted_45)];
           }),
           _: 2
@@ -24256,14 +24247,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
         }, 1024
         /* DYNAMIC_SLOTS */
-        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
-          "class": "bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"
-        }, {
+        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), seminar.userSubscribed == true && !_ctx.$props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, null, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
             return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-              href: "/seminars/".concat(seminar.id),
+              href: "/subscribe/".concat(seminar.id),
               method: "get"
-            }, "View", 8
+            }, "Subscribe", 8
             /* PROPS */
             , _hoisted_47)];
           }),
@@ -24272,7 +24261,37 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
         }, 1024
         /* DYNAMIC_SLOTS */
-        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
+        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.$props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_48)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), seminar.userSubscribed == true && !_ctx.$props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, null, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+              href: "/unsubscribe/".concat(seminar.id),
+              method: "get"
+            }, "Unsubscribe", 8
+            /* PROPS */
+            , _hoisted_50)];
+          }),
+          _: 2
+          /* DYNAMIC */
+
+        }, 1024
+        /* DYNAMIC_SLOTS */
+        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
+          "class": "bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"
+        }, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+              href: "/seminars/".concat(seminar.id),
+              method: "get"
+            }, "View", 8
+            /* PROPS */
+            , _hoisted_52)];
+          }),
+          _: 2
+          /* DYNAMIC */
+
+        }, 1024
+        /* DYNAMIC_SLOTS */
+        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_53, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
           "class": "bg-green-400 hover:bg-green-500"
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -24281,33 +24300,33 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               method: "get"
             }, "Edit", 8
             /* PROPS */
-            , _hoisted_49)];
+            , _hoisted_54)];
           }),
           _: 2
           /* DYNAMIC */
 
         }, 1024
         /* DYNAMIC_SLOTS */
-        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_50, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
-          "class": "bg-red-400 hover:bg-red-500",
+        )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
+          "class": "bg-red-400 hover:bg-red-500 mr-2",
           onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
             return $data.confirm = true;
           }, ["prevent"]))
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [_hoisted_51];
+            return [_hoisted_56];
           }),
           _: 1
           /* STABLE */
 
-        })])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.confirm ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_52, [_hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [_hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_56, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        })])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.confirm ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_57, [_hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_59, [_hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
           onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
             return $options.deleteSeminar("".concat(seminar.id));
           }, ["prevent"]),
           "class": "text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-500"
         }, "Accept", 8
         /* PROPS */
-        , _hoisted_57)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        , _hoisted_62)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
           onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
             return $data.confirm = false;
           }, ["prevent"])),
@@ -53953,6 +53972,24 @@ _Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"].__file
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Admin/Seminars/Subscribers.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/Pages/Admin/Seminars/Subscribers.vue ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const script = {}
+script.__file = "resources/js/Pages/Admin/Seminars/Subscribers.vue"
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (script);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Admin/Users.vue":
 /*!********************************************!*\
   !*** ./resources/js/Pages/Admin/Users.vue ***!
@@ -56751,6 +56788,7 @@ var map = {
 	"./Admin/AdminUsers.vue": "./resources/js/Pages/Admin/AdminUsers.vue",
 	"./Admin/Seminars/Create.vue": "./resources/js/Pages/Admin/Seminars/Create.vue",
 	"./Admin/Seminars/Edit.vue": "./resources/js/Pages/Admin/Seminars/Edit.vue",
+	"./Admin/Seminars/Subscribers.vue": "./resources/js/Pages/Admin/Seminars/Subscribers.vue",
 	"./Admin/Users.vue": "./resources/js/Pages/Admin/Users.vue",
 	"./Auth/ConfirmPassword.vue": "./resources/js/Pages/Auth/ConfirmPassword.vue",
 	"./Auth/ForgotPassword.vue": "./resources/js/Pages/Auth/ForgotPassword.vue",
