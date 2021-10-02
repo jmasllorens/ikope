@@ -39,6 +39,7 @@
               ><strong>{{ $page.props.auth.user.name }}</strong>'s Seminars</a
             >
                   </div>
+
               <div v-if="$props.auth.user.isAdmin" class="justify-self-start"></div>
               
               <div v-if="$props.auth.user.isAdmin" class="justify-self-end">
@@ -75,7 +76,7 @@
               </th>
                <th v-if="$props.auth.user.isAdmin" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               </th>
-             
+            
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
@@ -95,11 +96,13 @@
                 {{ seminar.date }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <span v-if="seminar.users.length >= seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">
+                <span v-if="seminar.users.length >= seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700"><a v-if="$page.props.auth.user.isAdmin" :href="`/seminars/${seminar.id}/subscribers`" method="get">Full</a><span v-if="!$page.props.auth.user.isAdmin">Full</span>
                   Full
                 </span>
-                <span v-if="seminar.users.length < seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700">
-                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}
+                <span v-if="seminar.users.length < seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700"><a v-if="$page.props.auth.user.isAdmin" :href="`/seminars/${seminar.id}/subscribers`" method="get">
+                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}</a>
+                <span v-if="!$page.props.auth.user.isAdmin">
+                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}</span>
                 </span>
               </td>
               <td v-if="!$props.auth.user.isAdmin">
@@ -119,7 +122,7 @@
                <BreezeButton class="bg-green-400 hover:bg-green-500"><a :href="`/seminars/${seminar.id}/edit`" method="get">Edit</a></BreezeButton>
               </td>
               <td v-if="$props.auth.user.isAdmin">
-                <BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="confirm = true">Delete</BreezeButton>
+                <BreezeButton class="bg-red-400 hover:bg-red-500 mr-2" @click.prevent="confirm = true">Delete</BreezeButton>
               </td>
                <div v-if="confirm" class="absolute flex max-w-xs w-full top-0 right-0 mt-4 mr-16  bg-white rounded shadow p-4 bg-red-100">
                     <div class="mr-3 ml-2">
@@ -135,7 +138,9 @@
                              </div>
                       
                     </div>
+                    
                 </div>
+             
             
             
             </tr>
