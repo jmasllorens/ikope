@@ -69,5 +69,20 @@ class AdminTest extends TestCase
         $this->assertCount(2, $admins);
     }
 
+    public function test_an_admin_can_delete_another_admin()
+    {
+        $admin1 = User::factory()->create(['isAdmin' => true]);
+        $admin2 = User::factory()->create(['id' => 3, 'isAdmin' => true]);
+        
+        
+    
+        $response = $this->actingAs($admin1)->delete('/adminusers/3', [$admin2]);
+
+        $users = User::all();
+
+        $this->assertCount(1, $users);
+
+    }
+
     
 }

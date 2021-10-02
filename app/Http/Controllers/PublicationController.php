@@ -46,16 +46,16 @@ class PublicationController extends Controller
         return response()->json($publication);
     }
 
-    /* public function update(Request $request, Publication $publication)
+     public function update(Request $request, Publication $publication)
     {
         $publication->fill($request->all());
-        $publication = $this->userRepository->save($publication);
+        $publication = $this->publicationRepository->save($publication);
     }
 
     public function destroy(Publication $publication)
     {
         $publication = $this->publicationRepository->delete($publication);
         return response()->json($publication);   
-    }  */
+    }  
 
 }

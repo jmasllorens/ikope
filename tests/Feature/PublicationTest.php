@@ -10,15 +10,19 @@ class PublicationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_user_can_get_list_of_all_publications() 
+    public function test_user_can_get_ordered_list_of_all_publications() 
     {   
         $user =  User::factory()->create([]);;
-        $publication = Publication::factory(6)->create([]);
+        $publication1 = Publication::factory()->create(['title' => 'Z']);
+        $publication2 = Publication::factory()->create(['title' => 'A']);
+
+        $publications =  Publication::orderBy('title', 'asc')->get();
        
         $response = $this->actingAs($user)->get('/publications/index');
 
         $response->assertStatus(200);
-        $this->assertCount(6, Publication::all());
+        $this->assertCount(2, Publication::all());
+        $this->assertEquals($publications[0]->title, 'A');
     }
 
     public function test_user_can_retrieve_info_publication_by_id()
@@ -54,12 +58,12 @@ class PublicationTest extends TestCase
 
     }
 
-  /*   public function test_a_publication_can_be_deleted_by_user()
+     public function test_a_publication_can_be_deleted_by_user()
     {
         $user = User::factory()->create();
-        $publication = Publication::factory()->create(['id' => 2]);
+        $publication = Publication::factory()->create(['id' => 1]);
     
-        $response = $this->actingAs($user)->delete('/publications/2/delete', [$publication]);
+        $response = $this->actingAs($user)->delete('/publications/1', [$publication]);
 
 
         $this->assertEquals(Publication::all()->count(), 0);
@@ -69,11 +73,11 @@ class PublicationTest extends TestCase
     public function test_a_publication_can_be_updated_by_user()
     {
         $user = User::factory()->create();
-        $publication = Publication::factory()->create(['id' => 4, 'title' => 'Gender perspective in Psychoanalysis']);
+        $publication = Publication::factory()->create(['id' => 4, 'title' => 'The mirror']);
    
         $response = $this->actingAs($user)->patch('publications/4/update', [
-            'title' => 'Queer Theory in Psychoanalysis']);
+            'title' => 'The Divan']);
   
-        $this->assertEquals(Publication::find(4)->title, 'Queer Theory in Psychoanalysis');
-    }  */
+        $this->assertEquals(Publication::find(4)->title, 'The Divan');
+    }  
 }

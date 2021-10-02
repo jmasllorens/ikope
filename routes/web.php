@@ -92,7 +92,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/publications/{id}', [PublicationController::class, 'get'])->name('publications_get');
     Route::post('/publications/store', [PublicationController::class, 'store'])->name('publications_store');
     Route::patch('/publications/{publication}/update', [PublicationController::class, 'update'])->name('publications_update');
-    Route::delete('/publications/{publication}/delete', [PublicationController::class, 'destroy'])->name('publications_delete');
+    Route::delete('/publications/{publication}', [PublicationController::class, 'destroy'])->name('publications_delete');
 
 
 
