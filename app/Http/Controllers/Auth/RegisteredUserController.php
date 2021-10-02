@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Mail;
 
 class RegisteredUserController extends Controller
 {
@@ -50,10 +51,26 @@ class RegisteredUserController extends Controller
             'isActive' => $request->isActive
         ]);
 
+        $this->sendRegistrationEmail($user->id);
+
         event(new Registered($user));
 
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+    public function sendRegistrationEmail($id)
+    {
+        $user = User::findOrFail($id);
+
+        Mail::send('emails.registration', ['user' => $user], function ($m) use ($user) {
+            $m->from('ikope@ikope.com', 'I-KOPE');
+
+            $m->to($user->email, $user->name)->subject($user->name.', welcome to I-Kope!');
+        });
+    }
+
+    
+    
 }
