@@ -196,5 +196,16 @@ class ViewTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_adminusers_screen_can_be_rendered_if_isAdmin_user_is_logged_in()
+    {
+        $user = User::factory()->create(['isAdmin' => true]);
+
+        $response = $this->actingAs($user)->get('/adminusers');
+
+        $response->assertStatus(200);
+    }
+
+
     
 }
