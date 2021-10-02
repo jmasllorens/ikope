@@ -50,6 +50,20 @@ class SeminarController extends Controller
         return Inertia::render('Seminars/Show', ['seminar' => $seminar, 'isSubscribed' => $isSubscribed]);
     }
 
+    public function subscribers($id)
+    {
+        $user = Auth::user();
+
+        if ($user->isAdmin)
+        {
+            $seminar = Seminar::find($id);
+            $users = $seminar->users;
+        
+        return Inertia::render('Admin/Seminars/Subscribers', ['id' => $id, 'seminar' => $seminar, 'users' => $users]);
+        }
+        return redirect()->route('seminars');
+    }
+
     public function subscribe($id)
     {
         $user = Auth::user();
@@ -97,6 +111,7 @@ class SeminarController extends Controller
         $m->to($user->email, $user->name)->subject($user->name.', you have a new notification');
         });
     }
+    
 
     public function mySeminars()
     {   $user = Auth::user();
