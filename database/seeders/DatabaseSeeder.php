@@ -8,6 +8,7 @@ use App\Models\Seminar;
 use App\Models\Patient;
 use App\Models\Session;
 use App\Models\Note;
+use App\Models\Publication;
 
 use function PHPUnit\Framework\isTrue;
 
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory()->create(['name' => 'Admin', 'email' => 'admin@admin.com', 'isAdmin' => true]);
+        User::factory(10)->create(['isAdmin' => true]);
         User::factory()->create(['name' => 'User', 'email' => 'user@user.com']);
         User::factory()->create(['name' => 'Therapist', 'email' => 'therapist@user.com', 'isActive' => true]);
         User::factory(100)->create();
@@ -60,7 +62,7 @@ class DatabaseSeeder extends Seeder
         Patient::factory()->create(['id' => 56, 'user_id' => 3, 'name' => 'Jordi Piella']);
         Session::factory(10)->create(['user_id' => 3, 'patient_id' => 56, 'patient_name' => 'Jordi Piella' ]);
 
-
+        Publication::factory(15)->create();
 
     }
 }

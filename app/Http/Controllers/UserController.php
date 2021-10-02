@@ -6,9 +6,64 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Contracts\UserRepositoryInterface;
+use App\Repositories\UserRepository;
 
 class UserController extends Controller
-{
+{   
+    private $userRepository;
+
+
+    public function __construct(UserRepositoryInterface $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
+    public function indexAdmins()
+
+    {   
+        $user = Auth::user();
+
+        if ($user->isAdmin)
+        {
+            $startTime = microtime(true);
+
+            $admins = $this->userRepository->all();
+    
+            $sendTime = microtime(true);
+    
+          /*   dump($sendTime-$startTime);  */
+          return Inertia::render('Admin/AdminUsers', ['users' => $admins]);
+        }
+
+        return redirect()->route('dashboard');
+    }
+
+    public function getAdmin(int $id)
+    {    $admin = Auth::user();
+
+        if ($admin->isAdmin)
+        {
+        $user = $this->userRepository->get($id);
+        return response()->json($user); 
+        }
+        return redirect()->route('dashboard');
+    }
+
+    public function destroyAdmin(User $user)
+    {    $admin = Auth::user();
+        if ($admin->isAdmin && $admin != $user)
+        {
+        $user = $this->userRepository->delete($user);
+        return response()->json($user); 
+      /*   return redirect()->route('users_admin');  */ 
+        }
+        return redirect()->route('dashboard');
+    } 
+
+  
+
+    
     
     public function index(Request $request)
     {   $user = Auth::user();
