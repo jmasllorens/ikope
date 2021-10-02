@@ -3,8 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use App\Contracts\UserRepositoryInterface;
 
-class UserRepository extends BaseRepository
+class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
 
 
@@ -15,8 +16,10 @@ class UserRepository extends BaseRepository
 
     public function all()
     {
-        return $this->model->orderByDesc('id')->paginate(20);
+        return $this->model->orderByDesc('id')->where('isAdmin', true)->paginate(20);
     }
+
+    
 
    
 

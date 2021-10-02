@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::delete('/users', [UserController::class, 'deleteAll'])->name('users_deleteAll');
     Route::get('/adminusers', [UserController::class, 'indexAdmins'])->name('users_admin');
     Route::get('/adminusers/{id}', [UserController::class, 'getAdmin'])->name('admins_show');
+    Route::delete('/adminusers/{user}', [UserController::class, 'destroyAdmin'])->name('admins_delete');
   
 
     Route::get('/patients', [PatientController::class, 'index'])->name('patients');
@@ -90,8 +91,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/publications/index', [PublicationController::class, 'index'])->name('publications_index');
     Route::get('/publications/{id}', [PublicationController::class, 'get'])->name('publications_get');
     Route::post('/publications/store', [PublicationController::class, 'store'])->name('publications_store');
-/*     Route::patch('/publications/{id}/update', [PublicationController::class, 'update'])->name('publications_update');
-    Route::delete('/publications/{id}/delete', [PublicationController::class, 'destroy'])->name('publications_delete'); */
+    Route::patch('/publications/{publication}/update', [PublicationController::class, 'update'])->name('publications_update');
+    Route::delete('/publications/{publication}/delete', [PublicationController::class, 'destroy'])->name('publications_delete');
 
 
 

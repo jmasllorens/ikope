@@ -4,8 +4,9 @@ namespace App\Cache;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\UserRepository;
+use App\Contracts\UserRepositoryInterface;
 
-class UserCache extends BaseCache
+class UserCache extends BaseCache implements UserRepositoryInterface
 {
     public function __construct(UserRepository $userRepository)
     {
@@ -27,13 +28,13 @@ class UserCache extends BaseCache
 
     public function save(Model $model)
     {
-        $this->cache::forget($this->key);
+        $this->forget($this->key);
        return $this->repository->save($model);
         
     }
     public function delete(Model $model)
     {
-        $this->cache::forget($this->key);
+        $this->forget($this->key);
         return $this->repository->delete($model);
     }
 
