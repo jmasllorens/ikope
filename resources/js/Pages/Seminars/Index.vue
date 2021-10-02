@@ -109,7 +109,7 @@
                  <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/seminars/${seminar.id}`" method="get">+ Info</a></BreezeButton>
               </td>
               <td v-if="seminar.userSubscribed == true && !$props.auth.user.isAdmin">
-               <BreezeButton ><a :href="`/subscribe/${seminar.id}`" method="get">Subscribe</a></BreezeButton>
+               <BreezeButton ><a :href="route('subscribe', [`${seminar.id}`])" method="get">Subscribe</a></BreezeButton>
                 </td>
                 <td v-if="!$props.auth.user.isAdmin"></td>
                <td v-if="seminar.userSubscribed == true && !$props.auth.user.isAdmin">

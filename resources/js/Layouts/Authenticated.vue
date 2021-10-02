@@ -1,5 +1,6 @@
 <template>
     <div>
+           
         <div class="min-h-screen bg-gray-100">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
@@ -130,7 +131,8 @@
             </nav>
 
             <!-- Page Heading -->
-                 <Toast></Toast>
+                 <Toast></Toast> 
+                 <loader></loader>
                
             <header class="bg-white shadow" v-if="$slots.header">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -141,7 +143,7 @@
             <!-- Page Content -->
             <main>
                
-                   
+              
                  
                      
                  
@@ -163,9 +165,11 @@ import BreezeDropdown from '@/Components/Dropdown.vue'
 import BreezeDropdownLink from '@/Components/DropdownLink.vue'
 import BreezeNavLink from '@/Components/NavLink.vue'
 import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
-import { Link } from '@inertiajs/inertia-vue3';
-import ConfirmModal from '@/Components/ConfirmModal'
+import { Link } from '@inertiajs/inertia-vue3'
 import Toast from '@/Components/Toast'
+
+
+
 
 export default {
 
@@ -176,8 +180,9 @@ export default {
         BreezeNavLink,
         BreezeResponsiveNavLink,
         Link,
-        ConfirmModal,
-        Toast
+        Toast,
+
+   
     },
 
     data() {
