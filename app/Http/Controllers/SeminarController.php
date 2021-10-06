@@ -21,8 +21,7 @@ class SeminarController extends Controller
      
         foreach($seminars as $seminar) 
         {
-            $users = $seminar->users;
-            
+            $users = $seminar->users;    
         }
 
         if ($seminars->count() > 0)
@@ -32,12 +31,10 @@ class SeminarController extends Controller
             return Inertia::render('Seminars/Index', ['seminars' => $seminars]);
     }
 
-
     public function show($id) 
     {
         $user = Auth::user();
         $seminar = Seminar::find($id);
-  
 
         if($seminar == null)
         {
@@ -117,6 +114,7 @@ class SeminarController extends Controller
     public function mySeminars()
     {   $user = Auth::user();
         $mySeminars = $user->seminars;
+
         if ($mySeminars->count() == 0)
         {
             return redirect()->route('seminars');
@@ -128,6 +126,7 @@ class SeminarController extends Controller
     public function create() 
     {
         $user = Auth::user();
+
         if ($user->isAdmin == true)
         {
         return Inertia::render('Admin/Seminars/Create');
@@ -155,6 +154,7 @@ class SeminarController extends Controller
     public function edit($id)
     {   
         $user = Auth::user();
+        
         if ($user->isAdmin == true)
         {
         $seminar = Seminar::findOrFail($id);

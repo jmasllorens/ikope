@@ -6,8 +6,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-3 bg-blueish border-b border-gray-200">
-                        Seminars
-                 
+                        Seminars     
             </div>
                   </div>
                   
@@ -124,7 +123,7 @@
               <td v-if="$props.auth.user.isAdmin">
                 <BreezeButton class="bg-red-400 hover:bg-red-500 mr-2" @click.prevent="confirm = true">Delete</BreezeButton>
               </td>
-               <div v-if="confirm" class="absolute flex max-w-xs w-full top-0 right-0 mt-4 mr-16  bg-white rounded shadow p-4 bg-red-100">
+              <div v-if="confirm" class="absolute flex max-w-xs w-full top-0 right-0 mt-4 mr-16  bg-white rounded shadow p-4 bg-red-100">
                     <div class="mr-3 ml-2">
                         <svg class="w-6 h-6 text-red-500 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
