@@ -13,7 +13,7 @@
                   
                   <br>
                   <div class="grid grid-cols-2">
-                    <div v-if="$page.props.auth.user.isAdmin == false" class="justify-self-start ml-2">
+                    <div v-if="$page.props.auth.user.isAdmin == false && $page.props.auth.user.seminars.length > 0" class="justify-self-start ml-2">
                      <a
               href="/myseminars"
               method="get"

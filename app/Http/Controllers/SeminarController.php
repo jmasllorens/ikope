@@ -17,7 +17,7 @@ class SeminarController extends Controller
     {   $user = Auth::user();
     
         $seminars = Seminar::orderBy('date', 'asc')->get();
-        $mySeminars = $user->mySeminars;
+        $user->seminars;
      
         foreach($seminars as $seminar) 
         {
@@ -27,8 +27,9 @@ class SeminarController extends Controller
 
         if ($seminars->count() > 0)
         {
-            return Inertia::render('Seminars/Index', ['seminars' => $seminars, 'users' => $users, 'mySeminars', $mySeminars]);}
-            return Inertia::render('Seminars/Index', ['seminars' => $seminars, 'mySeminars', $mySeminars]);
+            return Inertia::render('Seminars/Index', ['seminars' => $seminars, 'users' => $users]);
+        }
+            return Inertia::render('Seminars/Index', ['seminars' => $seminars]);
     }
 
 

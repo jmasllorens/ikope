@@ -1,4 +1,5 @@
 <template>
+  <BreezeValidationErrors class="mb-4" />
     <div>
            
         <div class="min-h-screen bg-gray-100">
@@ -154,12 +155,13 @@
         </div>
     </div>
      
-                
+         
 </template>
 
 
 
 <script>
+import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
 import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue'
 import BreezeDropdown from '@/Components/Dropdown.vue'
 import BreezeDropdownLink from '@/Components/DropdownLink.vue'
@@ -174,6 +176,7 @@ import Toast from '@/Components/Toast'
 export default {
 
     components: {
+        BreezeValidationErrors,
         BreezeApplicationLogo,
         BreezeDropdown,
         BreezeDropdownLink,
