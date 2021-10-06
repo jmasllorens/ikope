@@ -55,8 +55,8 @@ class UserController extends Controller
         if ($admin->isAdmin && $admin != $user)
         {
         $user = $this->userRepository->delete($user);
-        return response()->json($user); 
-      /*   return redirect()->route('users_admin');  */ 
+      /*   return response()->json($user);  */
+        return redirect()->route('users_admin');  
         }
         return redirect()->route('dashboard');
     } 
@@ -83,7 +83,7 @@ class UserController extends Controller
     {
         $changesUser = request()->except(['_token', '_method']);
         User::where('id', '=', $id)->update($changesUser);
-        $seminar = User::findOrFail($id);
+        $user = User::findOrFail($id);
         session()->flash('message', 'Your profile has been successfully updated!');
        
         return redirect()->route('dashboard');
