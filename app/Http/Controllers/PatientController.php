@@ -22,9 +22,10 @@ class PatientController extends Controller
     {
         $user = Auth::user();
         
-        if ($user->isActive == 1)
+        if ($user->isActive)
         {   
             $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->id)->get();
+           
            
            if ($patients->count() == 0 || $patients == null)
             { 
