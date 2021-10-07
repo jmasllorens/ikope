@@ -95,6 +95,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::patch('/publications/{publication}/update', [PublicationController::class, 'update'])->name('publications_update');
     Route::delete('/publications/{publication}', [PublicationController::class, 'destroy'])->name('publications_delete');
 
+    Route::post('/contactMail', [UserController::class, 'contactMail']);
+
 
 
     Route::get('/publications', function () {
