@@ -118,7 +118,7 @@ class UserController extends Controller
         $m->to('ikope@ikope.com', 'I-KOPE')->subject($user->name.' sent you a new message');
         });
 
-        session()->flash('message', 'Your message has been successfully sent!');
+        session()->flash('message', 'Your message has been successfully sent. We will contact you ASAP.');
     
        return redirect()->route('dashboard');
 
