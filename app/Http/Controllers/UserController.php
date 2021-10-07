@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Contracts\UserRepositoryInterface;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {   
@@ -102,6 +103,25 @@ class UserController extends Controller
         User::destroy($users);
         session()->flash('message', 'All users have been successfully deleted!');
         return redirect()->route('users');
+    }
+
+
+    public function contactMail(Request $request)
+    {
+    
+        Mail::raw('Message: '.$request->message.'.', function ($m) {
+
+        $user = Auth::user();
+            
+        $m->from($user->email, $user->name);
+
+        $m->to('ikope@ikope.com', 'I-KOPE')->subject($user->name.' sent you a new message');
+        });
+
+        session()->flash('message', 'Your message has been successfully sent!');
+    
+       return redirect()->route('dashboard');
+
     }
 
    
