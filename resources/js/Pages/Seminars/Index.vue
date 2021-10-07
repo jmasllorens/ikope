@@ -6,14 +6,13 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-3 bg-blueish border-b border-gray-200">
-                        Seminars
-                 
+                        Seminars     
             </div>
                   </div>
                   
                   <br>
                   <div class="grid grid-cols-2">
-                    <div v-if="$page.props.auth.user.isAdmin == false" class="justify-self-start ml-2">
+                    <div v-if="$page.props.auth.user.isAdmin == false && $page.props.auth.user.seminars.length > 0" class="justify-self-start ml-2">
                      <a
               href="/myseminars"
               method="get"
@@ -39,6 +38,7 @@
               ><strong>{{ $page.props.auth.user.name }}</strong>'s Seminars</a
             >
                   </div>
+
               <div v-if="$props.auth.user.isAdmin" class="justify-self-start"></div>
               
               <div v-if="$props.auth.user.isAdmin" class="justify-self-end">
@@ -75,7 +75,7 @@
               </th>
                <th v-if="$props.auth.user.isAdmin" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               </th>
-             
+            
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
@@ -95,18 +95,20 @@
                 {{ seminar.date }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <span v-if="seminar.users.length >= seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">
+                <span v-if="seminar.users.length >= seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700"><a v-if="$page.props.auth.user.isAdmin" :href="`/seminars/${seminar.id}/subscribers`" method="get">Full</a><span v-if="!$page.props.auth.user.isAdmin">Full</span>
                   Full
                 </span>
-                <span v-if="seminar.users.length < seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700">
-                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}
+                <span v-if="seminar.users.length < seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700"><a v-if="$page.props.auth.user.isAdmin" :href="`/seminars/${seminar.id}/subscribers`" method="get">
+                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}</a>
+                <span v-if="!$page.props.auth.user.isAdmin">
+                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}</span>
                 </span>
               </td>
               <td v-if="!$props.auth.user.isAdmin">
                  <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/seminars/${seminar.id}`" method="get">+ Info</a></BreezeButton>
               </td>
               <td v-if="seminar.userSubscribed == true && !$props.auth.user.isAdmin">
-               <BreezeButton ><a :href="`/subscribe/${seminar.id}`" method="get">Subscribe</a></BreezeButton>
+               <BreezeButton ><a :href="route('subscribe', [`${seminar.id}`])" method="get">Subscribe</a></BreezeButton>
                 </td>
                 <td v-if="!$props.auth.user.isAdmin"></td>
                <td v-if="seminar.userSubscribed == true && !$props.auth.user.isAdmin">
@@ -119,9 +121,9 @@
                <BreezeButton class="bg-green-400 hover:bg-green-500"><a :href="`/seminars/${seminar.id}/edit`" method="get">Edit</a></BreezeButton>
               </td>
               <td v-if="$props.auth.user.isAdmin">
-                <BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="confirm = true">Delete</BreezeButton>
+                <BreezeButton class="bg-red-400 hover:bg-red-500 mr-2" @click.prevent="confirm = true">Delete</BreezeButton>
               </td>
-               <div v-if="confirm" class="absolute flex max-w-xs w-full top-0 right-0 mt-4 mr-16  bg-white rounded shadow p-4 bg-red-100">
+              <div v-if="confirm" class="absolute flex max-w-xs w-full top-0 right-0 mt-4 mr-16  bg-white rounded shadow p-4 bg-red-100">
                     <div class="mr-3 ml-2">
                         <svg class="w-6 h-6 text-red-500 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
@@ -135,7 +137,9 @@
                              </div>
                       
                     </div>
+                    
                 </div>
+             
             
             
             </tr>

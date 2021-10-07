@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::patch('/seminars/{id}/update', [SeminarController::class, 'update'])->name('seminars_update');
     Route::delete('/seminars/{id}', [SeminarController::class, 'delete'])->name('seminars_delete');
     Route::get('/seminars/{id}', [SeminarController::class, 'show'])->name('show');
+    Route::get('/seminars/{id}/subscribers', [SeminarController::class, 'subscribers'])->name('subscribers');
     Route::get('/subscribe/{id}', [SeminarController::class, 'subscribe'])->name('subscribe');
     Route::get('/unsubscribe/{id}', [SeminarController::class, 'unsubscribe'])->name('unsubscribe');
 
