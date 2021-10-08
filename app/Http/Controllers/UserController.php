@@ -115,7 +115,7 @@ class UserController extends Controller
             
         $m->from($user->email, $user->name);
 
-        $m->to('ikope@ikope.com', 'I-KOPE')->subject($user->name.' sent you a new message');
+        $m->to('ikope@ikope.com', 'I-KOPE')->subject($user->name.' sent you a message');
         });
 
         session()->flash('message', 'Your message has been successfully sent. We will contact you ASAP.');
