@@ -23,7 +23,7 @@
             </h1>
             <br>
 
-            <p class="text-gray-500 font-normal text-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="text-gray-500 font-normal text-base">Let's Help Each Other Cope</p>
         </div>
         <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="bg-white rounded-lg p-6">
