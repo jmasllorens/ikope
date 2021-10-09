@@ -92,16 +92,19 @@
                 <div class="text-sm text-gray-900">{{ seminar.approach }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm">
-                {{ seminar.date }}
+                  <span v-if="seminar.date > currentTime">
+                {{ seminar.date }} 
+                  </span>
+                  <span v-if="seminar.date < currentTime" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">Expired
+                  </span>
               </td>
+              
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <span v-if="seminar.users.length >= seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700"><a v-if="$page.props.auth.user.isAdmin" :href="`/seminars/${seminar.id}/subscribers`" method="get">Full</a><span v-if="!$page.props.auth.user.isAdmin">Full</span>
+                <span v-if="seminar.users.length >= seminar.availability && seminar.date > currentTime" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">
                   Full
                 </span>
-                <span v-if="seminar.users.length < seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700"><a v-if="$page.props.auth.user.isAdmin" :href="`/seminars/${seminar.id}/subscribers`" method="get">
-                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}</a>
-                <span v-if="!$page.props.auth.user.isAdmin">
-                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}</span>
+                <span v-if="seminar.users.length < seminar.availability && seminar.date > currentTime" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700">
+                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}
                 </span>
               </td>
               <td v-if="!$props.auth.user.isAdmin">
@@ -180,12 +183,28 @@ export default {
 
     data() {
     return {
+        currentTime: '',
         confirm: false,
         id: ''
     }
    },
+    created(){
+      setInterval(this.getNow, 1000)
+    },
+  
 
     methods: {
+
+      getNow: function() {
+
+                    const today = new Date();
+                    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                    const dateTime = date +' '+ time;
+                    this.currentTime = dateTime;
+
+                },
+
     
     confirmDelete(id)
     {
