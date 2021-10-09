@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use App\Models\Session;
 use App\Models\Note;
-use Illuminate\Support\Facades\Storage;
 use App\Repositories\PatientRepository;
 
 class PatientController extends Controller
@@ -68,13 +67,14 @@ class PatientController extends Controller
         }
        
         $sessions = $patient->sessions;
-       
      
         $notes = $patient->notes;
   
         return Inertia::render('User/Patients/Show', ['patient' => $patient, 'sessions' => $sessions, 'notes', $notes]);}
 
-        else {return redirect()->route('dashboard');}
+        else {
+            return redirect()->route('dashboard');
+            }
     }
 
     public function create()
@@ -87,18 +87,16 @@ class PatientController extends Controller
 
         return redirect()->route('dashboard');
     
-
     }
 
     public function store(Request $request)
     {
         $user = Auth::user();
-        $newPatient = request()->except('_token');
+
+        $newPatient = new Patient($request->except('_token'));
         $newPatient['user_id'] = $user->id;
+        $newPatient = $this->patientRepository->save($newPatient);
 
-        Patient::create($newPatient);
-
-        $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->id)->get();
         session()->flash('message', 'A new patient has been successfully created!');
     
         return redirect()->route('patients');
@@ -110,7 +108,7 @@ class PatientController extends Controller
             $user = Auth::user();
             if ($user->isActive == true && $user->isAdmin == false)
             {
-            $patient = Patient::findOrFail($id);
+            $patient = $this->patientRepository->get($id);
           
             return Inertia::render('User/Patients/Edit', ['patient' => $patient]);
             }
@@ -118,24 +116,26 @@ class PatientController extends Controller
     
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Patient $patient)
     {
-        $changesPatient = request()->except(['_token', '_method']);
-    
-            Session::where('patient_id', $id)->update(array('patient_name' => 'name', 'patient_name' => $changesPatient['name']));
-            
-            Patient::where('id', '=', $id)->update($changesPatient);
-          
+        
+            $patient->fill($request->all());
+
+            Session::where('patient_id', $patient->id)->update(array('patient_name' => 'name', 'patient_name' => $patient['name']));
+
+            $patient = $this->patientRepository->save($patient);
            
-            $patient = Patient::findOrFail($id);
+            $patient = $this->patientRepository->get($patient->id);
+
             session()->flash('message', 'The patient has been successfully updated!');
-            return redirect()->route('patients_show', ['id' => $id]);
+            
+            return redirect()->route('patients_show', ['id' => $patient->id]);
           
         }
     
-    public function delete($id)
+    public function delete(Patient $patient)
     {
-        Patient::destroy($id);
+        $patient = $this->patientRepository->delete($patient);
         session()->flash('message', 'The patient has been successfully deleted!');
     
         return redirect()->route('patients');
@@ -147,7 +147,7 @@ class PatientController extends Controller
         $user = Auth::user();
         if($user->isActive == true)
         {
-        $patient = Patient::find($id);
+        $patient = $this->patientRepository->get($id);
         if ( $patient == null)
         {
             return redirect()->route('patients');
@@ -193,7 +193,7 @@ class PatientController extends Controller
         $user = Auth::user();
         if($user->isActive == true)
         {
-        $patient = Patient::find($id);
+        $patient = $this->patientRepository->get($id);
         if ( $patient == null)
         {
             return redirect()->route('patients', ['user' => $user->id]);
@@ -227,7 +227,7 @@ class PatientController extends Controller
         $user = Auth::user();
         if ($user->isActive == true && $user->isAdmin == false)
         {
-        $patient = Patient::findOrFail($id);
+        $patient = $this->patientRepository->get($id);
         $session = Session::findOrFail($sId);
         return Inertia::render('User/Sessions/Edit', ['patient' => $patient, 'session' => $session, 'id' => $id, 'sId' => $sId]);
         }
@@ -243,7 +243,7 @@ class PatientController extends Controller
             Session::where('id', '=', $sId)->update($changesSession);
           
            
-            $patient = Patient::findOrFail($id);
+            $patient = $this->patientRepository->get($id);
             $session = Session::findOrFail($sId);
             session()->flash('message', 'The session has been successfully updated!');
             return redirect()->route('sessions_show', ['patient' => $patient, 'session' => $session, 'id' => $id, 'sId' => $sId]);
@@ -262,7 +262,7 @@ class PatientController extends Controller
             {  
                 return Inertia::render('User/Patients/Create');}
       
-            $patient = Patient::find($id);
+            $patient = $this->patientRepository->get($id);
             $sessions = $patient->sessions;
            
             if ($sessions == null)
@@ -276,7 +276,7 @@ class PatientController extends Controller
     public function storeSession(Request $request, $id)
     {
         $user = Auth::user();
-        $patient = Patient::find($id);
+        $patient = $this->patientRepository->get($id);
 
         
         $newSession = request()->except('_token');
@@ -311,7 +311,7 @@ class PatientController extends Controller
                 return Inertia::render('User/Patients/Create');}
 
         
-            $patient = Patient::find($id);
+            $patient = $this->patientRepository->get($id);
             if ($user->isActive && $patient->sessions->count() == 0)
             {
                     return Inertia::render('User/Sessions/Create', ['patient', $patient]);
@@ -330,7 +330,7 @@ class PatientController extends Controller
     public function storeNote(Request $request, $id, $sId)
     {
         $user = Auth::user();
-        $patient = Patient::find($id);
+        $patient = $this->patientRepository->get($id);
         $session = Session::find($sId);
 
         
@@ -353,7 +353,7 @@ class PatientController extends Controller
             $user = Auth::user();
             if ($user->isActive == true && $user->isAdmin == false)
             {
-            $patient = Patient::findOrFail($id);
+            $patient = $this->patientRepository->get($id);
             $session = Session::findOrFail($sId);
             $note = Note::findOrFail($nId);
             return Inertia::render('User/Sessions/EditNote', ['patient' => $patient, 'session' => $session, 'note' => $note]);
@@ -368,7 +368,7 @@ class PatientController extends Controller
     
             Note::where('id', '=', $nId)->update($changesNote);
           
-            $patient = Patient::findOrFail($id);
+            $patient = $this->patientRepository->get($id);
             $session = Session::findOrFail($sId);
             $note = Note::findOrFail($nId);
             session()->flash('message', 'The note has been successfully updated!');

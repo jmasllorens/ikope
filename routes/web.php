@@ -63,8 +63,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/patientscreate', [PatientController::class, 'create'])->name('patients_create');
     Route::post('/patients/store', [PatientController::class, 'store'])->name('patients_store');
     Route::get('/patients/{id}/edit', [PatientController::class, 'edit'])->name('patients_edit');
-    Route::patch('patients/{id}/update', [PatientController::class, 'update'])->name('patients_update');
-    Route::delete('/patients/{id}', [PatientController::class, 'delete'])->name('patients_delete');
+    Route::patch('patients/{patient}/update', [PatientController::class, 'update'])->name('patients_update');
+    Route::delete('/patients/{patient}', [PatientController::class, 'delete'])->name('patients_delete');
 
     Route::get('/patients/{id}/sessions', [PatientController::class, 'getSessions'])->name('patients_sessions');
     Route::get('/patients/{id}/sessions/{sId}', [PatientController::class, 'showSession'])->name('sessions_show');
@@ -85,9 +85,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   
 
     Route::get('/sessions', [SessionController::class, 'index'])->name('sessions');
-    Route::delete('/sessions/{id}/', [SessionController::class, 'delete'])->name('delete');
+    Route::delete('/sessions/{session}/', [SessionController::class, 'delete'])->name('delete');
     Route::get('/sessions/{id}/edit', [SessionController::class, 'edit'])->name('edit');
-    Route::patch('/sessions/{id}/update', [SessionController::class, 'update'])->name('update');
+    Route::patch('/sessions/{session}/update', [SessionController::class, 'update'])->name('update');
 
     Route::get('/publications/index', [PublicationController::class, 'index'])->name('publications_index');
     Route::get('/publications/{id}', [PublicationController::class, 'get'])->name('publications_get');
