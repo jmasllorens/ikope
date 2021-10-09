@@ -6,17 +6,22 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Seminar;
-use App\Models\User;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
+use App\Repositories\SeminarRepository;
 
 
 class SeminarController extends Controller
 {   
+    private $seminarRepository;
+    
+    public function __construct(SeminarRepository $seminarRepository)
+    {
+        $this->seminarRepository = $seminarRepository;
+
+    }
     public function index()
     {   $user = Auth::user();
     
-        $seminars = Seminar::orderBy('date', 'asc')->get();
+        $seminars = $this->seminarRepository->all();
         $user->seminars;
      
         foreach($seminars as $seminar) 
@@ -34,7 +39,7 @@ class SeminarController extends Controller
     public function show($id) 
     {
         $user = Auth::user();
-        $seminar = Seminar::find($id);
+        $seminar = $this->seminarRepository->get($id);
 
         if($seminar == null)
         {
@@ -54,8 +59,8 @@ class SeminarController extends Controller
 
         if ($user->isAdmin)
         {
-            $seminar = Seminar::find($id);
-            $users = $seminar->users;
+            $seminar = $this->seminarRepository->get($id);
+            $users = $this->seminarRepository->users($seminar);
         
         return Inertia::render('Admin/Seminars/Subscribers', ['id' => $id, 'seminar' => $seminar, 'users' => $users]);
         }
@@ -65,11 +70,11 @@ class SeminarController extends Controller
     public function subscribe($id)
     {
         $user = Auth::user();
-        $seminar = Seminar::find($id);
+        $seminar = $this->seminarRepository->get($id);
 
         if($seminar->isSubscribed($user->id) == false)
-        {
-            $user->seminars()->attach($seminar);
+        {   
+            $this->seminarRepository->addUser($seminar, $user);
             $this->sendEmail($id);
     
             session()->flash('message', 'Your application has been successfully submitted!');
@@ -82,38 +87,40 @@ class SeminarController extends Controller
     public function unsubscribe($id)
     {
         $user = Auth::user();
-        $seminar = Seminar::find($id);
+        $seminar = $this->seminarRepository->get($id);
 
         if($seminar->isSubscribed($user->id) == true)
         {
-            $user->seminars()->detach($seminar);
+            $this->seminarRepository->removeUser($seminar, $user);
             $this->sendEmail($id);
     
-            session()->flash('message', 'Your application has been successfully cancelled!');
+            if(count($user->seminars) > 0)
+            {
+                session()->flash('message', 'Your application has been successfully cancelled!');
             
-            return redirect()->route('my_seminars');
+                return redirect()->route('my_seminars');
+            }
+
+            session()->flash('message', 'Your application has been successfully cancelled!');
+            return redirect()->route('seminars');
         }
             return redirect()->route('my_seminars');
     }
 
     public function sendEmail($id)
     {   
-        $seminarId = Seminar::find($id);
+  
+        $seminar = $this->seminarRepository->get($id);
+        $this->seminarRepository->mailConfirm($seminar);
 
-        Mail::raw('Your application in regard with our seminar "'.$seminarId->title.'" has been successfully submitted.', function ($m) {
-
-        $user = Auth::user();
-            
-        $m->from('ikope@ikope.com', 'I-KOPE');
-
-        $m->to($user->email, $user->name)->subject($user->name.', you have a new notification');
-        });
     }
     
 
     public function mySeminars()
-    {   $user = Auth::user();
-        $mySeminars = $user->seminars;
+    {   
+        $user = Auth::user();
+
+        $mySeminars = $this->seminarRepository->userSeminars($user);
 
         if ($mySeminars->count() == 0)
         {
@@ -136,18 +143,12 @@ class SeminarController extends Controller
 
     public function store(Request $request)
     {
-        $newSeminar = request()->except('_token');
+        $newSeminar = new Seminar($request->except('_token'));
+        $newSeminar = $this->seminarRepository->save($newSeminar);
 
-        if($request->hasFile('image'))
-    {
-        $newSeminar['image']=$request->file('image')->store('images', 'public');
-    }
-        Seminar::create($newSeminar);
-
-        $seminars = Seminar::orderBy('date', 'asc')->get();
         session()->flash('message', 'A new seminar has been successfully created!');
     
-       return redirect()->route('seminars');
+        return redirect()->route('seminars');
 
     }
 
@@ -157,36 +158,30 @@ class SeminarController extends Controller
         
         if ($user->isAdmin == true)
         {
-        $seminar = Seminar::findOrFail($id);
+        $seminar = $this->seminarRepository->get($id);
         return Inertia::render('Admin/Seminars/Edit', ['seminar' => $seminar]);
         }
         return redirect()->route('dashboard');
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Seminar $seminar)
     {
-        $changesSeminar = request()->except(['_token', '_method']);
-    
-          if($request->hasFile('image'))
-            {
-            $seminar=Seminar::findOrFail($id);
-            Storage::delete('public/'.$seminar->image);
-            $changesSeminar['image']=$request->file('image')->store('images', 'public');
-            }
-  
-            Seminar::where('id', '=', $id)->update($changesSeminar);
-           
-            $seminar = Seminar::findOrFail($id);
-            session()->flash('message', 'The seminar has been successfully updated!');
-            return redirect()->route('seminars');
+      
+        $seminar->fill($request->all());
+        $seminar = $this->seminarRepository->save($seminar);
+   
+        session()->flash('message', 'The seminar has been successfully updated!');
+
+        return redirect()->route('seminars');
           
         }
     
-    public function delete($id)
-    {   
-        Seminar::destroy($id);
-     
+    public function destroy(Seminar $seminar)
+    { 
+        $seminar = $this->seminarRepository->delete($seminar);
+        
         session()->flash('message', 'The seminar has been successfully deleted!');
+
         return redirect()->route('seminars');
     }
 

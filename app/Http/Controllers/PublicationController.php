@@ -28,7 +28,7 @@ class PublicationController extends Controller
 
         $sendTime = microtime(true);
 
-        dump($sendTime-$startTime);
+        /* dump($sendTime-$startTime); */
         return response()->json($publications);
     }
 

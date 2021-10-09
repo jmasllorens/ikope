@@ -92,19 +92,30 @@
                 <div class="text-sm text-gray-900">{{ seminar.approach }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm">
-                {{ seminar.date }}
+                  <span v-if="seminar.date > currentTime">
+                {{ seminar.date }} 
+                  </span>
+                  <span v-if="seminar.date < currentTime" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">Expired
+                  </span>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <span v-if="seminar.users.length >= seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700"><a v-if="$page.props.auth.user.isAdmin" :href="`/seminars/${seminar.id}/subscribers`" method="get">Full</a><span v-if="!$page.props.auth.user.isAdmin">Full</span>
+              
+              <td v-if="!$page.props.auth.user.isAdmin" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <span v-if="seminar.users.length >= seminar.availability && seminar.date > currentTime" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">
                   Full
                 </span>
-                <span v-if="seminar.users.length < seminar.availability" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700"><a v-if="$page.props.auth.user.isAdmin" :href="`/seminars/${seminar.id}/subscribers`" method="get">
-                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}</a>
-                <span v-if="!$page.props.auth.user.isAdmin">
-                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}</span>
+                <span v-if="seminar.users.length < seminar.availability && seminar.date > currentTime" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700">
+                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}
                 </span>
               </td>
-              <td v-if="!$props.auth.user.isAdmin">
+              <td v-if="$page.props.auth.user.isAdmin" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <span v-if="seminar.users.length >= seminar.availability && seminar.date > currentTime" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">
+                 <a :href="`/seminars/${seminar.id}/subscribers`" method="get">Full</a>
+                </span>
+                <span v-if="seminar.users.length < seminar.availability && seminar.date > currentTime" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700"><a :href="`/seminars/${seminar.id}/subscribers`" method="get">
+                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}</a>
+                </span>
+              </td>
+              <td v-if="!$props.auth.user.isAdmin && seminar.date > currentTime">
                  <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/seminars/${seminar.id}`" method="get">+ Info</a></BreezeButton>
               </td>
               <td v-if="seminar.userSubscribed == true && !$props.auth.user.isAdmin">
@@ -121,16 +132,16 @@
                <BreezeButton class="bg-green-400 hover:bg-green-500"><a :href="`/seminars/${seminar.id}/edit`" method="get">Edit</a></BreezeButton>
               </td>
               <td v-if="$props.auth.user.isAdmin">
-                <BreezeButton class="bg-red-400 hover:bg-red-500 mr-2" @click.prevent="confirm = true">Delete</BreezeButton>
+                <BreezeButton class="bg-red-400 hover:bg-red-500 mr-2" @click.prevent="confirmDelete(`${seminar.id}`)">Delete</BreezeButton>
               </td>
-              <div v-if="confirm" class="absolute flex max-w-xs w-full top-0 right-0 mt-4 mr-16  bg-white rounded shadow p-4 bg-red-100">
+              <td v-if="confirm" class="absolute flex max-w-xs w-full top-0 right-0 mt-4 mr-16  bg-white rounded shadow p-4 bg-red-100">
                     <div class="mr-3 ml-2">
                         <svg class="w-6 h-6 text-red-500 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
                      <div class="flex-1 text-gray-800 text-sm"> Are you sure you want to delete this seminar?
                   
                          <div class="grid grid-cols-2 mt-5 ml-10">
-                          <div><button @click.prevent="deleteSeminar(`${seminar.id}`)" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-500">Accept</button>
+                          <div><button @click.prevent="deleteSeminar(id)" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-500">Accept</button>
                     </div>
                          <div> <button @click.prevent="confirm = false" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-500">Cancel</button>
                              </div>
@@ -138,7 +149,7 @@
                       
                     </div>
                     
-                </div>
+                </td>
              
             
             
@@ -180,17 +191,39 @@ export default {
 
     data() {
     return {
-        confirm: false
+        currentTime: '',
+        confirm: false,
+        id: ''
     }
    },
+    created(){
+      setInterval(this.getNow, 1000)
+    },
+  
 
     methods: {
 
+      getNow: function() {
+
+                    const today = new Date();
+                    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                    const dateTime = date +' '+ time;
+                    this.currentTime = dateTime;
+
+                },
+
+    
+    confirmDelete(id)
+    {
+      this.confirm = true,
+      this.id = id
+    },
     
     deleteSeminar(id) {
       this.confirm = false
      
-      this.$inertia.delete(`/seminars/${id}`, id)
+      this.$inertia.delete(`/seminars/${id}`)
       
       return;
       },
