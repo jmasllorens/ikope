@@ -112,22 +112,18 @@ class SeminarController extends Controller
 
     public function sendEmail($id)
     {   
-        $seminarId = Seminar::find($id);
+  
+        $seminar = $this->seminarRepository->get($id);
+        $this->seminarRepository->mailConfirm($seminar);
 
-        Mail::raw('Your application in regard with our seminar "'.$seminarId->title.'" has been successfully submitted.', function ($m) {
-
-        $user = Auth::user();
-            
-        $m->from('ikope@ikope.com', 'I-KOPE');
-
-        $m->to($user->email, $user->name)->subject($user->name.', you have a new notification');
-        });
     }
     
 
     public function mySeminars()
-    {   $user = Auth::user();
-        $mySeminars = $user->seminars;
+    {   
+        $user = Auth::user();
+
+        $mySeminars = $this->seminarRepository->userSeminars($user);
 
         if ($mySeminars->count() == 0)
         {
@@ -165,7 +161,7 @@ class SeminarController extends Controller
         
         if ($user->isAdmin == true)
         {
-        $seminar = Seminar::findOrFail($id);
+        $seminar = $this->seminarRepository->get($id);
         return Inertia::render('Admin/Seminars/Edit', ['seminar' => $seminar]);
         }
         return redirect()->route('dashboard');
