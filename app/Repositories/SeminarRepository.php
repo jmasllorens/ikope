@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Seminar;
+use App\Models\User;
 
 
 class SeminarRepository
@@ -40,5 +41,15 @@ class SeminarRepository
     {
         $users = $seminar->users;
         return $users;
+    }
+
+    public function addUser(Seminar $seminar, User $user)
+    {   
+        $user->seminars()->attach($seminar);
+    }
+
+    public function removeUser(Seminar $seminar, User $user)
+    {
+        $user->seminars()->detach($seminar);
     }
 }

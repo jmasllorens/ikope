@@ -62,7 +62,8 @@ class SeminarController extends Controller
 
         if ($user->isAdmin)
         {
-            $seminar = $this->seminarRepository->get($id);$users = $this->seminarRepository->users($seminar);
+            $seminar = $this->seminarRepository->get($id);
+            $users = $this->seminarRepository->users($seminar);
         
         return Inertia::render('Admin/Seminars/Subscribers', ['id' => $id, 'seminar' => $seminar, 'users' => $users]);
         }
@@ -72,11 +73,11 @@ class SeminarController extends Controller
     public function subscribe($id)
     {
         $user = Auth::user();
-        $seminar = Seminar::find($id);
+        $seminar = $this->seminarRepository->get($id);
 
         if($seminar->isSubscribed($user->id) == false)
-        {
-            $user->seminars()->attach($seminar);
+        {   
+            $this->seminarRepository->addUser($seminar, $user);
             $this->sendEmail($id);
     
             session()->flash('message', 'Your application has been successfully submitted!');
@@ -89,16 +90,22 @@ class SeminarController extends Controller
     public function unsubscribe($id)
     {
         $user = Auth::user();
-        $seminar = Seminar::find($id);
+        $seminar = $this->seminarRepository->get($id);
 
         if($seminar->isSubscribed($user->id) == true)
         {
-            $user->seminars()->detach($seminar);
+            $this->seminarRepository->removeUser($seminar, $user);
             $this->sendEmail($id);
     
-            session()->flash('message', 'Your application has been successfully cancelled!');
+            if(count($user->seminars) > 0)
+            {
+                session()->flash('message', 'Your application has been successfully cancelled!');
             
-            return redirect()->route('my_seminars');
+                return redirect()->route('my_seminars');
+            }
+
+            session()->flash('message', 'Your application has been successfully cancelled!');
+            return redirect()->route('seminars');
         }
             return redirect()->route('my_seminars');
     }
