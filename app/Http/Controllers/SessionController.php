@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Patient;
+use App\Repositories\SessionRepository;
+
 
 class SessionController extends Controller
 {
@@ -15,6 +17,14 @@ class SessionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $sessionRepository;
+    
+    public function __construct(SessionRepository $sessionRepository)
+    {
+        $this->sessionRepository = $sessionRepository;
+
+    }
 
 
     public function index()
@@ -31,7 +41,7 @@ class SessionController extends Controller
             return redirect()->route('patients_create');
         }
 
-        $sessions = Session::orderBy('date', 'desc')->where('user_id', $user->id)->get();
+        $sessions = $this->sessionRepository->all();
 
         if ($sessions->count() == 0)
         {  
@@ -53,13 +63,12 @@ class SessionController extends Controller
 
     }
 
-    public function delete($id)
+    public function delete(Session $session)
     {  
-        Session::findOrFail($id);
-        Session::destroy($id);
+        $session = $this->sessionRepository->delete($session);
         session()->flash('message', 'The session has been successfully deleted!');
     
-        return redirect()->route('sessions', $id);
+        return redirect()->route('sessions', $session);
     }
 
     public function edit($id)
@@ -74,18 +83,15 @@ class SessionController extends Controller
         return redirect()->route('dashboard');
     }
 
-    public function update($id)
+    public function update(Request $request, Session $session)
     {
        
-            $changesSession = request()->except(['_token', '_method']);
+        $session->fill($request->all());
         
-                Session::where('id', '=', $id)->update($changesSession);
-              
-               
-               
-                $session = Session::findOrFail($id);
-                session()->flash('message', 'The session has been successfully updated!');
-                return redirect()->route('sessions', ['id' => $session->id]);
+        $session = $this->sessionRepository->save($session);
+    
+        session()->flash('message', 'The session has been successfully updated!');
+        return redirect()->route('sessions', ['id' => $session->id]);
               
             
     }
