@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 
 
-class SeminarRepository
+class SeminarRepository extends BaseRepository
 {
-    private $model;
+    
 
-    public function __construct()
+    public function __construct(Seminar $seminar)
     {
-        $this->model = new Seminar();
+        parent::__construct($seminar);
     }
 
     public function all()
@@ -22,22 +22,6 @@ class SeminarRepository
         return $this->model->orderBy('date', 'asc')->get();
     }
 
-    public function get(int $id)
-    {
-        return $this->model->find($id);
-    }
-
-    public function save(Seminar $seminar)
-    {
-        $seminar->save();
-        return $seminar;
-    }
-
-    public function delete(Seminar $seminar)
-    {
-        $seminar->delete();
-        return $seminar;
-    }
 
     public function users(Seminar $seminar)
     {

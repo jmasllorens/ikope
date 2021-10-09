@@ -89,10 +89,10 @@
         
         
               
-              <td>
+              <td v-if="seminar.date > currentTime">
                  <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/seminars/${seminar.id}`" method="get">View</a></BreezeButton>
               </td>
-               <td>
+               <td  v-if="seminar.date > currentTime">
                  <BreezeButton><a :href="`/unsubscribe/${seminar.id}`" method="get">Unsubscribe</a></BreezeButton>
               </td>
             

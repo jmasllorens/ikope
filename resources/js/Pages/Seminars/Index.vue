@@ -115,7 +115,7 @@
                 {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}</a>
                 </span>
               </td>
-              <td v-if="!$props.auth.user.isAdmin">
+              <td v-if="!$props.auth.user.isAdmin && seminar.date > currentTime">
                  <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/seminars/${seminar.id}`" method="get">+ Info</a></BreezeButton>
               </td>
               <td v-if="seminar.userSubscribed == true && !$props.auth.user.isAdmin">
