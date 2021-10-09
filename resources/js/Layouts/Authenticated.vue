@@ -1,5 +1,7 @@
 <template>
+  <BreezeValidationErrors class="mb-4" />
     <div>
+           
         <div class="min-h-screen bg-gray-100">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
@@ -130,6 +132,9 @@
             </nav>
 
             <!-- Page Heading -->
+                 <Toast></Toast> 
+     
+               
             <header class="bg-white shadow" v-if="$slots.header">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <slot name="header" />
@@ -138,29 +143,49 @@
 
             <!-- Page Content -->
             <main>
+               
+              
+                 
+                     
+                 
                 <slot />
+                 
             </main>
+         
         </div>
     </div>
+     
+         
 </template>
 
+
+
 <script>
+import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
 import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue'
 import BreezeDropdown from '@/Components/Dropdown.vue'
 import BreezeDropdownLink from '@/Components/DropdownLink.vue'
 import BreezeNavLink from '@/Components/NavLink.vue'
 import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
-import { Link } from '@inertiajs/inertia-vue3';
+import { Link } from '@inertiajs/inertia-vue3'
+import Toast from '@/Components/Toast'
+
+
+
 
 export default {
 
     components: {
+        BreezeValidationErrors,
         BreezeApplicationLogo,
         BreezeDropdown,
         BreezeDropdownLink,
         BreezeNavLink,
         BreezeResponsiveNavLink,
         Link,
+        Toast,
+
+   
     },
 
     data() {

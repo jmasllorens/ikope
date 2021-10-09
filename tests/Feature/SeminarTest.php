@@ -34,6 +34,20 @@ class SeminarTest extends TestCase
         $this->assertCount(6, Seminar::all());
     }
 
+    public function test_user_can_retrieve_info_seminar_by_id()
+    {
+        $user = User::factory()->create();
+        $seminar = Seminar::factory()->create(['id' => 8, 'title' => 'All sorts of things in this world behave like mirrors']);
+        $seminarTitle = $seminar->title; 
+
+        $response = $this->actingAs($user)->get('/seminars/8');
+
+        $response->assertStatus(200);
+        $this->assertEquals('All sorts of things in this world behave like mirrors', $seminarTitle);
+
+       
+    }
+
     public function test_user_can_get_list_of_all_their_seminars() 
     {   
         $user =  User::factory()->create([]);;
@@ -145,4 +159,22 @@ class SeminarTest extends TestCase
   
         $this->assertEquals(Seminar::find(4)->title, 'Queer Theory in Psychoanalysis');
     } 
+
+    public function test_admin_can_get_list_of_all_subscribers_by_seminarId() 
+    {   
+        $admin =  User::factory()->create(['isAdmin' => true]);
+        $user1 =  User::factory()->create();
+        $user2 =  User::factory()->create();;
+        $seminar1 = Seminar::factory()->create(['id' => 1]);
+        $user1->seminars()->attach(1);
+        $user2->seminars()->attach(1);
+
+        $subscribers = $seminar1->users;
+       
+       
+        $response = $this->actingAs($admin)->get('/seminars/1/subscribers');
+
+        $response->assertStatus(200);
+        $this->assertCount(2, $subscribers);
+    }
 }

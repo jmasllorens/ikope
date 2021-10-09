@@ -66,7 +66,9 @@ class UserTest extends TestCase
         $note2 = Note::factory()->create(['user_id' => 1, 'patient_id' => 2, 'session_id' => 6]);
 
         $this->assertCount(2, $user->notes);
-    } 
+    }
+    
+   
 
     
 }

@@ -17,7 +17,7 @@ class Seminar extends Model
         'description',
         'availability',
         'date',
-        'image'
+  
     ];
 
     public function users()

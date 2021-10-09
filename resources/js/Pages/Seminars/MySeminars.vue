@@ -80,15 +80,19 @@
                 <div class="text-sm text-gray-900">{{ seminar.approach }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm">
-                {{ seminar.date }}
-              </td>   
+                  <span v-if="seminar.date > currentTime">
+                {{ seminar.date }} 
+                  </span>
+                  <span v-if="seminar.date < currentTime" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">Expired
+                  </span>
+              </td> 
         
         
               
-              <td>
+              <td v-if="seminar.date > currentTime">
                  <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/seminars/${seminar.id}`" method="get">View</a></BreezeButton>
               </td>
-               <td>
+               <td  v-if="seminar.date > currentTime">
                  <BreezeButton><a :href="`/unsubscribe/${seminar.id}`" method="get">Unsubscribe</a></BreezeButton>
               </td>
             
@@ -129,6 +133,30 @@ export default {
         Head,
         BreezeButton  
     },
+     data() {
+    return {
+        currentTime: ''
+       
+    }
+   },
+    created(){
+      setInterval(this.getNow, 1000)
+    },
+  
+
+    methods: {
+
+      getNow: function() {
+
+                    const today = new Date();
+                    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                    const dateTime = date +' '+ time;
+                    this.currentTime = dateTime;
+
+                },
+    }
+    
 
 }
 </script>

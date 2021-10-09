@@ -2,117 +2,145 @@
     <Head title="Session" />
 
     <BreezeAuthenticatedLayout>
-        <div class="py-12">
+        <div class="py-9">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                  
             </div>
-  </div>
+               <span class="-ml-10">
+            <a
+              :href="`/patients/${$page.props.patient.id}/sessions`" 
+              method="get"
+              class="
+                inline-flex
+                items-center
+                px-1
+                pt-1
+                border-b-2 border-transparent
+                text-sm
+                font-medium
+                leading-5
+                text-gray-500
+                hover:text-gray-700
+                hover:border-gray-400
+                focus:outline-none
+                focus:text-gray-700
+                focus:border-gray-400
+                transition
+                duration-150
+                ease-in-out
+              "
+              ><strong>{{$page.props.patient.name}}</strong>'s Sessions & Notes</a
+            >
+
+          </span>
+         
 </div>
+    <div class="flex justify-center">
 
-<div class="flex justify-center m-6">
-<div>
-  <div v-if="$page.props.session.note = null"><BreezeButton class="bg-green-400 hover:bg-green-500"> <a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}/${$page.props.session.note.id}/create`" method="get"> Create Note</a></BreezeButton></div>
-     <br>
-  <br>
-  <div><BreezeButton class="bg-yellow-400 hover:bg-yellow-500"> <a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}/edit`" method="get"> Edit Session</a></BreezeButton></div>
+   <h1
+             class="text-xl font-medium leading-6 tracking-wide text-black">
+        Session:
+            </h1>
+               <p class="text-gray-700"> &nbsp;&nbsp;{{$page.props.session.date}} </p>
+           
+  </div>
 
+     <div class="flex justify-center m-9">
+<div class="mr-12">
+
+     <div v-if="$page.props.session.note == null" class="mt-15"><BreezeButton class="bg-yellow-400 hover:bg-yellow-500 "> <a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}/edit`" method="get"> Edit Session</a></BreezeButton></div>
+
+  <div v-if="$page.props.session.note != null"><BreezeButton class="bg-green-400 hover:bg-green-500 mt-15"> <a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}/edit`" method="get"> Edit Session</a></BreezeButton></div>
 <br>
   <div><BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteSession(`${$page.props.patient.id}`)">Delete Session</BreezeButton></div>
-<br>
-  <div v-if="$page.props.session.note != null"><BreezeButton class="bg-yellow-400 hover:bg-yellow-500"> <a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}/${$page.props.session.note.id}/edit`" method="get"> Edit Session</a></BreezeButton></div>
+<br><br><br>
+
+  <div v-if="$page.props.session.note == null" class="mt-15"><BreezeButton class="bg-green-400 hover:bg-green-500 "> <a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}/create`" method="get"> Create Note</a></BreezeButton></div>
+  <div v-if="$page.props.session.note != null"><BreezeButton class="bg-yellow-400 hover:bg-yellow-500"> <a :href="`/patients/${$page.props.patient.id}/sessions/${$page.props.session.id}/${$page.props.session.note.id}/edit`" method="get"> Update Note</a></BreezeButton></div>
      <br>
-
-  <div v-if="$page.props.session.note != null"><BreezeButton class="bg-yellow-400 hover:bg-yellow-500" @click.prevent="deleteNote()">Delete Note</BreezeButton></div>
-  </div>
-  <div class="flex flex-col h-full w-4/5 mx-auto bg-blueish rounded-lg">
-      
-          <div class="flex justify-between -mt-4 px-4">
-            <span v-if="$page.props.session.isPayed == 1"
-              class="inline-block ring-2 bg-gray-700 ring-gray-700 rounded-sm text-m font-medium tracking-wide text-white py-1.5 px-3 pt-1.5"
-              >{{$page.props.session.cost}} € payed</span>
-
-             <span v-if="$page.props.session.isPayed == 0"
-              class="inline-block ring-2 bg-red-400 ring-red-400 rounded-sm text-m tracking-wide font-bold text-gray-800 py-1.5 px-3 pt-1.5"
-              >{{$page.props.session.cost}} € pending</span>
-         <!--    <span
-              class="flex h-min space-x-1 items-center rounded-full bg-gray-700 py-2 px-3 text-m font-medium">
-                <a class="cursor-pointer" :href="`/patients/${$page.props.patient.id}/sessions&notes`">  <p class="text-white font-semibold text-sm">
-                {{$page.props.patient.sessions.length }} sessions | {{ $page.props.patient.notes.length }} notes
-              </p></a>
-            </span> -->
-          </div>
-          <div class="py-2 px-4">
-            <br>
-            <h1
-              class="text-xl font-medium leading-6 tracking-wide text-black">
-            {{$page.props.session.keywords}} 
-            </h1>
-            <p class="text-gray-700"> ({{$page.props.session.date}}) </p>
-          </div>
-          <div class="flex flex-row items-end h-full w-full px-4 mt-4">
-            <div class="flex border-t border-gray-700 w-full py-4">
+  <div v-if="$page.props.session.note != null"><BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteNote()">Delete Note</BreezeButton></div></div>
+        
+            <div class="flex border-t border-gray-700 w-full py-4 mr-12">  
                 <div class="">
-                   <!--  <p class="text-m font-semibold">Mail:</p>
-                  <p class="text-m font-light tracking-wider text-gray-700">
-                  {{$page.props.patient.email}}
-                  </p> 
-                   <p class="text-m font-semibold">Age:</p>
-                  <p class="text-m font-light tracking-wider text-gray-700">
-                      {{$page.props.patient.age}}
-                  </p>
-                  <br>
-                   <p class="text-m font-semibold">Motive of consultation:</p>
-                   <p class="text-m font-light tracking-wide text-gray-700">
-                   {{ $page.props.patient.motive }}
-                  </p> 
-                     <p class="text-m font-semibold">{{$page.props.patient.name}}'s History:</p>
-                   <p class="text-m font-light tracking-wide text-gray-700">
-                   {{ $page.props.patient.history }}
-                  </p> 
-                  <br> -->
+                  <div class="flex justify-between">
+
+                     <span v-if="$page.props.session.isPayed == 1" class="flex inline-block"><svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg><p class="mt-2">&nbsp;&nbsp;{{$page.props.session.cost}} € payed </p></span>
+
+             <span v-if="$page.props.session.isPayed == 0" class="flex inline-block"><svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg><p class="mt-2">&nbsp;&nbsp;{{$page.props.session.cost}} € pending</p></span>
+                  
+            <span v-if="$page.props.notes != null && $page.props.notes.isImportant == 1" 
+              class="inline-block h-min space-x-1 items-center rounded-full text-m font-medium">
+              <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </span>
            
+            
+            </div>
+            <br>
+            <br>
+            <div class="grid grid-cols-3">
+               <div class="mr-12">
+                    <p class="text-m"><strong>Keywords:</strong>&nbsp; {{$page.props.session.keywords}} </p>
+              </div>
+         
+            <div class="ml-12 gap-8"></div>
+               <div class="ml-12 justify-self-end cursor-pointer"> <a :href="`/patients/${$page.props.patient.id}`" method="get">
+                 <p class="text-m"><strong>Patient:</strong>&nbsp; {{$page.props.patient.name}} </p> </a>
+                  </div> 
+                  
+              <br>
+                  <br>
+                  </div>
+                  <div v-if="$page.props.notes != null" class="bg-white p-6 overflow-hidden shadow-sm sm:rounded-lg">
+                     <p class="text-m font-bold  mr-5 ml-5 ">{{$page.props.notes.title}}</p>
+                     <br>
+                  
+                   <p class="text-ms font-light text-gray-800 mr-5 ml-5 leading-loose ">
+                   {{ $page.props.notes.text }}
+                  </p> 
+                  <br>
+                  </div>
+           
+                <!--  <div class="text-m font-semibold">
+                  <h2>Sessions</h2>
+                  <br>
                 
          
-        <!--   <span v-for="session in $page.props.patient.sessions" v-bind:key="session" class="text-m font-light tracking-wider text-gray-600">
+          <span v-for="session in $page.props.patient.sessions" v-bind:key="session" class="text-m font-light tracking-wider text-gray-600">
               <p> Session number: {{ session.id}} </p>
                       <p> Session date: {{ session.date }} </p>
                        <p> Session keyword: {{ session.keywords }} </p>
                          <p> Session cost: {{ session.cost }} (is payed: {{ session.isPayed }}) </p>
                       
                         <br>
-                    </span> -->
-           
-             <div v-if="$page.props.session.note != null" class="text-m font-semibold">
-                
-                
-         
-         
-              <p> Note number: {{ $page.props.session.note.id}} </p>
-                      <p> Note title: {{$page.props.session.note.title}} </p>
-                   
-                        <br>
-                  
+                    </span>
+            
             </div>
-                </div>
-              </div>
-              <div>
+             <div class="text-m font-semibold">
+                  <h2>Notes</h2>
+                  <br>
                 
-               <!--  <BreezeButton  v-if="$props.seminar.users.length < $props.seminar.availability && !isSubscribed && !$props.auth.user.isAdmin"><a :href="`/subscribe/${seminar.id}`" method="get">Subscribe</a></BreezeButton>
-
-                <BreezeButton v-if="isSubscribed && !$props.auth.user.isAdmin"><a :href="`/unsubscribe/${seminar.id}`" method="get">Unsubscribe</a></BreezeButton>
-
-                <div v-if="$props.auth.user.isAdmin" class="inline-flex">
-                <BreezeButton class="bg-green-700 hover:bg-green-800 mr-3"><a :href="`/seminars/${seminar.id}/edit`" method="get">Edit</a></BreezeButton>
-
-                <BreezeButton class="bg-red-700 hover:bg-red-800 mr-3" @click.prevent="deleteSeminar(`${seminar.id}`)">Delete</BreezeButton> 
-                </div> -->
-              </div>
+         
+          <span v-for="note in $page.props.patient.notes" v-bind:key="note" class="text-m font-light tracking-wider text-gray-600">
+              <p> Note number: {{ note.id}} </p>
+                      <p> Note title: {{ note.title }} </p>
+                       <p> Note importance: {{ note.isImportant }} </p>
+                         <p> Note body: {{ note.text }}  </p>
+                        <br>
+                    </span>
+            </div> -->
+                </div>
+       
           </div>
-        <br>
+  
         </div>
+       
 </div>
-<br>
-<br>
+<br><br>
+
+
+
+
 
 </BreezeAuthenticatedLayout>
     
