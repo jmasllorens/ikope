@@ -99,12 +99,20 @@
                   </span>
               </td>
               
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td v-if="!$page.props.auth.user.isAdmin" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <span v-if="seminar.users.length >= seminar.availability && seminar.date > currentTime" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">
                   Full
                 </span>
                 <span v-if="seminar.users.length < seminar.availability && seminar.date > currentTime" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700">
                 {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}
+                </span>
+              </td>
+              <td v-if="$page.props.auth.user.isAdmin" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <span v-if="seminar.users.length >= seminar.availability && seminar.date > currentTime" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">
+                 <a :href="`/seminars/${seminar.id}/subscribers`" method="get">Full</a>
+                </span>
+                <span v-if="seminar.users.length < seminar.availability && seminar.date > currentTime" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700"><a :href="`/seminars/${seminar.id}/subscribers`" method="get">
+                {{ seminar.availability - seminar.users.length }}/{{seminar.availability}}</a>
                 </span>
               </td>
               <td v-if="!$props.auth.user.isAdmin">

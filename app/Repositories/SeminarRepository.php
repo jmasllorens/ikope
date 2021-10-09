@@ -29,4 +29,16 @@ class SeminarRepository
         $seminar->save();
         return $seminar;
     }
+
+    public function delete(Seminar $seminar)
+    {
+        $seminar->delete();
+        return $seminar;
+    }
+
+    public function users(Seminar $seminar)
+    {
+        $users = $seminar->users;
+        return $users;
+    }
 }

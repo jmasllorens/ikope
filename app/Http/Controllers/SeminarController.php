@@ -62,8 +62,7 @@ class SeminarController extends Controller
 
         if ($user->isAdmin)
         {
-            $seminar = Seminar::find($id);
-            $users = $seminar->users;
+            $seminar = $this->seminarRepository->get($id);$users = $this->seminarRepository->users($seminar);
         
         return Inertia::render('Admin/Seminars/Subscribers', ['id' => $id, 'seminar' => $seminar, 'users' => $users]);
         }
@@ -172,15 +171,17 @@ class SeminarController extends Controller
         $seminar = $this->seminarRepository->save($seminar);
    
         session()->flash('message', 'The seminar has been successfully updated!');
+
         return redirect()->route('seminars');
           
         }
     
-    public function delete($id)
+    public function destroy(Seminar $seminar)
     { 
-        Seminar::destroy($id);
-     
+        $seminar = $this->seminarRepository->delete($seminar);
+        
         session()->flash('message', 'The seminar has been successfully deleted!');
+
         return redirect()->route('seminars');
     }
 
