@@ -28,8 +28,7 @@ class SeminarFactory extends Factory
             'approach' => $this->faker->word(12),
             'description' => $this->faker->text(5000),
             'availability' => $this->faker->numberBetween(5, 30),
-            'date' => $this ->faker->dateTimeBetween('now', '+200 days'),
-            'image' => $this->faker->imageurl(640,480, null, false),  
+            'date' => $this ->faker->dateTimeBetween('now', '+200 days')
             ];
     }
 }

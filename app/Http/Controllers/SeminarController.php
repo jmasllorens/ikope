@@ -9,14 +9,22 @@ use App\Models\Seminar;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use App\Repositories\SeminarRepository;
 
 
 class SeminarController extends Controller
 {   
+    private $seminarRepository;
+    
+    public function __construct(SeminarRepository $seminarRepository)
+    {
+        $this->seminarRepository = $seminarRepository;
+
+    }
     public function index()
     {   $user = Auth::user();
     
-        $seminars = Seminar::orderBy('date', 'asc')->get();
+        $seminars = $this->seminarRepository->all();
         $user->seminars;
      
         foreach($seminars as $seminar) 
@@ -34,7 +42,7 @@ class SeminarController extends Controller
     public function show($id) 
     {
         $user = Auth::user();
-        $seminar = Seminar::find($id);
+        $seminar = $this->seminarRepository->get($id);
 
         if($seminar == null)
         {
@@ -136,18 +144,12 @@ class SeminarController extends Controller
 
     public function store(Request $request)
     {
-        $newSeminar = request()->except('_token');
+        $newSeminar = new Seminar($request->except('_token'));
+        $newSeminar = $this->seminarRepository->save($newSeminar);
 
-        if($request->hasFile('image'))
-    {
-        $newSeminar['image']=$request->file('image')->store('images', 'public');
-    }
-        Seminar::create($newSeminar);
-
-        $seminars = Seminar::orderBy('date', 'asc')->get();
         session()->flash('message', 'A new seminar has been successfully created!');
     
-       return redirect()->route('seminars');
+        return redirect()->route('seminars');
 
     }
 
@@ -163,27 +165,19 @@ class SeminarController extends Controller
         return redirect()->route('dashboard');
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Seminar $seminar)
     {
-        $changesSeminar = request()->except(['_token', '_method']);
-    
-          if($request->hasFile('image'))
-            {
-            $seminar=Seminar::findOrFail($id);
-            Storage::delete('public/'.$seminar->image);
-            $changesSeminar['image']=$request->file('image')->store('images', 'public');
-            }
-  
-            Seminar::where('id', '=', $id)->update($changesSeminar);
-           
-            $seminar = Seminar::findOrFail($id);
-            session()->flash('message', 'The seminar has been successfully updated!');
-            return redirect()->route('seminars');
+      
+        $seminar->fill($request->all());
+        $seminar = $this->seminarRepository->save($seminar);
+   
+        session()->flash('message', 'The seminar has been successfully updated!');
+        return redirect()->route('seminars');
           
         }
     
     public function delete($id)
-    {   
+    { 
         Seminar::destroy($id);
      
         session()->flash('message', 'The seminar has been successfully deleted!');

@@ -23,7 +23,7 @@ class CreateSeminarsTable extends Migration
             $table->longText('description');
             $table->integer('availability');
             $table->dateTime('date');
-            $table->string('image')->nullable();
+        
         });
     }
 
