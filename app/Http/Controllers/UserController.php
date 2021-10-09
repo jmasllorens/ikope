@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Contracts\UserRepositoryInterface;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {   
@@ -55,8 +56,8 @@ class UserController extends Controller
         if ($admin->isAdmin && $admin != $user)
         {
         $user = $this->userRepository->delete($user);
-        return response()->json($user); 
-      /*   return redirect()->route('users_admin');  */ 
+      /*   return response()->json($user);  */
+        return redirect()->route('users_admin');  
         }
         return redirect()->route('dashboard');
     } 
@@ -83,7 +84,7 @@ class UserController extends Controller
     {
         $changesUser = request()->except(['_token', '_method']);
         User::where('id', '=', $id)->update($changesUser);
-        $seminar = User::findOrFail($id);
+        $user = User::findOrFail($id);
         session()->flash('message', 'Your profile has been successfully updated!');
        
         return redirect()->route('dashboard');
@@ -102,6 +103,25 @@ class UserController extends Controller
         User::destroy($users);
         session()->flash('message', 'All users have been successfully deleted!');
         return redirect()->route('users');
+    }
+
+
+    public function contactMail(Request $request)
+    {
+    
+        Mail::raw('Message: '.$request->message.'.', function ($m) {
+
+        $user = Auth::user();
+            
+        $m->from($user->email, $user->name);
+
+        $m->to('ikope@ikope.com', 'I-KOPE')->subject($user->name.' sent you a message');
+        });
+
+        session()->flash('message', 'Your message has been successfully sent. We will contact you ASAP.');
+    
+       return redirect()->route('dashboard');
+
     }
 
    

@@ -4,13 +4,13 @@ namespace App\Repositories;
 
 use App\Models\Publication;
 
-class PublicationRepository
+class PublicationRepository extends BaseRepository
 {
-    private $model;
+ 
 
-    public function __construct()
+    public function __construct(Publication $publication)
     {
-        $this->model = new Publication();
+        parent::__construct($publication);
     }
 
     public function all()
@@ -18,20 +18,4 @@ class PublicationRepository
         return $this->model->orderBy('title', 'asc')->paginate(20);
     }
 
-    public function get(int $id)
-    {
-        return $this->model->find($id);
-    }
-
-    public function save(Publication $publication)
-    {
-        $publication->save();
-        return $publication;
-        
-    }
-    public function delete(Publication $publication)
-    {
-        $publication->delete($publication);
-        return $publication;
-    }
 }

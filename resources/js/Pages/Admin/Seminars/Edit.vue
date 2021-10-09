@@ -111,13 +111,14 @@ export default {
 
             let data = {
                 title: this.form.title,
+                subject: this.form.subject,
                 author: this.form.author,
                 approach: this.form.approach,
                 description: this.form.description,
                 date: this.form.date,
                 availability: this.form.availability}
       
-                this.$inertia.patch(`/seminars/${this.seminar.id}/update`, data)
+                this.$inertia.patch(`/seminars/${this.seminar.id}/update`, data, `${this.seminar}`)
         },
     
       

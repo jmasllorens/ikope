@@ -10,6 +10,7 @@ use Inertia\Inertia;
 use App\Models\Session;
 use App\Models\Note;
 use Illuminate\Support\Facades\Storage;
+use App\Repositories\PatientRepository;
 
 class PatientController extends Controller
 {
@@ -18,13 +19,21 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $patientRepository;
+    
+    public function __construct(PatientRepository $patientRepository)
+    {
+        $this->patientRepository = $patientRepository;
+
+    }
     public function index()
     {
         $user = Auth::user();
         
-        if ($user->isActive == 1)
+        if ($user->isActive)
         {   
-            $patients = Patient::orderBy('name', 'asc')->where('user_id', $user->id)->get();
+            $patients = $this->patientRepository->all();
+           
            
            if ($patients->count() == 0 || $patients == null)
             { 
@@ -52,7 +61,7 @@ class PatientController extends Controller
         $user = Auth::user();
         if($user->isActive == 1)
         {
-        $patient = Patient::find($id);
+        $patient = $this->patientRepository->get($id);
         if ( $patient == null)
         {
             return redirect()->route('patients');
