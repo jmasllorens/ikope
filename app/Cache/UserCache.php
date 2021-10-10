@@ -28,13 +28,13 @@ class UserCache extends BaseCache implements UserRepositoryInterface
 
     public function save(Model $model)
     {
-        $this->forget($this->key);
+        $this->cache::forget($this->key);
        return $this->repository->save($model);
         
     }
     public function delete(Model $model)
     {
-        $this->forget($this->key);
+        $this->cache::forget($this->key);
         return $this->repository->delete($model);
     }
 

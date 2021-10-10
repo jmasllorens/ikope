@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create(['isAdmin' => true]);
         User::factory()->create(['name' => 'User', 'email' => 'user@user.com']);
         User::factory()->create(['id' => 13, 'name' => 'Therapist', 'email' => 'therapist@user.com', 'isActive' => true]);
-        User::factory(100)->create();
+        User::factory(30000)->create();
 
         Seminar::factory(15)->create([]);
 

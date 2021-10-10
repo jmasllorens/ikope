@@ -23,6 +23,33 @@ class AdminTest extends TestCase
         $this->assertCount(2, $users);
     }
 
+    public function test_admin_can_get_json_info_user_by_userId() 
+    {   
+        $admin =  User::factory()->create(['isAdmin' => true]);
+        $user1 =  User::factory()->create(['id' => 2]);
+        $user2 =  User::factory()->create(['id' => 3]);
+     
+ 
+       
+        $response = $this->actingAs($admin)->get('/users/3');
+
+        $response->assertStatus(200)
+        ->assertJsonFragment(['id' => 3]);
+    }
+
+    public function test_admin_can_get_json_info_admin_by_userId() 
+    {   
+        $admin1 =  User::factory()->create(['id' => 1, 'isAdmin' => true]);
+        $admin2 =  User::factory()->create(['id' => 2, 'isAdmin' => true, 'name' => 'Lou Andreas-Salomé']);
+     
+ 
+       
+        $response = $this->actingAs($admin1)->get('/adminusers/2');
+
+        $response->assertStatus(200)
+        ->assertJsonFragment(['name' => 'Lou Andreas-Salomé']);
+    }
+
     public function test_an_admin_can_delete_a_user()
     {
         $admin = User::factory()->create(['isAdmin' => true]);

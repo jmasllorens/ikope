@@ -49,9 +49,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/subscribe/{id}', [SeminarController::class, 'subscribe'])->name('subscribe');
     Route::get('/unsubscribe/{id}', [SeminarController::class, 'unsubscribe'])->name('unsubscribe');
 
-    Route::patch('/profile/{id}/update', [UserController::class, 'update'])->name('profile_update');
+    Route::patch('/profile/{user}/update', [UserController::class, 'update'])->name('profile_update');
     Route::get('/users', [UserController::class, 'index'])->name('users');
-    Route::delete('/users/{id}', [UserController::class, 'delete'])->name('users_delete');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('users_show');
+    Route::delete('/users/{user}', [UserController::class, 'delete'])->name('users_delete');
     Route::delete('/users', [UserController::class, 'deleteAll'])->name('users_deleteAll');
     Route::get('/adminusers', [UserController::class, 'indexAdmins'])->name('users_admin');
     Route::get('/adminusers/{id}', [UserController::class, 'getAdmin'])->name('admins_show');
