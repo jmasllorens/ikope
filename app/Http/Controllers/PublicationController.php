@@ -26,11 +26,11 @@ class PublicationController extends Controller
  
 
         $publications = $this->publicationRepository->all();
-        dd($publications);
+        
 
         $sendTime = microtime(true);
 
-        dump($sendTime-$startTime); 
+        dump($sendTime - $startTime); 
         return response()->json($publications);
     }
 

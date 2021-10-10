@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Contracts\UserRepositoryInterface;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Mail;
+use App\Cache\UserCache;
 
 class UserController extends Controller
 {   
@@ -57,6 +58,7 @@ class UserController extends Controller
         {
         $user = $this->userRepository->delete($user);
       /*   return response()->json($user);  */
+      session()->flash('message', 'The admin has been successfully deleted!');
         return redirect()->route('users_admin');  
         }
         return redirect()->route('dashboard');
