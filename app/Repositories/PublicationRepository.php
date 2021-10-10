@@ -13,7 +13,7 @@ class PublicationRepository extends BaseRepository
         parent::__construct($publication);
     }
 
-    public function all()
+    public function allP()
     {
         return $this->model->orderBy('title', 'asc')->paginate(20);
     }

@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
         Patient::factory()->create(['id' => 56, 'user_id' => 13, 'name' => 'Jordi Piella']);
         Session::factory(10)->create(['user_id' => 13, 'patient_id' => 56, 'patient_name' => 'Jordi Piella' ]);
 
-        Publication::factory(15)->create();
+        Publication::factory(30000)->create();
 
     }
 }

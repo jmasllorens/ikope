@@ -23,8 +23,10 @@ class PublicationController extends Controller
 
     {   
         $startTime = microtime(true);
+ 
 
         $publications = $this->publicationRepository->all();
+        dd($publications);
 
         $sendTime = microtime(true);
 
