@@ -49,9 +49,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/subscribe/{id}', [SeminarController::class, 'subscribe'])->name('subscribe');
     Route::get('/unsubscribe/{id}', [SeminarController::class, 'unsubscribe'])->name('unsubscribe');
 
-    Route::patch('/profile/{id}/update', [UserController::class, 'update'])->name('profile_update');
+    Route::patch('/profile/{user}/update', [UserController::class, 'update'])->name('profile_update');
     Route::get('/users', [UserController::class, 'index'])->name('users');
-    Route::delete('/users/{id}', [UserController::class, 'delete'])->name('users_delete');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('users_show');
+    Route::delete('/users/{user}', [UserController::class, 'delete'])->name('users_delete');
     Route::delete('/users', [UserController::class, 'deleteAll'])->name('users_deleteAll');
     Route::get('/adminusers', [UserController::class, 'indexAdmins'])->name('users_admin');
     Route::get('/adminusers/{id}', [UserController::class, 'getAdmin'])->name('admins_show');
@@ -89,19 +90,13 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/sessions/{id}/edit', [SessionController::class, 'edit'])->name('edit');
     Route::patch('/sessions/{session}/update', [SessionController::class, 'update'])->name('update');
 
-    Route::get('/publications/index', [PublicationController::class, 'index'])->name('publications_index');
+    Route::get('/publications', [PublicationController::class, 'index'])->name('publications');
     Route::get('/publications/{id}', [PublicationController::class, 'get'])->name('publications_get');
     Route::post('/publications/store', [PublicationController::class, 'store'])->name('publications_store');
     Route::patch('/publications/{publication}/update', [PublicationController::class, 'update'])->name('publications_update');
     Route::delete('/publications/{publication}', [PublicationController::class, 'destroy'])->name('publications_delete');
 
     Route::post('/contactMail', [UserController::class, 'contactMail']);
-
-
-
-    Route::get('/publications', function () {
-        return Inertia::render('Publications');
-    })->name('publications');
 
     
     Route::get('/contact', function () {

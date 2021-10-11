@@ -28,8 +28,84 @@
         </div>
         </div>
         </div>
+
+         <div class="grid grid-cols-2">
+          
+          <div v-if="$page.props.publications.length == 0" class="justify-self-start">
+           </div>
+   
+         
+         
+          <div class="justify-self-end">
+          
+                <BreezeButton>
+                        <a :href="route('patients_create')" method="get">New Publication</a></BreezeButton>
+         
+          </div>
+          
         </div>
 
+        <br />
+
+        <div
+          v-if="$page.props.publications.length != 0"
+          class="bg-gray-300 dark:bg-light_secondary rounded-lg py-5 px-5"
+        >
+         
+          <br />
+          <div class="grid grid-cols-3 px-10 gap-2">
+            <span
+              v-for="publication in $page.props.publications"
+              v-bind:key="publication"
+            >
+              <span class="flex justify-center items-center">
+         
+                  <div
+                    class="
+                      hover:scale-105
+                      transform
+                      transition-all
+                      duration-500
+                    "
+                  >
+                    <!-- Start Card -->
+
+                    <div
+                      class="
+                        flex
+                        justify-center
+                        p-2
+                        bg-white
+                        rounded-lg
+                        shadow-xl
+                        w-32
+                      "
+                      style="border-radius:20rem;"
+                    >
+                      <img src="@/Assets/divan.jpeg" alt="divan" style="border-radius:45rem" />
+                    </div>
+                   
+                     
+                  
+                  </div>
+                   
+
+
+             
+              </span>
+
+              <br>
+                
+              <div class="grid justify-items-center mb-2">
+         <h2 class="font-semibold text-m text-gray-800"> Title: {{publication.title}}</h2>
+               <p class="font-light text-sm"> Author: {{publication.author}} </p>
+               <BreezeButton  @click.prevent="deletePublication(`${publication.id}`)"> Delete </BreezeButton>   
+            </div>
+            <br>
+            </span>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -40,6 +116,7 @@
 
 <script>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
+import BreezeButton from '@/Components/Button.vue'
 import { Head } from '@inertiajs/inertia-vue3';
 
 
@@ -47,7 +124,16 @@ export default {
     components: {
         BreezeAuthenticatedLayout,
         Head,
+        BreezeButton
     },
+
+    methods: {
+      deletePublication(id) {
+         this.$inertia.delete(`/publications/${id}`)
+      
+      return;
+      }
+    }
 }
 </script>
 <style scoped>
