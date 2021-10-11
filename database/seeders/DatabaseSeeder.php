@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create(['isAdmin' => true]);
         User::factory()->create(['name' => 'User', 'email' => 'user@user.com']);
         User::factory()->create(['id' => 13, 'name' => 'Therapist', 'email' => 'therapist@user.com', 'isActive' => true]);
-        User::factory(30000)->create();
+        User::factory(100)->create();
 
         Seminar::factory(15)->create([]);
 
@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
         Patient::factory()->create(['id' => 56, 'user_id' => 13, 'name' => 'Jordi Piella']);
         Session::factory(10)->create(['user_id' => 13, 'patient_id' => 56, 'patient_name' => 'Jordi Piella' ]);
 
-        Publication::factory(30000)->create();
+        Publication::factory(3000)->create();
 
     }
 }

@@ -21,7 +21,7 @@ class PublicationController extends Controller
 
     public function index()
 
-    {   
+    {   $user = Auth::user();
         $startTime = microtime(true);
  
 
@@ -30,8 +30,8 @@ class PublicationController extends Controller
 
         $sendTime = microtime(true);
 
-        dump($sendTime - $startTime); 
-        return response()->json($publications);
+      /*   dump($sendTime - $startTime);  */
+        return Inertia::render('Publications', ['publications' => $publications]);
     }
 
     public function get(int $id)
@@ -57,7 +57,10 @@ class PublicationController extends Controller
     public function destroy(Publication $publication)
     {
         $publication = $this->publicationRepository->delete($publication);
-        return response()->json($publication);   
+        
+        session()->flash('message', 'The publication has been successfully deleted!');
+
+        return redirect()->route('publications');
     }  
 
 }
