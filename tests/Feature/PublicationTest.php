@@ -18,7 +18,7 @@ class PublicationTest extends TestCase
 
         $publications =  Publication::orderBy('title', 'asc')->get();
        
-        $response = $this->actingAs($user)->get('/publications/index');
+        $response = $this->actingAs($user)->get('/publications');
 
         $response->assertStatus(200);
         $this->assertCount(2, Publication::all());
