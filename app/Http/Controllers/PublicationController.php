@@ -48,7 +48,9 @@ class PublicationController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
+        $user = Auth::user();
+        
         $publication = new Publication($request->all());
         $publication = $this->publicationRepository->save($publication);
 
