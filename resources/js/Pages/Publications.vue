@@ -29,21 +29,16 @@
         </div>
         </div>
 
-         <div class="grid grid-cols-2">
-          
-          <div v-if="$page.props.publications.length == 0" class="justify-self-start">
-           </div>
-   
+         <br>
          
-         
-          <div class="justify-self-end">
+          <div class="flex justify-center items-center">
           
                 <BreezeButton>
                         <a :href="route('patients_create')" method="get">New Publication</a></BreezeButton>
          
           </div>
           
-        </div>
+      
 
         <br />
 
@@ -59,7 +54,7 @@
               v-bind:key="publication"
             >
               <span class="flex justify-center items-center">
-         
+                 <a class="cursor-pointer" :href="`/publications/${publication.id}`">
                   <div
                     class="
                       hover:scale-105
@@ -70,24 +65,14 @@
                   >
                     <!-- Start Card -->
 
-                    <div
-                      class="
-                        flex
-                        justify-center
-                        p-2
-                        bg-white
-                        rounded-lg
-                        shadow-xl
-                        w-32
-                      "
-                      style="border-radius:20rem;"
-                    >
-                      <img src="@/Assets/divan.jpeg" alt="divan" style="border-radius:45rem" />
+                   <div class="flex justify-center">
+                      <img :src="`${publication.image}`" alt="Publication cover" style="width:50%; border-radius:5px" />
                     </div>
                    
                      
                   
                   </div>
+                  </a>
                    
 
 
@@ -97,9 +82,9 @@
               <br>
                 
               <div class="grid justify-items-center mb-2">
-         <h2 class="font-semibold text-m text-gray-800"> Title: {{publication.title}}</h2>
+         <h2 class="font-semibold text-m text-gray-800"> Title: '{{publication.title}}'</h2>
                <p class="font-light text-sm"> Author: {{publication.author}} </p>
-               <BreezeButton  @click.prevent="deletePublication(`${publication.id}`)"> Delete </BreezeButton>   
+               <BreezeButton class="bg-red-400 hover:bg-red-500 mt-2" @click.prevent="deletePublication(`${publication.id}`)"> Delete </BreezeButton>   
             </div>
             <br>
             </span>
@@ -133,7 +118,9 @@ export default {
       
       return;
       }
-    }
+    },
+
+   
 }
 </script>
 <style scoped>

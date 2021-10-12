@@ -11,6 +11,7 @@ class Publication extends Model
 
     protected $fillable = [
         'title',
-        'author'
+        'author',
+        'image'
     ];
 }

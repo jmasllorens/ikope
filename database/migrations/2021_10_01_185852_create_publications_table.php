@@ -18,6 +18,7 @@ class CreatePublicationsTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('author');
+            $table->string('image');
         });
     }
 
