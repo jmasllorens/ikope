@@ -91,6 +91,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::patch('/sessions/{session}/update', [SessionController::class, 'update'])->name('update');
 
     Route::get('/publications', [PublicationController::class, 'index'])->name('publications');
+    Route::get('/publications/create', [PublicationController::class, 'create'])->name('publications_create');
     Route::get('/publications/{id}', [PublicationController::class, 'get'])->name('publications_get');
     Route::post('/publications/store', [PublicationController::class, 'store'])->name('publications_store');
     Route::patch('/publications/{publication}/update', [PublicationController::class, 'update'])->name('publications_update');

@@ -40,24 +40,36 @@ class PublicationController extends Controller
         return response()->json($publication); 
     }
 
+    public function create()
+    {   
+        $user = Auth::user();
+
+        return Inertia::render('PublicationsCreate');
+    }
+
     public function store(Request $request)
     {
         $publication = new Publication($request->all());
         $publication = $this->publicationRepository->save($publication);
 
-        return response()->json($publication);
+        session()->flash('message', 'A new publication has been successfully created!');
+
+        return redirect()->route('publications');
     }
 
      public function update(Request $request, Publication $publication)
     {
         $publication->fill($request->all());
         $publication = $this->publicationRepository->save($publication);
+        session()->flash('message', 'The publication has been successfully updated!');
+
+        return redirect()->route('publications');
     }
 
     public function destroy(Publication $publication)
     {
         $publication = $this->publicationRepository->delete($publication);
-        
+
         session()->flash('message', 'The publication has been successfully deleted!');
 
         return redirect()->route('publications');
