@@ -18,8 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
-        $this->app->bind(UserRepositoryInterface::class, UserCache::class);
+       
     }
 
     /**
