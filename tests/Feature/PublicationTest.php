@@ -45,12 +45,14 @@ class PublicationTest extends TestCase
 
         $publication = new Publication([
             'title' => 'Lacan',
-            'author' => 'Slavoj Zizek'
+            'author' => 'Slavoj Zizek',
+            'image' => 'https://images.unsplash.com/flagged/photo-1593005510329-8a4035a7238f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8eWVsbG93fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80'
         ]);
 
         $response = $this->actingAs($user)->post('/publications/store', [
             'title' => $publication->title,
-            'author' => $publication->author
+            'author' => $publication->author,
+            'image' => $publication->image
            
         ]);
 

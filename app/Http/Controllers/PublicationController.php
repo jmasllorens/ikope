@@ -48,9 +48,12 @@ class PublicationController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
+        $user = Auth::user();
+
         $publication = new Publication($request->all());
         $publication = $this->publicationRepository->save($publication);
+      
 
         session()->flash('message', 'A new publication has been successfully created!');
 
