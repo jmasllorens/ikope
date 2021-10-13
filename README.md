@@ -1,4 +1,4 @@
-<p align="center"> <img src="./img/README.md/ik.png?raw=true"></p>
+<p align="center"> <img src="./resources/js/Assets/ik.png?raw=true"></p>
 
 ## About I-KOPE
 
