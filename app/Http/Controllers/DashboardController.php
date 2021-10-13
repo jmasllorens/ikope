@@ -42,9 +42,9 @@ class DashboardController extends Controller
 
         $seminars = Seminar::all();
         $publications = Publication::all();
-        $patients = Patient::all();
-        $sessions = Session::all();
-        $notes = Note::all();
+        $patients = $user->patients;
+        $sessions = $user->sessions;
+        $notes = $user->notes;
 
         return Inertia::render('Dashboard', ['seminars' => $seminars, 'publications' => $publications, 'patients' => $patients, 'sessions' => $sessions, 'notes' => $notes]);
 
