@@ -4,16 +4,17 @@
 
 I-KOPE is a 3 weeks experimental development project, conducted by a single junior backend programmer within the last month of a full stack bootcamp. Due to its continuous growth, it's still not deployed to a production environment. 
 
-I-KOPE has been designed as an app for people interested in Psychoanalysis, either professional or not, so they can be up to date on the latest publications and events related to this field, as well as handle their patient's agenda in case is needed.
+I-KOPE has been designed as an app for people interested in Psychoanalysis, either professional or not, so they can be up to date on the latest events and publications related to this field, as well as handle their patient's agenda in case is needed.
 
 
-<strong>Statement of intent</strong>
+## Statement of intent ✒️
 
 The main purpose with I-KOPE was not to achieve a perfect application written in beautiful, clean, SOLID code, but to learn as much as possible during the process —which also means facing multiple challenges all along and trying to creatively solve them. As a brand new software developer, I believe that thinking is better than knowing, and that's why most of the code decisions for this project were not made based only on pragmatic criteria.
 
-<strong>Stack and Technologies</strong>
 
-This project has been made using the VILT stack ([Vue.Js](https://vuejs.org/), [Inertia.Js](https://inertiajs.com/), [Laravel](https://laravel.com/), [TailwindCSS](https://tailwindcss.com/)) with [Laravel Breeze](https://laravel.com/docs/8.x/starter-kits#laravel-breeze) authentication package.
+## Stack and Technologies 🛠️
+
+This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), [Inertia.Js](https://inertiajs.com/), [Laravel](https://laravel.com/), [TailwindCSS](https://tailwindcss.com/)) with [Laravel Breeze](https://laravel.com/docs/8.x/starter-kits#laravel-breeze) authentication package.
 
 
 Other tools:
@@ -28,11 +29,17 @@ Other tools:
 - [Eloquent ORM](https://laravel.com/docs/8.x/eloquent)
 
 
-## Learning Laravel
+## Starting - Project Set-Up 🚀
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Git clone: https://github.com/jmasllorens/ikope.git
+2. 
+npm install
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+***
+***
+
+
 
 ## Laravel Sponsors
 
