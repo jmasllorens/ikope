@@ -93,19 +93,18 @@
                 {{ session.keywords }}
               </td>
                <td class="px-6 py-4 whitespace-nowrap text-sm">
-                   <span v-if="session.note && session.note.isImportant == 0" >
+                <span class="text-sm text-gray-500" v-if="session.note != null && session.note.isImportant == 0">
                   {{session.note.title}}
                 </span>
-               <!--   <span v-if="session.note && session.note.isImportant == 1" class="text-bold">
-               {{session.note.title}}
-                </span> -->
-                
+                <span class="text-sm text-gray-900" v-if="session.note != null && session.note.isImportant == 1">
+                (!) {{ session.note.title}}
+                </span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <span v-if="session.isPayed == 0" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">
+                <span v-if="session.isPayed == 0" @click.prevent="paySession(`${session.id}`, `${session.patient_id}`)" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700 cursor-pointer">
                   {{session.cost}} € pending
                 </span>
-                <span v-if="session.isPayed == 1" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700">
+                <span v-if="session.isPayed == 1" @click.prevent="unpaySession(`${session.id}`, `${session.patient_id}`)" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700 cursor-pointer">
                 {{ session.cost}} € payed
                 </span>
               </td>
@@ -160,7 +159,26 @@ export default {
       this.$inertia.delete(`/sessions/${id}`)
       }
       return;
-      }
+      },
+       paySession(id, pid) {
+            let data = {
+
+            
+            isPayed: true
+            }
+  
+           
+            this.$inertia.patch(`/patients/${pid}/sessions/${id}/update`, data)
+        },
+        unpaySession(id, pid) {
+            let data = {
+
+            isPayed: false
+            }
+  
+           
+           this.$inertia.patch(`/patients/${pid}/sessions/${id}/update`, data)
+        }
     }
 };
 </script>
