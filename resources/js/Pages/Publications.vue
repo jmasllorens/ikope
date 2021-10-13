@@ -43,14 +43,14 @@
         <br />
 
         <div
-          v-if="$page.props.publications.length != 0"
+          v-if="$page.props.publications.total != 0"
           class="bg-gray-300 dark:bg-light_secondary rounded-lg py-5 px-5"
         >
          
           <br />
           <div class="grid grid-cols-3 px-10 gap-2">
             <span
-              v-for="publication in $page.props.publications"
+              v-for="publication in $page.props.publications.data"
               v-bind:key="publication"
             >
               <span class="flex justify-center items-center">
@@ -99,7 +99,7 @@
     </div>
 
 
-
+ <pagination class="mt-6" :links="publications.links" /> 
       
     </div>
     </BreezeAuthenticatedLayout>
@@ -110,14 +110,18 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import BreezeButton from '@/Components/Button.vue'
 import BreezeInput from '@/Components/Input.vue'
 import { Head } from '@inertiajs/inertia-vue3';
+import Pagination from '@/Components/Pagination'
 
 
 export default {
+    props: ['publications'],
+    
     components: {
         BreezeAuthenticatedLayout,
         Head,
         BreezeButton,
-        BreezeInput
+        BreezeInput,
+        Pagination
     },
 
     data() {

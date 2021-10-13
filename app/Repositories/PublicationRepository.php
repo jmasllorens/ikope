@@ -15,7 +15,7 @@ class PublicationRepository extends BaseRepository
 
     public function all()
     {
-        return $this->model->orderBy('title', 'asc')->get();
+        return $this->model->orderBy('title', 'asc')->paginate(15);
     }
 
 }
