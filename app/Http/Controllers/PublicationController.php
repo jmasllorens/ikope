@@ -30,6 +30,7 @@ class PublicationController extends Controller
         $sendTime = microtime(true);
 
       /*   dump($sendTime - $startTime);  */
+     
         return Inertia::render('Publications', ['publications' => $publications]);
     }
 
