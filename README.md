@@ -1,8 +1,9 @@
-<p align="center"> <img src="./resources/js/Assets/ik.png?raw=true" width=50%></p>
+<p align="center"> <img src="./resources/js/Assets/ik.png?raw=true" width=15%></p>
 
 ## About I-KOPE
 
 I-KOPE is a 3 weeks experimental development project, conducted by a single junior backend programmer.
+
 The main purpose with I-KOPE was not to achieve a perfect application written in beautiful, clean, SOLID code, but to learn as much as possible during the process —which also means facing multiple challenges all along and trying to creatively solve them. As a brand new software developer, I believe that thinking is better than knowing, and that's why most of the code decisions for this project were not made based only on pragmatic criteria.
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
