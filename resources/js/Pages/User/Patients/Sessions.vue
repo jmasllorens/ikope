@@ -87,10 +87,10 @@
                 {{ session.keywords }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <span v-if="session.isPayed == 0" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">
+                <span v-if="session.isPayed == 0" @click.prevent="paySession(`${session.id}`)" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700 cursor-pointer">
                   {{session.cost}} € pending
                 </span>
-                <span v-if="session.isPayed == 1" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700">
+                <span v-if="session.isPayed == 1" @click.prevent="unpaySession(`${session.id}`)" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-700 cursor-pointer">
                 {{ session.cost}} € payed
                 </span>
               </td>
@@ -102,6 +102,7 @@
                 (!) {{ session.note.title}}
                 </span>
               </td>
+            
              <td>
                  <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/patients/${session.patient_id}/sessions/${session.id}`" method="get">View</a></BreezeButton>
               </td>
@@ -111,6 +112,8 @@
             <td>
                 <BreezeButton class="bg-red-400 hover:bg-red-500" @click.prevent="deleteSession(`${session.patient_id}`, `${session.id}`)">Delete</BreezeButton>
               </td>
+              <td>
+                </td>
              
             </tr>
           </tbody>
@@ -147,6 +150,26 @@ export default {
       }
       return;
       },
+
+       paySession(id) {
+            let data = {
+
+            
+            isPayed: true
+            }
+  
+           
+            this.$inertia.patch(`/patients/${this.$page.props.patient.id}/sessions/${id}/update`, data)
+        },
+        unpaySession(id) {
+            let data = {
+
+            isPayed: false
+            }
+  
+           
+           this.$inertia.patch(`/patients/${this.$page.props.patient.id}/sessions/${id}/update`, data)
+        }
    }
 };
 </script>
