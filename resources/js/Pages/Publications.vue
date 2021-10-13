@@ -1,6 +1,8 @@
 <template>
     <Head title="Publications" />
 
+  
+
     <BreezeAuthenticatedLayout>
     <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -109,8 +111,8 @@
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import BreezeButton from '@/Components/Button.vue'
 import BreezeInput from '@/Components/Input.vue'
-import { Head } from '@inertiajs/inertia-vue3';
-import Pagination from '@/Components/Pagination'
+import { Head } from '@inertiajs/inertia-vue3'
+import Pagination from '@/Components/Pagination';
 
 
 export default {
@@ -121,7 +123,8 @@ export default {
         Head,
         BreezeButton,
         BreezeInput,
-        Pagination
+        Pagination,
+
     },
 
     data() {

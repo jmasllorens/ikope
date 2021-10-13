@@ -1,6 +1,8 @@
-<template>
+<template >
   <BreezeValidationErrors class="mb-4" />
-    <div>
+  <div>               <Spinner />
+      </div>
+    <div v-if="!loading">
            
         <div class="min-h-screen bg-gray-100">
             <nav class="bg-white border-b border-gray-100">
@@ -132,7 +134,9 @@
             </nav>
 
             <!-- Page Heading -->
-                 <Toast></Toast> 
+                 <Toast></Toast>
+                
+                
      
                
             <header class="bg-white shadow" v-if="$slots.header">
@@ -145,11 +149,11 @@
             <main>
                
               
-                 
+       
                      
                  
                 <slot />
-                 
+             
             </main>
          
         </div>
@@ -169,11 +173,15 @@ import BreezeNavLink from '@/Components/NavLink.vue'
 import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
 import { Link } from '@inertiajs/inertia-vue3'
 import Toast from '@/Components/Toast'
+import Spinner from '@/Components/Spinner.vue'
+
 
 
 
 
 export default {
+
+
 
     components: {
         BreezeValidationErrors,
@@ -184,6 +192,9 @@ export default {
         BreezeResponsiveNavLink,
         Link,
         Toast,
+        Spinner,
+
+ 
 
    
     },
@@ -191,8 +202,12 @@ export default {
     data() {
         return {
             showingNavigationDropdown: false,
+            loading: false
+         
             
         }
     },
+
+   
 }
 </script>
