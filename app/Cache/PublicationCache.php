@@ -5,6 +5,7 @@ namespace App\Cache;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\PublicationRepository;
 
+
 class PublicationCache extends BaseCache
 {
     public function __construct(PublicationRepository $publicationRepository)
@@ -13,13 +14,16 @@ class PublicationCache extends BaseCache
     }
 
     public function all()
-    {
+    {   
+        $this->cache::forget($this->key);
         return $this->cache::remember($this->key, self::TTL, function() {
             return $this->repository->all();
         }
     );
        
     }
+
+    
 
     public function get(int $id)
     {
