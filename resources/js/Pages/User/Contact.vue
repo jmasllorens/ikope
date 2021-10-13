@@ -55,24 +55,12 @@
                     </div>
 
                     <form  @submit.prevent="sendMessage()" class="p-6 flex flex-col justify-center">
-                        <div class="flex flex-col">
-                            <BreezeLabel for="name" value="Full Name" />
-                            <BreezeInput type="name" name="name" id="name" v-model="form.name" placeholder="Lou Andreas-Salomé" class="w-100 mt-2 py-2 px-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 focus:outline-none" />
-                        </div>
+               
 
-                        <div class="flex flex-col mt-3">
-                            <BreezeLabel for="email" value="Email" />
-                            <BreezeInput type="email" name="email" id="email" v-model="form.email" placeholder="lou.andreas@salome.com" class="w-100 mt-2 py-2 px-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 focus:outline-none" />
-                        </div>
-
-                        <div class="flex flex-col mt-3">
-                            <BreezeLabel for="tel" value="Phone Number" />
-                            <BreezeInput type="tel" name="tel" id="tel" v-model="form.tel" placeholder="+34 666 12 34 56" class="w-100 mt-2 py-2 px-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 focus:outline-none"/>
-                        </div>
 
                         <div class="flex flex-col mt-3">
                             <BreezeLabel for="message" value="Message (max. 500)" />
-                            <textarea class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" max="500" ref="input" id="message" v-model="form.message" type="textarea" required autofocus />
+                            <textarea class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" rows="10" max="500" ref="input" id="message" v-model="form.message" type="textarea" required autofocus />
                             </div>
 
                          <div class="flex items-center justify-end mt-5 space-x-3">
@@ -114,9 +102,7 @@ export default {
         return {
             form: this.$inertia.form({
                 
-                name: '',
-                email: '',
-                tel: '',
+               
                 message: ''
               
 
@@ -130,9 +116,7 @@ export default {
         sendMessage() {
             let data = new FormData
 
-            data.append('name', this.form.name)
-            data.append('email', this.form.email)
-            data.append('tel', this.form.tel)
+  
             data.append('message', this.form.message)
   
             

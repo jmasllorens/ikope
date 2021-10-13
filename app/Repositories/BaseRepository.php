@@ -38,4 +38,5 @@ class BaseRepository implements BaseRepositoryInterface
         $model->delete($model);
         return $model;
     }
+
 }

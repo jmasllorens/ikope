@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Patient;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -22,6 +21,7 @@ class PatientRepository extends BaseRepository
         
         return $this->model->orderBy('name', 'asc')->where('user_id', $user->id)->get();
     }
+
 
 
 }

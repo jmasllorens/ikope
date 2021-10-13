@@ -23,7 +23,8 @@ class PublicationFactory extends Factory
     {
         return [
             'title' => $this->faker->text(30),
-            'author' => $this->faker->text(30)
+            'author' => $this->faker->text(30),
+            'image' => $this->faker->imageUrl(640, 480, true)
             ];
     }
 }

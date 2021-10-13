@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SessionController;
-use App\Http\Controllers\NoteController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +33,11 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
-    Route::get('/dashboard', function () {
+    /* Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
-    })->name('dashboard');
+    })->name('dashboard'); */
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
     Route::get('/seminars', [SeminarController::class, 'index'])->name('seminars');
     Route::get('/myseminars', [SeminarController::class, 'mySeminars'])->name('my_seminars');
@@ -49,9 +51,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/subscribe/{id}', [SeminarController::class, 'subscribe'])->name('subscribe');
     Route::get('/unsubscribe/{id}', [SeminarController::class, 'unsubscribe'])->name('unsubscribe');
 
-    Route::patch('/profile/{id}/update', [UserController::class, 'update'])->name('profile_update');
+    Route::patch('/profile/{user}/update', [UserController::class, 'update'])->name('profile_update');
     Route::get('/users', [UserController::class, 'index'])->name('users');
-    Route::delete('/users/{id}', [UserController::class, 'delete'])->name('users_delete');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('users_show');
+    Route::delete('/users/{user}', [UserController::class, 'delete'])->name('users_delete');
     Route::delete('/users', [UserController::class, 'deleteAll'])->name('users_deleteAll');
     Route::get('/adminusers', [UserController::class, 'indexAdmins'])->name('users_admin');
     Route::get('/adminusers/{id}', [UserController::class, 'getAdmin'])->name('admins_show');
@@ -63,8 +66,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/patientscreate', [PatientController::class, 'create'])->name('patients_create');
     Route::post('/patients/store', [PatientController::class, 'store'])->name('patients_store');
     Route::get('/patients/{id}/edit', [PatientController::class, 'edit'])->name('patients_edit');
-    Route::patch('patients/{id}/update', [PatientController::class, 'update'])->name('patients_update');
-    Route::delete('/patients/{id}', [PatientController::class, 'delete'])->name('patients_delete');
+    Route::patch('patients/{patient}/update', [PatientController::class, 'update'])->name('patients_update');
+    Route::delete('/patients/{patient}', [PatientController::class, 'delete'])->name('patients_delete');
 
     Route::get('/patients/{id}/sessions', [PatientController::class, 'getSessions'])->name('patients_sessions');
     Route::get('/patients/{id}/sessions/{sId}', [PatientController::class, 'showSession'])->name('sessions_show');
@@ -85,23 +88,18 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   
 
     Route::get('/sessions', [SessionController::class, 'index'])->name('sessions');
-    Route::delete('/sessions/{id}/', [SessionController::class, 'delete'])->name('delete');
+    Route::delete('/sessions/{session}/', [SessionController::class, 'delete'])->name('delete');
     Route::get('/sessions/{id}/edit', [SessionController::class, 'edit'])->name('edit');
-    Route::patch('/sessions/{id}/update', [SessionController::class, 'update'])->name('update');
+    Route::patch('/sessions/{session}/update', [SessionController::class, 'update'])->name('update');
 
-    Route::get('/publications/index', [PublicationController::class, 'index'])->name('publications_index');
+    Route::get('/publications', [PublicationController::class, 'index'])->name('publications');
+    Route::get('/publications/create', [PublicationController::class, 'create'])->name('publications_create');
     Route::get('/publications/{id}', [PublicationController::class, 'get'])->name('publications_get');
     Route::post('/publications/store', [PublicationController::class, 'store'])->name('publications_store');
     Route::patch('/publications/{publication}/update', [PublicationController::class, 'update'])->name('publications_update');
     Route::delete('/publications/{publication}', [PublicationController::class, 'destroy'])->name('publications_delete');
 
     Route::post('/contactMail', [UserController::class, 'contactMail']);
-
-
-
-    Route::get('/publications', function () {
-        return Inertia::render('Publications');
-    })->name('publications');
 
     
     Route::get('/contact', function () {

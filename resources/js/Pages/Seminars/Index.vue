@@ -98,6 +98,8 @@
                   <span v-if="seminar.date < currentTime" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">Expired
                   </span>
               </td>
+              <td v-if="!$page.props.auth.user.isAdmin && seminar.date < currentTime" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                </td>
               
               <td v-if="!$page.props.auth.user.isAdmin" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <span v-if="seminar.users.length >= seminar.availability && seminar.date > currentTime" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-700">
@@ -118,13 +120,11 @@
               <td v-if="!$props.auth.user.isAdmin && seminar.date > currentTime">
                  <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/seminars/${seminar.id}`" method="get">+ Info</a></BreezeButton>
               </td>
-              <td v-if="seminar.userSubscribed == true && !$props.auth.user.isAdmin">
-               <BreezeButton ><a :href="route('subscribe', [`${seminar.id}`])" method="get">Subscribe</a></BreezeButton>
-                </td>
-                <td v-if="!$props.auth.user.isAdmin"></td>
-               <td v-if="seminar.userSubscribed == true && !$props.auth.user.isAdmin">
-                 <BreezeButton><a :href="`/unsubscribe/${seminar.id}`" method="get">Unsubscribe</a></BreezeButton>
+               
+               <td v-if="!$props.auth.user.isAdmin">
+               
               </td>
+              
               <td v-if="$props.auth.user.isAdmin">
                  <BreezeButton class="bg-yellow-400 text-white hover:bg-yellow-500 active:bg-blue-400"><a :href="`/seminars/${seminar.id}`" method="get">View</a></BreezeButton>
               </td>
