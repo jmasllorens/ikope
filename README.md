@@ -37,23 +37,23 @@ Other tools:
 
 3. composer install / update
 
-4. npm run dev
+4. Create a DB in phpMyAdmin named 'ikope'
 
-5. Create a DB in phpMyAdmin named 'ikope'
-
-6. Rename .env.example file to .env and modify the following data:
+5. Rename .env.example file to .env and modify the following data:
 
 DB_DATABASE=ikope
 
 CACHE_DRIVER=redis
 
-7. Download, install and configure [Redis](https://laravel.com/docs/8.x/redis)
+6. Download, install and configure [Redis](https://laravel.com/docs/8.x/redis)
 
-8. Execute Redis server
+7. Execute Redis server
 
-9. php artisan migrate:fresh --seed
+8. php artisan migrate:fresh --seed
 
-10. php artisan key:generate
+9. php artisan key:generate
+
+10. npm run dev
 
 11. php artisan serve
 
