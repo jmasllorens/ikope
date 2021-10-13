@@ -2,7 +2,10 @@
 
 ## About I-KOPE
 
-I-KOPE is a 3 weeks experimental development project, conducted by a single junior backend programmer.
+I-KOPE is a 3 weeks experimental development project, conducted by a single junior backend programmer within the last month of a full stack bootcamp.
+
+I-KOPE has been designed as an app for people interested in Psychoanalysis, either professional or not.
+
 
 <strong>Statement of intent</strong>
 
@@ -12,6 +15,7 @@ The main purpose with I-KOPE was not to achieve a perfect application written in
 
 This project has been made using the VILT stack ([Vue.Js](https://vuejs.org/), [Inertia.Js](https://inertiajs.com/), [Laravel](https://laravel.com/), [TailwindCSS](https://tailwindcss.com/)) with [Laravel Breeze](https://laravel.com/docs/8.x/starter-kits#laravel-breeze) authentication package.
 
+
 Other tools:
 
 
@@ -19,7 +23,9 @@ Other tools:
 - [Redis](https://redis.io/)
 - [PHPUnit](https://phpunit.de/)
 - [Composer](https://getcomposer.org/)
-
+- [Faker](https://github.com/fzaninotto/Faker)
+- [Artisan](https://laravel.com/docs/8.x/artisan)
+- [Eloquent ORM](https://laravel.com/docs/8.x/eloquent)
 
 
 ## Learning Laravel
