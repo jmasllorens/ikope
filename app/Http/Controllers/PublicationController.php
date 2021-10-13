@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Publication;
-use App\Repositories\PublicationRepository;
 use App\Cache\PublicationCache;
 
 class PublicationController extends Controller

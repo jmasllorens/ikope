@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Contracts\UserRepositoryInterface;
 use App\Repositories\UserRepository;
-use Illuminate\Support\Facades\Mail;
-use App\Cache\UserCache;
+
+
 
 class UserController extends Controller
 {   
