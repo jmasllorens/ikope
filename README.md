@@ -2,9 +2,9 @@
 
 ## About I-KOPE
 
-I-KOPE is a 3 weeks experimental development project, conducted by a single junior backend programmer within the last month of a full stack bootcamp.
+I-KOPE is a 3 weeks experimental development project, conducted by a single junior backend programmer within the last month of a full stack bootcamp. Due to its continuous growth, it's still not deployed to a production environment. 
 
-It has been designed as an app for people interested in Psychoanalysis, either professional or not, so they can be up to date on the latest publications and events related to this field, as well as handle their patient's agenda in case is needed.
+I-KOPE has been designed as an app for people interested in Psychoanalysis, either professional or not, so they can be up to date on the latest publications and events related to this field, as well as handle their patient's agenda in case is needed.
 
 
 <strong>Statement of intent</strong>
