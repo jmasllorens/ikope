@@ -65,9 +65,9 @@
                
                 <div class="">
                   <div class="flex justify-between">
-                  <span v-if="$page.props.patient.isConsulting == 1" class="flex inline-block"><svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z"></path></svg><p class="mt-2">&nbsp;&nbsp;Consulting</p></span>
+                  <span v-if="$page.props.patient.isConsulting == 1" @click.prevent="filePatient()" class="flex inline-block cursor-pointer"><svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z"></path></svg><p class="mt-2">&nbsp;&nbsp;Consulting</p></span>
 
-             <span v-if="$page.props.patient.isConsulting == 0" class="flex inline-block"><svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg><p class="mt-2">&nbsp;&nbsp;Filed</p></span>
+             <span v-if="$page.props.patient.isConsulting == 0" @click.prevent="unfilePatient()" class="flex inline-block cursor-pointer"><svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg><p class="mt-2">&nbsp;&nbsp;Filed</p></span>
         
             <span
               class="inline-block h-min space-x-1 items-center rounded-full bg-gray-700 py-2 px-3 text-m font-medium">
@@ -102,34 +102,7 @@
                   <br>
                   </div>
            
-                <!--  <div class="text-m font-semibold">
-                  <h2>Sessions</h2>
-                  <br>
-                
-         
-          <span v-for="session in $page.props.patient.sessions" v-bind:key="session" class="text-m font-light tracking-wider text-gray-600">
-              <p> Session number: {{ session.id}} </p>
-                      <p> Session date: {{ session.date }} </p>
-                       <p> Session keyword: {{ session.keywords }} </p>
-                         <p> Session cost: {{ session.cost }} (is payed: {{ session.isPayed }}) </p>
-                      
-                        <br>
-                    </span>
-            
-            </div>
-             <div class="text-m font-semibold">
-                  <h2>Notes</h2>
-                  <br>
-                
-         
-          <span v-for="note in $page.props.patient.notes" v-bind:key="note" class="text-m font-light tracking-wider text-gray-600">
-              <p> Note number: {{ note.id}} </p>
-                      <p> Note title: {{ note.title }} </p>
-                       <p> Note importance: {{ note.isImportant }} </p>
-                         <p> Note body: {{ note.text }}  </p>
-                        <br>
-                    </span>
-            </div> -->
+               
                 </div>
        
           </div>
@@ -166,10 +139,32 @@ export default {
       this.$inertia.delete(`/patients/${id}`, id)
       }
       return;
-      }
+      },
+
+    filePatient() {
+            let data = {
+
+            
+            isConsulting: false
+            }
+  
+           
+            this.$inertia.patch(`/patients/${this.$page.props.patient.id}/update`, data)
+        },
+        unfilePatient() {
+            let data = {
+
+            
+            isConsulting: true
+            }
+  
+           
+            this.$inertia.patch(`/patients/${this.$page.props.patient.id}/update`, data)
+        }
+    }
     }
 
-}
+
 </script>
 
 <style scoped>
