@@ -1,4 +1,4 @@
-<p align="center"><img :src="require(`@/Assets/ik.png`)"></p>
+<p align="center"> <img src="./img/README.md/ik.png?raw=true"></p>
 
 ## About I-KOPE
 
