@@ -32,9 +32,35 @@ Other tools:
 ## Starting - Project Set-Up 🚀
 
 1. Git clone: https://github.com/jmasllorens/ikope.git
-2. 
-npm install
-```
+
+2. npm install
+
+3. composer install / update
+
+4. npm run dev
+
+5. Create a DB in phpMyAdmin named 'ikope'
+
+6. Rename .env.example file to .env and modify the following data:
+
+DB_DATABASE=ikope
+
+CACHE_DRIVER=redis
+
+7. Download, install and configure [Redis](https://laravel.com/docs/8.x/redis)
+
+8. Execute Redis server
+
+9. php artisan migrate:fresh --seed
+
+10. php artisan key:generate
+
+11. php artisan serve
+
+* If you want to run the tests: php artisan test
+
+
+
 
 ***
 ***
