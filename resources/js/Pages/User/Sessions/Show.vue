@@ -65,9 +65,9 @@
                 <div class="">
                   <div class="flex justify-between">
 
-                     <span v-if="$page.props.session.isPayed == 1" class="flex inline-block"><svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg><p class="mt-2">&nbsp;&nbsp;{{$page.props.session.cost}} € payed </p></span>
+                     <span v-if="$page.props.session.isPayed == 1"  @click.prevent="unpaySession()" class="flex inline-block"><svg class="w-8 h-8 text-gray-800 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg><p class="mt-2">&nbsp;&nbsp;{{$page.props.session.cost}} € payed </p></span>
 
-             <span v-if="$page.props.session.isPayed == 0" class="flex inline-block"><svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg><p class="mt-2">&nbsp;&nbsp;{{$page.props.session.cost}} € pending</p></span>
+             <span v-if="$page.props.session.isPayed == 0"  @click.prevent="paySession()" class="flex inline-block"><svg class="w-8 h-8 text-gray-800 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg><p class="mt-2">&nbsp;&nbsp;{{$page.props.session.cost}} € pending</p></span>
                   
             <span v-if="$page.props.notes != null && $page.props.notes.isImportant == 1" 
               class="inline-block h-min space-x-1 items-center rounded-full text-m font-medium">
@@ -101,34 +101,7 @@
                   <br>
                   </div>
            
-                <!--  <div class="text-m font-semibold">
-                  <h2>Sessions</h2>
-                  <br>
-                
-         
-          <span v-for="session in $page.props.patient.sessions" v-bind:key="session" class="text-m font-light tracking-wider text-gray-600">
-              <p> Session number: {{ session.id}} </p>
-                      <p> Session date: {{ session.date }} </p>
-                       <p> Session keyword: {{ session.keywords }} </p>
-                         <p> Session cost: {{ session.cost }} (is payed: {{ session.isPayed }}) </p>
-                      
-                        <br>
-                    </span>
-            
-            </div>
-             <div class="text-m font-semibold">
-                  <h2>Notes</h2>
-                  <br>
-                
-         
-          <span v-for="note in $page.props.patient.notes" v-bind:key="note" class="text-m font-light tracking-wider text-gray-600">
-              <p> Note number: {{ note.id}} </p>
-                      <p> Note title: {{ note.title }} </p>
-                       <p> Note importance: {{ note.isImportant }} </p>
-                         <p> Note body: {{ note.text }}  </p>
-                        <br>
-                    </span>
-            </div> -->
+  
                 </div>
        
           </div>
@@ -175,7 +148,26 @@ export default {
           this.$inertia.delete(`/note/${this.$page.props.session.note.id}`)
         }
         return;
-      }
+      },
+      paySession() {
+            let data = {
+
+            
+            isPayed: true
+            }
+  
+           
+            this.$inertia.patch(`/patients/${this.$page.props.patient.id}/sessions/${this.$page.props.session.id}/update`, data)
+        },
+        unpaySession() {
+            let data = {
+
+            isPayed: false
+            }
+  
+           
+           this.$inertia.patch(`/patients/${this.$page.props.patient.id}/sessions/${this.$page.props.session.id}/update`, data)
+        }
     }
 
 }
