@@ -31,7 +31,7 @@ class UserRepository extends BaseRepository
 
     public function mailConfirm(Request $request)
     {
-        Mail::raw('Message: '.$request->message.'.', function ($m) {
+        Mail::raw('Message: '.$request->message, function ($m) {
 
             $user = Auth::user();
                 
