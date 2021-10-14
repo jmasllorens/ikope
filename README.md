@@ -51,31 +51,31 @@ This project has been built using the <strong>VILT</strong> stack, along with <s
 ## 🚀 Starting 
 <br/>
 
-1. Git clone: https://github.com/jmasllorens/ikope.git
+- Git clone: https://github.com/jmasllorens/ikope.git
 
-2. npm install
+- npm install
 
-3. composer install / update
+- composer install / update
 
-4. Create a DB in phpMyAdmin named <em>ikope</em>
+- Create a DB in phpMyAdmin named <em>ikope</em>
 
-5. Rename <em>.env.example</em> file to <em>.env</em> and modify the following data:
+- Rename <em>.env.example</em> file to <em>.env</em> and modify the following data:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DB_DATABASE=ikope
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CACHE_DRIVER=redis
 
-6. Download, install and configure [Redis](https://laravel.com/docs/8.x/redis)
+- Download, install and configure [Redis](https://laravel.com/docs/8.x/redis)
 
-7. Execute Redis server
+- Execute Redis server
 
-8. php artisan migrate:fresh --seed
+- php artisan migrate:fresh --seed
 
-9. php artisan key:generate
+- php artisan key:generate
 
-10. npm run dev
+- npm run dev
 
-11. php artisan serve
+- php artisan serve
 
 ** &nbsp;&nbsp;If you want to run the tests: php artisan test
 
