@@ -32,7 +32,7 @@ This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), 
 
 
 
-## Starting: Project Set-Up 🚀
+## Starting - Project Set-Up 🚀
 
 1. Git clone: https://github.com/jmasllorens/ikope.git
 
@@ -63,7 +63,7 @@ This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), 
 ** If you want to run the tests: php artisan test
 
 
-***
+
 
 
 
@@ -103,9 +103,11 @@ This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), 
 - Testing with TDD (84 tests - 100% passing)
 - Repository Pattern
 - Decorator Pattern (Redis Cache)
+- Seminar Subscription
 - Searcher
 - Pagination
 - Feedback Notifications & Confirm Alerts
+- Mail Confirmation 
 
 ## Still Pending
 
@@ -113,12 +115,12 @@ This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), 
 - Loading Spinner
 - Refactor
 - Front-end focus (design, responsive...)
-
-
-& Keep experimenting and learning!
+- Keep experimenting and learning!
 
 
 
-## License
+***
+***
+## Images
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
