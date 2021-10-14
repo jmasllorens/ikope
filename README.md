@@ -17,7 +17,7 @@ The main purpose with I-KOPE was not to achieve a perfect application written in
 This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), [Inertia.Js](https://inertiajs.com/), [Laravel](https://laravel.com/), [TailwindCSS](https://tailwindcss.com/)) with [Laravel Breeze](https://laravel.com/docs/8.x/starter-kits#laravel-breeze) authentication package.
 
 
-Other tools:
+<strong>Other tools</strong>
 
 
 - [MySQL](https://www.mysql.com/) + [phpMyAdmin](https://www.phpmyadmin.net/)
@@ -28,8 +28,17 @@ Other tools:
 - [Artisan](https://laravel.com/docs/8.x/artisan)
 - [Eloquent ORM](https://laravel.com/docs/8.x/eloquent)
 
+<strong>Some applied concepts</strong>
 
-## Starting - Project Set-Up 🚀
+- OOP
+- MVC
+- CRUD
+- TDD
+- Repository Pattern
+- Decorator Pattern
+
+
+## Starting: Project Set-Up 🚀
 
 1. Git clone: https://github.com/jmasllorens/ikope.git
 
@@ -41,9 +50,9 @@ Other tools:
 
 5. Rename .env.example file to .env and modify the following data:
 
-DB_DATABASE=ikope
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DB_DATABASE=ikope
 
-CACHE_DRIVER=redis
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CACHE_DRIVER=redis
 
 6. Download, install and configure [Redis](https://laravel.com/docs/8.x/redis)
 
@@ -57,12 +66,9 @@ CACHE_DRIVER=redis
 
 11. php artisan serve
 
-* If you want to run the tests: php artisan test
+** If you want to run the tests: php artisan test
 
 
-
-
-***
 ***
 
 
