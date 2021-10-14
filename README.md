@@ -6,6 +6,7 @@
 I-KOPE is a 3 weeks experimental development project, conducted by a single junior backend programmer within the last month of a full stack bootcamp. Due to its continuous growth, it's still not deployed to a production environment.
  
  <br/>
+ <br/>
 
 I-KOPE has been designed as an app for people interested in Psychoanalysis, either professional or not, so they can be up to date on the latest events and publications related to this field, as well as handle their patient's agenda in case is needed.
 <br/><br/>
@@ -21,6 +22,7 @@ As a brand new software developer, I believe that thinking is better than knowin
 ## Stack and Technologies 🛠️
 <br/>
 This project has been built using the <strong>VILT</strong> stack, along with Laravel Breeze authentication package:
+
 <br/>
 
 - [Vue.Js](https://vuejs.org/)
@@ -59,9 +61,9 @@ This project has been built using the <strong>VILT</strong> stack, along with La
 
 5. Rename <em>.env.example</em> file to <em>.env</em> and modify the following data:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DB_DATABASE=ikope
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DB_DATABASE=ikope
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CACHE_DRIVER=redis
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CACHE_DRIVER=redis
 
 6. Download, install and configure [Redis](https://laravel.com/docs/8.x/redis)
 
@@ -75,7 +77,7 @@ This project has been built using the <strong>VILT</strong> stack, along with La
 
 11. php artisan serve
 
-** If you want to run the tests: php artisan test
+** &nbsp;&nbsp;If you want to run the tests: php artisan test
 
 <br/><br/>
 
