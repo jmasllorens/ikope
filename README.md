@@ -45,6 +45,7 @@ This project has been built using the <strong>VILT</strong> stack, along with <s
 - [Faker](https://github.com/fzaninotto/Faker)
 - [Artisan](https://laravel.com/docs/8.x/artisan)
 - [Eloquent ORM](https://laravel.com/docs/8.x/eloquent)
+- [Mailtrap](https://mailtrap.io/)
 
 <br/><br/>
 
