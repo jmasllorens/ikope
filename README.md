@@ -28,14 +28,8 @@ This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), 
 - [Artisan](https://laravel.com/docs/8.x/artisan)
 - [Eloquent ORM](https://laravel.com/docs/8.x/eloquent)
 
-<strong>Some applied concepts:</strong>
 
-- OOP
-- MVC
-- CRUD
-- TDD
-- Repository Pattern
-- Decorator Pattern
+
 
 
 ## Starting: Project Set-Up 🚀
@@ -79,15 +73,15 @@ This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), 
 
     * Dashboard with I-KOPE data
     * Seminars and Publications complete CRUD
-    * General Users & Admin Users list, with a delete option enabled
+    * General Users & Admin Users lists, with a delete option enabled
     * Profile Settings available
 
 <strong>Basic User</strong>
 
     * Dashboard with I-KOPE & personal data
     * All Seminars and My Seminars pages
-    * Publications complete CRUD
-    * Profile Settings available, with the possibility of enable the Patients Section
+    * Publications complete experimental CRUD
+    * Profile Settings available, with the possibility to enable the Patients Section
     * Contact form
 
 
@@ -95,28 +89,24 @@ This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), 
 
     * Dashboard with I-KOPE & personal data
     * All Seminars and My Seminars pages
-    * Publications complete CRUD
-    * Profile Settings available, with the possibility of disable the Patients Section
+    * Publications complete experimental CRUD
+    * Patients Section with 3 complete CRUDS: Patients, Sessions & Notes
+    * Profile Settings available, with the possibility to disable the Patients Section
     * Contact form
 
 
-### Implementations
+## Some Implementations & Applied Concepts
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-
-
+- OOP
+- MVC
+- 6 complete CRUDS
+- Testing with TDD (84 tests total, 100% passing)
+- Repository Pattern
+- Decorator Pattern (Redis Cache)
+- Searcher
+- Pagination
+- Loading Spinner
+- Feedback Notifications
 
 
 ## License
