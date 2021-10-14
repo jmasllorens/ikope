@@ -84,6 +84,7 @@ This project has been built using the <strong>VILT</strong> stack, along with <s
 
 ## 🎨 Features 
 <br/>
+
 <strong>Admin User</strong>
 
     * Dashboard with I-KOPE data
