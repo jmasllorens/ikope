@@ -14,10 +14,10 @@ The main purpose with I-KOPE was not to achieve a perfect application written in
 
 ## Stack and Technologies 🛠️
 
-This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), [Inertia.Js](https://inertiajs.com/), [Laravel](https://laravel.com/), [TailwindCSS](https://tailwindcss.com/)) with [Laravel Breeze](https://laravel.com/docs/8.x/starter-kits#laravel-breeze) authentication package.
+This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), [Inertia.Js](https://inertiajs.com/), [Laravel](https://laravel.com/), [TailwindCSS](https://tailwindcss.com/)), along with [Laravel Breeze](https://laravel.com/docs/8.x/starter-kits#laravel-breeze) authentication package.
 
 
-<strong>Other tools</strong>
+<strong>Other tools:</strong>
 
 
 - [MySQL](https://www.mysql.com/) + [phpMyAdmin](https://www.phpmyadmin.net/)
@@ -28,7 +28,7 @@ This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), 
 - [Artisan](https://laravel.com/docs/8.x/artisan)
 - [Eloquent ORM](https://laravel.com/docs/8.x/eloquent)
 
-<strong>Some applied concepts</strong>
+<strong>Some applied concepts:</strong>
 
 - OOP
 - MVC
@@ -46,9 +46,9 @@ This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), 
 
 3. composer install / update
 
-4. Create a DB in phpMyAdmin named 'ikope'
+4. Create a DB in phpMyAdmin named <em>ikope</em>
 
-5. Rename .env.example file to .env and modify the following data:
+5. Rename <em>.env.example</em> file to <em>.env</em> and modify the following data:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DB_DATABASE=ikope
 
@@ -73,11 +73,34 @@ This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), 
 
 
 
-## Laravel Sponsors
+## Features 🎨
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<strong>Admin User</strong>
 
-### Premium Partners
+    * Dashboard with I-KOPE data
+    * Seminars and Publications complete CRUD
+    * General Users & Admin Users list, with a delete option enabled
+    * Profile Settings available
+
+<strong>Basic User</strong>
+
+    * Dashboard with I-KOPE & personal data
+    * All Seminars and My Seminars pages
+    * Publications complete CRUD
+    * Profile Settings available, with the possibility of enable the Patients Section
+    * Contact form
+
+
+<strong>Therapist User</strong>
+
+    * Dashboard with I-KOPE & personal data
+    * All Seminars and My Seminars pages
+    * Publications complete CRUD
+    * Profile Settings available, with the possibility of disable the Patients Section
+    * Contact form
+
+
+### Implementations
 
 - **[Vehikl](https://vehikl.com/)**
 - **[Tighten Co.](https://tighten.co)**
@@ -93,17 +116,8 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 - **[CMS Max](https://www.cmsmax.com/)**
 - **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
