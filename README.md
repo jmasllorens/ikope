@@ -116,7 +116,7 @@ This project has been built using the <strong>VILT</strong> stack, along with <s
 - OOP
 - MVC
 - 6 complete CRUDS
-- Testing with TDD (84 tests - 100% passing)
+- Testing and TDD (84 tests - 100% passing)
 - Repository Pattern
 - Decorator Pattern (Redis Cache)
 - Seminar Subscription
