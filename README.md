@@ -3,14 +3,15 @@
 
 ## About I-KOPE
 <br>
-I-KOPE is a 3 weeks experimental development project, conducted by a single junior backend programmer within the last month of a full stack bootcamp. Due to its continuous growth, it's still not deployed to a production environment. 
+I-KOPE is a 3 weeks experimental development project, conducted by a single junior backend programmer within the last month of a full stack bootcamp. Due to its continuous growth, it's still not deployed to a production environment. <br>
 
 I-KOPE has been designed as an app for people interested in Psychoanalysis, either professional or not, so they can be up to date on the latest events and publications related to this field, as well as handle their patient's agenda in case is needed.
 <br><br>
 
 ## Statement of intent ✒️
 <br>
-The main purpose with I-KOPE was not to achieve a perfect application written in beautiful, clean, SOLID code, but to learn as much as possible during the process —which also means facing multiple challenges all along and trying to creatively solve them. As a brand new software developer, I believe that thinking is better than knowing, and that's why most of the code decisions for this project were not made based only on pragmatic criteria.
+The main purpose with I-KOPE was not to achieve a perfect application written in beautiful, clean, SOLID code, but to learn as much as possible during the process —which also means facing multiple challenges all along and trying to creatively solve them. <br>
+As a brand new software developer, I believe that thinking is better than knowing, and that's why most of the code decisions for this project were not made based only on pragmatic criteria.
 <br><br>
 
 ## Stack and Technologies 🛠️
@@ -30,7 +31,6 @@ This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), 
 - [Eloquent ORM](https://laravel.com/docs/8.x/eloquent)
 
 <br><br>
-
 
 
 ## Starting - Project Set-Up 🚀
@@ -66,8 +66,6 @@ This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), 
 <br><br>
 
 
-
-
 ## Features 🎨
 <br>
 <strong>Admin User</strong>
@@ -96,8 +94,9 @@ This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), 
     * Contact form
 <br><br>
 
-## Some Implementations & Applied Concepts
+## Implementations & Applied Concepts
 <br>
+
 - OOP
 - MVC
 - 6 complete CRUDS
@@ -113,6 +112,7 @@ This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), 
 
 ## Still Pending
 <br>
+
 - Validation & Error Handling
 - Loading Spinner
 - Refactor
