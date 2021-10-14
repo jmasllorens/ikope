@@ -143,31 +143,37 @@ This project has been built using the <strong>VILT</strong> stack, along with <s
 
 ## Images
 <br/>
-<p align="center"> <img src="./resources/js/Assets/Screen-1.png?raw=true" width=50%></p>
+<p align="center"> <img src="./resources/js/Assets/Screen-1.png?raw=true" width=75%></p>
 
-<p align="center"> <img src="./resources/js/Assets/Screen-2.png?raw=true" width=50%></p>
+<p align="center"> <img src="./resources/js/Assets/Screen-2.png?raw=true" width=75%></p>
 
-<p align="center"> <img src="./resources/js/Assets/Screen-3.png?raw=true" width=50%></p>
+<p align="center"> <img src="./resources/js/Assets/Screen-3.png?raw=true" width=75%></p>
 <br/>
 
-<p align="center"> <img src="./resources/js/Assets/Screen-4.png?raw=true" width=50%></p>
+<p align="center"> <img src="./resources/js/Assets/Screen-4.png?raw=true" width=75%></p>
+
 <br/>
 
-<p align="center"> <img src="./resources/js/Assets/Screen-5.png?raw=true" width=50%></p>
+<p align="center"> <img src="./resources/js/Assets/Screen-5.png?raw=true" width=75%></p>
+
 <br/>
 
-<p align="center"> <img src="./resources/js/Assets/Screen-6.png?raw=true" width=50%></p>
+<p align="center"> <img src="./resources/js/Assets/Screen-6.png?raw=true" width=75%></p>
+
 <br/>
 
-<p align="center"> <img src="./resources/js/Assets/Screen-7.png?raw=true" width=50%></p>
+<p align="center"> <img src="./resources/js/Assets/Screen-7.png?raw=true" width=75%></p>
+
 <br/>
 
-<p align="center"> <img src="./resources/js/Assets/Screen-8.png?raw=true" width=50%></p>
+<p align="center"> <img src="./resources/js/Assets/Screen-8.png?raw=true" width=75%></p>
+
 <br/>
 
-<p align="center"> <img src="./resources/js/Assets/Screen-9.png?raw=true" width=50%></p>
+<p align="center"> <img src="./resources/js/Assets/Screen-9.png?raw=true" width=75%></p>
+
 <br/>
 
-<p align="center"> <img src="./resources/js/Assets/Screen-10.png?raw=true" width=50%></p>
+<p align="center"> <img src="./resources/js/Assets/Screen-10.png?raw=true" width=75%></p>
 
 <br/><br/>
