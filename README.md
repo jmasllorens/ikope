@@ -100,13 +100,23 @@ This project has been built using the VILT stack ([Vue.Js](https://vuejs.org/), 
 - OOP
 - MVC
 - 6 complete CRUDS
-- Testing with TDD (84 tests total, 100% passing)
+- Testing with TDD (84 tests - 100% passing)
 - Repository Pattern
 - Decorator Pattern (Redis Cache)
 - Searcher
 - Pagination
+- Feedback Notifications & Confirm Alerts
+
+## Still Pending
+
+- Validation & Error Handling
 - Loading Spinner
-- Feedback Notifications
+- Refactor
+- Front-end focus (design, responsive...)
+
+
+& Keep experimenting and learning!
+
 
 
 ## License
