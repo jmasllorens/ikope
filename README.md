@@ -66,15 +66,13 @@ This project has been built using the <strong>VILT</strong> stack, along with <s
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CACHE_DRIVER=redis
 
-- Download, install and configure [Redis](https://laravel.com/docs/8.x/redis)
+- Download Redis zip file: https://github.com/MicrosoftArchive/redis/releases
 
 - Execute Redis server
 
 - php artisan migrate:fresh --seed
 
 - php artisan key:generate
-
-- npm run dev
 
 - php artisan serve
 
