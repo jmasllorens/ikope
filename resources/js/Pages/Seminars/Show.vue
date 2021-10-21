@@ -61,9 +61,9 @@
                 </div>
               </div>
               <div class="mr-8">
-                <BreezeButton  v-if="$props.seminar.users.length < $props.seminar.availability && !isSubscribed && !$props.auth.user.isAdmin"><a :href="`/subscribe/${seminar.id}`" method="get">Subscribe</a></BreezeButton>
+                <BreezeButton  v-if="$props.seminar.users.length < $props.seminar.availability && !isSubscribed && !$props.auth.user.isAdmin" class="mb-4"><a :href="`/subscribe/${seminar.id}`" method="get">Subscribe</a></BreezeButton>
 
-                <BreezeButton v-if="isSubscribed && !$props.auth.user.isAdmin"><a :href="`/unsubscribe/${seminar.id}`" method="get">Unsubscribe</a></BreezeButton>
+                <BreezeButton v-if="isSubscribed && !$props.auth.user.isAdmin"><a :href="`/unsubscribe/${seminar.id}`" method="get"  class="mb-4">Unsubscribe</a></BreezeButton>
 
                 <div v-if="$props.auth.user.isAdmin" class="inline-flex">
                 <BreezeButton class="bg-green-700 hover:bg-green-800 mr-3"><a :href="`/seminars/${seminar.id}/edit`" method="get">Edit</a></BreezeButton>
