@@ -10,6 +10,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +101,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::delete('/publications/{publication}', [PublicationController::class, 'destroy'])->name('publications_delete');
 
     Route::post('/contactMail', [UserController::class, 'contactMail']);
+
+    Route::get('/products', [ProductController::class, 'index']);
 
     
     Route::get('/contact', function () {

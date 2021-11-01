@@ -9,6 +9,7 @@ use App\Models\Patient;
 use App\Models\Session;
 use App\Models\Note;
 use App\Models\Publication;
+use App\Models\Product;
 
 
 
@@ -153,6 +154,8 @@ class DatabaseSeeder extends Seeder
         Publication::factory()->create(['title' => 'A ab absurdities and abstractions', 'image' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Green_Colour.jpg/640px-Green_Colour.jpg']);
 
         Publication::factory(3000)->create();
+
+        Product::factory(100)->create();
 
     }
 }
