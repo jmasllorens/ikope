@@ -215,6 +215,15 @@ class ViewTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_product_screen_can_be_rendered_if_user_is_logged_in()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/products');
+
+        $response->assertStatus(200);
+    }
+
 
     
 }
