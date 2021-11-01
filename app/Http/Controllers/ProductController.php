@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Product;
 use App\Models\Cart;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
