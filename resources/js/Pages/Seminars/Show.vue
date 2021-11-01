@@ -109,8 +109,7 @@
                     </div>
                 </div>
                 <br />
-            </div>
-        </div>
+          
         <br />
         <br />
     </BreezeAuthenticatedLayout>

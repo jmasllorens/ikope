@@ -102,7 +102,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::post('/contactMail', [UserController::class, 'contactMail']);
 
-    Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/products', [ProductController::class, 'index'])->name('products');
+    Route::get('/addtocart/{id}', [ProductController::class, 'getAddToCart'])->name('product_addToCart');
 
     
     Route::get('/contact', function () {
