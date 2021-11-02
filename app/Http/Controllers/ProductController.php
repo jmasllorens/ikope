@@ -27,4 +27,14 @@ class ProductController extends Controller
        /*  dd($request->session()->get('cart'));  */
         return redirect()->route('products');
     }
+
+    public function getCart()
+    {
+        if (!Session::has('cart')) {
+            return Inertia::render('Cart', ['products' => null]);
+        }
+       $oldCart = Session::get('cart');
+       $cart = new Cart($oldCart);
+       return Inertia::render('Cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+    }
 }
