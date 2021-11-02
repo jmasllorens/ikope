@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Product;
 use App\Models\Cart;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -24,7 +24,17 @@ class ProductController extends Controller
         $cart->add($product, $product->id);
 
         $request->session()->put('cart', $cart);
-      /*   dd($request->session()->get('cart')); */
+       /*  dd($request->session()->get('cart'));  */
         return redirect()->route('products');
+    }
+
+    public function getCart()
+    {
+        if (!Session::has('cart')) {
+            return Inertia::render('Cart', ['products' => null]);
+        }
+       $oldCart = Session::get('cart');
+       $cart = new Cart($oldCart);
+       return Inertia::render('Cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 }

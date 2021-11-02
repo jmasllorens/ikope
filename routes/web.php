@@ -104,6 +104,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('/products', [ProductController::class, 'index'])->name('products');
     Route::get('/addtocart/{id}', [ProductController::class, 'getAddToCart'])->name('product_addToCart');
+    Route::get('/cart', [ProductController::class, 'getCart'])->name('shoppingCart');
 
     
     Route::get('/contact', function () {
