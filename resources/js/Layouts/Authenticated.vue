@@ -32,6 +32,9 @@
                              <div v-if="$page.props.auth.user.isActive" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                  <BreezeNavLink :href="route('patients')" :active="route().current('patients')"> Patients  </BreezeNavLink>
                             </div>
+                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                 <BreezeNavLink :href="route('products')" :active="route().current('products')"> Products </BreezeNavLink>
+                            </div>
                              <div v-if="!$page.props.auth.user.isAdmin" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                  <BreezeNavLink :href="route('contact')" :active="route().current('contact')"> Contact </BreezeNavLink>
                             </div>
@@ -41,6 +44,10 @@
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
+                               <div class="ml-3 relative">
+                           <a :href="route('shoppingCart')"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+</svg></a></div>  <div v-if="$page.props.session.cart" class="mr-5 relative text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"> <a :href="route('shoppingCart')"> <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full"> {{$page.props.session.cart.totalQty}} </span> </a></div>
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative">
                                 <BreezeDropdown align="right" width="48">
@@ -103,11 +110,17 @@
                             Patients
                         </BreezeResponsiveNavLink>
                     </div>
+                    <div class="pt-2 pb-3 space-y-1">
+                        <BreezeResponsiveNavLink :href="route('products')" :active="route().current('products')">
+                            Products
+                        </BreezeResponsiveNavLink>
+                    </div>
                     <div v-if="!$page.props.auth.user.isAdmin" class="pt-2 pb-3 space-y-1">
                         <BreezeResponsiveNavLink :href="route('contact')" :active="route().current('contact')">
                             Contact
                         </BreezeResponsiveNavLink>
                     </div>
+                   
                      <div v-if="$page.props.auth.user.isAdmin" class="pt-2 pb-3 space-y-1">
                         <BreezeResponsiveNavLink :href="route('users')" :active="route().current('users')">
                             Users

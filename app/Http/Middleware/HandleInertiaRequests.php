@@ -42,6 +42,10 @@ class HandleInertiaRequests extends Middleware
                 'message' => fn () => $request->session()->get('message')
                 
             ],
+            'session' => [
+                'cart' => fn () => $request->session()->get('cart')
+                
+            ],
            
 
          

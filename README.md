@@ -45,37 +45,36 @@ This project has been built using the <strong>VILT</strong> stack, along with <s
 - [Faker](https://github.com/fzaninotto/Faker)
 - [Artisan](https://laravel.com/docs/8.x/artisan)
 - [Eloquent ORM](https://laravel.com/docs/8.x/eloquent)
+- [Mailtrap](https://mailtrap.io/)
 
 <br/><br/>
 
 ## 🚀 Starting 
 <br/>
 
-1. Git clone: https://github.com/jmasllorens/ikope.git
+- Git clone: https://github.com/jmasllorens/ikope.git
 
-2. npm install
+- npm install
 
-3. composer install / update
+- composer install / update
 
-4. Create a DB in phpMyAdmin named <em>ikope</em>
+- Create a DB in phpMyAdmin named <em>ikope</em>
 
-5. Rename <em>.env.example</em> file to <em>.env</em> and modify the following data:
+- Rename <em>.env.example</em> file to <em>.env</em> and modify the following data:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- DB_DATABASE=ikope
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CACHE_DRIVER=redis
 
-6. Download, install and configure [Redis](https://laravel.com/docs/8.x/redis)
+- Download Redis zip file: https://github.com/MicrosoftArchive/redis/releases
 
-7. Execute Redis server
+- Execute Redis server
 
-8. php artisan migrate:fresh --seed
+- php artisan migrate:fresh --seed
 
-9. php artisan key:generate
+- php artisan key:generate
 
-10. npm run dev
-
-11. php artisan serve
+- php artisan serve
 
 ** &nbsp;&nbsp;If you want to run the tests: php artisan test
 
@@ -84,6 +83,7 @@ This project has been built using the <strong>VILT</strong> stack, along with <s
 
 ## 🎨 Features 
 <br/>
+
 <strong>Admin User</strong>
 
     * Dashboard with I-KOPE data
@@ -116,7 +116,7 @@ This project has been built using the <strong>VILT</strong> stack, along with <s
 - OOP
 - MVC
 - 6 complete CRUDS
-- Testing with TDD (84 tests - 100% passing)
+- Testing and TDD (84 tests - 100% passing)
 - Repository Pattern
 - Decorator Pattern (Redis Cache)
 - Seminar Subscription
@@ -143,5 +143,37 @@ This project has been built using the <strong>VILT</strong> stack, along with <s
 
 ## Images
 <br/>
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<p align="center"> <img src="./resources/js/Assets/Screen-1.png?raw=true" width=75%></p>
+
+<p align="center"> <img src="./resources/js/Assets/Screen-2.png?raw=true" width=75%></p>
+
+<p align="center"> <img src="./resources/js/Assets/Screen-3.png?raw=true" width=75%></p>
+<br/>
+
+<p align="center"> <img src="./resources/js/Assets/Screen-4.png?raw=true" width=75%></p>
+
+<br/>
+
+<p align="center"> <img src="./resources/js/Assets/Screen-5.png?raw=true" width=75%></p>
+
+<br/>
+
+<p align="center"> <img src="./resources/js/Assets/Screen-6.png?raw=true" width=75%></p>
+
+<br/>
+
+<p align="center"> <img src="./resources/js/Assets/Screen-7.png?raw=true" width=75%></p>
+
+<br/>
+
+<p align="center"> <img src="./resources/js/Assets/Screen-8.png?raw=true" width=75%></p>
+
+<br/>
+
+<p align="center"> <img src="./resources/js/Assets/Screen-9.png?raw=true" width=75%></p>
+
+<br/>
+
+<p align="center"> <img src="./resources/js/Assets/Screen-10.png?raw=true" width=75%></p>
+
 <br/><br/>
