@@ -33,7 +33,7 @@
                          
                         
                             <div class="flex justify-between items-center mt-6 pt-6 border-t">
-                                <div class="flex items-center"> <i class="fa fa-arrow-left text-sm pr-2"></i> <span class="text-md font-medium text-blue-500">Continue Shopping</span> </div>
+                                <div class="flex items-center"> <i class="fa fa-arrow-left text-sm pr-2"></i> <span class="text-md font-medium text-blue-500"><a :href="route('products')">Continue Shopping</a></span> </div>
                                 <div class="flex justify-center items-end"> <span class="text-sm font-medium text-gray-400 mr-1">Total:</span> <span class="text-lg font-bold text-gray-800 "> {{$page.props.session.cart.totalPrice}} €</span> </div>
                             </div>
                         </div>
