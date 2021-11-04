@@ -104,6 +104,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('/products', [ProductController::class, 'index'])->name('products');
     Route::get('/addtocart/{id}', [ProductController::class, 'getAddToCart'])->name('product_addToCart');
+    Route::get('/additemtocart/{id}', [ProductController::class, 'getAddItemToCart'])->name('product_addItemToCart');
+    Route::get('removeitemfromcart/{id}', [ProductController::class, 'getRemoveItemFromCart'])->name('product_removeItemFromCart');
     Route::get('/cart', [ProductController::class, 'getCart'])->name('shoppingCart');
 
     
