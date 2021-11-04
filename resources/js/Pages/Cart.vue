@@ -25,7 +25,7 @@
                                     <div class="flex flex-col ml-3"> <span class="md:text-md font-medium">{{product.item.name}}</span> <span class="text-xs font-light text-gray-400">{{product.item.id}}</span> </div>
                                 </div>
                                 <div class="flex justify-center items-center">
-                                    <div class="pr-8 flex "> <span class="font-semibold">-</span> <input type="text" class="focus:outline-none bg-gray-100 border h-6 w-8 rounded text-sm px-2 mx-2" :value="`${product.qty}`"> <span class="font-semibold">+</span> </div>
+                                    <div class="pr-8 flex "> <span @click.prevent="removeItem(`${product.item.id}`)" class="font-semibold cursor-pointer">-</span> <input type="text" class="focus:outline-none bg-gray-100 border h-6 w-8 rounded text-sm px-2 mx-2" :value="`${product.qty}`"> <span @click.prevent="addItem(`${product.item.id}`)" class="font-semibold cursor-pointer">+</span> </div>
                                     <div class="pr-8 "> <span class="text-xs font-medium">{{product.item.price}} €</span> </div>
                                     <div> <i class="fa fa-close text-xs font-medium"></i> </div>
                                 </div>
@@ -33,7 +33,7 @@
                          
                         
                             <div class="flex justify-between items-center mt-6 pt-6 border-t">
-                                <div class="flex items-center"> <i class="fa fa-arrow-left text-sm pr-2"></i> <span class="text-md font-medium text-blue-500">Continue Shopping</span> </div>
+                                <div class="flex items-center"> <i class="fa fa-arrow-left text-sm pr-2"></i> <span class="text-md font-medium text-blue-500"><a :href="route('products')">Continue Shopping</a></span> </div>
                                 <div class="flex justify-center items-end"> <span class="text-sm font-medium text-gray-400 mr-1">Total:</span> <span class="text-lg font-bold text-gray-800 "> {{$page.props.session.cart.totalPrice}} €</span> </div>
                             </div>
                         </div>
@@ -88,6 +88,19 @@ export default {
         BreezeLabel,
         BreezeInput,
     },
+
+    methods: {
+        addItem(id)
+        {
+             this.$inertia.get(`/additemtocart/${id}`)
+      
+      return;
+        },
+        removeItem(id)
+        {
+            this.$inertia.get(`/removeitemfromcart/${id}`)
+        }
+    }
 };
 </script>
 <style scoped>
